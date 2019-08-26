@@ -4,6 +4,8 @@
   data-poster-url="{{data.widget.formatImageUrl(idea.extraData.images[0], 600, 360, true)}}"
   {% endif %}
 >
+  {{apos.log(idea)}}
+
   <a href="/{{data.global.ideaSlug}}/{{idea.id}}">
     {% if idea.status != 'DENIED' %}
       <!--
@@ -11,7 +13,7 @@
       -->
     {% endif %}
 
-    <div class="image"></div>
+    <div class="image" background-image="{{data.widget.formatImageUrl(idea.extraData.images[0], 600, 360, true)}}"></div>
 
     <div class="duration">
       {% if idea.status == 'DENIED' %}

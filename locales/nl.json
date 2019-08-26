@@ -460,5 +460,14 @@
 	"Text in button for authenticating": "Text in button for authenticating",
 	"Placeholder when no item is selected": "Placeholder when no item is selected",
 	"statenkwartier": "statenkwartier",
-	"Beschrijving": "Beschrijving"
+	"Beschrijving": "Beschrijving",
+	"Manage %s": "Manage %s",
+	"Here you can add new %s or click on existing ones to edit them.": "Here you can add new %s or click on existing ones to edit them.",
+	"Add User": "Add User",
+	"Search Users...": "Search Users...",
+	"Last Updated": "Last Updated",
+	"MM/DD/YY[ at ]h:mma": "MM/DD/YY[ at ]h:mma",
+	"Draft": "Draft",
+	"An error has occurred": "An error has occurred",
+	"An error has occurred. We're working on it. We apologize for the inconvenience.": "An error has occurred. We're working on it. We apologize for the inconvenience."
 }

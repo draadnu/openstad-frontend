@@ -30,15 +30,15 @@
                     <a href="/plannen" class="margin-bottom-xs scroll-link block no-decoration">
                         <span class="box-blue block">
                             <span class="margin-right-s">
-                              <span class="number-plate"> 0 </span>
-                              <span class="number-plate"> 2 </span>
-                              <span class="number-plate"> 3 </span>
+                                <span class="number-plate"> {{count[0]}} </span>
+                                <span class="number-plate"> {{count[1]}} </span>
+                                <span class="number-plate"> {{count[2]}} </span>
                             </span>
                             plannen
                         </span>
                     </a>
                     {% if data.widget.showBtn %}
-                    <a href="{{data.widget.btnUrl}}" class="link-box scroll-link margin-bottom-sm button-with-icon" style="">
+                    <a href="{{data.widget.btnUrl}}"  target="_blank" class="link-box scroll-link margin-bottom-sm button-with-icon" style="">
 
                         <img src="{{apos.attachments.url(data.widget.btnIcon)}}">
 
