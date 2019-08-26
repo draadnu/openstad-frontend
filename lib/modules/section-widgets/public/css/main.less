@@ -67,10 +67,15 @@
       .howDoesItWorkButton {
         display: block;
       }
+    }
 
       &.closed {
         .row, .full-width-container {
-          display: none!important
+          display: block!important;
+
+          @media only screen and (max-width: 767px) {
+            display: none!important;
+          }
         }
         .arrow {
           transform: rotate(0deg);
@@ -85,7 +90,6 @@
           transform: rotate(180deg);
         }
       }
-    }
   }
 
   &.closed {
