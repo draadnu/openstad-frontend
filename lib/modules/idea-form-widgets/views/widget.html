@@ -1,24 +1,28 @@
 {% set pageTitle = 'Jouw plan insturen' %}
 {% set showForm = true %}
-{% set summaryMaxLength = 140 %}
-{% set summaryMinLength = 20 %}
-{% set useModernEditor = false %}
 {% set idea = data.idea %}
 {% set isOwner = data.openstadUser.id === idea.userId %}
 {% set isOwnerOrAdmin =(isOwner or data.isAdmin) %}
 
 {% if idea and isOwnerOrAdmin %}
 {% set showForm = true %}
-{% elseif (not idea) %}
+{% elseif (not idea) and data.openstadUser and data.openstadUser.id %}
 {% set showForm = true %}
 {% else %}
 {% set showForm = false %}
 {% endif %}
 
+{% if data.widget.editorDescription %}
+{% set useModernEditor = true %}
+{% else %}
+{% set useModernEditor = false %}
+{% endif %}
+
 <div class="pageContent newIdea" id="content">
 	{% if not showForm %}
 	<div class="box-grey">
-		<h1> Je hebt geen rechten voor deze pagina </h1>
+		<h1>Om een plan in te dienen moet je ingelogd zijn.</h1>
+		<p>Klik <a href="/oauth/login">hier</a> om in te loggen.</p>
 	</div>
 	{% elseif showForm %}
 		<div  id="formulier-block">
@@ -37,7 +41,9 @@
 							<div class="form-info">
 								{{ data.widget.infoTitle if data.widget.infoTitle else 'Geef je voorstel een duidelijke titel, zodat anderen jouw inzending makkelijk kunnen vinden en direct snappen waar het over gaat.' }}
 							</div>
-							<input type="text" name="title" value="{{idea.title}}" required><br />
+							<input type="text" name="title" value="{{idea.title}}" {% if data.widget.requiredTitle %}required{% endif %}
+								   minlength="{{data.widget.minTitle}}"
+								   maxlength="{{data.widget.maxTitle}}"><br />
 							<input type="hidden" id="extraData" name="extraData" value=""><br />
 						</div>
 						<div class="form-group">
@@ -45,10 +51,16 @@
 								{{ data.widget.labelSummary if data.widget.labelSummary else 'Samenvatting' }}
 							</h2>
 							<div class="form-info">
-								{{ data.widget.infoSummary if data.widget.infoSummary else 'Vertel in maximaal 140 tekens iets meer over je plan.' }}
+								{{ data.widget.infoSummary if data.widget.infoSummary else 'Vertel in maximaal {data.widget.maxSummary} tekens iets meer over je plan.' }}
 							</div>
-							<textarea name="summary" required minlength="{{summaryMinLength}}" maxlength="{{summaryMaxLength}}">{{idea.summary}}</textarea>
-							<div id="charsLeft">Je hebt nog <span>{{summaryMaxLength}}</span> tekens over.</div>
+
+							{% if data.widget.typeSummary === 'text'  %}
+							<input type="text" name="summary" minlength="{{data.widget.minSummary}}" maxlength="{{data.widget.maxSummary}}"  {% if data.widget.requiredSummary %}required{% endif %} value="{{idea.summary}}">
+							{% else %}
+							<textarea name="summary" minlength="{{data.widget.minSummary}}" maxlength="{{data.widget.maxSummary}}"  {% if data.widget.requiredSummary %}required{% endif %}>{{idea.summary}}</textarea>
+							{% endif %}
+
+							<div id="charsLeft">Je hebt nog <span>{{data.widget.maxSummary}}</span> tekens over.</div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -61,7 +73,6 @@
 						</div>
 						<select id="gebied" class="default-select" name="area" value="{% if idea.extraData %}{{idea.extraData.area}}{% endif %}">
 							<option value="">Kies gebied</option>
-							<option value="" {% if not idea.extraData.area %}selected{% endif %}>Algemeen</option>
 							{% for area in data.global.areas %}
 								<option value="{{area.value}}" {% if (idea.extraData) and (idea.extraData.area === area.value) %}selected{% endif %}>{{area.value}}</option>
 							{% endfor %}
@@ -72,13 +83,13 @@
 					<div class="form-group">
 						{% if data.global.themes and data.global.themes.length > 0 %}
 						<h2>
-							{{ data.widget.labelAreas if data.widget.labelAreas else 'Thema' }}
+							{{ data.widget.labelThemes if data.widget.labelThemes else 'Thema' }}
 						</h2>
 						<div class="form-info">
 							{{ data.widget.infoThemes if data.widget.infoThemes else 'Selecteer het thema waarop jouw plan betrekking heeft.' }}
 						</div>
 
-						<select id="thema" name="theme" class="default-select" value="{% if idea.extraData %}{{idea.extraData.theme}}{% endif %}">
+						<select id="thema" name="theme" class="default-select" value="{% if idea.extraData %}{{idea.extraData.theme}}{% endif %}"  {% if data.widget.requiredThemes %}required{% endif %}>
 							<option value="">Kies thema</option>
 							{% for theme in data.global.themes %}
 							<option value="{{theme.value}}" {% if (idea.extraData) and (idea.extraData.theme == "theme.value") %}selected{% endif %}>{{theme.value}}</option>
@@ -122,7 +133,7 @@
 									{% endfor %}
 									{% endif %}
 								</script>
-								<input type="file" class="imageUploader filepond" multiple />
+								<input type="file" class="imageUploader filepond" {% if data.widget.uploadMultiple %} multiple {% endif %} {% if data.widget.requiredImages %}required{% endif %}/ >
 
 							</fieldset>
 							<input type="hidden" name="validateImages" multiple />
@@ -191,17 +202,18 @@
 									name="description"
 									value="{{idea.description}}"
 									required
-									minlength="140"
+									minlength="{{data.widget.minDescription}}"
+									maxlength="{{data.widget.maxDescription}}"
 								/>
 							{% else %}
-								<textarea name="description" id="description-textarea">{{idea.description}}</textarea>
+								<textarea name="description" id="description-textarea" {% if data.widget.requiredDescription %}required{% endif %}>{{idea.description}}</textarea>
 							{% endif %}
 
 							</div>
 
 								<input class="idea-form-redirect-uri" type="hidden" name="redirect" value="{{data.widget.redirect}}" />
 
-							<div id="charsLeftMain">Nog minimaal <span>140</span> tekens.</div><br/><br/>
+							<div id="charsLeftMain">Nog minimaal <span>{{data.widget.maxDescription}}</span> tekens.</div><br/><br/>
 
 								{% if idea.id %}
 								<input type="hidden" name="id" value="{{idea.id}}" />
@@ -225,6 +237,50 @@
 					</div>
 					{% endif %}
 
+				{% if data.widget.displayEstimate %}
+				<div id="estimate">
+					<h2>{{ data.widget.labelEstimate if data.widget.labelEstimate else 'Inschatting kosten' }}</h2>
+					<div class="form-info" style="height: auto;">{% if data.widget.infoAdvice %}
+						{{ data.widget.infoAdvice }}
+					{% else %}
+						Geef een inschatting van wat jouw plan kost. Vind je dit moeilijk, dan kun je ook het <a href="mailto:duinoordbegroot@denhaag.nl">stadsdeel</a> vragen om je daarbij te helpen. Als andere organisaties willen meebetalen aan het plan, kun je dat ook hier aangeven.
+					{% endif %}</div>
+					{% if data.widget.typeEstimate === 'textarea'  %}
+					<textarea id="estimate_input" name="estimate">
+						{{idea.estimate}}
+					</textarea>
+					{% else %}
+
+					<input type="text" id="estimate_input" name="estimate"
+						   {% if idea.extraData.estimate %}
+						   value="{{idea.estimate}}"
+						   {% endif %}
+					>
+					{% endif %}
+
+				</div>
+				{% endif %}
+
+				{% if data.widget.displayRole %}
+				<div id="role">
+					<h2>Welke rol ga je zelf vervullen bij de uitvoering?</h2>
+					<div class="form-info" style="height: auto;">Bewoners kunnen zelf of samen met de gemeente of een andere organisatie een plan uitvoeren. Geef aan welke rol je hierin wilt en kunt vervullen.</div>
+
+					{% if data.widget.typeRole === 'text'  %}
+					<input id="role_input" name="role" value={{idea.role}}">
+					{% else %}
+					<textarea id="role_input" name="role">{{idea.role}}</textarea>
+					{% endif %}
+				</div>
+				{% endif %}
+
+				{% if data.widget.displayPhone %}
+				<div id="phone">
+					<h2>Telefoonnummer (optioneel)</h2>
+					<div class="form-info" style="height: auto;">Vul hier (optioneel) je telefoonnummer in, zodat we snel contact met je kunnen opnemen over je plan.</div>
+					<input type="number" id="phone_input" name="phone" value="">
+				</div>
+				{% endif %}
 
 					{% if data.widget.displayAdvice %}
 					<div class="form-group">
@@ -233,15 +289,12 @@
 								{{ data.widget.labelAdvice if data.widget.labelAdvice else 'Tip' }}
 							</h2>
 							<div class="form-info" style="height: auto;">
-								{{ data.widget.infoAdvice if data.widget.infoAdvice else 'Geef een tip aan Amsterdammers die ook zo’n dak of balkon willen.' }}
+								{{ data.widget.infoAdvice if data.widget.infoAdvice else 'Geef een tip aan Amsterdammers die ook zo’n dak of balkon willen.' | safe }}
 							</div>
 							<textarea name="advice"  minlength="{{summaryMinLength}}" maxlength="{{summaryMaxLength}}">{{idea.extraData.advice}}</textarea>
 						</div>
 					</div>
 					{% endif %}
-
-
-
 
 				{% if idea %}
 				<input type="hidden" name="ideaId" value="{{idea.id}}">
