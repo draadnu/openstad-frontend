@@ -20,13 +20,24 @@
                     <a href="/plannen" class="margin-bottom-xs scroll-link block no-decoration">
                         <span class="box-blue block">
                             <span class="margin-right-s">
-                              <span class="number-plate"> 0 </span>
-                              <span class="number-plate"> 2 </span>
-                              <span class="number-plate"> 3 </span>
+                              <span id="number-number-plate-000" class="number-plate"> 0 </span>
+                              <span id="number-number-plate-00" class="number-plate"> 0 </span>
+                              <span id="number-number-plate-0" class="number-plate"> 0 </span>
                             </span>
                             plannen
                         </span>
                     </a>
+                    <script>
+
+                     var value = {{ data.ideas.length or 0 }};
+
+                     var value000 = parseInt(value/100) || 0;
+                     var value00  = parseInt(( value - 100 * value000 )/10) || 0;
+                     var value0   = value - value000 * 100 - value00 * 10;
+                     document.getElementById('number-number-plate-000').innerHTML = value000;
+                     document.getElementById('number-number-plate-00').innerHTML = value00;
+                     document.getElementById('number-number-plate-0').innerHTML = value0;
+                    </script>
                     {% if data.widget.showBtn %}
                     <a href="{{data.widget.btnUrl}}" class="link-box scroll-link margin-bottom-sm button-with-icon" style="">
 
