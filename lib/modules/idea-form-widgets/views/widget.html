@@ -21,6 +21,8 @@
 <div class="pageContent newIdea" id="content">
 	{% if not showForm %}
 	<div class="box-grey">
+		<a href="/oauth/login" class="full-link-btn"></a>
+
 		<h1>Om een plan in te dienen moet je ingelogd zijn.</h1>
 		<p>Klik <a href="/oauth/login">hier</a> om in te loggen.</p>
 	</div>
@@ -29,7 +31,7 @@
 			<form method="post" id="js-form" action="/modules/idea-form-widgets/submit" class="idea-form">
 					<div id="titleAndSummary">
 						<div class="form-group">
-							<h4>Naam</h4>
+							<h2>Naam</h2>
 							<p>
 								{{data.openstadUser.firstName}} {{data.openstadUser.lastName}} <em>(je emailadres wordt nooit gepubliceerd)</em>
 							</p>
@@ -145,16 +147,15 @@
 								{{ data.widget.labelDescription if data.widget.labelDescription else 'Beschrijving' }}
 							</h2>
 							<div class="form-info">
-								{{ data.widget.infoDescription if data.widget.infoDescription else 'Gebruik de ruimte hieronder om je voorstel verder uit te leggen.' }}
+								Gebruik de ruimte hieronder om je plan uitgebreider toe te lichten. Houd er rekening mee dat de lezer van je omschrijving een medebewoner is die misschien wel op jouw plan wil stemmen.
 
-							{#	<ul>
+								<ul class="checkmark-list">
 									<li>Wat is het verhaal achter jouw plan?</li>
-									<li>Waarom past dit plan goed bij het thema dat je geselecteerd hebt?</li>
-									<li>Is het een plan dat je zelf wilt uitvoeren, of moet het door een organisatie of de gemeente uitgevoerd worden?</li>
+									<li>Voor wie is het plan?</li>
 									<li>Wat wil je ermee bereiken?</li>
-									<li>Draag argumenten aan om mensen uit West te overtuigen op jouw plan te stemmen. Je plan heeft minimaal 50 stemmen nodig om door te gaan naar de volgende fase.</li>
+									<li>Draag argumenten aan om mensen uit het Statenkwartier te overtuigen op jouw plan te stemmen. Je plan heeft minimaal 25 likes nodig om door te gaan naar de volgende fase.</li>
+									<li>Is het een plan dat je zelf wilt uitvoeren, of moet het door een organisatie of de gemeente uitgevoerd worden?</li>
 								</ul>
-								#}
 							</div>
 
 							{% if useModernEditor %}
@@ -241,9 +242,9 @@
 				<div id="estimate">
 					<h2>{{ data.widget.labelEstimate if data.widget.labelEstimate else 'Inschatting kosten' }}</h2>
 					<div class="form-info" style="height: auto;">{% if data.widget.infoAdvice %}
-						{{ data.widget.infoAdvice }}
+						{{ data.widget.infoAdvice | safe}}
 					{% else %}
-						Geef een inschatting van wat jouw plan kost. Vind je dit moeilijk, dan kun je ook het <a href="mailto:duinoordbegroot@denhaag.nl">stadsdeel</a> vragen om je daarbij te helpen. Als andere organisaties willen meebetalen aan het plan, kun je dat ook hier aangeven.
+						Geef een inschatting van wat jouw plan kost. Vind je dit moeilijk, dan kun je ook het <a href="mailto:statenkwartierbegroot@denhaag.nl">stadsdeel</a> vragen om je daarbij te helpen. Als andere organisaties willen meebetalen aan het plan, kun je dat ook hier aangeven.
 					{% endif %}</div>
 					{% if data.widget.typeEstimate === 'textarea'  %}
 					<textarea id="estimate_input" name="estimate">
