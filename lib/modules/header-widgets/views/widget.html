@@ -11,9 +11,9 @@
             <div class="row">
                 <div class="col-sm-9 col-xs-12">
                     <div class="header-block">
-                        <h1>{{data.widget.title}}</h1>
-                        <span class="subtitle">{{data.widget.subtitle}}</span>
-                        <div class="intro-text">{{data.widget.introText}}</div>
+                        <h1>{{data.widget.title | safe}}</h1>
+                        <span class="subtitle">{{data.widget.subtitle | safe}}</span>
+                        <div class="intro-text">{{data.widget.introText | safe}}</div>
                         {% if data.widget.showBtnIntro %}
                         <div class="button-row">
                             {% if data.widget.btn1Url %}
