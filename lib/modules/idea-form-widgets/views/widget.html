@@ -72,15 +72,20 @@
 							{{ data.widget.labelDescription if data.widget.labelDescription else 'Beschrijving' }}
 						</h2>
 						<div class="form-info">
-							Gebruik de ruimte hieronder om je plan uitgebreider toe te lichten. Houd er rekening mee dat de lezer van je omschrijving een medebewoner is die misschien wel op jouw plan wil stemmen.
+							{{ data.widget.infoDescription if data.widget.infoDescription else 'Gebruik de ruimte hieronder om je plan uitgebreider toe te lichten. Houd er rekening mee dat de lezer van je omschrijving een medebewoner is die misschien wel op jouw plan wil stemmen.' }}
 
+
+							{% if data.widget.listDescription %}}
 							<ul class="checkmark-list">
-								<li class="parent-item">Wat is het verhaal achter jouw plan?</li>
-								<li class="parent-item">Voor wie is het plan?</li>
-								<li class="parent-item">Wat wil je ermee bereiken?</li>
-								<li class="parent-item">Draag argumenten aan om mensen uit het Statenkwartier te overtuigen op jouw plan te stemmen. Je plan heeft minimaal 25 likes nodig om door te gaan naar de haalbaarheidscheck door de gemeente.</li>
-								<li class="parent-item">Is het een plan dat je zelf wilt uitvoeren, of moet het door een organisatie of de gemeente uitgevoerd worden?</li>
+								{% for item in data.widget.itemsDescription %}
+								<li class="parent-item">
+									{{ item.listitem | safe }}
+								</li>
+								{% endfor %}
 							</ul>
+							{% endif %}
+
+
 						</div>
 
 						{% if useModernEditor %}
