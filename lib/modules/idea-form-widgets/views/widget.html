@@ -243,8 +243,8 @@
 				{% if data.widget.displayEstimate %}
 				<div id="estimate">
 					<h2>{{ data.widget.labelEstimate if data.widget.labelEstimate else 'Inschatting kosten' }}</h2>
-					<div class="form-info" style="height: auto;">{% if data.widget.infoAdvice %}
-						{{ data.widget.infoAdvice | safe}}
+					<div class="form-info" style="height: auto;">{% if data.widget.infoEstimate %}
+						{{ data.widget.infoEstimate | safe}}
 					{% else %}
 						Geef een inschatting van wat jouw plan kost. Vind je dit moeilijk, dan kun je ook het <a href="mailto:statenkwartierbegroot@denhaag.nl">stadsdeel</a> vragen om je daarbij te helpen. Als andere organisaties willen meebetalen aan het plan, kun je dat ook hier aangeven.
 					{% endif %}</div>
@@ -270,7 +270,7 @@
 					<div class="form-info" style="height: auto;">{{ data.widget.infoRole if data.widget.infoRole else 'Bewoners kunnen zelf of samen met de gemeente of een andere organisatie een plan uitvoeren. Geef aan welke rol je hierin wilt en kunt vervullen.' }}</div>
 
 					{% if data.widget.typeRole === 'text'  %}
-					<input id="role_input" name="role" value={{idea.role}}">
+					<input id="role_input" name="role" value="{{idea.role}}">
 					{% else %}
 					<textarea id="role_input" name="role">{{idea.role}}</textarea>
 					{% endif %}
