@@ -294,7 +294,7 @@
 							<div class="form-info" style="height: auto;">
 								{{ data.widget.infoAdvice | safe if data.widget.infoAdvice else 'Geef een tip aan Amsterdammers die ook zo’n dak of balkon willen.' | safe }}
 							</div>
-							<textarea name="advice"  minlength="{{summaryMinLength}}" maxlength="{{summaryMaxLength}}">{{idea.extraData.advice}}</textarea>
+							<textarea name="advice">{{idea.extraData.advice}}</textarea>
 						</div>
 					</div>
 					{% endif %}
