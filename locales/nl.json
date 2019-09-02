@@ -470,5 +470,16 @@
 	"Draft": "Draft",
 	"An error has occurred": "An error has occurred",
 	"An error has occurred. We're working on it. We apologize for the inconvenience.": "An error has occurred. We're working on it. We apologize for the inconvenience.",
-	"Numbers": "Numbers"
+	"Numbers": "Numbers",
+	"Set the options for a new page.": "Set the options for a new page.",
+	"Save": "Save",
+	"Campaign header": "Campaign header",
+	"Save Campaign header": "Save Campaign header",
+	"Show button(s) under intro text": "Show button(s) under intro text",
+	"Left button label": "Left button label",
+	"Left button URL": "Left button URL",
+	"Right button label": "Right button label",
+	"Right button URL": "Right button URL",
+	"Edit Campaign header": "Edit Campaign header",
+	"Show button linking to users plan": "Show button linking to users plan"
 }

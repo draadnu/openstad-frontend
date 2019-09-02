@@ -32,3 +32,29 @@
     background-size: 15px 10px;
     background-image: url(/img/checkmark-blue.svg);
 }
+
+.list-widget .parent-item {
+  margin: 15px 0;
+}
+
+.list-widget.uk-list-numbers {
+  counter-reset: item-counter;
+  list-style: none;
+  padding-left: 0;
+}
+
+.list-widget.uk-list-numbers .parent-item {
+  padding-left: 20px;
+  position: relative;
+}
+
+.list-widget.uk-list-numbers .parent-item:before {
+  content: counter(item-counter);
+  counter-increment: item-counter;
+  position: absolute;
+  left: 0;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 18px;
+}

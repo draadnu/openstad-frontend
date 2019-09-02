@@ -338,6 +338,7 @@ function run(id, siteData, callback) {
             'info-bar' : {},
             'link': {},
             'list' : {},
+            'campaign-header' : {},
             'gebiedsontwikkeling-tool': {
               addLabel: 'Map for area development',
             },
@@ -415,6 +416,7 @@ function run(id, siteData, callback) {
       'agenda-widgets': {},
       'accordeon-widgets': {},
       'idea-overview-widgets': {},
+      'campaign-header-widgets': {},
       'icon-section-widgets': {},
       'idea-single-widgets': {},
       'idea-form-widgets': {},
