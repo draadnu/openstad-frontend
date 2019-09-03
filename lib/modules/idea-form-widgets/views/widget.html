@@ -6,7 +6,7 @@
 
 {% if idea and isOwnerOrAdmin %}
 {% set showForm = true %}
-{% elseif (not idea) and data.openstadUser and data.openstadUser.id %}
+{% elseif (not idea) and data.openstadUser and data.openstadUser.id and data.openstadUser.role !== 'anonymous' %}
 {% set showForm = true %}
 {% else %}
 {% set showForm = false %}
