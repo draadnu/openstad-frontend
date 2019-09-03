@@ -17,10 +17,10 @@
                         {% if data.widget.showBtnIntro %}
                         <div class="button-row">
                             {% if data.widget.btn1Url %}
-                            <a href="{{data.widget.btn1Url}}" class="button-without-icon margin-top-sm">{{data.widget.btn1Label}}</a>
+                            <a href="{{data.widget.btn1Url.replace(':id', data.ideaId)}}" class="button-without-icon margin-top-sm">{{data.widget.btn1Label}}</a>
                             {% endif %}
                             {% if data.widget.btn2Url %}
-                            <a href="{{data.widget.btn2Url}}" class="button-without-icon margin-top-sm">{{data.widget.btn2Label}}</a>
+                            <a href="{{data.widget.btn2Url.replace(':id', data.ideaId)}}" class="button-without-icon margin-top-sm">{{data.widget.btn2Label}}</a>
                             {% endif %}
                         </div>
                         {% endif %}
