@@ -290,7 +290,7 @@
 				<div id="phone">
 					<h2>{{ data.widget.labelPhone if data.widget.labelPhone else 'Telefoonnummer (optioneel)' }}</h2>
 					<div class="form-info" style="height: auto;">{{ data.widget.infoPhone if data.widget.infoPhone else 'Vul hier (optioneel) je telefoonnummer in, zodat we snel contact met je kunnen opnemen over je plan.' }}</div>
-					<input type="number" id="phone_input" name="phone" value="{% if data.extraData and data.extraData.phone %}{{data.extraData.phone}}{% endif %}">
+					<input type="number" id="phone_input" name="phone" value="{% if idea.extraData and idea.extraData.phone %}{{idea.extraData.phone}}{% endif %}">
 				</div>
 				{% endif %}
 
