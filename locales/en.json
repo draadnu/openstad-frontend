@@ -392,5 +392,17 @@
 	"Registered user": "Registered user",
 	"Title for the popup": "Title for the popup",
 	"Description for the popup": "Description for the popup",
-	"Author of the modbreaks": "Author of the modbreaks"
+	"Author of the modbreaks": "Author of the modbreaks",
+	"Campaign header": "Campaign header",
+	"Save Page header": "Save Page header",
+	"Subtitle": "Subtitle",
+	"Intro text": "Intro text",
+	"Show button(s) under intro text": "Show button(s) under intro text",
+	"Left button label": "Left button label",
+	"Left button URL": "Left button URL",
+	"Right button label": "Right button label",
+	"Right button URL": "Right button URL",
+	"Show button in right column": "Show button in right column",
+	"Button label": "Button label",
+	"Button URL": "Button URL"
 }
