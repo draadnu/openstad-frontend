@@ -10,7 +10,7 @@
      position: { lat: {{idea.location.coordinates[0]}}, lng: {{idea.location.coordinates[1]}} },
 		 icon     : {
 			 url    : {% if ( idea.status == 'DONE' ) or (idea.status == 'ACCEPTED') or (idea.status == 'BUSY') %}'/img/idea/flag-blue.svg'{% elseif ( idea.status == 'CLOSED' ) or (idea.status == 'DENIED') %}'/img/idea/flag-gray.svg'{% else %}'/img/idea/flag-red.svg'{% endif %},
-			 size   : [22, 24],
+			 size   : [22, 24],git st
 			 anchor : [ 4, 21],
 		 },
 		 href: '/plan/{{idea.id}}',
