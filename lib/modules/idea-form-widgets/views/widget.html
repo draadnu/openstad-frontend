@@ -4,9 +4,11 @@
 {% set isOwner = data.openstadUser.id === idea.userId %}
 {% set isOwnerOrAdmin =(isOwner or data.isAdmin) %}
 
+{{ apos.log (data.openstadUser) }}
+
 {% if idea and isOwnerOrAdmin %}
 {% set showForm = true %}
-{% elseif (not idea) and data.openstadUser and data.openstadUser.id and data.openstadUser.role !== 'anonymous' %}
+{% elseif (not idea) and data.openstadUser and data.openstadUser.id and data.openstadUser.role !== 'anonymous' and data.openstadUser.id != 1 %}
 {% set showForm = true %}
 {% else %}
 {% set showForm = false %}
