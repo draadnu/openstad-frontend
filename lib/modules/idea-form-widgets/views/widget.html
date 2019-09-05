@@ -26,7 +26,7 @@
 		<a href="/oauth/login" class="full-link-btn"></a>
 
 		<h1>Om een plan in te dienen moet je ingelogd zijn.</h1>
-		<p>Klik <a href="/oauth/login">hier</a> om in te loggen.</p>
+		<a href="/oauth/login" class="btn btn-primary" style="color:white">Log in</a>
 	</div>
 	{% elseif showForm %}
 		<div  id="formulier-block">
@@ -35,7 +35,7 @@
 						<div class="form-group">
 							<h2>Naam</h2>
 							<p>
-								{{data.openstadUser.firstName}} {{data.openstadUser.lastName}} <em>(je emailadres wordt nooit gepubliceerd)</em>
+								{{data.openstadUser.firstName}} {{data.openstadUser.lastName}} <em>(je e-mailadres wordt nooit gepubliceerd)</em>
 							</p>
 						</div>
 						<div class="form-group">
@@ -279,7 +279,7 @@
 					<div class="form-info" style="height: auto;">{{ data.widget.infoRole if data.widget.infoRole else 'Bewoners kunnen zelf of samen met de gemeente of een andere organisatie een plan uitvoeren. Geef aan welke rol je hierin wilt en kunt vervullen.' }}</div>
 
 					{% if data.widget.typeRole === 'text'  %}
-					<input id="role_input" name="role" value="{% if idea.extraData and idea.extraData.role %}{{idea.extraData.role}}{% endif %}">
+					<input type="text" id="role_input" name="role" value="{% if idea.extraData and idea.extraData.role %}{{idea.extraData.role}}{% endif %}">
 					{% else %}
 					<textarea id="role_input" name="role">{% if idea.extraData and idea.extraData.role %}
 						{{idea.extraData.role}}
