@@ -499,5 +499,13 @@
 	"Black": "Black",
 	"Toggle arrow color": "Toggle arrow color",
 	"Url": "Url",
-	"statenkwartier-nieuw": "statenkwartier-nieuw"
+	"statenkwartier-nieuw": "statenkwartier-nieuw",
+	"Openlayer map": "Openlayer map",
+	"Save Openlayer map": "Save Openlayer map",
+	"Display CTA button": "Display CTA button",
+	"CTA url": "CTA url",
+	"CTA text": "CTA text",
+	"Display counter": "Display counter",
+	"Counter text": "Counter text",
+	"Edit Openlayer map": "Edit Openlayer map"
 }

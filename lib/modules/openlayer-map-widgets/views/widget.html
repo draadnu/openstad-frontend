@@ -1,0 +1,94 @@
+<div id="nlmaps-holder"></div>
+
+<link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css">
+<script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
+<script src="https://nlmaps.nl/dist/nlmaps.iife.js"></script>
+<script>
+    var nlMapsHolder = document.getElementById('nlmaps-holder');
+    nlMapsHolder.style.height = '300px'; // Change to required height
+
+    const GeoJSON = ol.format.GeoJSON;
+    const MultiPoint = ol.geom.MultiPoint;
+    const VectorLayer = ol.layer.Vector;
+    const VectorSource = ol.source.Vector;
+    const Style = ol.style.Style;
+    const CircleStyle = ol.style.Circle;
+    const Fill = ol.style.Fill;
+    const Stroke = ol.style.Stroke;
+
+
+    var styles = [
+        /* We are using two different styles for the polygons:
+         *  - The first style is for the polygons themselves.
+         *  - The second style is to draw the vertices of the polygons.
+         *    In a custom `geometry` function the vertices of a polygon are
+         *    returned as `MultiPoint` geometry, which will be used to render
+         *    the style.
+         */
+        new Style({
+            stroke: new Stroke({
+                color: 'blue',
+                width: 3
+            }),
+            fill: new Fill({
+                color: 'rgba(0, 0, 255, 0.1)'
+            })
+        }),
+        new Style({
+            image: new CircleStyle({
+                radius: 5,
+                fill: new Fill({
+                    color: 'orange'
+                })
+            }),
+            geometry: function(feature) {
+                // return the coordinates of the first ring of the polygon
+                var coordinates = feature.getGeometry().getCoordinates()[0];
+                return new MultiPoint(coordinates);
+            }
+        })
+    ];
+
+    var geojsonObject = {
+        'type': 'FeatureCollection',
+        'crs': {
+            'type': 'name',
+            'properties': {
+                'name': 'WGS84'
+            }
+        },
+        'features': [{
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Polygon',
+                'coordinates': [[[-5e6, 6e6], [-5e6, 8e6], [-3e6, 8e6],
+                    [-3e6, 6e6], [-5e6, 6e6]]]
+            }
+        }]
+    };
+
+    var source = new VectorSource({
+        features: (new GeoJSON()).readFeatures(geojsonObject)
+    });
+
+    var layer = new VectorLayer({
+        source: source,
+        style: styles
+    });
+
+    var opts = {
+        style: 'standaard',
+        target: 'nlmaps-holder',
+        center: {
+            longitude: 4.304717,
+            latitude: 52.068437
+        },
+        overlay: 'gebouwen',
+        marker: true,
+        search: true,
+        zoom: 13
+    };
+    var map = nlmaps.createMap(opts);
+    map.addLayer(layer);
+</script>
+    
