@@ -65,7 +65,7 @@
     };
 
     var source = new VectorSource({
-        features: (new GeoJSON()).readFeatures(geojsonObject)
+        //features: (new GeoJSON()).readFeatures(geojsonObject)
     });
 
     var layer = new VectorLayer({
@@ -97,7 +97,7 @@
     {% if (idea.location) and (idea.status !=  'DENIED' or ideas.length == 1) %}
     {% if (idea.location.coordinates[0]) and (idea.location.coordinates[1]) %}
 
-    var marker = new Marker({longitude: idea.location.coordinates[1],latitude: idea.location.coordinates[0]});
+    var marker = new Marker({longitude: {{idea.location.coordinates[1]}},latitude: {{idea.location.coordinates[0]}}});
     map.addLayer(marker);
 
     {% endif %}
