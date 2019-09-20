@@ -8,39 +8,27 @@
     nlMapsHolder.style.height = '300px'; // Change to required height
 
     const GeoJSON = ol.format.GeoJSON;
-    const MultiPoint = ol.geom.MultiPoint;
     const VectorLayer = ol.layer.Vector;
     const VectorSource = ol.source.Vector;
     const Style = ol.style.Style;
-    const CircleStyle = ol.style.Circle;
     const Fill = ol.style.Fill;
     const Stroke = ol.style.Stroke;
+    const MultiPoint = ol.geom.MultiPoint;
+    const Marker = nlmaps.openlayers.markerLayer;
 
 
+    //Style for polygon
     var styles = [
-        /* We are using two different styles for the polygons:
-         *  - The first style is for the polygons themselves.
-         *  - The second style is to draw the vertices of the polygons.
-         *    In a custom `geometry` function the vertices of a polygon are
-         *    returned as `MultiPoint` geometry, which will be used to render
-         *    the style.
-         */
         new Style({
             stroke: new Stroke({
-                color: 'blue',
+                color: 'black',
                 width: 3
             }),
             fill: new Fill({
-                color: 'rgba(0, 0, 255, 0.1)'
+                color: 'rgba(0, 0, 0, 0.1)'
             })
         }),
         new Style({
-            image: new CircleStyle({
-                radius: 5,
-                fill: new Fill({
-                    color: 'orange'
-                })
-            }),
             geometry: function(feature) {
                 // return the coordinates of the first ring of the polygon
                 var coordinates = feature.getGeometry().getCoordinates()[0];
@@ -49,20 +37,29 @@
         })
     ];
 
+    //Load polygon from global settings
+    var polygonLngLat = {% if data.global.mapPolygons %}{{ data.global.mapPolygons | dump | safe }}{% else %}null{% endif %};
+
+    //transform lnglat array to Spherical Mercator (EPSG:3857)
+    var polygonCoords = [];
+    polygonLngLat.forEach(function(pointPair){
+        var newPair = ol.proj.fromLonLat([pointPair.lng, pointPair.lat], 'EPSG:3857');
+        polygonCoords.push(newPair);
+    });
+
     var geojsonObject = {
         'type': 'FeatureCollection',
         'crs': {
             'type': 'name',
             'properties': {
-                'name': 'WGS84'
+                'name': 'EPSG:3857'
             }
         },
         'features': [{
             'type': 'Feature',
             'geometry': {
                 'type': 'Polygon',
-                'coordinates': [[[-5e6, 6e6], [-5e6, 8e6], [-3e6, 8e6],
-                    [-3e6, 6e6], [-5e6, 6e6]]]
+                'coordinates': [polygonCoords]
             }
         }]
     };
@@ -76,19 +73,37 @@
         style: styles
     });
 
+
+    //Create a marker for every plan
+
+
+
     var opts = {
         style: 'standaard',
         target: 'nlmaps-holder',
         center: {
-            longitude: 4.304717,
-            latitude: 52.068437
+            longitude: 4.2690781,
+            latitude: 52.0937771
         },
         overlay: 'gebouwen',
-        marker: true,
         search: true,
-        zoom: 13
+        zoom: 13.8
     };
+
     var map = nlmaps.createMap(opts);
     map.addLayer(layer);
-</script>
+
+    {% for idea in data.ideas %}
+    {% if (idea.location) and (idea.status !=  'DENIED' or ideas.length == 1) %}
+    {% if (idea.location.coordinates[0]) and (idea.location.coordinates[1]) %}
+
+    var marker = new Marker({longitude: idea.location.coordinates[1],latitude: idea.location.coordinates[0]});
+    map.addLayer(marker);
+
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+
+</script> {{apos.log(data.ideas)}}
     

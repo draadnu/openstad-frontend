@@ -94,6 +94,8 @@ var openstadMapPolygon = {% if data.global.mapPolygons %}{{ data.global.mapPolyg
     null
   );
 
+  console.log(openstadPolygons);
+
   map.createMap(openstadMapDefaults, selectedMarkers, openstadPolygons);
 
 
