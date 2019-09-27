@@ -508,5 +508,12 @@
 	"Display counter": "Display counter",
 	"Counter text": "Counter text",
 	"Edit Openlayer map": "Edit Openlayer map",
-	"Save Ideas map": "Save Ideas map"
+	"Save Ideas map": "Save Ideas map",
+	"You may be editing that document in another tab or window.\nIf you take control, you could lose work in that tab or window.\nDo you want to take control?": "You may be editing that document in another tab or window.\nIf you take control, you could lose work in that tab or window.\nDo you want to take control?",
+	"Add a second link?": "Add a second link?",
+	"Save Info bar": "Save Info bar",
+	"Message": "Message",
+	"Removable": "Removable",
+	"backgroundColor": "backgroundColor",
+	"Styles": "Styles"
 }

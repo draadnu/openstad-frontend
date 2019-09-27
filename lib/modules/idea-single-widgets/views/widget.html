@@ -20,9 +20,9 @@
 				{% if idea.status == 'CLOSED' %}
 					<div class="statusbalk {{idea.status}}">De stemperiode is afgelopen</div>
 				{% elif idea.status == 'DENIED' %}
-					<div class="statusbalk {{idea.status}}">Dit voorstel is afgewezen</div>
+					<div class="statusbalk {{idea.status}}">Dit opknappunt is afgewezen</div>
 				{% else %}
-					<div class="statusbalk {{idea.status}}">Je kunt nu op dit plan stemmen</div>
+					<div class="statusbalk {{idea.status}}">Stem nu op dit opknappunt</div>
 				{% endif %}
 				<!--
 						 <div class="ranking {{idea.status}}"><div class="label">{{idea.ranking}}</div></div>
@@ -48,7 +48,7 @@
 									data-modal-text="Log in om een plan te liken."
 									data-return-to="/like?ideaId={{idea.id}}&opinion=yes"
 									type="submit" name="opinion" value="yes" data-count="{{idea.yes}}">
-									voor
+									eens
 								</button>
 							</form>
 
@@ -78,7 +78,7 @@
 						<div class="vote disabled">
 							{{numberPlateButton.numberPlateButton('no-of-votes-for', '', idea.yes)}}
 							<button disabled="true" class="{{'selected' if userVote.opinion == 'yes'}}" type="button" name="opinion" value="yes" data-count="{{idea.yes}}">
-								voor
+								eens
 							</button>
 							<div style="clear: both;"></div>
 							{{numberPlateButton.numberPlateButton('no-of-votes-against', '', idea.no)}}
@@ -119,7 +119,7 @@
 					</div>
 
 					<div class="share">
-						<h4>Deel dit plan</h4>
+						<h4>Deel dit opknappunt</h4>
 						<ul>
 							<li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{idea.fullUrl | urlencode}}">Facebook</a></li>
 							<li><a class="twitter"  target="_blank" href="https://twitter.com/home?status={{idea.fullUrl | urlencode}}">Twitter</a></li>

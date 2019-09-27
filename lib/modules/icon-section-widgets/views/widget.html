@@ -28,6 +28,11 @@
 							<li>
 								<a href="{{step.linkUrl}}">{{step.linkTitle}}</a>
 							</li>
+							{% if step.secondLink %}
+								<li>
+									<a href="{{step.2ndLinkUrl}}">{{step.2ndLinkTitle}}</a>
+								</li>
+							{% endif %}
 						</ul>
 						{% endif %}
 					</p>

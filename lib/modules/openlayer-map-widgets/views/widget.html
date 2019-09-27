@@ -65,18 +65,13 @@
     };
 
     var source = new VectorSource({
-        //features: (new GeoJSON()).readFeatures(geojsonObject)
+        features: (new GeoJSON()).readFeatures(geojsonObject)
     });
 
     var layer = new VectorLayer({
         source: source,
         style: styles
     });
-
-
-    //Create a marker for every plan
-
-
 
     var opts = {
         style: 'standaard',
@@ -90,11 +85,13 @@
         zoom: 13.8
     };
 
+    //create map
     var map = nlmaps.createMap(opts);
     map.addLayer(layer);
 
+    //Create a marker for every plan
     {% for idea in data.ideas %}
-    {% if (idea.location) and (idea.status !=  'DENIED' or ideas.length == 1) %}
+    {% if (idea.location) and (idea.status != 'DENIED' or ideas.length == 1) %}
     {% if (idea.location.coordinates[0]) and (idea.location.coordinates[1]) %}
 
     var marker = new Marker({longitude: {{idea.location.coordinates[1]}},latitude: {{idea.location.coordinates[0]}}});
