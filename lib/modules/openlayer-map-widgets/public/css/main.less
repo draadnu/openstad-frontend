@@ -2,6 +2,34 @@
   display:none;
 }
 
+#nlmaps-holder #map-with-buttons-container {
+  position: absolute;
+}
+
+#nlmaps-holder .ol-overlaycontainer-stopevent {
+  position: absolute;
+  right: 60px;
+  bottom: 10px;
+
+  .ol-attribution {
+    display: none;
+  }
+
+  .ol-control {
+    button {
+      outline: none;
+      border-radius: 0;
+      width: 35px;
+      height: 35px;
+      background-color: #294890;
+
+      &:active {
+        transform: scale(.95);
+      }
+    }
+  }
+}
+
 /*** Geolocator control ***/
 .nlmaps-geolocator-control {
   background-color: #fff;

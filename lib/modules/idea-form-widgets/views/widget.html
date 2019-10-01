@@ -38,6 +38,22 @@
 								{{data.openstadUser.firstName}} {{data.openstadUser.lastName}} <em>(je e-mailadres wordt nooit gepubliceerd)</em>
 							</p>
 						</div>
+						{% if data.widget.displayLocation %}
+						<div class="form-group">
+							<div id="location">
+								<h2>
+									{{ data.widget.labelLocation if data.widget.labelLocation else 'Locatie' }}
+								</h2>
+								<div class="form-info" style="height: auto;">
+									{{ data.widget.infoLocation | safe if data.widget.infoLocation else 'Heeft jouw plan betrekking op een specifieke plek? Klik dan op de juiste locatie in de kaart om een vlaggetje te plaatsen. Verwijder het vlaggetje door hem nogmaals aan te klikken.' }}
+								</div>
+								<div id="mapcontainer">
+									{% set editorInputElementId = 'locationField' %}
+									{% include 'includes/openstad-map.html'  %}
+								</div>
+							</div>
+						</div>
+						{% endif %}
 						<div class="form-group">
 							<h2>
 								{{ data.widget.labelTitle if data.widget.labelTitle else 'Titel plan' }}
@@ -230,23 +246,6 @@
 						</div>
 					</div>
 
-					{% if data.widget.displayLocation %}
-					<div class="form-group">
-						<div id="location">
-							<h2>
-								{{ data.widget.labelLocation if data.widget.labelLocation else 'Locatie' }}
-							</h2>
-							<div class="form-info" style="height: auto;">
-								{{ data.widget.infoLocation | safe if data.widget.infoLocation else 'Heeft jouw plan betrekking op een specifieke plek? Klik dan op de juiste locatie in de kaart om een vlaggetje te plaatsen. Verwijder het vlaggetje door hem nogmaals aan te klikken.' }}
-							</div>
-							<div id="mapcontainer">
-								{% set editorInputElementId = 'locationField' %}
-								{% include 'includes/openstad-map.html'  %}
-							</div>
-						</div>
-					</div>
-					{% endif %}
-
 				{% if data.widget.displayEstimate %}
 				<div id="estimate">
 					<h2>{{ data.widget.labelEstimate if data.widget.labelEstimate else 'Inschatting kosten' }}</h2>
@@ -282,7 +281,7 @@
 					<input type="text" id="role_input" name="role" value="{% if idea.extraData and idea.extraData.role %}{{idea.extraData.role}}{% endif %}">
 					{% else %}
 					<textarea id="role_input" name="role">{% if idea.extraData and idea.extraData.role %}
-						{{idea.extraData.role}}
+						{{idea.extraData.role | safe}}
 						{% endif %}</textarea>
 					{% endif %}
 				</div>
@@ -307,7 +306,7 @@
 							</div>
 
 							<textarea name="advice">{% if idea.extraData and idea.extraData.advice %}
-						{{idea.extraData.advice}}
+						{{idea.extraData.advice | safe}}
 						{% endif %}</textarea>
 						</div>
 					</div>
