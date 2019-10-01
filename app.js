@@ -365,7 +365,7 @@ function run(id, siteData, callback) {
               },
             },
             'title' : {},
-      //      'user-form' : {},
+            'user-form' : {},
             'local-video': {
               addLabel: 'Video (upload)',
             },
