@@ -7,7 +7,7 @@
 >
 	<h2> {{data.widget.title}} </h2>
 	<p>  {{data.widget.intro | nlbr}} </p>
-	<form method="POST" action="/modules/user-form-widgets/submit">
+	<form method="POST" action="/modules/user-form-widgets/submit" class="user-form">
 	{% for field in data.widget.formFields %}
 		{% include 'field-'+field.inputType+'.html' %}
 	{% endfor %}

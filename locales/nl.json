@@ -530,5 +530,6 @@
 	"Key (waaronder op te slaan)": "Key (waaronder op te slaan)",
 	"Validatie (Komma gescheiden, bv: required, postcode, min2)": "Validatie (Komma gescheiden, bv: required, postcode, min2)",
 	"Configuratie": "Configuratie",
-	"Edit Form": "Edit Form"
+	"Edit Form": "Edit Form",
+	"Waarde": "Waarde"
 }
