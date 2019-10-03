@@ -118,6 +118,13 @@
     {% endif %}
     {% endfor %}
 
+/*    document.getElementsByClassName('nlmaps-geocoder-control-container').appendChild(
+        document.getElementsByClassName('ol-viewport')
+    );*/
 
-</script> {{apos.log(data.ideas)}}
+    document.addEventListener("DOMContentLoaded", function() {
+        $('.ol-viewport').append($('.nlmaps-geocoder-control-container'));
+    });
+
+</script>
     
