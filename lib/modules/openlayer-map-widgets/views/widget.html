@@ -98,7 +98,7 @@
             latitude: 52.04946
         },
         overlay: 'gebouwen',
-        search: true,
+        search: false,
         zoom: 15.3
     };
 
@@ -106,25 +106,77 @@
     var map = nlmaps.createMap(opts);
     map.addLayer(layer);
 
+    var markers = [];
     //Create a marker for every plan
     {% for idea in data.ideas %}
     {% if (idea.location) and (idea.status != 'DENIED' or ideas.length == 1) %}
     {% if (idea.location.coordinates[0]) and (idea.location.coordinates[1]) %}
 
-    var marker = new Marker({longitude: {{idea.location.coordinates[1]}},latitude: {{idea.location.coordinates[0]}}});
-    map.addLayer(marker);
+    var markerColorMapping = {
+        'DONE': '/img/idea/flag-blue.svg',
+        'ACCEPTED': '/img/idea/flag-blue.svg',
+        'BUSY': '/img/idea/flag-blue.svg',
+        'CLOSED': '/img/idea/flag-gray.svg',
+        'DENIED': '/img/idea/flag-gray.svg'
+    };
+
+    var markerUrl = markerColorMapping['{{idea.status}}'] || '/img/idea/flag-blue.svg';
+
+    var marker = new ol.Feature({
+        geometry: new ol.geom.Point(
+            ol.proj.fromLonLat([{{idea.location.coordinates[1]}}, {{idea.location.coordinates[0]}}])
+        ),
+        href: '/{{data.global.ideaSlug}}/{{idea.id}}',
+        name: 'marker'
+    });
+    marker.setStyle(new ol.style.Style({
+        image: new ol.style.Icon({
+            crossOrigin: 'anonymous',
+            anchorOrigin: 'bottom-left',
+            anchor: [0, 0],
+            anchorXUnits: 'pixels',
+            anchorYUnits: 'pixels',
+            src: markerUrl,
+            offset: [0, 0]
+        }),
+    }));
+
+    markers.push(marker);
 
     {% endif %}
     {% endif %}
     {% endfor %}
 
-/*    document.getElementsByClassName('nlmaps-geocoder-control-container').appendChild(
-        document.getElementsByClassName('ol-viewport')
-    );*/
+    var vectorSource = new VectorSource({
+        features: markers
+    });
+
+    var vectorLayer = new VectorLayer({
+        source: vectorSource
+    });
+    map.addLayer(vectorLayer);
+
+    map.on('click', function(evt) {
+        var feature = map.forEachFeatureAtPixel(evt.pixel,
+            function(feature) {
+
+                return feature.getProperties().href ? feature : null;
+            }, {hitTolerance: 4});
+
+        if (feature) {
+            window.location.href = feature.getProperties().href;
+        }
+    });
+
+    // change mouse cursor when over marker
+    map.on('pointermove', function(e) {
+        var pixel = map.getEventPixel(e.originalEvent);
+        var hit = map.hasFeatureAtPixel(pixel, {hitTolerance: 4});
+        document.getElementById(map.getTarget()).style.cursor = hit ? 'pointer' : '';
+    });
 
     document.addEventListener("DOMContentLoaded", function() {
         $('.ol-viewport').append($('.nlmaps-geocoder-control-container'));
     });
 
 </script>
-    

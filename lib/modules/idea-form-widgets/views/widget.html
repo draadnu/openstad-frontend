@@ -49,7 +49,11 @@
 								</div>
 								<div id="mapcontainer">
 									{% set editorInputElementId = 'locationField' %}
-									{% include 'includes/openstad-map.html'  %}
+									{% if data.widget.map === 'openlayers' %}
+										{% include 'includes/openstad-openlayers-map.html'  %}
+									{% else %}
+										{% include 'includes/openstad-map.html'  %}
+									{% endif %}
 								</div>
 							</div>
 						</div>

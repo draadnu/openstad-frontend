@@ -1,0 +1,39 @@
+<div id="nlmaps-holder">
+	<div id="map-with-buttons-container">
+
+		<div class="map-buttons-container">
+
+			{% if (data.widget.displayCounter) %}
+			{{numberPlateButton.numberPlateButton('no-of-locations', data.widget.counterText, data.ideas.length, '#')}}
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+{% if editorInputElementId %}
+<input type="hidden" id="{{editorInputElementId}}" name="location" required value='{{idea.location | dump | safe}}'>
+{% endif %}
+
+<link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css">
+<script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
+<script src="https://nlmaps.nl/dist/nlmaps.iife.js"></script>
+
+<script>
+
+    var polygonLngLat = {% if data.global.mapPolygons %}{{ data.global.mapPolygons | dump | safe }}{% else %}null{% endif %};
+    const markerLocation = JSON.parse('{{idea.location | dump | safe}}' || null);
+
+    if ('{{editorInputElementId}}') {
+        var editorInputElement = document.getElementById('{{editorInputElementId}}');
+    }
+
+    var openstadMapDefaults = {
+        center: {lat: {{data.global.mapCenterLat}}, lng: {{data.global.mapCenterLng}}},
+		zoom: {{data.global.mapZoomLevel}},
+		zoomControl: true,
+		minZoom: {{(data.global.mapZoomLevel - 1) if data.global.mapZoomLevel else 12}},
+		maxZoom: 17
+    };
+
+    var mapConfigSetting = '{{data.widget.map}}';
+</script>
