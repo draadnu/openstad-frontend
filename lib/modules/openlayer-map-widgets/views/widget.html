@@ -111,8 +111,34 @@
     {% if (idea.location) and (idea.status != 'DENIED' or ideas.length == 1) %}
     {% if (idea.location.coordinates[0]) and (idea.location.coordinates[1]) %}
 
-    var marker = new Marker({longitude: {{idea.location.coordinates[1]}},latitude: {{idea.location.coordinates[0]}}});
-    map.addLayer(marker);
+    var markerColorMapping = {
+        'DONE': '/img/idea/flag-blue.svg',
+        'ACCEPTED': '/img/idea/flag-blue.svg',
+        'BUSY': '/img/idea/flag-blue.svg',
+        'CLOSED': '/img/idea/flag-gray.svg',
+        'DENIED': '/img/idea/flag-gray.svg'
+    };
+
+    var markerUrl = markerColorMapping['{{idea.status}}'] || '/img/idea/flag-blue.svg';
+
+    var marker = new ol.Feature({
+        geometry: new ol.geom.Point(
+            ol.proj.fromLonLat([{{idea.location.coordinates[1]}}, {{idea.location.coordinates[0]}}])
+        ),
+    });
+    marker.setStyle(new ol.style.Style({
+        image: new ol.style.Icon(({
+            crossOrigin: 'anonymous',
+            src: markerUrl
+        }))
+    }));
+    var vectorSource = new VectorSource({
+        features: [marker]
+    });
+    var vectorLayer = new VectorLayer({
+        source: vectorSource
+    });
+    map.addLayer(vectorLayer);
 
     {% endif %}
     {% endif %}
