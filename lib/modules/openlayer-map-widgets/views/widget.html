@@ -106,6 +106,7 @@
     var map = nlmaps.createMap(opts);
     map.addLayer(layer);
 
+    var markers = [];
     //Create a marker for every plan
     {% for idea in data.ideas %}
     {% if (idea.location) and (idea.status != 'DENIED' or ideas.length == 1) %}
@@ -125,28 +126,54 @@
         geometry: new ol.geom.Point(
             ol.proj.fromLonLat([{{idea.location.coordinates[1]}}, {{idea.location.coordinates[0]}}])
         ),
+        href: '/{{data.global.ideaSlug}}/{{idea.id}}',
+        name: 'marker'
     });
     marker.setStyle(new ol.style.Style({
-        image: new ol.style.Icon(({
+        image: new ol.style.Icon({
             crossOrigin: 'anonymous',
-            src: markerUrl
-        }))
+            anchorOrigin: 'bottom-left',
+            anchor: [0, 0],
+            anchorXUnits: 'pixels',
+            anchorYUnits: 'pixels',
+            src: markerUrl,
+            offset: [0, 0]
+        }),
     }));
-    var vectorSource = new VectorSource({
-        features: [marker]
-    });
-    var vectorLayer = new VectorLayer({
-        source: vectorSource
-    });
-    map.addLayer(vectorLayer);
+
+    markers.push(marker);
 
     {% endif %}
     {% endif %}
     {% endfor %}
 
-/*    document.getElementsByClassName('nlmaps-geocoder-control-container').appendChild(
-        document.getElementsByClassName('ol-viewport')
-    );*/
+    var vectorSource = new VectorSource({
+        features: markers
+    });
+
+    var vectorLayer = new VectorLayer({
+        source: vectorSource
+    });
+    map.addLayer(vectorLayer);
+
+    map.on('click', function(evt) {
+        var feature = map.forEachFeatureAtPixel(evt.pixel,
+            function(feature) {
+
+                return feature.getProperties().href ? feature : null;
+            }, {hitTolerance: 4});
+
+        if (feature) {
+            window.location.href = feature.getProperties().href;
+        }
+    });
+
+    // change mouse cursor when over marker
+    map.on('pointermove', function(e) {
+        var pixel = map.getEventPixel(e.originalEvent);
+        var hit = map.hasFeatureAtPixel(pixel, {hitTolerance: 4});
+        document.getElementById(map.getTarget()).style.cursor = hit ? 'pointer' : '';
+    });
 
     document.addEventListener("DOMContentLoaded", function() {
         $('.ol-viewport').append($('.nlmaps-geocoder-control-container'));
