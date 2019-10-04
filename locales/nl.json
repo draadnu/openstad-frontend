@@ -531,5 +531,8 @@
 	"Validatie (Komma gescheiden, bv: required, postcode, min2)": "Validatie (Komma gescheiden, bv: required, postcode, min2)",
 	"Configuratie": "Configuratie",
 	"Edit Form": "Edit Form",
-	"Waarde": "Waarde"
+	"Waarde": "Waarde",
+	"Choice tyoe of Map": "Choice tyoe of Map",
+	"Googlemaps": "Googlemaps",
+	"NLmaps": "NLmaps"
 }
