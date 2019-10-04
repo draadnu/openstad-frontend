@@ -85,6 +85,7 @@
 							{% endif %}
 
 							<div id="charsLeft">Je hebt nog <span>{{data.widget.maxSummary}}</span> tekens over.</div>
+							<input type="hidden" id="maxSummary" value="{{ data.widget.maxSummary }}" />
 						</div>
 					</div>
 
@@ -167,6 +168,7 @@
 					<input class="idea-form-redirect-uri" type="hidden" name="redirect" value="{{data.widget.redirect}}" />
 
 					<div id="charsLeftMain">Nog minimaal <span>{{data.widget.maxDescription}}</span> tekens.</div><br/><br/>
+					<input type="hidden" id="maxDescription" value="{{ data.widget.maxDescription }}" />
 
 					{% if idea.id %}
 					<input type="hidden" name="id" value="{{idea.id}}" />
