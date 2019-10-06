@@ -11,6 +11,9 @@
 	{% for field in data.widget.formFields %}
 		{% include 'field-'+field.inputType+'.html' %}
 	{% endfor %}
+	<input type="hidden" name="sendMail" value="{{data.widget.sendMail}}">
+	<input type="hidden" name="emailTemplate" value="{{data.widget.emailTemplate}}">
+	<input type="hidden" name="emailSubject" value="{{data.widget.emailSubject}}">
 	<button type="submit" class="default btn btn-primary">
 		Verstuur
 	</button>
