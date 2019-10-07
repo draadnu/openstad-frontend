@@ -13,7 +13,7 @@
 
 
 <script>
-    jQuery(document).ready(function () {
+    document.addEventListener("DOMContentLoaded", function () {
         function initFilePreview() {
             $('.preview-file-input').on('change', function (e) {
                 var reader    = new FileReader();
