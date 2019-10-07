@@ -534,5 +534,10 @@
 	"Waarde": "Waarde",
 	"Choice tyoe of Map": "Choice tyoe of Map",
 	"Googlemaps": "Googlemaps",
-	"NLmaps": "NLmaps"
+	"NLmaps": "NLmaps",
+	"Save Idea single": "Save Idea single",
+	"What kind of map do you want to use?": "What kind of map do you want to use?",
+	"Google Maps": "Google Maps",
+	"Openlayers": "Openlayers",
+	"Open link in new tab?": "Open link in new tab?"
 }
