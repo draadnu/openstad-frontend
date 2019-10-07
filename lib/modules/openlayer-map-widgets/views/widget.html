@@ -30,15 +30,25 @@
     {% if (idea.location) and (idea.status != 'DENIED' or ideas.length == 1) %}
     {% if (idea.location.coordinates[0]) and (idea.location.coordinates[1]) %}
 
-    var markerColorMapping = {
-        'DONE': '/img/idea/flag-blue.svg',
-        'ACCEPTED': '/img/idea/flag-blue.svg',
-        'BUSY': '/img/idea/flag-blue.svg',
-        'CLOSED': '/img/idea/flag-gray.svg',
-        'DENIED': '/img/idea/flag-gray.svg'
-    };
+    var themes = {{ data.global.themes | json }};
+    var flag = '/img/idea/flag-blue.svg';
 
-    var markerUrl = markerColorMapping['{{idea.status}}'] || '/img/idea/flag-blue.svg';
+    if ('{{idea.status}}' == 'CLOSED' || '{{idea.status}}' == 'DENIED') {
+        flag = '/img/idea/flag-gray.svg';
+    } else {
+        if (themes && themes.length > 0) {
+            var selectedTheme = themes.filter(function (theme) {
+                // todo: Can we match this in another way besides theme name?
+                return theme.value == '{{ idea.extraData.theme }}';
+            });
+
+            if (selectedTheme && selectedTheme.length == 1) {
+                flag = '/img/idea/flag-' + selectedTheme[0].flag + '.svg';
+            }
+        }
+    }
+
+    var markerUrl = flag || '/img/idea/flag-blue.svg';
 
     var marker = new ol.Feature({
         geometry: new ol.geom.Point(
