@@ -13,27 +13,29 @@
 
 
 <script>
-function initFilePreview() {
-  $('.preview-file-input').on('change', function(e) {
-    var reader = new FileReader();
-    var $uploader = $(this).closest('.uploader');
-    var $img = $uploader.find('img');
+    jQuery(document).ready(function () {
+        function initFilePreview() {
+            $('.preview-file-input').on('change', function (e) {
+                var reader    = new FileReader();
+                var $uploader = $(this).closest('.uploader');
+                var $img      = $uploader.find('img');
 
-    if ($img.length === 0) {
-      $img = $('<img class="preview-img" />');
-      $uploader.append($img);
-    }
+                if ($img.length === 0) {
+                    $img = $('<img class="preview-img" />');
+                    $uploader.append($img);
+                }
 
-    reader.onload = function (event) {
-      $img.attr('src', event.target.result);
-      $uploader.addClass('active');
-    }
+                reader.onload = function (event) {
+                    $img.attr('src', event.target.result);
+                    $uploader.addClass('active');
+                }
 
-    reader.readAsDataURL(e.target.files[0]);
-  });
-}
+                reader.readAsDataURL(e.target.files[0]);
+            });
+        }
 
-(function($) {
-  initFilePreview();
-}(jQuery))
+        (function ($) {
+            initFilePreview();
+        }(jQuery))
+    });
 </script>
