@@ -49,12 +49,21 @@
                      document.getElementById('number-number-plate-0').innerHTML = value0;
                     </script>
                     {% if data.widget.showBtn %}
-                    <a href="{{data.widget.btnUrl}}" class="link-box scroll-link margin-bottom-sm button-with-icon" style="">
+                        {% if data.widget.btnTarget %}
+                            <a href="{{data.widget.btnUrl}}" class="link-box scroll-link margin-bottom-sm button-with-icon" style="" target="_blank">
 
-                        <img src="{{apos.attachments.url(data.widget.btnIcon)}}">
+                                <img src="{{apos.attachments.url(data.widget.btnIcon)}}">
 
-                        {{data.widget.btnLabel}}
-                    </a>
+                                {{data.widget.btnLabel}}
+                            </a>
+                        {% else %}
+                            <a href="{{data.widget.btnUrl}}" class="link-box scroll-link margin-bottom-sm button-with-icon" style="">
+
+                                <img src="{{apos.attachments.url(data.widget.btnIcon)}}">
+
+                                {{data.widget.btnLabel}}
+                            </a>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
