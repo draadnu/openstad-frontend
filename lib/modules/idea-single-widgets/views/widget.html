@@ -156,9 +156,16 @@
 
 		{% if idea.location %}
 			<br/><br/>
+			{% if data.widget.mapType === 'googlemaps' %}
+				<div id="mapcontainer">
+					{% include 'includes/openstad-map.html' %}
+				</div>
+			{% endif %}
+			{% if data.widget.mapType === 'openlayers' %}
 			<div id="mapcontainer">
-				{% include 'includes/openstad-map.html' %}
+				{% include 'includes/openlayers-map.html' %}
 			</div>
+			{% endif %}
 		{% endif %}
 
 	</div> <!-- #primary -->
