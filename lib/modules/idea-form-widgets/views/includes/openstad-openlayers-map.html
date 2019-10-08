@@ -21,7 +21,7 @@
 <script>
 
     var polygonLngLat = {% if data.global.mapPolygons %}{{ data.global.mapPolygons | dump | safe }}{% else %}null{% endif %};
-    const markerLocation = JSON.parse('{{idea.location | dump | safe}}' || null);
+    var markerLocation = JSON.parse('{{idea.location | dump | safe}}' || null);
 
     if ('{{editorInputElementId}}') {
         var editorInputElement = document.getElementById('{{editorInputElementId}}');
