@@ -4,7 +4,7 @@
 
 <a
   id="{{data.widget.containerId}}"
-  href="{{ data.widget.url }}"
+  href="{{ data.widget.url.replace(':id', data.ideaId) }}"
   class="{{data.widget.style}} scroll-link margin-bottom-sm {{ 'button-with-icon' if data.widget.icon else  'button-without-icon'}}"
   style=""
 >
