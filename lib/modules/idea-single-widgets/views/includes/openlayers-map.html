@@ -95,20 +95,19 @@
         var map = nlmaps.createMap(opts);
         map.addLayer(layer);
 
-        var markers = [];
-        //Create a marker for every plan
+
         {% if (idea.location) and (idea.status != 'DENIED' or ideas.length == 1) %}
         {% if (idea.location.coordinates[0]) and (idea.location.coordinates[1]) %}
 
         var markerColorMapping = {
-            'DONE': '/img/idea/flag-blue.svg',
-            'ACCEPTED': '/img/idea/flag-blue.svg',
-            'BUSY': '/img/idea/flag-blue.svg',
+            'DONE': '/img/idea/flag-blue-dh.svg',
+            'ACCEPTED': '/img/idea/flag-blue-dh.svg',
+            'BUSY': '/img/idea/flag-blue-dh.svg',
             'CLOSED': '/img/idea/flag-gray.svg',
             'DENIED': '/img/idea/flag-gray.svg'
         };
 
-        var markerUrl = markerColorMapping['{{idea.status}}'] || '/img/idea/flag-blue.svg';
+        var markerUrl = markerColorMapping['{{idea.status}}'] || '/img/idea/flag-blue-dh.svg';
 
         var marker = new ol.Feature({
             geometry: new ol.geom.Point(
@@ -132,12 +131,13 @@
         }));
 
         var vectorSource = new VectorSource({
-            features: markers
+            features: [marker]
         });
 
         var vectorLayer = new VectorLayer({
             source: vectorSource
         });
+
         map.addLayer(vectorLayer);
 
         {% endif %}
