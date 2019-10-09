@@ -1,5 +1,6 @@
+{% set idea = data.idea %}
 
-<div id="nlmaps-holder">
+<div id="nlmaps-holder-single-idea">
 </div>
 
 <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css">
@@ -8,49 +9,143 @@
 
 <script>
 
-    //Load polygon from global settings
-    var polygonLngLat = {% if data.global.mapPolygons %}{{ data.global.mapPolygons | dump | safe }}{% else %}null{% endif %};
+    var nlMapsHolder = document.getElementById('nlmaps-holder-single-idea');
 
-    var markers = [];
-    //Create a marker for every plan
-    {% for idea in data.ideas %}
-    {% if (idea.location) and (idea.status != 'DENIED' or ideas.length == 1) %}
-    {% if (idea.location.coordinates[0]) and (idea.location.coordinates[1]) %}
+    if (!!nlMapsHolder) {
+        nlMapsHolder.style.height = '400px'; // Change to required height
 
-    var markerColorMapping = {
-        'DONE': '/img/idea/flag-blue.svg',
-        'ACCEPTED': '/img/idea/flag-blue.svg',
-        'BUSY': '/img/idea/flag-blue.svg',
-        'CLOSED': '/img/idea/flag-gray.svg',
-        'DENIED': '/img/idea/flag-gray.svg'
-    };
+        var GeoJSON      = ol.format.GeoJSON;
+        var VectorLayer  = ol.layer.Vector;
+        var VectorSource = ol.source.Vector;
+        var Style        = ol.style.Style;
+        var Fill         = ol.style.Fill;
+        var Stroke       = ol.style.Stroke;
+        var MultiPoint   = ol.geom.MultiPoint;
+        var Marker       = nlmaps.openlayers.markerLayer;
 
-    var markerUrl = markerColorMapping['{{idea.status}}'] || '/img/idea/flag-blue.svg';
+        //Style for polygon
+        var styles = [
+            new Style({
+                stroke: new Stroke({
+                    color: 'black',
+                    width: 3
+                }),
+                fill:   new Fill({
+                    color: 'rgba(0, 0, 0, 0.1)'
+                })
+            }),
+            new Style({
+                geometry: function (feature) {
+                    // return the coordinates of the first ring of the polygon
+                    var coordinates = feature.getGeometry().getCoordinates()[0];
+                    return new MultiPoint(coordinates);
+                }
+            })
+        ];
 
-    var marker = new ol.Feature({
-        geometry: new ol.geom.Point(
-            ol.proj.fromLonLat([{{idea.location.coordinates[1]}}, {{idea.location.coordinates[0]}}])
-    ),
-    href: '/{{data.global.ideaSlug}}/{{idea.id}}',
-        name: 'marker',
-        category: '{{idea.extraData.theme}}'
-    });
-    marker.setStyle(new ol.style.Style({
-        image: new ol.style.Icon({
-            crossOrigin: 'anonymous',
-            anchorOrigin: 'bottom-left',
-            anchor: [0, 0],
-            anchorXUnits: 'pixels',
-            anchorYUnits: 'pixels',
-            src: markerUrl,
-            offset: [0, 0]
-        }),
-    }));
+        //Load polygon from global settings
+        var polygonLngLat = {% if data.global.mapPolygons %}{{ data.global.mapPolygons | dump | safe }}{% else %}null{% endif %};
 
-    markers.push(marker);
+        //transform lnglat array to Spherical Mercator (EPSG:3857)
+        var polygonCoords = [];
+        polygonLngLat.forEach(function (pointPair) {
+            var newPair = ol.proj.fromLonLat([pointPair.lng, pointPair.lat], 'EPSG:3857');
+            polygonCoords.push(newPair);
+        });
 
-    {% endif %}
-    {% endif %}
-    {% endfor %}
+        var geojsonObject = {
+            'type':     'FeatureCollection',
+            'crs':      {
+                'type':       'name',
+                'properties': {
+                    'name': 'EPSG:3857'
+                }
+            },
+            'features': [{
+                'type':     'Feature',
+                'geometry': {
+                    'type':        'Polygon',
+                    'coordinates': [polygonCoords]
+                }
+            }]
+        };
+
+        var source = new VectorSource({
+            features: (new GeoJSON()).readFeatures(geojsonObject)
+        });
+
+        var layer = new VectorLayer({
+            source: source,
+            style:  styles
+        });
+
+        var opts = {
+            style:   'standaard',
+            target:  'nlmaps-holder-single-idea',
+            center:  {
+                longitude: 4.2322689,
+                latitude:  52.04946
+            },
+            overlay: 'gebouwen',
+            search:  false,
+            zoom:    15.3
+        };
+
+        //create map
+        var map = nlmaps.createMap(opts);
+        map.addLayer(layer);
+
+        var markers = [];
+        //Create a marker for every plan
+        {% if (idea.location) and (idea.status != 'DENIED' or ideas.length == 1) %}
+        {% if (idea.location.coordinates[0]) and (idea.location.coordinates[1]) %}
+
+        console.log('er is een locatie')
+
+        var markerColorMapping = {
+            'DONE': '/img/idea/flag-blue.svg',
+            'ACCEPTED': '/img/idea/flag-blue.svg',
+            'BUSY': '/img/idea/flag-blue.svg',
+            'CLOSED': '/img/idea/flag-gray.svg',
+            'DENIED': '/img/idea/flag-gray.svg'
+        };
+
+        var markerUrl = markerColorMapping['{{idea.status}}'] || '/img/idea/flag-blue.svg';
+
+        var marker = new ol.Feature({
+            geometry: new ol.geom.Point(
+                ol.proj.fromLonLat([{{idea.location.coordinates[1]}}, {{idea.location.coordinates[0]}}])
+        ),
+            href: '/{{data.global.ideaSlug}}/{{idea.id}}',
+                name: 'marker',
+                category: '{{idea.extraData.theme}}'
+        });
+
+        console.log(marker);
+
+        marker.setStyle(new ol.style.Style({
+            image: new ol.style.Icon({
+                crossOrigin: 'anonymous',
+                anchorOrigin: 'bottom-left',
+                anchor: [0, 0],
+                anchorXUnits: 'pixels',
+                anchorYUnits: 'pixels',
+                src: markerUrl,
+                offset: [0, 0]
+            }),
+        }));
+
+        var vectorSource = new VectorSource({
+            features: markers
+        });
+
+        var vectorLayer = new VectorLayer({
+            source: vectorSource
+        });
+        map.addLayer(vectorLayer);
+
+        {% endif %}
+        {% endif %}
+    }
 
 </script>
