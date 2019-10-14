@@ -24,6 +24,10 @@
     //Load polygon from global settings
     var polygonLngLat = {% if data.global.mapPolygons %}{{ data.global.mapPolygons | dump | safe }}{% else %}null{% endif %};
 
+    var centerLat = {% if data.global.mapCenterLat %}{{ data.global.mapCenterLat | dump | safe }}{% else %}4.2322689{% endif %};
+    var centerLng = {% if data.global.mapCenterLng %}{{ data.global.mapCenterLng | dump | safe }}{% else %}52.04946{% endif %};
+    var mapZoomLevel = {% if data.global.mapZoomLevel %}{{ data.global.mapZoomLevel | dump | safe }}{% else %}15{% endif %};
+
     var markers = [];
     //Create a marker for every plan
     {% for idea in data.ideas %}

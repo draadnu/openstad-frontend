@@ -45,6 +45,9 @@
 
         //Load polygon from global settings
         var polygonLngLat = {% if data.global.mapPolygons %}{{ data.global.mapPolygons | dump | safe }}{% else %}null{% endif %};
+        var centerLat = {% if data.global.mapCenterLat %}{{ data.global.mapCenterLat | dump | safe }}{% else %}4.2322689{% endif %};
+        var centerLng = {% if data.global.mapCenterLng %}{{ data.global.mapCenterLng | dump | safe }}{% else %}52.04946{% endif %};
+        var mapZoomLevel = {% if data.global.mapZoomLevel %}{{ data.global.mapZoomLevel | dump | safe }}{% else %}15{% endif %};
 
         //transform lnglat array to Spherical Mercator (EPSG:3857)
         var polygonCoords = [];
@@ -83,12 +86,12 @@
             style:   'standaard',
             target:  'nlmaps-holder-single-idea',
             center:  {
-                longitude: 4.2322689,
-                latitude:  52.04946
+                longitude: centerLng,
+                latitude:  centerLat
             },
             overlay: 'gebouwen',
             search:  false,
-            zoom:    15.3
+            zoom:    mapZoomLevel
         };
 
         //create map
