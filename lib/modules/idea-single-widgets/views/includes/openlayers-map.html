@@ -23,64 +23,11 @@
         var MultiPoint   = ol.geom.MultiPoint;
         var Marker       = nlmaps.openlayers.markerLayer;
 
-        //Style for polygon
-        var styles = [
-            new Style({
-                stroke: new Stroke({
-                    color: 'black',
-                    width: 3
-                }),
-                fill:   new Fill({
-                    color: 'rgba(0, 0, 0, 0.1)'
-                })
-            }),
-            new Style({
-                geometry: function (feature) {
-                    // return the coordinates of the first ring of the polygon
-                    var coordinates = feature.getGeometry().getCoordinates()[0];
-                    return new MultiPoint(coordinates);
-                }
-            })
-        ];
-
         //Load polygon from global settings
         var polygonLngLat = {% if data.global.mapPolygons %}{{ data.global.mapPolygons | dump | safe }}{% else %}null{% endif %};
         var centerLat = {% if data.global.mapCenterLat %}{{ data.global.mapCenterLat | dump | safe }}{% else %}4.2322689{% endif %};
         var centerLng = {% if data.global.mapCenterLng %}{{ data.global.mapCenterLng | dump | safe }}{% else %}52.04946{% endif %};
         var mapZoomLevel = {% if data.global.mapZoomLevel %}{{ data.global.mapZoomLevel | dump | safe }}{% else %}15{% endif %};
-
-        //transform lnglat array to Spherical Mercator (EPSG:3857)
-        var polygonCoords = [];
-        polygonLngLat.forEach(function (pointPair) {
-            var newPair = ol.proj.fromLonLat([pointPair.lng, pointPair.lat], 'EPSG:3857');
-            polygonCoords.push(newPair);
-        });
-
-        var geojsonObject = {
-            'type':     'FeatureCollection',
-            'crs':      {
-                'type':       'name',
-                'properties': {
-                    'name': 'EPSG:3857'
-                }
-            },
-            'features': [{
-                'type':     'Feature',
-                'geometry': {
-                    'type':        'Polygon',
-                    'coordinates': [polygonCoords]
-                }
-            }]
-        };
-
-        var source = new VectorSource({
-            features: (new GeoJSON()).readFeatures(geojsonObject)
-        });
-
-        var layer = new VectorLayer({
-            source: source,
-            style:  styles
-        });
 
         var opts = {
             style:   'standaard',
@@ -96,7 +43,8 @@
 
         //create map
         var map = nlmaps.createMap(opts);
-        map.addLayer(layer);
+        map.addLayer(buildInvertedPolygon());
+        map.addLayer(buildOutlinedPolygon());
 
 
         {% if (idea.location) and (idea.status != 'DENIED' or ideas.length == 1) %}
@@ -146,5 +94,134 @@
         {% endif %}
         {% endif %}
     }
+
+
+    function getInvertCoordinates() {
+
+        var coordinates = [{"lng": 0, "lat": 90},{"lng": 180, "lat": 90},{"lng": 180, "lat": -90},{"lng": 0, "lat": -90},{"lng": -180, "lat": -90},{"lng": -180, "lat": 0},{"lng": -180, "lat": 90},{"lng": 0, "lat": 90}];
+
+        var invertCoords = [];
+        coordinates.forEach(function (pointPair) {
+            var newPair = ol.proj.fromLonLat([pointPair.lng, pointPair.lat], 'EPSG:3857');
+            invertCoords.push(newPair);
+        });
+
+        return invertCoords;
+    }
+
+    function createInvertedGeojsonObject(coordinates) {
+        var geojsonObject = {
+            'type':     'FeatureCollection',
+            'crs':      {
+                'type':       'name',
+                'properties': {
+                    'name': 'EPSG:3857'
+                }
+            },
+            'features': [{
+                'type':     'Feature',
+                'geometry': {
+                    'type':        'Polygon',
+                    'coordinates': [getInvertCoordinates(), coordinates]
+                }
+            }]
+        };
+
+        return geojsonObject;
+    }
+
+    function createGeojsonObject(coordinates) {
+        var geojsonObject = {
+            'type':     'FeatureCollection',
+            'crs':      {
+                'type':       'name',
+                'properties': {
+                    'name': 'EPSG:3857'
+                }
+            },
+            'features': [{
+                'type':     'Feature',
+                'geometry': {
+                    'type':        'Polygon',
+                    'coordinates': [coordinates]
+                }
+            }]
+        };
+
+        return geojsonObject;
+    }
+
+    function getTransformedPolygon() {
+        //transform lnglat array to Spherical Mercator (EPSG:3857)
+        var polygonCoords = [];
+        polygonLngLat.forEach(function (pointPair) {
+            var newPair = ol.proj.fromLonLat([pointPair.lng, pointPair.lat], 'EPSG:3857');
+            polygonCoords.push(newPair);
+        });
+
+        return polygonCoords;
+    }
+
+
+    function buildOutlinedPolygon() {
+        //Style for the outlined polygon
+        var outlineStyles = [
+            new Style({
+                stroke: new Stroke({
+                    color: 'black',
+                    width: 3
+                })
+            }),
+            new Style({
+                geometry: function (feature) {
+                    // return the coordinates of the first ring of the polygon
+                    var coordinates = feature.getGeometry().getCoordinates()[0];
+                    return new MultiPoint(coordinates);
+                }
+            })
+        ];
+
+        var source = new VectorSource({
+            features: (new GeoJSON()).readFeatures(createGeojsonObject(getTransformedPolygon()))
+        });
+
+        var outlinedLayer = new VectorLayer({
+            source: source,
+            style:   outlineStyles
+        });
+
+        return outlinedLayer;
+    }
+
+    function buildInvertedPolygon() {
+        //Style for the inverted polygon
+        var invertedStyles = [
+            new Style({
+                fill:   new Fill({
+                    color: 'rgba(0, 0, 0, 0.2)'
+                })
+            }),
+            new Style({
+                geometry: function (feature) {
+                    // return the coordinates of the first ring of the polygon
+                    var coordinates = feature.getGeometry().getCoordinates()[0];
+                    return new MultiPoint(coordinates);
+                }
+            })
+        ];
+
+        var source = new VectorSource({
+            features: (new GeoJSON()).readFeatures(createInvertedGeojsonObject(getTransformedPolygon()))
+        });
+
+        var invertedLayer = new VectorLayer({
+            source: source,
+            style:   invertedStyles
+        });
+
+        return invertedLayer;
+    }
+
+
 
 </script>
