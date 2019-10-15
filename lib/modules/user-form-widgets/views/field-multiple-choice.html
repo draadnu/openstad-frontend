@@ -8,13 +8,13 @@
     <input
       type="checkbox"
       name="data[{{field.inputKey}}][]"
-      value="{{field.value}}"
+      value="{{choice.value}}"
     />
     {% else %}
     <input
       type="radio"
       name="data[{{field.inputKey}}]"
-      value="{{field.value}}"
+      value="{{choice.value}}"
     />
     {% endif %}
 
