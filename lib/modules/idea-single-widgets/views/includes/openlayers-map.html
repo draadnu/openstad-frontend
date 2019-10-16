@@ -51,14 +51,14 @@
         {% if (idea.location.coordinates[0]) and (idea.location.coordinates[1]) %}
 
         var markerColorMapping = {
-            'DONE': '/img/idea/flag-blue-dh.svg',
-            'ACCEPTED': '/img/idea/flag-blue-dh.svg',
-            'BUSY': '/img/idea/flag-blue-dh.svg',
-            'CLOSED': '/img/idea/flag-gray.svg',
-            'DENIED': '/img/idea/flag-gray.svg'
+            'DONE': '/img/idea/flag-blue-dh.png',
+            'ACCEPTED': '/img/idea/flag-blue-dh.png',
+            'BUSY': '/img/idea/flag-blue-dh.png',
+            'CLOSED': '/img/idea/flag-gray.png',
+            'DENIED': '/img/idea/flag-gray.png'
         };
 
-        var markerUrl = markerColorMapping['{{idea.status}}'] || '/img/idea/flag-blue-dh.svg';
+        var markerUrl = markerColorMapping['{{idea.status}}'] || '/img/idea/flag-blue-dh.png';
 
         var marker = new ol.Feature({
             geometry: new ol.geom.Point(
@@ -77,6 +77,7 @@
                 anchorXUnits: 'pixels',
                 anchorYUnits: 'pixels',
                 src: markerUrl,
+                size: [25, 25],
                 offset: [0, 0]
             }),
         }));
