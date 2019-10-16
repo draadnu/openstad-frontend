@@ -261,11 +261,7 @@
 						Geef een inschatting van wat jouw plan kost. Vind je dit moeilijk, dan kun je ook het <a href="mailto:statenkwartierbegroot@denhaag.nl">stadsdeel</a> vragen om je daarbij te helpen. Als andere organisaties willen meebetalen aan het plan, kun je dat ook hier aangeven.
 					{% endif %}</div>
 					{% if data.widget.typeEstimate === 'textarea'  %}
-					<textarea id="estimate_input" name="estimate">
-						{% if idea.extraData and idea.extraData.estimate %}
-						{{idea.extraData.estimate}}
-						{% endif %}
-					</textarea>
+					<textarea id="estimate_input" name="estimate">{% if idea.extraData and idea.extraData.estimate %}{{idea.extraData.estimate}}{% endif %}</textarea>
 					{% else %}
 
 					<input type="text" id="estimate_input" name="estimate"
