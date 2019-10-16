@@ -35,10 +35,10 @@
     {% if (idea.location.coordinates[0]) and (idea.location.coordinates[1]) %}
 
     var themes = {{ data.global.themes | json }};
-    var flag = '/img/idea/flag-blue.svg';
+    var flag = '/img/idea/flag-blue-dh.png';
 
     if ('{{idea.status}}' == 'CLOSED' || '{{idea.status}}' == 'DENIED') {
-        flag = '/img/idea/flag-gray.svg';
+        flag = '/img/idea/flag-gray.png';
     } else {
         if (themes && themes.length > 0) {
             var selectedTheme = themes.filter(function (theme) {
@@ -47,12 +47,12 @@
             });
 
             if (selectedTheme && selectedTheme.length == 1) {
-                flag = '/img/idea/flag-' + selectedTheme[0].flag + '.svg';
+                flag = '/img/idea/flag-' + selectedTheme[0].flag + '.png';
             }
         }
     }
 
-    var markerUrl = flag || '/img/idea/flag-blue.svg';
+    var markerUrl = flag || '/img/idea/flag-blue-dh.png';
 
     var marker = new ol.Feature({
         geometry: new ol.geom.Point(
@@ -70,6 +70,7 @@
             anchorXUnits: 'pixels',
             anchorYUnits: 'pixels',
             src: markerUrl,
+            size: [25, 25],
             offset: [0, 0]
         }),
     }));
