@@ -282,9 +282,7 @@
 					{% if data.widget.typeRole === 'text'  %}
 					<input type="text" id="role_input" name="role" value="{% if idea.extraData and idea.extraData.role %}{{idea.extraData.role}}{% endif %}">
 					{% else %}
-					<textarea id="role_input" name="role">{% if idea.extraData and idea.extraData.role %}
-						{{idea.extraData.role | safe}}
-						{% endif %}</textarea>
+					<textarea id="role_input" name="role">{% if idea.extraData and idea.extraData.role %}{{idea.extraData.role | safe}}{% endif %}</textarea>
 					{% endif %}
 				</div>
 				{% endif %}
