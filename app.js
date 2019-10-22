@@ -177,7 +177,7 @@ function serveSite(req, res, siteConfig, forceRestart) {
   const runner = Promise.promisify(run);
   let dbName = siteConfig.config && siteConfig.config.cms && siteConfig.config.cms.dbName ? siteConfig.config.cms.dbName : '';
   
-  console.log (dbName);
+  console.log (siteConfig, dbName);
 
   // check if the mongodb database exist. The name for databse
   return dbExists(dbName).then((exists) => {
