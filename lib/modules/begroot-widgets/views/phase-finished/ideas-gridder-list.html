@@ -131,6 +131,11 @@
 				<div class="col-sm-6 col-xs-12">
 					<div class="hidden-xs">
 						<h3 class="grider-title">{{idea.title}}</h3>
+						{% if data.widget.showUserName %}
+						<div class="submitter">
+							Door: {{idea.user.firstName}} {{idea.user.lastName}}
+						</div>
+						{% endif %}
 						<div class="intro">
 							{{idea.summary | safe}}
 						</div>
