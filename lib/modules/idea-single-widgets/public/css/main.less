@@ -380,13 +380,18 @@
 							}
 							&.whatsapp {
 								background-image: url('/img/share-whatsapp.svg');
-						/*		&:link {
-									background-image: url('/img/share-whatsapp.svg');
+
+								&.desktop {
+									@media only screen and (max-width: 767px) {
+										display: none;
+									}
 								}
-								&:focus, &:hover {
-									background-image: url('/img/share-whatsapp-hover.svg');
+
+								&.mobile {
+									@media only screen and (min-width: 768px) {
+										display: none;
+									}
 								}
-								*/
 							}
 						}
 					}
