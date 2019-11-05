@@ -60,7 +60,6 @@
 	{% endif %}
   {# will be defined later, but will cause errors otherwise #}
   var doShowImage;
-  </script>
 </script>
 
 {% if data.global.siteConfig.ideas.minimumYesVotes %}
@@ -152,15 +151,15 @@ ga('send', 'pageview');
         <div class="container">
           <button type="button" class="navbar-toggle visibility-toggle body-backdrop-toggle" data-target=".navbar-menu">
             <span class="sr-only">Toggle navigation</span>
-            <div class="visible-active">
+            <span class="visible-active">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
-            </div>
-            <div class="hidden-active">
+            </span>
+            <span class="hidden-active">
               <!--<span class="glyphicon glyphicon-remove"></span>!-->
               <img src="/img/close-icon.svg" width="14" />
-            </div>
+            </span>
           </button>
           {% if data.global.displayMyAcount %}
           <a href="#" class="account-menu-toggle visibility-toggle body-backdrop-toggle" data-target=".account-menu">
@@ -172,7 +171,7 @@ ga('send', 'pageview');
             </div>
           </a>
           <div class="account-menu toggle-menu">
-            <nav  class="" role="navigation">
+            <nav  class="">
               <div>
                   {% if data.loggedIn %}
                   <a href="/oauth/logout" class="logout-button" >
@@ -219,7 +218,7 @@ ga('send', 'pageview');
                 {% endif %}
               </ul>
 
-        			<nav id="subMenu" class="" role="navigation">
+        			<nav id="subMenu" class="">
         				<div>
                     {% if data.global.displayMyAcount %}
         						{% if data.loggedIn %}
