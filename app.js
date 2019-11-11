@@ -597,6 +597,8 @@ function run(id, siteData, callback) {
         }
         return r;
       });
+      
+      env.addFilter('isArray', something => Array.isArray(something))
   }
 
   const apos = apostrophe(

@@ -120,7 +120,7 @@
 					<br />
 					{% if data.widget.originalIdeaUrl %}
 					{% set originalId = idea.extraData.originalId if idea.extraData.originalId else idea.id %}
-						{% if Array.isArray(originalId) %}
+						{% if originalId | isArray %}
 							<div class="margin-hor-10">
 							{% for originalIdeaId in originalId %}
 								<a href="{{data.widget.originalIdeaUrl}}/{{originalIdeaId}}" class="link-original link-caret--blue" target="_blank">Bekijk het originele voorstel</a>
