@@ -17,7 +17,7 @@
 
 	<script>
 	 var userHasVoted = {{data.widget.userHasVoted}};
-	 var userIsLoggedIn = {{true if data.loggedIn else false}};
+	 var userIsLoggedIn = {{true if (data.loggedIn or (data.openstadUser and data.openstadUser.role == 'anonymous')) else false}};
 	 var authServerLogoutUrl = '{{authServerLogoutUrl}}';
 	 var defaultSort = 'random'; //	{% if config.budgeting.isActive %}'random'{% else %}'ranking'{% endif %}
 	 var siteId = '{{data.global.siteId}}';
