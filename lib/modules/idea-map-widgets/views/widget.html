@@ -31,7 +31,7 @@
 
  var markers = [
 	  {% for idea in data.ideas %}
-	  {% if (idea.location) and (idea.status !=  'DENIED' or ideas.length == 1) %}
+	  {% if (idea.location) and (idea.status !=  'DENIED' or ideas.length == 1 or data.widget.showDeniedIdeas) %}
     {% if (idea.location.coordinates[0]) and (idea.location.coordinates[1]) %}
 	 {
 		 position: { lat: {{idea.location.coordinates[0]}}, lng: {{idea.location.coordinates[1]}} },
