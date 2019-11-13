@@ -1,5 +1,5 @@
 <div class="row"
-{% if data.widget.displayFilterVoting %}
+{% if data.widget.displayFilterVoting or data.widget.displayStatusFilter %}
 style="display: block"
 {% else %}
 style="display: none"
@@ -9,7 +9,11 @@ style="display: none"
     {% if (data.global.areas and data.global.areas.length > 0) or (data.global.themes and data.global.themes.length > 0) %}
     <div class="tab-selector">
       {% if (data.global.themes and data.global.themes.length > 0) %}
-      <select id="themaSelector" class="default-select" onchange="activateIdeaOverviewTab(this.selectedIndex)">
+      <select id="themaSelector" class="default-select" onchange="activateIdeaOverviewTab(this.selectedIndex)" {% if data.widget.displayFilterVoting %}
+              style="display: block"
+              {% else %}
+              style="display: none"
+              {% endif %}>
         <option value="0">Alle thema's</option>
         {% for theme in data.global.themes %}
         <option value="{{theme.value}}">{{theme.value}}</option>
@@ -24,10 +28,23 @@ style="display: none"
         {% endfor %}
       </select>
       {% endif %}
+
+      <select id="filterStatusSelector" class="default-select" onchange="activateStatusFilter(this.selectedIndex)" {% if data.widget.displayStatusFilter %}
+              style="display: block"
+              {% else %}
+              style="display: none"
+              {% endif %}>
+        <option value="0">Filter op selectie</option>
+        <option value="ACCEPTED">Geselecteerde plannen</option>
+        <option value="CLOSED">Niet geselecteerde plannen</option>
+      </select>
+
       <a class="no-button inactive" href="javascript: void deactivateIdeaOverviewAll()">Wissen</a>
     </div>
     {% endif %}
+
   </div>
+
   <div class="col-xs-12 col-sm-4">
     {% if data.widget.selectedSorting and data.widget.selectedSorting.length > 1 %}
     <div class="sort">
