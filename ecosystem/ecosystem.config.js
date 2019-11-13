@@ -1,12 +1,12 @@
 require('dotenv').config({ path: process.cwd() + '/ecosystem/.deploy_env' });
-
+console.log(process.env);
 module.exports = {
   apps: [
     require('./app')
   ],
   deploy: {
     staging : {
-      "user" : process.env.USER,
+      "user" : process.env.DEPLOY_USER,
       "host" : process.env.HOST,
       "ref"  : process.env.REF,
       repo : process.env.REPO,
