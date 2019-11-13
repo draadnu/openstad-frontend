@@ -11,7 +11,7 @@ module.exports = {
       "ref"  : process.env.REF,
       repo : process.env.REPO,
       "path" : process.env.DEPLOY_PATH,
-      "post-deploy" : "npm ci && pm2 startOrRestart ecosystem/ecosystem.config.js --update-env"
+      "post-deploy" : "npm i && pm2 startOrRestart ecosystem/ecosystem.config.js --update-env"
     },
   }
 }
