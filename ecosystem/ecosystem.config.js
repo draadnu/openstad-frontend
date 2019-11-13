@@ -10,7 +10,7 @@ module.exports = {
       "host" : process.env.HOST,
       "ref"  : process.env.REF,
       repo : process.env.REPO,
-      "path" : process.env.PATH,
+      "path" : process.env.DEPLOY_PATH,
       "post-deploy" : "pm2 restart ecosystem.config.js --env staging"
     },
   }
