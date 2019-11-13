@@ -15,5 +15,6 @@ node_modules
 .jshintrc
 /public/js/_site-compiled.js
 .env
+ecosystem/.deploy_env
 .idea/
 store.json
