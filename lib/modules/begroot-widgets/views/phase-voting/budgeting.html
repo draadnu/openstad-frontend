@@ -107,9 +107,9 @@
 										</div>
 										<div id="vote-button-container">
 											{% if data.currentUrl.indexOf('?') == -1 %}
-												{% set newUrl = '{{data.currentUrl}}?stemcode' %}
+												{% set newUrl = data.currentUrl + '?stemcode' %}
 											{% else %}
-												{% set newUrl = '{{data.currentUrl}}' %}
+												{% set newUrl = data.currentUrl %}
 											{% endif %}
 											<a href="/oauth/login?returnTo={{newUrl}}" class="button-stemcode vul-je-stemcode-in" onmouseover="removeFromClassName(this, 'do-this-first');">
 												Vul je stemcode in
