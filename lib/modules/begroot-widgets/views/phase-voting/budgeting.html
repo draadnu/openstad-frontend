@@ -106,7 +106,7 @@
 											</div>
 										</div>
 										<div id="vote-button-container">
-											<a href="/oauth/login?returnTo={{data.currentUrl}}?budget" class="button-stemcode vul-je-stemcode-in" onmouseover="removeFromClassName(this, 'do-this-first');">
+											<a href="/oauth/login?returnTo={{data.currentUrl}}?stemcode" class="button-stemcode vul-je-stemcode-in" onmouseover="removeFromClassName(this, 'do-this-first');">
 												Vul je stemcode in
 											</a>
 											<div class="error-block">
@@ -119,7 +119,7 @@
 										</div>
 										<div id="vote-registered-container">
 											<div class="button-stemcode geldige-code">Geldige stemcode</div>
-											<a href="/oauth/login?returnTo={{data.currentUrl}}?budget" class="underline" style="margin-top:-30px;     margin-top: -15px; display: block;margin-bottom: 20px; ">
+											<a href="/oauth/login?returnTo={{data.currentUrl}}?stemcode" class="underline" style="margin-top:-30px;     margin-top: -15px; display: block;margin-bottom: 20px; ">
 												<small>Vul een andere stemcode in</small>
 											</a>
 											<div>
@@ -334,7 +334,7 @@
 </div>
 <script type="text/javascript">
 	document.addEventListener("DOMContentLoaded", function() {
-		if (window.location.search == '?budget') {
+		if (window.location.search == '?stemcode') {
 			window.setTimeout(function () {
 				$('html, body').animate({scrollTop: $("#budget-block").offset().top}, 2000);
 			}, 250);
