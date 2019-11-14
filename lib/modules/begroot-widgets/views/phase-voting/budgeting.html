@@ -333,9 +333,11 @@
 	</div>
 </div>
 <script type="text/javascript">
-	$(document).ready(function () {
+	document.addEventListener("DOMContentLoaded", function() {
 		if (window.location.search == '?budget') {
-			$('html, body').animate({scrollTop: $("#budget-block").offset().top}, 2000);
+			window.setTimeout(function () {
+				$('html, body').animate({scrollTop: $("#budget-block").offset().top}, 2000);
+			}, 250);
 		}
 	});
 </script>
