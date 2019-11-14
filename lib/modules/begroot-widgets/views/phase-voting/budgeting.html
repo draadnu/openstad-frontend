@@ -106,7 +106,12 @@
 											</div>
 										</div>
 										<div id="vote-button-container">
-											<a href="/oauth/login?returnTo={{data.currentUrl}}?stemcode" class="button-stemcode vul-je-stemcode-in" onmouseover="removeFromClassName(this, 'do-this-first');">
+											{% if data.currentUrl.indexOf('?') == -1 %}
+												{% set newUrl = '{{data.currentUrl}}?stemcode' %}
+											{% else %}
+												{% set newUrl = '{{data.currentUrl}}' %}
+											{% endif %}
+											<a href="/oauth/login?returnTo={{newUrl}}" class="button-stemcode vul-je-stemcode-in" onmouseover="removeFromClassName(this, 'do-this-first');">
 												Vul je stemcode in
 											</a>
 											<div class="error-block">
@@ -119,7 +124,7 @@
 										</div>
 										<div id="vote-registered-container">
 											<div class="button-stemcode geldige-code">Geldige stemcode</div>
-											<a href="/oauth/login?returnTo={{data.currentUrl}}?stemcode" class="underline" style="margin-top:-30px;     margin-top: -15px; display: block;margin-bottom: 20px; ">
+											<a href="/oauth/login?returnTo={{newUrl}}" class="underline" style="margin-top:-30px;     margin-top: -15px; display: block;margin-bottom: 20px; ">
 												<small>Vul een andere stemcode in</small>
 											</a>
 											<div>
