@@ -9,7 +9,7 @@ module.exports = {
       "user" : process.env.DEPLOY_USER,
       "host" : process.env.HOST,
       "ref"  : process.env.REF,
-      repo : process.env.REPO,
+      "repo": process.env.REPO,
       "path" : process.env.DEPLOY_PATH,
       "post-deploy" : "npm i && pm2 startOrRestart ecosystem/ecosystem.config.js --update-env"
     },
