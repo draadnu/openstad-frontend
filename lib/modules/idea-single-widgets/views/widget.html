@@ -20,9 +20,9 @@
 				{% if idea.status == 'CLOSED' %}
 					<div class="statusbalk {{idea.status}}">De stemperiode is afgelopen</div>
 				{% elif idea.status == 'DENIED' %}
-					<div class="statusbalk {{idea.status}}">Dit opknappunt is afgewezen</div>
+					<div class="statusbalk {{idea.status}}">Dit idee is afgewezen</div>
 				{% else %}
-					<div class="statusbalk {{idea.status}}">Stem nu op dit opknappunt</div>
+					<div class="statusbalk {{idea.status}}">Stem nu op dit idee</div>
 				{% endif %}
 				<!--
 						 <div class="ranking {{idea.status}}"><div class="label">{{idea.ranking}}</div></div>
@@ -119,7 +119,7 @@
 					</div>
 
 					<div class="share">
-						<h4>Deel dit opknappunt</h4>
+						<h4>Deel dit idee</h4>
 						<ul>
 							<li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{idea.fullUrl | urlencode}}">Facebook</a></li>
 							<li><a class="twitter"  target="_blank" href="https://twitter.com/home?status={{idea.fullUrl | urlencode}}">Twitter</a></li>
