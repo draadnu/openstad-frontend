@@ -25,7 +25,7 @@ exports.options = [
     label: 'Minste likes'
   },
   {
-    value: 'ranking,asc',
+    value: 'votes,desc',
     label: 'Ranglijst'
   },
   {
