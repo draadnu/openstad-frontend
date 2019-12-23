@@ -8,9 +8,14 @@
 	{% endif %}
 >
 	{% for idea in runningIdeas %}
+	{% if idea.extraData.ranking %}
+		{% set ideaStatus = 'ACCEPTED' %}
+	{% else %}
+		{% set ideaStatus = 'DENIED' %}
+	{% endif %}
 	<li
 		id="idea-{{idea.id}}"
-		class="gridder-list idea-item {% if loop.index % 3 === 0 %} third-item {% endif %} {{idea.status}}"
+		class="gridder-list idea-item {% if loop.index % 3 === 0 %} third-item {% endif %} {{ideaStatus}}"
 		data-griddercontent="#idea-content-{{idea.id}}"
 		data-createdtime="{{idea.createdTime}}"
 		data-likes="{{idea.yes}}"
@@ -25,9 +30,9 @@
 			<div class="ranking"><div class="label">{{idea.extraData.ranking}}</div></div>
 			{% endif %}
 
-			{% if data.widget['label' + idea.status] %}
-			<div class="duration {{idea.status}}">
-				{{ data.widget['label' + idea.status] }}
+			{% if data.widget['label' + ideaStatus] %}
+			<div class="duration {{ideaStatus}}">
+				{{ data.widget['label' + ideaStatus] }}
 			</div>
 			{% endif %}
 
