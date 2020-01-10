@@ -2,7 +2,7 @@
   {{data.widget.formattedContainerStyles}}
 </style>
 
-{% if data.widget.listType === 'ol' %}
+{% if data.widget.listClassName === 'ordered-list' %}
   {% set listType = 'ol' %}
 {% else %}
   {% set listType = 'ul' %}
@@ -12,7 +12,7 @@
   {% for item in data.widget.items %}
   <li class="parent-item">
     {{ item.item | safe }}
-    {% if item.subListType === 'ol' %}
+    {% if item.subListClassName === 'ordered-list' %}
       {% set subListType = 'ol' %}
     {% else %}
       {% set subListType = 'ul' %}
