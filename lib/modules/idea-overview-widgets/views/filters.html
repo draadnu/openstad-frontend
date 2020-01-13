@@ -6,7 +6,7 @@ style="display: none"
 {% endif %}
 >
   <div class="col-xs-12 col-sm-8">
-    {% if (data.global.areas and data.global.areas.length > 0) or (data.global.themes and data.global.themes.length > 0) %}
+    {% if (data.global.areas and data.global.areas.length > 0) or (data.global.themes and data.global.themes.length > 0) or (data.widget.displayStatusFilter) %}
     <div class="tab-selector">
       {% if (data.global.themes and data.global.themes.length > 0) %}
       <select id="themaSelector" class="default-select" onchange="activateIdeaOverviewTab(this.selectedIndex)">
@@ -21,6 +21,19 @@ style="display: none"
         <option value="0">Alle gebieden</option>
         {% for area in data.global.areas %}
         <option value="{{area.value}}">{{area.value}}</option>
+        {% endfor %}
+      </select>
+      {% endif %}
+      {% if (data.widget.displayStatusFilter) %}
+      <select id="statusSelector" class="default-select" onchange="activateStatusFilter(this.selectedIndex)" >
+        <option value="0">Filter op selectie</option>
+        {% for filterStatus in data.widget.statusFilters %}
+          {% if data.widget['filter' + filterStatus] %}
+            {% set filterLabel = data.widget['filter' + filterStatus] %}
+          {% else %}
+            {% set filterLabel = filterStatus %}
+          {% endif %}
+          <option value="{{ filterStatus }}">{{ filterLabel }}</option>
         {% endfor %}
       </select>
       {% endif %}
