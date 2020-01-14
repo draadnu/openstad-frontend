@@ -62,7 +62,7 @@ data-default-sort="{{data.widget.defaultSorting}}"
   {% for idea in data.widget.ideas %}
   <li
   id="idea-{{idea.id}}"
-  class="gridder-list idea-item {% if data.openstadUser.id === idea.userId %}owner{% endif %} {{idea.status}}"
+  class="gridder-list idea-item {% if data.openstadUser.id === idea.userId %}owner{% endif %} {{idea.mappedStatus}}"
   data-griddercontent="#ideaContent{{idea.id}}"
   onmouseover="this.querySelector('.gridder-mouse-over').style.display = 'block';"
   onmouseout="this.querySelector('.gridder-mouse-over').style.display = 'none';"
@@ -134,7 +134,7 @@ data-default-sort="{{data.widget.defaultSorting}}"
 
 {% for idea in data.widget.ideas %}
 <div id="ideaContent{{idea.id}}" class="gridder-content ">
-  <div class="gridder-inner-container {{idea.status}}">
+  <div class="gridder-inner-container {{idea.mappedStatus}}">
     <div class="thisIdeaId this-idea-id">{{idea.id}}</div>
     <h3 class="phone">{{data.widget.getTitleText(idea, data.widget.gridder_use_field_as_title)}}</h3>
     <div class="image-and-vote-button-container">
