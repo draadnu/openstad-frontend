@@ -11,7 +11,11 @@
 </div>
 
 {% if editorInputElementId %}
-<input type="hidden" id="{{editorInputElementId}}" name="location" required value='{{idea.location | dump | safe}}'>
+<input type="hidden" id="{{editorInputElementId}}" name="location"
+	   {% if data.widget.requiredLocation %}
+	   required
+	   {% endif %}
+	   value='{{idea.location | dump | safe}}'>
 {% endif %}
 
 <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css">

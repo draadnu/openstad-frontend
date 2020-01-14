@@ -4,7 +4,9 @@
 
 
 	{% if editorInputElementId %}
-	<input type="hidden" id="{{editorInputElementId}}" name="location" required value='{{idea.location | dump | safe}}'>
+	<input type="hidden" id="{{editorInputElementId}}" name="location" {% if data.widget.requiredLocation %}
+	   required
+	   {% endif %}value='{{idea.location | dump | safe}}'>
 	{% endif %}
 	<script>
 
