@@ -7,7 +7,7 @@
 	{% endif %}
 >{% for idea in data.widget.ideas %}
   <div
-  class="tile idea-item {{idea.mappedStatus}} {{'USER' if data.openstadUser.id === idea.userId}}"
+  class="tile idea-item {{idea.status}} {{'USER' if data.openstadUser.id === idea.userId}}"
   data-createdtime="{{idea.createdTime}}"
   data-likes="{{idea.yes}}"
   data-budget="{{idea.budget}}"
@@ -15,14 +15,14 @@
   data-ideaid="{{idea.id}}"
 >
   <a href="/{{data.global.ideaSlug}}/{{idea.id}}">
-    {% if idea.mappedStatus != 'DENIED' and idea.ranking %}
+    {% if idea.status != 'DENIED' and idea.ranking %}
     <div class="ranking"><div class="label">{{idea.ranking}}</div></div>
     {% endif %}
 
     <div class="image"   style="background-image: url('{{data.widget.formatImageUrl(idea.extraData.images[0], 500, 500, true, idea.location) }}')"></div>
 
     <div class="duration">
-      {{ data.widget['label' + idea.mappedStatus] }}
+      {{ data.widget['label' + idea.status] }}
     </div>
 
     <div class="info">
@@ -35,7 +35,7 @@
 
       {% if data.widget.siteConfig.minimumYesVotes %}
       <div class="ideaProgress">
-        <div class="progress"><div class="bar {{idea.mappedStatus}}" style="width: {{idea.progress}}%;"></div></div>
+        <div class="progress"><div class="bar {{idea.status}}" style="width: {{idea.progress}}%;"></div></div>
       </div>
       {% endif %}
       <div class="ideaStats">
