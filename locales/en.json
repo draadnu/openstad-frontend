@@ -466,5 +466,17 @@
 	"Select type of list": "Select type of list",
 	"Subitems": "Subitems",
 	"Select appearance modus for subitems": "Select appearance modus for subitems",
-	"Subitem": "Subitem"
+	"Subitem": "Subitem",
+	"Nieuwste eerst": "Nieuwste eerst",
+	"Oudste eerst": "Oudste eerst",
+	"Willekeurig": "Willekeurig",
+	"Custom admin bar": "Custom admin bar",
+	"Form ID (used to match e-mail template)": "Form ID (used to match e-mail template)",
+	"Validatie (Komma gescheiden, bv: required, minlength:20, maxlength:500)": "Validatie (Komma gescheiden, bv: required, minlength:20, maxlength:500)",
+	"Waarde": "Waarde",
+	"Keuzes": "Keuzes",
+	"Google Tag Manager Property ID (like GTM-xxxxx)": "Google Tag Manager Property ID (like GTM-xxxxx)",
+	"Where do we want to link the logo towards? (leave empty for default app url)": "Where do we want to link the logo towards? (leave empty for default app url)",
+	"Arrange the main menu manually?": "Arrange the main menu manually?",
+	"Menu items": "Menu items"
 }

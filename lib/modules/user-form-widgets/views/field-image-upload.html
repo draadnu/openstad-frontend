@@ -4,7 +4,7 @@
 
 
     <fieldset class="filepondUserformFieldset">
-    <input type="file" class="imageUploader filepond" {{ "required" if field.validation.indexOf('required') > -1 }} />
+    <input type="file" class="imageUploader filepond" {{ "required" if field.validation and field.validation.indexOf('required') > -1 }} />
 
 </fieldset>
 <input type="hidden" name="validateImages" multiple />
