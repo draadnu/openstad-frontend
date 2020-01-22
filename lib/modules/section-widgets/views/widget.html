@@ -2,7 +2,7 @@
   (not data.widget.showToUsers) or
   (data.widget.showToUsers == 'loggedin' and data.openstadUser and data.openstadUser.id) or
   (data.widget.showToUsers == 'anonymous' and (not data.openstadUser or not data.openstadUser.id)) or
-  (apos.user and apos.user._id)
+  (data.user and data.user._id)
 %}
 <style>
 {{data.widget.formattedContainerStyles}}
