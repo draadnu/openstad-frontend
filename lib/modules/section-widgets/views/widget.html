@@ -1,4 +1,5 @@
 {% if (data.widget.showToUsers == 'all') or
+  (not data.widget.showToUsers) or
   (data.widget.showToUsers == 'loggedin' and data.openstadUser and data.openstadUser.id) or
   (data.widget.showToUsers == 'anonymous' and (not data.openstadUser or not data.openstadUser.id)) %}
 <style>
