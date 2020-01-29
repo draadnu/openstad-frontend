@@ -27,14 +27,14 @@
                     </div>
                 </div>
                 <div class="col-sm-3 col-xs-12 header-buttons">
-                    <a href="/plannen" class="margin-bottom-xs scroll-link block no-decoration">
+                    <a href="{{ data.widget._ideaOverviewPage._url if (data.widget._ideaOverviewPage and data.widget._ideaOverviewPage._url) else '/plannen' }}" class="margin-bottom-xs scroll-link block no-decoration">
                         <span class="box-blue block">
                             <span class="margin-right-s">
                                 {% for num in data.widget.ideaCountParts %}
                                     <span class="number-plate"> {{num}} </span>
                                 {% endfor %}
                             </span>
-                            plannen
+                            {{ data.widget.ideaOverviewButtonText if data.widget.ideaOverviewButtonText else 'plannen' }}
                         </span>
                     </a>
                     {% if data.widget.showBtn %}
