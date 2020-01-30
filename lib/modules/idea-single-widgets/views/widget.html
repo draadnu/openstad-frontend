@@ -20,9 +20,15 @@
 				<div class="image"></div>
 				{% endif %}
 
-				{% if data.widget['label' + idea.status] %}
-				<div class="statusbalk {{idea.status}}">{{data.widget['label' + idea.status]}}</div>
-				{% endif %}
+				{% if data.widget.siteConfig.minimumYesVotes and idea.yes and idea.yes >= data.widget.siteConfig.minimumYesVotes and (idea.status == 'OPEN' or idea.status == 'CLOSED') and data.widget['labelMinimumVotesReached'] %}
+					<div class="statusbalk {{idea.status}}">{{ data.widget['labelMinimumVotesReached'] }}</div>
+				{% else %}
+					{% if data.widget['label' + idea.status] %}
+						<div class="statusbalk {{idea.status}}">{{data.widget['label' + idea.status]}}</div>
+					{% endif %}
+				{% endif %}}
+
+
 
 				{% if idea.ranking %}
 				<div class="ranking {{idea.status}}"><div class="label">{{idea.ranking}}</div></div>
