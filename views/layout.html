@@ -185,11 +185,18 @@ ga('send', 'pageview');
             </div>
           </button>
           {% if data.global.displayMyAcount %}
-            <a href="/oauth/login" class="account mobile">
-                <!-- <span class="glyphicon glyphicon-user"></span>  !-->
-                <img src="/img/avatar.svg">
-                Inloggen
-            </a>
+            {% if data.loggedIn %}
+                <a href="/oauth/logout" class="account mobile">
+                  <!-- <span class="glyphicon glyphicon-log-out"></span> !-->
+                  {{ __('Uitloggen') }}
+                </a>
+            {% else %}
+                 <a href="/oauth/login" class="account mobile">
+                   <!-- <span class="glyphicon glyphicon-user"></span>  !-->
+                   <img src="/img/avatar.svg" />
+                   {{ __('Inloggen') }}
+                 </a>
+            {% endif %}
           {% endif %}
           <div class="navbar-menu toggle-menu">
             <nav id="mainMenu" class="navbar navbar-expand-lg navbar-light ">
