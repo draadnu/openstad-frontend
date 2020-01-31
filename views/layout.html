@@ -231,7 +231,7 @@ ga('send', 'pageview');
                   <li class="visible-xs">
                     <a
                       href="{{topLink.url}}"
-                      {% if link.targetBlank %} target="_blank" {% endif %}
+                      {% if topLink.targetBlank %} target="_blank" {% endif %}
                       class="nav-link "
                     >
                       <b> {{topLink.label}} </b>
@@ -245,12 +245,12 @@ ga('send', 'pageview');
         				<div>
                     {% if data.global.displayMyAcount %}
         						{% if data.loggedIn %}
-      							<a href="/oauth/logout" class="account logout-button">
+      							<a href="/oauth/logout" class="account logout-button hide-mobile">
                       <!-- <span class="glyphicon glyphicon-log-out"></span> !-->
                       {{ __('Uitloggen') }}
                     </a>
         						{% else %}
-      						   <a href="/oauth/login" class="account">
+      						   <a href="/oauth/login" class="account hide-mobile">
                        <!-- <span class="glyphicon glyphicon-user"></span>  !-->
                        <img src="/img/avatar.svg" />
                        {{ __('Inloggen') }}
