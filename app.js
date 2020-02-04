@@ -520,6 +520,20 @@ function run(id, siteData, callback) {
             property: 'color',
           },
           {
+            name: 'textFooterColorVisited',
+            label: ':visited color of the links in the footer',
+            type: 'color',
+            selector: ['footer .container a:visited'],
+            property: 'color',
+          },
+          {
+            name: 'textFooterColorFocus',
+            label: ':focus color of the links in the footer',
+            type: 'color',
+            selector: ['footer .container a:focus'],
+            property: 'color',
+          },
+          {
             name: 'logoWidth',
             label: 'Logo breedte',
             type: 'range',
@@ -528,8 +542,7 @@ function run(id, siteData, callback) {
             min: 25,
             max: 300,
             step: 1,
-            unit: 'px',
-      //      mediaQuery: '(max-width: 59.99em)'
+            unit: 'px'
           },
         ],
         arrangePaletteFields: [
