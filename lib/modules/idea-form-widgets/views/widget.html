@@ -158,6 +158,16 @@
 							</h2>
 							<div class="form-info">
 								{{ data.widget.infoDescription | nlbr | stripSafe | safe if data.widget.infoDescription else 'Gebruik de ruimte hieronder om je voorstel verder uit te leggen.' }}
+
+								{% if data.widget.itemsDescription %}
+								<ul class="checkmark-list">
+									{% for item in data.widget.itemsDescription %}
+										<li class="parent-item">
+											{{ item.item | stripSafe | safe }}
+										</li>
+									{% endfor %}
+								</ul>
+								{% endif %}
 							</div>
 
 							{% if useModernEditor %}
