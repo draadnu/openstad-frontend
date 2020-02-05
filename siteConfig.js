@@ -42,6 +42,7 @@ module.exports = {
           siteConfig: siteData,
           contentWidgets: {
             'agenda': {},
+            'timeline': {},
             'admin': {},
             'accordeon': {},
             'arguments': {},
@@ -147,6 +148,7 @@ module.exports = {
         'main-image-widgets': {},
         'list-widgets': {},
         'agenda-widgets': {},
+        'timeline-widgets': {},
         'admin-widgets': {},
         'accordeon-widgets': {},
         'idea-overview-widgets': {},
