@@ -81,7 +81,7 @@
 								{{ data.widget.labelDescription if data.widget.labelDescription else 'Beschrijving' }}
 							</h2>
 							<div class="form-info">
-								{{ data.widget.infoDescription | nlbr | stripSafe | safe if data.widget.infoDescription else 'Gebruik de ruimte hieronder om je voorstel verder uit te leggen.' }}
+								{{ data.widget.infoDescription | nlbr  | safe if data.widget.infoDescription else 'Gebruik de ruimte hieronder om je voorstel verder uit te leggen.' }}
 							</div>
 
 							{% if useModernEditor %}
