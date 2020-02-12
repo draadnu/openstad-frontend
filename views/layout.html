@@ -50,6 +50,9 @@
   {% endif %}
 {% endif %}
 
+{% if data.global.noIndex %}
+    <meta name="robots" content="noindex,nofollow">
+{% endif %}
 
 <script>
   // global variables!
