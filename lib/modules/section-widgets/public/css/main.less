@@ -1,26 +1,26 @@
 .full-screen-section {
-    position: fixed;
-    top: 160px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
+  position: fixed;
+  top: 160px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
 
-    @media @phone {
-      top: 113px;
-    }
+  @media @phone {
+    top: 113px;
+  }
 
-    .full-screen-section-inner {
-      position: relative;
-      max-width: 1400px;
-      margin: 0 auto;
+  .full-screen-section-inner {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+
+    .apos-area, .apos-area-widgets, .apos-area-widget, .apos-area-widget-wrapper {
       height: 100%;
-
-      .apos-area, .apos-area-widgets, .apos-area-widget, .apos-area-widget-wrapper {
-        height: 100%;
-        position: relative;
-      }
+      position: relative;
     }
+  }
 }
 
 .container {
@@ -35,13 +35,13 @@
   right: floor((@grid-gutter-width / 2));
   bottom: 0;
 
-  @phone {
+@phone {
 
-  }
+}
 }
 
 .section.margin-up {
-    margin-top: -70px;
+  margin-top: -70px;
 }
 
 // give standard margin bottom to columns in row, otherwise they are stacked
@@ -67,7 +67,7 @@
       display: none;
     }
 
-    .row {
+    .row, .full-width-container, .full-screen-section {
       display: block!important;
     }
 
@@ -77,7 +77,7 @@
       }
 
       &.closed {
-        .row {
+        .row, .full-width-container, .full-screen-section {
           display: none!important
         }
         .arrow {
@@ -86,7 +86,7 @@
       }
 
       &.open {
-        .row {
+        .row, .full-width-container, .full-screen-section {
           display: block!important;
         }
         .arrow {
@@ -96,7 +96,7 @@
     }
   }
 
-  &.closed {
+  &.closed:not(.mobileonly) {
 
     .container {
       display: none
@@ -108,7 +108,7 @@
 
   }
 
-  &.open {
+  &.open:not(.mobileonly) {
 
     .row {
       display: block
