@@ -4,7 +4,7 @@ const openstadMap = require('./config/map').default;
 const openstadMapPolygons = require('./config/map').polygons;
 const apostrophe = require('apostrophe');
 const _ = require('lodash');
-const defaultSiteConfig = require('./config/siteConfig');
+const defaultSiteConfig = require('./siteConfig');
 
 const site = {_id: process.env.SAMPLE_DB}
 
