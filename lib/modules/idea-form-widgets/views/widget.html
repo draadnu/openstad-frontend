@@ -24,8 +24,8 @@
 <div class="pageContent newIdea" id="content">
 	{% if not showForm %}
 	<div class="box-grey">
-		<h1>Om een plan in te dienen moet je ingelogd zijn.</h1>
-		<p>Klik <a href="/oauth/login">hier</a> om in te loggen.</p>
+		<h1>{{ data.widget.notLoggedInTitle if data.widget.notLoggedInTitle else 'Om een plan in te dienen moet je ingelogd zijn.' }}</h1>
+		<p>{{ data.widget.notLoggedInContent | safe if data.widget.notLoggedInContent else 'Klik <a href="/oauth/login">hier</a> om in te loggen.' | safe }}</p>
 	</div>
 	{% elseif showForm %}
 		<div  id="formulier-block">
