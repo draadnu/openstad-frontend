@@ -2,9 +2,9 @@
 {% set showForm = true %}
 {% set idea = data.idea %}
 {% set isOwner = data.openstadUser.id === idea.userId %}
-{% set isOwnerOrAdmin =(isOwner or data.isAdmin) %}
-
-{{ apos.log (data.openstadUser) }}
+{% set isReactedTo = (idea.yes > 0 or idea.no > 0 or idea.argumentCount > 0) %}
+{% set notReactedTo =  not isReactedTo %}
+{% set isOwnerOrAdmin = (notReactedTo and isOwner) or data.isAdmin %}
 
 {% if idea and isOwnerOrAdmin %}
 {% set showForm = true %}
@@ -68,6 +68,10 @@
 							<input type="text" name="title" value="{{idea.title}}" {% if data.widget.requiredTitle %}required{% endif %}
 								   minlength="{{data.widget.minTitle}}"
 								   maxlength="{{data.widget.maxTitle}}"><br />
+							<div id="charsLeftTitle" class="charsLeft">
+								<div class="min">Nog minimaal <span>0</span> tekens</div>
+								<div class="max">Je hebt nog <span>0</span> tekens over.</div>
+							</div>
 							<input type="hidden" id="extraData" name="extraData" value=""><br />
 						</div>
 						<div class="form-group">
@@ -79,12 +83,19 @@
 							</div>
 
 							{% if data.widget.typeSummary === 'text'  %}
-							<input type="text" name="summary" minlength="{{data.widget.minSummary}}" maxlength="{{data.widget.maxSummary}}"  {% if data.widget.requiredSummary %}required{% endif %} value="{{idea.summary}}">
+							<input type="text" name="summary" minlength="{{data.widget.siteConfig.ideas.summaryMinLength}}" maxlength="{{data.widget.siteConfig.ideas.summaryMaxLength}}"  {% if data.widget.requiredSummary %}required{% endif %} value="{{idea.summary}}">
+							<div id="charsLeftSummary" class="charsLeft">
+								<div class="min">Nog minimaal <span>0</span> tekens</div>
+								<div class="max">Je hebt nog <span>0</span> tekens over.</div>
+							</div>
 							{% else %}
 							<textarea name="summary" minlength="{{data.widget.minSummary}}" maxlength="{{data.widget.maxSummary}}"  {% if data.widget.requiredSummary %}required{% endif %}>{{idea.summary}}</textarea>
+							<div id="charsLeftSummary" class="charsLeft">
+								<div class="min">Nog minimaal <span>0</span> tekens</div>
+								<div class="max">Je hebt nog <span>0</span> tekens over.</div>
+							</div>
 							{% endif %}
 
-							<div id="charsLeft">Je hebt nog <span>{{data.widget.maxSummary}}</span> tekens over.</div>
 							<input type="hidden" id="maxSummary" value="{{ data.widget.maxSummary }}" />
 						</div>
 					</div>
@@ -167,7 +178,10 @@
 
 					<input class="idea-form-redirect-uri" type="hidden" name="redirect" value="{{data.widget.redirect}}" />
 
-					<div id="charsLeftMain">Je hebt nog <span>{{data.widget.maxDescription}}</span> tekens over.</div><br/><br/>
+					<div id="charsLeftDescription" class="charsLeft">
+						<div class="min">Nog minimaal <span>0</span> tekens</div>
+						<div class="max">Je hebt nog <span>0</span> tekens over.</div>
+					</div>
 					<input type="hidden" id="maxDescription" value="{{ data.widget.maxDescription }}" />
 
 					{% if idea.id %}
@@ -270,6 +284,10 @@
 						   {% endif %}
 					>
 					{% endif %}
+					<div id="charsLeftEstimate" class="charsLeft">
+						<div class="min">Nog minimaal <span>0</span> tekens</div>
+						<div class="max">Je hebt nog <span>0</span> tekens over.</div>
+					</div>
 
 				</div>
 				{% endif %}
@@ -284,6 +302,10 @@
 					{% else %}
 					<textarea id="role_input" name="role">{% if idea.extraData and idea.extraData.role %}{{idea.extraData.role | safe}}{% endif %}</textarea>
 					{% endif %}
+					<div id="charsLeftRole" class="charsLeft">
+						<div class="min">Nog minimaal <span>0</span> tekens</div>
+						<div class="max">Je hebt nog <span>0</span> tekens over.</div>
+					</div>
 				</div>
 				{% endif %}
 
@@ -292,6 +314,10 @@
 					<h2>{{ data.widget.labelPhone if data.widget.labelPhone else 'Telefoonnummer (optioneel)' }}</h2>
 					<div class="form-info" style="height: auto;">{{ data.widget.infoPhone if data.widget.infoPhone else 'Vul hier (optioneel) je telefoonnummer in, zodat we snel contact met je kunnen opnemen over je plan.' }}</div>
 					<input type="text" id="phone_input" name="phone" value="{% if idea.extraData and idea.extraData.phone %}{{idea.extraData.phone}}{% endif %}">
+					<div id="charsLeftPhone" class="charsLeft">
+						<div class="min">Nog minimaal <span>0</span> tekens</div>
+						<div class="max">Je hebt nog <span>0</span> tekens over.</div>
+					</div>
 				</div>
 				{% endif %}
 
@@ -308,6 +334,10 @@
 							<textarea name="advice">{% if idea.extraData and idea.extraData.advice %}
 						{{idea.extraData.advice | safe}}
 						{% endif %}</textarea>
+							<div id="charsLeftAdvice" class="charsLeft">
+								<div class="min">Nog minimaal <span>0</span> tekens</div>
+								<div class="max">Je hebt nog <span>0</span> tekens over.</div>
+							</div>
 						</div>
 					</div>
 					{% endif %}
@@ -376,6 +406,14 @@
 
 	{% endif %}
 </div>
+<script>
+  var titleMinLength = parseInt('{{data.widget.siteConfig.ideas.titleMinLength}}');
+  var titleMaxLength = parseInt('{{data.widget.siteConfig.ideas.titleMaxLength}}');
+  var summaryMinLength = parseInt('{{data.widget.siteConfig.ideas.summaryMinLength}}');
+  var summaryMaxLength = parseInt('{{data.widget.siteConfig.ideas.summaryMaxLength}}');
+  var descriptionMinLength = parseInt('{{data.widget.siteConfig.ideas.descriptionMinLength}}');
+  var descriptionMaxLength = parseInt('{{data.widget.siteConfig.ideas.descriptionMaxLength}}');
+</script>
 <script src="https://unpkg.com/filepond-polyfill/dist/filepond-polyfill.js"></script>
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
 <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>

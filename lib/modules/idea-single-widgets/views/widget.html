@@ -20,9 +20,9 @@
 				{% if idea.status == 'CLOSED' %}
 					<div class="statusbalk {{idea.status}}">De stemperiode is afgelopen</div>
 				{% elif idea.status == 'DENIED' %}
-					<div class="statusbalk {{idea.status}}">Dit opknappunt is afgewezen</div>
+					<div class="statusbalk {{idea.status}}">Dit voorstel is afgewezen</div>
 				{% else %}
-					<div class="statusbalk {{idea.status}}">Stem nu op dit opknappunt</div>
+					<div class="statusbalk {{idea.status}}">Je kunt nu op dit plan stemmen</div>
 				{% endif %}
 				<!--
 						 <div class="ranking {{idea.status}}"><div class="label">{{idea.ranking}}</div></div>
@@ -48,7 +48,7 @@
 									data-modal-text="Log in om een plan te liken."
 									data-return-to="/like?ideaId={{idea.id}}&opinion=yes"
 									type="submit" name="opinion" value="yes" data-count="{{idea.yes}}">
-									eens
+									voor
 								</button>
 							</form>
 
@@ -78,7 +78,7 @@
 						<div class="vote disabled">
 							{{numberPlateButton.numberPlateButton('no-of-votes-for', '', idea.yes)}}
 							<button disabled="true" class="{{'selected' if userVote.opinion == 'yes'}}" type="button" name="opinion" value="yes" data-count="{{idea.yes}}">
-								eens
+								voor
 							</button>
 							<div style="clear: both;"></div>
 							{{numberPlateButton.numberPlateButton('no-of-votes-against', '', idea.no)}}
@@ -112,20 +112,19 @@
 									var endDate2 = new Date('{{idea.endDate}}');
 									var daysLeft2 = parseInt( ( endDate2.getTime() - Date.now() ) / ( 24 * 60 * 60 * 1000) ) + 1;
 
-								  document.getElementById('nog-xxx-om-te-stemmen').innerHTML = 'Nog '+ daysLeft2 +' dagen om te stemmen';
+								  document.getElementById('nog-xxx-om-te-stemmen').innerHTML = `Nog ${daysLeft2} dagen om te stemmen`;
 								</script>
 							{% endif %}
 						</div>
 					</div>
 
 					<div class="share">
-						<h4>Deel dit opknappunt</h4>
+						<h4>Deel dit voorstel</h4>
 						<ul>
-							<li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{idea.fullUrl | urlencode}}">Facebook</a></li>
-							<li><a class="twitter"  target="_blank" href="https://twitter.com/home?status={{idea.fullUrl | urlencode}}">Twitter</a></li>
-							<li><a class="email"    href="mailto:?subject={{'Opknappunt voor ' + data.global.siteTitle + ': '+idea.title | urlencode}}&body={{idea.fullUrl | urlencode}}">Email</a></li>
-							<li><a class="whatsapp desktop" target="_blank" href="https://wa.me/?text={{idea.fullUrl | urlencode}}">WhatsApp</a></li>
-							<li><a class="whatsapp mobile" href="whatsapp://send?text={{idea.fullUrl | urlencode}}" data-action="share/whatsapp/share">WhatsApp</a></li>
+							<li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{data.fullUrll}}">Facebook</a></li>
+							<li><a class="twitter"  target="_blank" href="https://twitter.com/home?status={{data.fullUrl}}">Twitter</a></li>
+							<li><a class="email"    target="_blank" href="mailto:?subject={{'Idee voor West: '+idea.title | urlencode}}&body={{data.fullUrl | urlencode}}">Email</a></li>
+							<li><a class="whatsapp" target="_blank" href="https://wa.me/?text={{data.fullUrl | urlencode}}">WhatsApp</a></li>
 						</ul>
 					</div>
 
@@ -151,27 +150,14 @@
 				<strong>{{idea.summary | safe | nlbr}}</strong>
 			</p>
 
-			{% if idea.description %}
-				<p class="how-to-fix">
-					<strong>Hoe kan dit opgeknapt worden?</strong>
-				</p>
-			{% endif %}
-
 			{{idea.description | safe}}
 		</div>
 
 		{% if idea.location %}
 			<br/><br/>
-			{% if data.widget.mapType === 'googlemaps' %}
-				<div id="mapcontainer">
-					{% include 'includes/openstad-map.html' %}
-				</div>
-			{% endif %}
-			{% if data.widget.mapType === 'openlayers' %}
 			<div id="mapcontainer">
-				{% include 'includes/openlayers-map.html' %}
+				{% include 'includes/openstad-map.html' %}
 			</div>
-			{% endif %}
 		{% endif %}
 
 	</div> <!-- #primary -->

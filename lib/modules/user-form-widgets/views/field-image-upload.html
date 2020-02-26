@@ -99,6 +99,16 @@ if (fieldsetElement) {
     <input type="file" class="preview-file-input" name="data[image]" />
   </div>-->
 </div>
+  <h3>{{field.title | sanitize | safe}} </h3>
+    <div class="description"><p>{{field.description | sanitize | safe}}</p></div>
+
+    <fieldset class="filepondUserformFieldset">
+    <input type="file" class="imageUploader filepond" {{ "required" if field.validation.indexOf('required') > -1 }} />
+
+</fieldset>
+<input type="hidden" name="validateImages" multiple />
+<input type="hidden" name="imageInputKey" value="{{ field.title }}" />
+</div>
 
 <script src="https://unpkg.com/filepond-polyfill/dist/filepond-polyfill.js"></script>
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
@@ -106,4 +116,3 @@ if (fieldsetElement) {
 <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
 <script src="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.js"></script>
 <script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.js"></script>
-
