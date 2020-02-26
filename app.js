@@ -30,7 +30,7 @@ const defaultSiteConfig       = require('./config/siteConfig');
 const configForHosts          = {};
 const aposStartingUp          = {};
 
-var aposServer = {};s
+var aposServer = {};
 
 app.use(express.static('public'));
 

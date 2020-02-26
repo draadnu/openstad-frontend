@@ -54,19 +54,19 @@
 
                     <a href="{{data.widget.btnUrl}}" class="link-box scroll-link margin-bottom-sm button-with-icon" style=""   {% if data.widget.targetBlank %} target="_blank" {% endif %}>
 
-                                <img src="{{apos.attachments.url(data.widget.btnIcon)}}">
+                            <img src="{{apos.attachments.url(data.widget.btnIcon)}}">
 
-                                {{data.widget.btnLabel}}
-                            </a>
-                        {% else %}
-                            <a href="{{data.widget.btnUrl}}" class="link-box scroll-link margin-bottom-sm button-with-icon" style="">
+                            {{data.widget.btnLabel}}
+                        </a>
+                    {% else %}
+                        <a href="{{data.widget.btnUrl}}" class="link-box scroll-link margin-bottom-sm button-with-icon" style="">
 
-                                <img src="{{apos.attachments.url(data.widget.btnIcon)}}">
+                            <img src="{{apos.attachments.url(data.widget.btnIcon)}}">
 
-                                {{data.widget.btnLabel}}
-                            </a>
-                        {% endif %}
+                            {{data.widget.btnLabel}}
+                        </a>
                     {% endif %}
+
                 </div>
             </div>
         </div>
