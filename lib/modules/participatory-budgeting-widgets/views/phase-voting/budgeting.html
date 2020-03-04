@@ -9,9 +9,15 @@
 						<div id="steps-bar-1" class="step active">
 							<div class="content">1. Kies</div>
 						</div>
-						<div id="steps-bar-2" class="step">
-							<div class="content">2. Overzicht</div>
-						</div>
+						{% if data.widget.allowExtraVotes != 'yes' %}
+							<div id="steps-bar-2" class="step">
+								<div class="content">2. Overzicht</div>
+							</div>
+						{% else %}
+							<div id="steps-bar-2" class="step">
+								<div class="content">2. Verdeel</div>
+							</div>
+						{% endif %}
 						<div id="steps-bar-3" class="step">
 							<div class="content">3. Stemcode</div>
 						</div>
@@ -60,15 +66,28 @@
 										<div>
 											{% if data.widget.votingType === 'count' %}
 											<table class="primary-color stretch table-reset">
-												<tr >
-													<td><label>Ideeën gekozen:</label> </td>
+												<tr>
+													<td><label>Agendapunten gekozen:</label> </td>
 													<td><span class="current-ideas-count text-align-right block bold">0</span></td>
 												</tr>
 												<tr>
-													<td><label>Nog kiezen:</label></td>
+													<td><label>Nog te kiezen:</label></td>
 													<td><span class="available-ideas-count  text-align-right block bold">0</span></td>
 												</tr>
+
+												{% if data.widget.allowExtraVotes == 'yes' %}
+												<tr class="extra-votes">
+													<td><label>Verdeelde stemmen:</label> </td>
+													<td><span class="current-extra-votes-count text-align-right block bold">0</span></td>
+												</tr>
+												<tr class="extra-votes">
+													<td><label>Nog te verdelen:</label></td>
+													<td><span class="available-extra-votes-count  text-align-right block bold">0</span></td>
+												</tr>
+												{% endif %}
+
 											</table>
+
 											{% else %}
 											<table class="primary-color stretch table-reset">
 												<tr >
@@ -144,6 +163,14 @@
 
 									</div>
 
+								</div>
+								<div class="col-sm-4 col-xs-12">
+									{% if data.widget.allowExtraVotes == 'yes' %}
+									<div class="extra-votes-passed hide">
+										<p>Alle extra stemmen zijn verdeeld.</p>
+										<p>Ga door naar <a href="javascript:void(0);" onclick="nextStep();">Stap 3</a>.</p>
+									</div>
+									{% endif %}
 								</div>
 							</div>
 						</div>
@@ -241,7 +268,7 @@
 									</div>
 								</a>
 								<div class="mobile-accordion-body">
-									{{data.widget.step_1_intro}}
+									{{data.widget.step_1_intro | sanitize | safe}}
 								</div>
 							</div>
 							<br class="visible-xs" />
@@ -288,7 +315,7 @@
 									</div>
 								</a>
 								<div class="mobile-accordion-body">
-									{{data.widget.step_2_intro}}
+									{{data.widget.step_2_intro | sanitize | safe}}
 								</div>
 							</div>
 							<br class="visible-xs" />
@@ -379,13 +406,13 @@
 						{% if data.widget.votingType === 'count' %}
 						<div class="col-sm-4 col-xs-6 budget-col">
 							<label>
-								<span> Ideeën gekozen: </span>
+								<span> Agendapunten gekozen: </span>
 							</label>
 							<span class="current-ideas-count bold">0</span>
 						</div>
 						<div class="col-sm-4 col-xs-6 budget-col">
 							<label>
-								<span> Nog kiezen: </span>
+								<span> Nog te kiezen: </span>
 							</label>
 							<span class="available-ideas-count bold">0</span>
 						</div>
