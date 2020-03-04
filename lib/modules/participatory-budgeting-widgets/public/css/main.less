@@ -72,3 +72,48 @@
 	cursor: auto;
 	padding: 7px 0px;
 }
+
+#budget-text table {
+	tr {
+		display: table-row;
+
+		&.extra-votes {
+			display: none;
+		}
+	}
+
+	#current-step.active-step-2 & {
+		tr {
+			display: none;
+
+			&.extra-votes {
+				display: table-row;
+			}
+		}
+	}
+}
+
+div.extra-votes-passed {
+	position: relative;
+	display: block;
+	color: #fff;
+	background: #267c3d;
+	text-align: center;
+	clear: left;
+	top: 15px;
+	padding: 10px 0px;
+
+	p {
+		margin: 0;
+	}
+
+	a {
+		color: #fff;
+		text-decoration: underline;
+		font-style: italic;
+	}
+
+	&.hide {
+		display: none;
+	}
+}

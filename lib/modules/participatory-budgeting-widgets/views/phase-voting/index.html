@@ -29,6 +29,9 @@
 	 var initialAvailableBudget = {{data.widget.initialAvailableBudget if data.widget.initialAvailableBudget else 0}};
 	 var minimalBudgetSpent = {{data.widget.minimalBudgetSpent if data.widget.minimalBudgetSpent else 0}};
 
+	 var allowExtraVotes = {{data.widget.allowExtraVotes == 'yes'}};
+	 var extraVoteCount = {{data.widget.extraVoteCount if data.widget.extraVoteCount else 0}};
+
 	</script>
 
   {% if (data.widget.votingType == 'budgeting-per-theme' and data.global.themes and data.global.themes.length > 0) %}
@@ -75,7 +78,7 @@
 	<br />
 
 	<div id="ideasList" class="pageContent {{contentClass}}">
-		{% if data.ideas.length > 0 %}
+		{% if data.widget.ideas.length > 0 %}
 		<div class="row">
 			<div class="col-xs-12 col-sm-8">
 				{% if (data.global.areas and data.global.areas.length > 0) or (data.global.themes and data.global.themes.length > 0) %}
@@ -114,6 +117,6 @@
 
 		<br />
 
-		{{ ideasList.showIdeasList(data.widget.acceptedIdeas, fullHost, user, userHasVoted, isAdmin, data) }}
+		{{ ideasList.showIdeasList(data.widget.ideas, fullHost, user, userHasVoted, isAdmin, data) }}
 	</div>
 </div>
