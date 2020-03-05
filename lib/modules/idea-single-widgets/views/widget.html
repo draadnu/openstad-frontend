@@ -12,12 +12,8 @@
 			<div class="primary">
 				{% if idea.extraData.images[0] %}
 				<div class="image" style="background-image: url('{{idea.extraData.images[0]}}');"></div>
-				{% elif idea.location %}
-				<div class="image" style="background-image: url(
-				'https://maps.googleapis.com/maps/api/streetview?size=1400x700&location={{idea.location.coordinates[0]}},{{idea.location.coordinates[1]}}&heading=151.78&key={{apos.settings.getOption('googleMapsApiKey')}}'
-				);"></div>
 				{% else %}
-				<div class="image"></div>
+				<div class="image" style="background-image: url('/img/placeholders/idea.jpg');"></div>
 				{% endif %}
 
 				{% if data.widget['label' + idea.status] %}
