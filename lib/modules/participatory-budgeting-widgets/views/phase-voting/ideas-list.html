@@ -51,7 +51,7 @@ data-default-sort="{{data.widget.defaultSorting}}"
 				</div>
 				{% endif %}
 				<div class="col-xs-6">
-					{% if data.widget.voting %}
+					{% if data.widget.voting and idea.status !== 'BUSY' %}
 					<div class="button-add-idea-to-budget button-add-idea-to-budget-{{idea.id}}  btn-primary stretch" onclick="event.preventDefault(); toggleIdeaInSelection({{idea.id}})" ></div>
 					{% endif %}
 
@@ -155,7 +155,7 @@ data-default-sort="{{data.widget.defaultSorting}}"
 						{% if data.widget.displayBudgetLabel %}
 						<div class="budget budget-{{idea.id}}">{{idea.budget}}</div>
 						{% endif %}
-						{% if data.widget.voting %}
+						{% if data.widget.voting and idea.status !== 'BUSY' %}
 						<div class="button-add-idea-to-budget button-add-idea-to-budget-{{idea.id}}  btn-primary" onclick="event.preventDefault(); toggleIdeaInSelection({{idea.id}})"></div>
 						{% endif %}
 					</div>
