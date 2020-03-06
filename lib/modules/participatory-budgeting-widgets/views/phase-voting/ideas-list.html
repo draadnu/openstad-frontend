@@ -145,6 +145,12 @@ data-default-sort="{{data.widget.defaultSorting}}"
 					</table>
 					{% endif %}
 					<br />
+					{% if idea.extraData.attachment %}
+					<div class="margin-hor-10">
+						<a href="{{idea.extraData.attachment}}" class="link-original link-caret--blue" target="_blank">Bekijk het project</a>
+					</div>
+					{% endif %}
+
 					{% if data.widget.originalIdeaUrl and not idea.extraData.hideOriginalLink %}
 					{% set originalId = idea.extraData.originalId if idea.extraData.originalId else idea.id %}
 					<div class="margin-hor-10">
