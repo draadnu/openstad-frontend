@@ -1,0 +1,158 @@
+.overview-title {
+	font-size: 18px;
+	font-weight: 600;
+	margin: 10px 0 5px;
+}
+
+.overview {
+	.idea-image {
+		width: 44px;
+		height: 44px;
+		background-size: cover;
+	}
+
+	hr, .line {
+		background: none;
+		border: none;
+		border-top: 1px solid #434343;
+		margin: 5px 0;
+
+		td {
+			@media @phone {
+				padding: 0 !important;
+			}
+		}
+	}
+
+	hr.fully {
+		border-top: 2px solid #434343;
+    margin: 10px -25px;
+		width: auto;
+	}
+
+	tr td {
+		padding-bottom: 8px;
+		font-size: 16px;
+
+		@media @phone {
+			font-size: 14px;
+			padding-left: 15px;
+		}
+	}
+
+	tr td:first-child{
+		width: 54px;
+
+		@media @phone {
+		}
+	}
+
+	tr td:last-child {
+		min-width: 154px;
+		white-space: nowrap;
+
+		@media @phone {
+			padding: 15px;
+		}
+
+		@media @gridderFull {
+			min-width: 0;
+		}
+	}
+
+	.total-row td {
+		font-weight: bold;
+		@media @phone {
+			padding: 10px 15px 3px;
+		}
+	}
+
+	.leftovers {
+		font-size: 14px;
+	  color: #434343;
+
+		@media @phone {
+			margin: 0;
+		}
+	}
+
+
+	td.extra-vote-column {
+		position: relative;
+	}
+
+	a.extra-vote {
+		position: relative;
+		display: inline-block;
+		top: 3px;
+
+		&.decrease {
+			margin-right: 15px;
+		}
+
+		&.increase {
+			margin-left: 15px;
+		}
+
+		&:after {
+			font-family: "FontAwesome";
+			font-size: 20px;
+			content: " ";
+			left: 0;
+			display: inline-block;
+			cursor: pointer;
+			color: #164995;
+		}
+
+		&.increase:after {
+			content: "\f067";
+		}
+
+		&.decrease:after {
+			content: "\f068";
+		}
+
+		&[disabled]:after {
+			color: #9c9c9c;
+		}
+
+		span.sr-only {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			margin: -1px;
+			overflow: hidden;
+			clip: rect(0,0,0,0);
+			border: 0;
+		}
+	}
+
+	input.extra-votes {
+		width: 25px;
+		height: 25px;
+		text-align: center;
+		border: 1px solid #164995;
+
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+		  -webkit-appearance: none;
+		  margin: 0;
+		}
+
+		/* Firefox */
+		&[type=number] {
+		  -moz-appearance:textfield;
+		}
+	}
+
+	span.information-circle {
+		display: block;
+		width: 23px;
+		height: 25px;
+		color: @amsterdam-navyblue;
+    	background-image: url(/img/info.svg);
+		cursor: pointer;
+		background-repeat: no-repeat;
+	}
+}

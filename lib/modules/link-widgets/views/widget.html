@@ -6,10 +6,11 @@
   id="{{data.widget.containerId}}"
   href="{{ data.widget.url.replace(':id', data.ideaId) }}"
   class="{{data.widget.style}} scroll-link margin-bottom-sm {{ 'button-with-icon' if data.widget.icon else  'button-without-icon'}}"
+  {% if data.widget.targetBlank %} target="_blank" {% endif %}
   style=""
 >
   {% if data.widget.icon %}
 	<img src="{{apos.attachments.url(data.widget.icon)}}" />
   {% endif %}
-  {{ data.widget.label }}
+   {{ data.widget.label }}
 </a>

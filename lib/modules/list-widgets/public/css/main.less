@@ -1,60 +1,78 @@
-.checkmark-list, .checkmark-blue-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  background-size: 100%;
-}
-.checkmark-list .parent-item, .checkmark-blue-list .parent-item {
-  position: relative;
-  padding-left: 46px;
-  margin: 16px 0px;
-}
+.parent-list {
 
-.checkmark-blue-list .parent-item {
-  padding-left: 27px;
-}
+  &.checkmark-list, &.checkmark-blue-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-size: 100%;
+  }
+  &.checkmark-list li.parent-item, &.checkmark-blue-list li.parent-item {
+    position: relative;
+    padding-left: 46px;
+    margin: 16px 0px;
+  }
 
-.checkmark-list .parent-item::before, .checkmark-blue-list .parent-item::before {
-  position: absolute;
-  content: '';
-  top: -5px;
-  left: 0;
-  width: 30px;
-  height: 30px;
-  background-image: url(../img/check-filled-blue.svg);
-  background-repeat: no-repeat;
-}
+  &.checkmark-blue-list li.parent-item {
+    padding-left: 27px;
+  }
+
+  &.checkmark-list li.parent-item::before, &.checkmark-blue-list li.parent-item::before {
+    position: absolute;
+    content: '';
+    top: -5px;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background-image: url(../img/check-filled-blue.svg);
+    background-repeat: no-repeat;
+  }
 
 
-.checkmark-blue-list .parent-item::before {
+  &.checkmark-blue-list li.parent-item::before {
     background-position: 0 8px;
     background-repeat: no-repeat;
     background-size: 15px 10px;
     background-image: url(/img/checkmark-blue.svg);
+  }
+
 }
 
-.list-widget .parent-item {
-  margin: 15px 0;
-}
+.child-list {
 
-.list-widget.uk-list-numbers {
-  counter-reset: item-counter;
-  list-style: none;
-  padding-left: 0;
-}
+  &.checkmark-list, &.checkmark-blue-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-size: 100%;
+  }
 
-.list-widget.uk-list-numbers .parent-item {
-  padding-left: 20px;
-  position: relative;
-}
+  &.checkmark-list li.child-item, &.checkmark-blue-list li.child-item {
+    position: relative;
+    padding-left: 46px;
+    margin: 16px 0px;
+  }
 
-.list-widget.uk-list-numbers .parent-item:before {
-  content: counter(item-counter);
-  counter-increment: item-counter;
-  position: absolute;
-  left: 0;
-  color: black;
-  font-size: 18px;
-  font-weight: bold;
-  line-height: 18px;
+  &.checkmark-blue-list li.child-item {
+    padding-left: 27px;
+  }
+
+  &.checkmark-list li.child-item::after, &.checkmark-blue-list li.child-item::after {
+    position: absolute;
+    content: '';
+    top: -5px;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background-image: url(../img/check-filled-blue.svg);
+    background-repeat: no-repeat;
+  }
+
+
+  &.checkmark-blue-list li.child-item::after {
+    background-position: 0 8px;
+    background-repeat: no-repeat;
+    background-size: 15px 10px;
+    background-image: url(/img/checkmark-blue.svg);
+  }
+
 }

@@ -12,7 +12,7 @@
 
     .full-screen-section-inner {
       position: relative;
-      max-width: 1440px;
+      max-width: 1400px;
       margin: 0 auto;
       height: 100%;
 
@@ -44,6 +44,13 @@
     margin-top: -70px;
 }
 
+// give standard margin bottom to columns in row, otherwise they are stacked
+.section > .container > .row > div {
+  @media @phone {
+    margin-bottom: 40px;
+  }
+}
+
 .section {
 
   .howDoesItWorkButton {
@@ -52,6 +59,7 @@
     color: black;
     padding: 15px 20px;
     text-align: center;
+    display: block;
   }
 
   &.mobileonly {
@@ -59,7 +67,7 @@
       display: none;
     }
 
-    .row {
+    .row, .full-width-container, .full-screen-section {
       display: block!important;
     }
 
@@ -67,15 +75,10 @@
       .howDoesItWorkButton {
         display: block;
       }
-    }
 
       &.closed {
-        .row, .full-width-container {
-          display: block!important;
-
-          @media only screen and (max-width: 767px) {
-            display: none!important;
-          }
+        .container, .full-width-container, .full-screen-section {
+          display: none!important
         }
         .arrow {
           transform: rotate(0deg);
@@ -83,18 +86,19 @@
       }
 
       &.open {
-        .row, .full-width-container {
+        .container, .full-width-container, .full-screen-section {
           display: block!important;
         }
         .arrow {
           transform: rotate(180deg);
         }
       }
+    }
   }
 
-  &.closed {
+  &.closed:not(.mobileonly) {
 
-    .container, .full-width-container {
+    .container, .full-width-container, .full-screen-section {
       display: none
     }
 
@@ -104,9 +108,9 @@
 
   }
 
-  &.open {
+  &.open:not(.mobileonly) {
 
-    .row, .full-width-container {
+    .container, .full-width-container, .full-screen-section {
       display: block
     }
 

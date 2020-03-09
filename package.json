@@ -14,8 +14,7 @@
   "author": "P'unk Avenue",
   "license": "MIT",
   "dependencies": {
-    "al": "0.0.3",
-    "apostrophe": "2.93.0",
+    "apostrophe": "2.102.2",
     "apostrophe-area-structure": "^1.0.3",
     "apostrophe-blog": "^2.1.2",
     "apostrophe-palette": "^2.0.17",
@@ -29,23 +28,17 @@
     "express": "^4.16.3",
     "express-basic-auth": "^1.2.0",
     "flash": "^1.1.0",
-    "form-data": "2.5.1",
     "http-proxy-middleware": "^0.19.1",
+    "json2csv": "^4.5.4",
     "lodash": "^4.17.15",
     "mongodb": "^2.2.33",
-    "multer": "1.4.2",
+    "node-file-cache": "^1.0.2",
     "nodemon": "^1.17.5",
     "nunjucks": "^3.2.0",
-    "ol": "^5.3.3",
-    "point-in-polygon": "^1.0.1",
+    "openstad-component-nlmap": "git+ssh://git@github.com/Amsterdam/openstad-component-nlmap.git#v0.0.9",
+    "openstad-component-ideas-on-map": "git+ssh://git@github.com/Amsterdam/openstad-component-ideas-on-map.git#v0.0.16",
     "request-promise": "^4.2.2",
     "shell-quote": "^1.6.1",
     "tsscmp": "^1.0.6"
-  },
-  "devDependencies": {
-    "browserify": "^16.5.0",
-    "openlayers": "^4.6.5",
-    "uglify-js": "^3.6.0",
-    "watchify": "^3.11.1"
   }
 }
