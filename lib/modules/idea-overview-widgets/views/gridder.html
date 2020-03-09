@@ -1,7 +1,7 @@
 {% set isOwner = data.openstadUser.id === idea.userId %}
 {% set isReactedTo = (idea.yes > 0 or idea.no > 0 or idea.argumentCount > 0) %}
 {% set notReactedTo =  not isReactedTo %}
-{% set isOwnerOrAdmin = (notReactedTo and isOwner) or data.hasModeratorRights %}
+{% set isOwnerOrAdmin = (notReactedTo and isOwner) or data.isAdmin %}
 
 
 {% import 'numberplatebutton.html' as numberPlateButton %}
@@ -189,7 +189,7 @@ data-default-sort="{{data.widget.defaultSorting}}"
 
       {% include 'modbreak.html' %}
 
-      {% if data.hasModeratorRights %}
+      {% if data.isAdmin %}
       <div class="description"><a href="{{data.global.editIdeaUrl}}?ideaId={{idea.id}}" target="_blank">Bewerk dit plan</a></div>
       {% endif %}
 

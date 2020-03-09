@@ -231,5 +231,9 @@
 	"Label for photo: CLOSED": "Label for photo: CLOSED",
 	"Label for photo: BUSY": "Label for photo: BUSY",
 	"Label for photo: DONE": "Label for photo: DONE",
-	"Edit Begroot": "Edit Begroot"
+	"Edit Begroot": "Edit Begroot",
+	"Login": "Login",
+	"Username or Email": "Username or Email",
+	"Password": "Password",
+	"Log In": "Log In"
 }

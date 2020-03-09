@@ -1,12 +1,8 @@
-const contentWidgets = {
+module.exports = {
   'agenda': {},
   'accordeon': {},
-  'arguments': {
-    adminOnly: true
-  },
-  'arguments-form': {
-    adminOnly: true
-  },
+  'arguments': {},
+  'arguments-form': {},
   'section': {
     addLabel: 'Columns',
     controls: {
@@ -15,25 +11,17 @@ const contentWidgets = {
       position: 'bottom-left'
     },
   },
-  'slider': {
-  },
+  'slider': {},
   'counter': {
     addLabel: 'Counter',
   },
   'date-bar': {},
-  'idea-form': {
-    adminOnly: true
-  },
-  'idea-map': {
-    adminOnly: true
-  },
+  'idea-form': {},
+  'idea-map': {},
   'idea-overview': {},
-  'idea-single': {
-    adminOnly: true
-  },
+  'idea-single': {},
   'ideas-on-map': {
     addLabel: 'Ideeen op een kaart',
-    adminOnly: true
   },
   'iframe': {},
   'image': {},
@@ -42,16 +30,12 @@ const contentWidgets = {
   'list': {},
   'begroot': {
     addLabel: 'Begroot (deprecated, please use Participatory budgetting)',
-    adminOnly: true,
-    readOnly: true,
   },
   'gebiedsontwikkeling-tool': {
     addLabel: 'Map for area development',
-    adminOnly: true
   },
   'participatory-budgeting': {
     addLabel: 'Participatory budgetting',
-    adminOnly: true
   },
   'main-image': {},
   'apostrophe-rich-text': {
@@ -72,9 +56,7 @@ const contentWidgets = {
     },
   },
   'title': {},
-  'user-form': {
-    adminOnly: true
-  },
+  'user-form': {},
   'local-video': {
     addLabel: 'Video (upload)',
   },
@@ -82,44 +64,3 @@ const contentWidgets = {
     addLabel: 'Video (3d party, youtube, vimeo, etc.)',
   },
 };
-
-exports.getAdminWidgets = () => {
-  const filteredContentWidgets = {};
-
-  Object.keys(contentWidgets).forEach(function(key) {
-    filteredContentWidgets[key] = contentWidgets[key];
-
-    /**
-     * Edit the settings for admin, so they can  edit all modules.
-     */
-    if (filteredContentWidgets[key].adminOnly) {
-      //readonly = false shows the module from the menu
-      filteredContentWidgets[key].readOnly = false;
-      filteredContentWidgets[key].edit = true;
-    }
-
-  });
-
-  return filteredContentWidgets;
-}
-
-exports.getEditorWidgets = () => {
-  const filteredContentWidgets = {};
-
-  Object.keys(contentWidgets).forEach(function(key) {
-    filteredContentWidgets[key] = contentWidgets[key];
-
-    /**
-     * Edit the settings for editors, so they can only edit specific modules.
-     */
-    if (filteredContentWidgets[key].adminOnly) {
-      //readonly hides the module from the menu
-      filteredContentWidgets[key].readOnly = true;
-      //setting edit to false removes the edit controls for this module
-      filteredContentWidgets[key].edit = false;
-    }
-
-  });
-
-  return filteredContentWidgets;
-}
