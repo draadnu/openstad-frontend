@@ -114,6 +114,8 @@ module.exports = {
             'apostrophe-video': {
               addLabel: 'Video (3d party, youtube, vimeo, etc.)',
             },
+            
+            'cta-under-map': {},
 
           }
         },
@@ -270,6 +272,7 @@ module.exports = {
         },
         'info-bar-widgets': {},
         'apostrophe-area-structure': {},
+        'cta-under-map-widgets': {},
       }
     };
 

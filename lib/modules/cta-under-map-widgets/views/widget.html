@@ -1,0 +1,26 @@
+<div class="row cta-buttons">
+
+<div class="col-sm-6 col-xs-12">
+
+    <a class="item view-all-plans" href="#idea-overview-container">
+      <div class="mouse m-1">
+      </div>
+
+      <span>{{ data.widget.scrollButtonText if data.widget.scrollButtonText else 'Bekijk alle plannen' }}</span>
+    </a>
+
+
+</div>
+
+<div class="col-sm-6 col-xs-12">
+
+    <a class="item send-in-plan" href="{{ data.widget.planEntryUrl if data.widget.planEntryUrl else '/plan-indienen' }}">
+      <div class="flag">
+      </div>
+
+      <span>{{ data.widget.submitPlanText if data.widget.submitPlanText else 'Dien je plan in!' }}</span>
+    </a>
+
+</div>
+
+</div>
