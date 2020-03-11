@@ -93,7 +93,7 @@ data-default-sort="{{data.widget.defaultSorting}}"
 
 						<div class="location-image-container">
 							{% if data.widget.mapType === 'nlmaps-openlayers' %}
-								<div id="nlmaps-idea-holder-{{idea.id}}" style="height: 230px;"></div>
+								<div id="nlmaps-idea-holder-{{idea.id}}" class="nlmaps-idea-holder" style="height: 100%;"></div>
 							{% else %}
 								<div class="location-image-mask">
 									<a href="{{idea.locationUrl}}" target="_blank" class="location-image">
@@ -197,4 +197,15 @@ data-default-sort="{{data.widget.defaultSorting}}"
 	</li>
 	{% endfor %}
 </ul>
+
+<!-- The Image Modal -->
+<div id="imageModal" class="modal">
+
+	<!-- The Close Button -->
+	<span class="modal-close">&times;</span>
+
+	<!-- Modal Content (The Image) -->
+	<img class="modal-content" id="img01">
+</div>
+
 {% endmacro %}
