@@ -111,6 +111,7 @@
 				{% endif %}
 			</div>
 			<div class="col-xs-12 col-sm-4">
+				{% if data.widget.enableSorting %}
 				<div class="sort">
 					<select class="default-select ideas-sort-select">
 						{% for selectedSorting in data.widget.selectedSorting %}
@@ -118,6 +119,7 @@
 						{% endfor %}
 					</select>
 				</div>
+				{% endif %}
 			</div>
 		</div>
 		{% endif %}
