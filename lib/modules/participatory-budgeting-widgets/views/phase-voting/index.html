@@ -81,9 +81,9 @@
 		{% if data.widget.ideas.length > 0 %}
 		<div class="row">
 			<div class="col-xs-12 col-sm-8">
-				{% if (data.global.areas and data.global.areas.length > 0) or (data.global.themes and data.global.themes.length > 0) %}
+				{% if data.widget.hasFilter() %}
 				<div class="tab-selector">
-					{% if (data.global.themes and data.global.themes.length > 0 and false == true) %}
+					{% if (data.widget.showFilter('theme')) %}
 					<select id="themaSelector" class="default-select" onchange="{% if data.widget.votingType == 'budgeting-per-theme' %}setTheme(this.selectedIndex){% else %}activateTab(this.selectedIndex){% endif %}">
 						<option value="0">Alle thema's</option>
 						{% for theme in data.global.themes %}
@@ -91,7 +91,7 @@
 						{% endfor %}
 					</select>
 					{% endif %}
-					{% if (data.global.areas and data.global.areas.length) > 0 %}
+					{% if data.widget.showFilter('area') %}
 					<select id="filterSelector" class="default-select" onchange="activateFilter(this.selectedIndex)">
 						<option value="0">Alle gebieden</option>
 						{% for area in data.global.areas %}
@@ -99,13 +99,13 @@
 						{% endfor %}
 					</select>
 					{% endif %}
-
+					{% if data.widget.showFilter('status') %}
 					<select id="statusSelector" class="default-select idea-list-filter" onchange="activateFilterById(this.selectedIndex, 'statusSelector')">
 						<option value="0" selected>Filter op keuzemogelijkheid</option>
 						<option value="ACCEPTED">Nog te kiezen</option>
 						<option value="BUSY">Gekozen door bewonerscommissie</option>
 					</select>
-
+					{% endif %}
 					<a class="no-button inactive" href="javascript: void deactivateAll()">Wissen</a>
 				</div>
 				{% endif %}
