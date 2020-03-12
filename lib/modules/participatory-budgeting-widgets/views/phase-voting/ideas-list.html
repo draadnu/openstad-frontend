@@ -38,8 +38,7 @@ data-default-sort="{{data.widget.defaultSorting}}"
 				<h3 class="title">{{idea.title}}</h3>
 				{% if idea.extraData %}
 				<div class="thema-en-gebied underscription">
-					{% if idea.extraData.theme %}<span class="thema theme-{{idea.id}}">{{idea.extraData.theme}}</span>{% endif %}{% if idea.extraData.theme and idea.extraData.area %} | {% endif %}{% if idea.extraData.area %}<span class="gebied area-{{idea.id}}">{{idea.extraData.area}}</span>{% endif %}
-				</div>
+					</div>
 				{% endif %}
 			</div>
 			<div class="button-read-more link-caret--blue">Lees meer</div>
@@ -131,11 +130,6 @@ data-default-sort="{{data.widget.defaultSorting}}"
 					<br />
 					{% if idea.extraData %}
 					<table class="thema-en-gebied">
-					  {% if idea.extraData.theme %}
-						<tr class="thema">
-							<td>Thema: </td> <td><strong>{{idea.extraData.theme}}</strong>
-						</tr>
-					  {% endif %}
 					  {% if idea.extraData.area %}
 						<tr class="gebied">
 							<td>Gebied: </td>  <td><strong>{{idea.extraData.area}}</strong>
