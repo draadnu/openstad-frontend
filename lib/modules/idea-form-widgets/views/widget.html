@@ -336,6 +336,22 @@
 					</div>
 				</div>
 				{% endif %}
+				{% if data.widget.displayEnglishCommunication %}
+				<div class="form-group">
+					<div id="englishCommunication">
+						<h2>
+							{{ data.widget.labelEnglishCommunication if data.widget.labelEnglishCommunication else 'Language preference' }}
+						</h2>
+						<div class="form-info" style="height: auto;">
+							{{ data.widget.infoEnglishCommunication if data.widget.infoEnglishCommunication else 'In further communication I would like to be addressed in English.' | stripSafe | safe }}
+						</div>
+						<select name="englishCommunication">
+							<option value="yes" {{ 'selected="selected"' if ((idea.extraData.englishCommunication and idea.extraData.englishCommunication == "yes") or (not idea.extraData.englishCommunication)) }}>Yes</option>
+							<option value="no" {{ 'selected="selected"' if idea.extraData.englishCommunication and idea.extraData.englishCommunication == "no" }}>No</option>
+						</select>
+					</div>
+				</div>
+				{% endif %}
 
 				{% if data.isAdmin %}
 				<div id="budget">
