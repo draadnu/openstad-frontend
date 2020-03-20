@@ -138,7 +138,7 @@ module.exports = {
 
     } else {
       siteConfig.modules['apostrophe-i18n'] = {
-        locales: ['nl', 'en'],
+        locales: ['nl'],
         directory: __dirname + '/locales',
         defaultLocale: 'nl'
       }
