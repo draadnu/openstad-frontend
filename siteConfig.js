@@ -264,8 +264,8 @@ module.exports = {
       }
     };
 
-    const useAposWorkflow = siteData.cms && siteData.cms.aposWorkflow;
-    const turnOffWorkflow = siteData.cms && siteData.cms.turnOffWorkflow;
+    const useAposWorkflow = siteData && siteData.cms && siteData.cms.aposWorkflow;
+    const turnOffWorkflow = siteData && siteData.cms && siteData.cms.turnOffWorkflow;
 
     // If apostrophe workflow is turned o
     if ((process.env.APOS_WORKFLOW === 'ON' || useAposWorkflow) && !turnOffWorkflow) {
