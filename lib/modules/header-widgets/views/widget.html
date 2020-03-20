@@ -9,7 +9,12 @@
     <div class="header-content">
         <div class="container">
             <div class="row">
-                <div class="col-sm-9 col-xs-12">
+                {% if not data.widget.hideRightSideColumn %}
+                    {% set columnClass = "col-sm-9" %}
+                {% else %}
+                    {% set columnClass = "col-sm-12" %}
+                {% endif %}
+                <div class="{{ columnClass }} col-xs-12">
                     <div class="header-block">
                         <h1>{{data.widget.title}}</h1>
                         <span class="subtitle">{{data.widget.subtitle}}</span>
@@ -26,8 +31,9 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="col-sm-3 col-xs-12 header-buttons">
-                    <a href="{{ data.widget._ideaOverviewPage._url if (data.widget._ideaOverviewPage and data.widget._ideaOverviewPage._url) else '/plannen' }}" class="margin-bottom-xs scroll-link block no-decoration">
+                {% if not data.widget.hideRightSideColumn %}
+                        <div class="col-sm-3 col-xs-12 header-buttons">
+                            <a href="{{ data.widget._ideaOverviewPage._url if (data.widget._ideaOverviewPage and data.widget._ideaOverviewPage._url) else '/plannen' }}" class="margin-bottom-xs scroll-link block no-decoration">
                         <span class="box-blue block">
                             <span class="margin-right-s">
                                 {% for num in data.widget.ideaCountParts %}
@@ -36,16 +42,17 @@
                             </span>
                             {{ data.widget.ideaOverviewButtonText if data.widget.ideaOverviewButtonText else 'plannen' }}
                         </span>
-                    </a>
-                    {% if data.widget.showBtn %}
-                    <a href="{{data.widget.btnUrl}}" class="link-box scroll-link margin-bottom-sm button-with-icon" style=""   {% if data.widget.targetBlank %} target="_blank" {% endif %}>
+                            </a>
+                            {% if data.widget.showBtn %}
+                            <a href="{{data.widget.btnUrl}}" class="link-box scroll-link margin-bottom-sm button-with-icon" style=""   {% if data.widget.targetBlank %} target="_blank" {% endif %}>
 
-                        <img src="{{apos.attachments.url(data.widget.btnIcon)}}">
+                            <img src="{{apos.attachments.url(data.widget.btnIcon)}}">
 
-                        {{data.widget.btnLabel}}
-                    </a>
-                    {% endif %}
-                </div>
+                            {{data.widget.btnLabel}}
+                        </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
