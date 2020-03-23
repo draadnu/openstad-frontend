@@ -2,6 +2,10 @@
   {{data.widget.formattedContainerStyles}}
 </style>
 
+{% if data.widget.customAnchor %}
+<a name="{{ data.widget.customerAnchor }}"></a>
+{% endif %}
+
 {% if data.widget.mode === 'h1' %}
 <h1
   id="{{data.widget.containerId}}"
