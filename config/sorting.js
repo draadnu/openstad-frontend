@@ -7,7 +7,7 @@ exports.options = [
   {
     value: 'createdtime,asc',
 //    label: 'Oldest first',
-    label: 'Oudste eerst'
+    label: 'Toe te voegen'
   },
   {
     value: 'random',
