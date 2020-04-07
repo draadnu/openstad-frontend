@@ -109,7 +109,7 @@
 					<select id="statusSelector" class="default-select idea-list-filter" onchange="activateFilterById(this.selectedIndex, 'statusSelector')">
 						<option value="0" selected>Filter op keuzemogelijkheid</option>
 						<option value="ACCEPTED">Nog te kiezen</option>
-						<option value="BUSY">Gekozen door bewonerscommissie</option>
+						<option value="BUSY">{{ data.widget.busyStatusFilterLabel if data.widget.busyStatusFilterLabel else 'Gekozen door bewonerscommissie' }}</option>
 					</select>
 					{% endif %}
 					<a class="no-button inactive" href="javascript: void deactivateAll()">Wissen</a>
