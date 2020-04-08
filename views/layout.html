@@ -225,7 +225,7 @@ ga('send', 'pageview');
 
                   {% for item in data.global.mainMenuItems %}
                   <li class="nav-item">
-                      <a class="nav-link {% if data.currentPath.startsWith(item.mainMenuUrl) %} active {% endif %}" href="{{ item.mainMenuUrl }}" {% if item.mainMenuTarget %} target="_blank" {% endif %}>
+                      <a class="nav-link {% if ((item.mainMenuUrl == '/' and data.currentPath == '/') or (item.mainMenuUrl != '/' and data.currentPath.startsWith(item.mainMenuUrl))) %} active {% endif %}" href="{{ item.mainMenuUrl }}" {% if item.mainMenuTarget %} target="_blank" {% endif %}>
                           {{ item.mainMenuLabel }}
                       </a>
                   </li>
