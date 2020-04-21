@@ -37,6 +37,25 @@
 								{{data.openstadUser.firstName}} {{data.openstadUser.lastName}} <em>(je emailadres wordt nooit gepubliceerd)</em>
 							</p>
 						</div>
+
+						<div class="form-group">
+						{% if data.global.themes and data.global.themes.length > 0 %}
+						<h2>
+							{{ data.widget.labelThemes if data.widget.labelThemes else 'Keuze speeltuin' }}
+						</h2>
+						<div class="form-info">
+							{{ data.widget.infoThemes  | nlbr | stripSafe | safe  if data.widget.infoThemes else 'Kies voor welke speeltuin je een idee instuurt:' }}
+						</div>
+
+						<select id="thema" name="theme" class="default-select" value="{% if idea.extraData %}{{idea.extraData.theme}}{% endif %}" {% if data.widget.requiredThemes %}required{% endif %}>
+							<option value="">Kies speeltuin</option>
+							{% for theme in data.global.themes %}
+							<option value="{{theme.value}}" {% if (idea.extraData) and (idea.extraData.theme === theme.value) %}selected{% endif %}>{{theme.value}}</option>
+							{% endfor %}
+						</select>
+						<br />
+						{% endif %}
+					</div>
 						<div class="form-group">
 							<h2>
 								{{ data.widget.labelTitle if data.widget.labelTitle else 'Titel plan' }}
@@ -50,6 +69,49 @@
                 <div class="max">Je hebt nog <span>0</span> tekens over.</div>
               </div>
 							<input type="hidden" id="extraData" name="extraData" value=""><br />
+						</div>
+						<div class="form-group">
+							<h2>
+								{{ data.widget.labelPlaymethod if data.widget.labelPlaymethod else 'Keuze manieren om te spelen' }}
+							</h2>
+							<div class="form-info">
+								{{ data.widget.infoPlaymethod | nlbr | stripSafe | safe if data.widget.infoPlaymethod else 'Kies maximaal 3 manieren om te spelen die je het leukst vindt:' }}
+							</div>
+							{% for playmethod in data.widget.playmethodOptions %}
+							<input type="checkbox" class="max-3" value="{{ playmethod.value }}" id="{{ playmethod.id }}" name="playmethod"
+							{% if idea.extraData and idea.extraData.playmethod and playmethod in idea.extraData.playmethod %}
+								checked="checked"
+							{% endif %}
+							/>
+							<label for="{{ playmethod.id }}">{{ playmethod.value }}</label>
+							<br />
+							{% endfor %}
+
+							<input type="checkbox" class="max-3" value="Anders, namelijk:" id="other" name="playmethod"
+							{% if idea.extraData and idea.extraData.playmethod and playmethod in idea.extraData.playmethod %}
+								checked="checked"
+							{% endif %}
+							/>
+							<label for="other">Anders, namelijk:</label>
+							<br />
+							<input type="text" name="playmethodOther" value="{{ idea.extraData.playmethodOther}}" class="hidden" />
+						</div>
+						<div class="form-group">
+							<h2>
+								{{ data.widget.labelPlaygroundType if data.widget.labelPlaygroundType else 'Keuze soort speeltuin' }}
+							</h2>
+							<div class="form-info">
+								{{ data.widget.infoPlaygroundType | nlbr | stripSafe | safe if data.widget.infoPlaygroundType else 'Kies welk soort speeltuin je het liefste ziet:' }}
+							</div>
+
+							<select id="playgroundType" name="playgroundType" class="default-select" value="{% if idea.extraData %}{{idea.extraData.playgroundType}}{% endif %}">
+								<option value="">Kies soort speeltuin</option>
+								{% for playgroundType in data.widget.playgroundTypeOptions %}
+								<option value="{{playgroundType.value}}" {% if (idea.extraData) and (idea.extraData.playgroundType === playgroundType.value) %}selected{% endif %}>{{playgroundType.value}}</option>
+								{% endfor %}
+							</select>
+							<br />
+
 						</div>
 						<div class="form-group">
 							<h2>
@@ -162,24 +224,6 @@
 							<option value="">Kies gebied</option>
 							{% for area in data.global.areas %}
 								<option value="{{area.value}}" {% if (idea.extraData) and (idea.extraData.area === area.value) %}selected{% endif %}>{{area.value}}</option>
-							{% endfor %}
-						</select>
-						<br />
-						{% endif %}
-					</div>
-					<div class="form-group">
-						{% if data.global.themes and data.global.themes.length > 0 %}
-						<h2>
-							{{ data.widget.labelThemes if data.widget.labelThemes else 'Thema' }}
-						</h2>
-						<div class="form-info">
-							{{ data.widget.infoThemes  | nlbr | stripSafe | safe  if data.widget.infoThemes else 'Selecteer het thema waarop jouw plan betrekking heeft.' }}
-						</div>
-
-						<select id="thema" name="theme" class="default-select" value="{% if idea.extraData %}{{idea.extraData.theme}}{% endif %}" {% if data.widget.requiredThemes %}required{% endif %}>
-							<option value="">Kies thema</option>
-							{% for theme in data.global.themes %}
-							<option value="{{theme.value}}" {% if (idea.extraData) and (idea.extraData.theme === theme.value) %}selected{% endif %}>{{theme.value}}</option>
 							{% endfor %}
 						</select>
 						<br />
