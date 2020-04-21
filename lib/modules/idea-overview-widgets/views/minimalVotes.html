@@ -18,7 +18,7 @@
     <div class="ranking"><div class="label">{{idea.ranking}}</div></div>
     {% endif %}
 
-    <div class="image"   style="background-image: url('{{data.widget.formatImageUrl(idea.extraData.images[0], 500, 500, true, idea.location) }}')"></div>
+    <div class="image"   style="background-image: url('{{data.widget.formatImageUrl(idea.extraData.images[0], 500, 500, true, idea.location, data.global.themes, idea.extraData.theme, apos) }}')"></div>
 
     <div class="duration">
       {% if data.widget.siteConfig.minimumYesVotes and idea.yes and idea.yes >= data.widget.siteConfig.minimumYesVotes and (idea.status == 'OPEN' or idea.status == 'CLOSED') and data.widget['labelMinimumVotesReached'] %}
