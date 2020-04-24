@@ -178,9 +178,9 @@
 			{% if idea.extraData and idea.extraData.playmethod %}
 			<br /><br />
 			<strong>Keuze manieren om te spelen</strong><br />
-				<ul>
+				<ul class="checkmark-list parent-list">
 				{% for method in idea.extraData.playmethod %}
-					<li>{{ method }}</li>
+					<li class="parent-item">{{ method }}</li>
 				{% endfor %}
 				</ul>
 			{% endif %}
