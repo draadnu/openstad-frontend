@@ -174,6 +174,22 @@
 				{% endif %}
 			</p>
 			{{idea.description | stripSafe | safe}}
+
+			{% if idea.extraData and idea.extraData.playmethod %}
+			<br /><br />
+			<strong>Keuze manieren om te spelen</strong><br />
+				<ul>
+				{% for method in idea.extraData.playmethod %}
+					<li>{{ method }}</li>
+				{% endfor %}
+				</ul>
+			{% endif %}
+
+			{% if idea.extraData and idea.extraData.playgroundType %}
+			<br /><br />
+			<strong>Keuze manieren om te spelen</strong><br />
+				{{ playgroundType }}
+			{% endif %}
 		</div>
 		{% if idea.location %}
 		<br/><br/>
