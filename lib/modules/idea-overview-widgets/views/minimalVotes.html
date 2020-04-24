@@ -34,7 +34,7 @@
         <div class="thema">{{idea.extraData.theme}}</div>
         <div class="gebied">{{idea.extraData.area}}</div>
       {% endif %}
-      {% if idea.summary and idea.summary not 'Geen beschrijving opgegeven' %}
+      {% if idea.summary and idea.summary != 'Geen beschrijving opgegeven' %}
         <p>{{idea.summary | stripSafe | safe | truncate(60) }}</p>
       {% else %}
         <p>&nbsp;</p>
