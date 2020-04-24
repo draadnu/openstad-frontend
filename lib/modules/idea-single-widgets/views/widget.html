@@ -167,7 +167,11 @@
 		{% include 'includes/modbreak.html' %}
 		<div class="userContent">
 			<p class="summary">
+				{% if idea.summary and idea.summary not 'Geen beschrijving opgegeven' %}
 				<strong>{{idea.summary | stripSafe | safe | nlbr}}</strong>
+				{% else %}
+					&nbsp;
+				{% endif %}
 			</p>
 			{{idea.description | stripSafe | safe}}
 		</div>

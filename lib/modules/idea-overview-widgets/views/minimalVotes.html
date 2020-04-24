@@ -34,7 +34,11 @@
         <div class="thema">{{idea.extraData.theme}}</div>
         <div class="gebied">{{idea.extraData.area}}</div>
       {% endif %}
-      <p>{{idea.summary | stripSafe | safe | truncate(60) }}</p>
+      {% if idea.summary and idea.summary not 'Geen beschrijving opgegeven' %}
+        <p>{{idea.summary | stripSafe | safe | truncate(60) }}</p>
+      {% else %}
+        <p>&nbsp;</p>
+      {% endif %}
 
       {% if data.widget.siteConfig.minimumYesVotes %}
       <div class="ideaProgress">
