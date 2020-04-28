@@ -166,29 +166,27 @@
 		</div>
 		{% include 'includes/modbreak.html' %}
 		<div class="userContent">
-			<p class="summary">
-				{% if idea.summary and idea.summary != 'Geen beschrijving opgegeven' %}
-				<strong>{{idea.summary | stripSafe | safe | nlbr}}</strong>
-				{% else %}
-					&nbsp;
-				{% endif %}
-			</p>
+			{% if idea.description %}
 			{{idea.description | stripSafe | safe}}
+			<br /><br />
+			{% endif %}
 
 			{% if idea.extraData and idea.extraData.playmethod %}
-			<br /><br />
-			<strong>Keuze manieren om te spelen</strong><br />
+
+			<strong>Mijn favoriete manieren om te spelen</strong><br />
 				<ul class="checkmark-list parent-list">
 				{% for method in idea.extraData.playmethod %}
-					<li class="parent-item">{{ method }}</li>
+					<li class="parent-item">{{ method.replace('Anders, namelijk:', '') }}</li>
 				{% endfor %}
 				</ul>
 			{% endif %}
 
 			{% if idea.extraData and idea.extraData.playgroundType %}
 			<br />
-			<strong>Keuze manieren om te spelen</strong><br />
-				{{ idea.extraData.playgroundType }}
+			<strong>Mijn favoriete soort speeltuin</strong><br />
+			<ul class="checkmark-list parent-list">
+				<li class="parent-item">{{ idea.extraData.playgroundType }}</li>
+			</ul>
 			{% endif %}
 		</div>
 		{% if idea.location %}
