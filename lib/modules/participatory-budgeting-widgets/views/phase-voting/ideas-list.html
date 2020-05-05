@@ -160,7 +160,7 @@ data-default-sort="{{data.widget.defaultSorting}}"
 						<div class="budget budget-{{idea.id}}">{{idea.budget}}</div>
 						{% endif %}
 						{% if data.widget.voting %}
-						<div class="button-add-idea-to-budget button-add-idea-to-budget-{{idea.id}}  btn-primary" onclick="event.preventDefault(); toggleIdeaInSelection({{idea.id}})"></div>
+						<button class="button-add-idea-to-budget button-add-idea-to-budget-{{idea.id}}  btn-primary" onclick="event.preventDefault(); toggleIdeaInSelection({{idea.id}})"></button>
 						{% endif %}
 					</div>
 				</div>
