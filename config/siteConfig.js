@@ -9,7 +9,6 @@ module.exports = {
     const resources = siteData && siteData.resources ? siteData.resources : resourcesSchema;
 
     const siteConfig = {
-      shortName: site._id,
       modules: {
         'api-proxy': {},
         'apostrophe-db': {
@@ -101,7 +100,6 @@ module.exports = {
         'submissions-widgets': {},
         'participatory-budgeting-widgets': {},
         'begroot-widgets': {},
-        'cookie-warning-widgets': {},
         'choices-guide-widgets': {},
         'local-video-widgets': {},
         'one-row-widgets': {},
