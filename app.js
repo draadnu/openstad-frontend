@@ -18,8 +18,6 @@ const app                     = express();
 const _                       = require('lodash');
 const rp                      = require('request-promise');
 const Promise                 = require('bluebird');
-const auth                    = require('basic-auth');
-const compare                 = require('tsscmp');
 
 //internal code
 const dbExists                = require('./services/mongo').dbExists;
@@ -43,13 +41,6 @@ app.get('/config-reset', (req, res, next) => {
   host = host.replace(['http://', 'https://'], ['']);
   delete configForHosts[host];
   res.json({ message: 'Ok'});
-});
-
-app.use(function(req, res, next) {
-  /**
-   * Start the servers
-   */
-   serveSites(req, res, next);
 });
 
 function serveSites (req, res, next) {
@@ -156,4 +147,14 @@ function run(id, siteData, callback) {
 
 }
 
-app.listen(process.env.PORT);
+module.exports.getMultiSiteApp = (options) => {
+  app.use(function(req, res, next) {
+    /**
+     * Start the servers
+     */
+    req.options = options;
+    serveSites(req, res, next);
+  });
+
+  return app;
+};

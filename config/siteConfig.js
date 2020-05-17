@@ -23,6 +23,11 @@ module.exports = {
         'openstad-users': {},
         'openstad-auth': {},
         'openstad-login': {},
+        'openstad-global': {},
+        'openstad-logger': {},
+        'openstad-custom-pages': {},
+        'openstad-pages': {},
+        'openstad-docs': {},
         'apostrophe-login': {
           localLogin: false
         },
@@ -30,9 +35,11 @@ module.exports = {
           construct: function (self, options) {
             // Don't really listen for connections. We'll run as middleware
             // This is necessary for the multisite startup script
-            self.apos.listen = function () {
-              if (self.apos.options.afterListen) {
-                return self.apos.options.afterListen(null);
+            if(process.env.MULTI_SITE) {
+              self.apos.listen = function () {
+                if (self.apos.options.afterListen) {
+                  return self.apos.options.afterListen(null);
+                }
               }
             }
           }
@@ -129,7 +136,7 @@ module.exports = {
           paletteFields: palette.fields,
           arrangePaletteFields: palette.arrangeFields
         },
-        'apostrophe-assets': {
+        'openstad-assets': {
           minify: process.env.MINIFY_JS && (process.env.MINIFY_JS == 1 || process.env.MINIFY_JS === 'ON'),
           // we set the option te lean, this means a lot of the JS libraries ApostrhopeCMS assumes exists are turned off
           // we manually included a few libs with Apos needs to functional

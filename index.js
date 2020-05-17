@@ -5,22 +5,32 @@ const openstadMapPolygons = require('./config/map').polygons;
 const apostrophe = require('apostrophe');
 const _ = require('lodash');
 const defaultSiteConfig = require('./config/siteConfig');
-const site = {_id: process.env.SAMPLE_DB}
-const siteConfig = defaultSiteConfig.get(site, {}, openstadMap, openstadMapPolygons);
-const merge = require('merge-deep');
+const { readdirSync } = require('fs');
 
-module.exports = function(options) {
+const site = {_id: process.env.SAMPLE_DB};
+
+module.exports.singleSite = function(options) {
+
+  const siteConfig = defaultSiteConfig.get(site, options.projectConfig, openstadMap, openstadMapPolygons);
+
   siteConfig.modulesSubdir = [
     __dirname + '/lib/modules',
     ...options.modulesSubdir,
   ];
-  const mergedOptions = merge(siteConfig, options);
-  console.log(mergedOptions);
+
+  const mergedOptions = _.merge(siteConfig, options);
+
   return apostrophe(mergedOptions);
 };
 
-const { readdirSync } = require('fs')
-const { join } = require('path')
+module.exports.multiSite = (options) => {
+
+  const multiSite = require('./app.js');
+
+  const app = multiSite.getMultiSiteApp(options);
+  app.listen(process.env.PORT);
+
+};
 
 const getDirectories = source => readdirSync(source).filter(name => name.indexOf('apostrophe') <= -1);
 
