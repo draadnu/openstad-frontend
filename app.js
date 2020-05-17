@@ -96,7 +96,7 @@ function serveSite(req, res, siteConfig, forceRestart) {
 
             aposStartingUp[dbName] = true;
 
-            runner(dbName, config).then(function(apos) {
+            runner(dbName, config, req.options).then(function(apos) {
               aposStartingUp[dbName] = false;
               aposServer[dbName] = apos;
               aposServer[dbName].app(req, res);
@@ -129,10 +129,16 @@ function serveSite(req, res, siteConfig, forceRestart) {
   });
 }
 
-function run(id, siteData, callback) {
+function run(id, siteData, options, callback) {
   const site = { _id: id}
+  const config = _.merge(siteData, options);
+  
+  const siteConfig = defaultSiteConfig.get(site, config, openstadMap, openstadMapPolygons);
 
-  const siteConfig = defaultSiteConfig.get(site, siteData, openstadMap, openstadMapPolygons);
+  siteConfig.modulesSubdir = [
+    __dirname + '/lib/modules',
+    ...options.modulesSubdir,
+  ];
 
   siteConfig.afterListen = function () {
     apos._id = site._id;
