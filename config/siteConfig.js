@@ -9,6 +9,7 @@ module.exports = {
     const resources = siteData && siteData.resources ? siteData.resources : resourcesSchema;
 
     const siteConfig = {
+      shortName: process.env.MULTI_SITE ? site._id : siteData.shortName,
       modules: {
         'api-proxy': {},
         'apostrophe-db': {
