@@ -132,13 +132,8 @@ function serveSite(req, res, siteConfig, forceRestart) {
 function run(id, siteData, options, callback) {
   const site = { _id: id}
   const config = _.merge(siteData, options);
-  
-  const siteConfig = defaultSiteConfig.get(site, config, openstadMap, openstadMapPolygons);
 
-  siteConfig.modulesSubdir = [
-    __dirname + '/lib/modules',
-    ...options.modulesSubdir,
-  ];
+  const siteConfig = defaultSiteConfig.get(site, config, openstadMap, openstadMapPolygons);
 
   siteConfig.afterListen = function () {
     apos._id = site._id;
