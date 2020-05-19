@@ -82,28 +82,28 @@
 		<div class="userContent">
 
 			{% if idea.extraData.goal %}
-				<strong>Wat willen we bereiken?</strong>
+				<strong style="font-weight: 600;">Wat willen we bereiken?</strong>
 				<p>
 					{{ idea.extraData.goal }}
 				</p>
 			{% endif %}
 
 			{% if idea.extraData.method %}
-				<strong>Wat gaan we doen?</strong>
+				<strong style="font-weight: 600;">Wat gaan we doen?</strong>
 				<p>
 					{{ idea.extraData.method }}
 				</p>
 			{% endif %}
 
 			{% if idea.extraData.who %}
-				<strong>Wie zijn daarvoor nodig?</strong>
+				<strong style="font-weight: 600;">Wie zijn daarvoor nodig?</strong>
 				<p>
 					{{ idea.extraData.who }}
 				</p>
 			{% endif %}
 
 			{% if idea.extraData.plans %}
-				<strong>Dit agendapunt bestaat uit deze ideeën van bewoners:</strong>
+				<strong style="font-weight: 600;">Dit agendapunt bestaat uit deze ideeën van bewoners:</strong><br/>
 				{% for plan in idea.extraData.plans %}
 					<a hreg="{{ plan.link }}" target="_blank">{{ plan.title }}</a><br />
 				{% endfor %}
