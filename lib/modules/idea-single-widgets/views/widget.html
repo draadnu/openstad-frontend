@@ -22,7 +22,7 @@
 				{% elif idea.status == 'DENIED' %}
 					<div class="statusbalk {{idea.status}}">Dit idee is afgewezen</div>
 				{% else %}
-					<div class="statusbalk {{idea.status}}">Stem nu op dit idee</div>
+					<div class="statusbalk {{idea.status}}">Reageer nu op dit agendapunt.</div>
 				{% endif %}
 				<!--
 						 <div class="ranking {{idea.status}}"><div class="label">{{idea.ranking}}</div></div>
@@ -46,13 +46,7 @@
 							{% elif idea.status == 'DONE' %}
 								<div>Dit voorstel is uitgevoerd. Lees daar meer over op deze pagina.</div>
 							{% else %}
-								<div id="nog-xxx-om-te-stemmen"></div>
-								<script>
-									var endDate2 = new Date('{{idea.endDate}}');
-									var daysLeft2 = parseInt( ( endDate2.getTime() - Date.now() ) / ( 24 * 60 * 60 * 1000) ) + 1;
-
-								  document.getElementById('nog-xxx-om-te-stemmen').innerHTML = 'Nog '+ daysLeft2 +' dagen om te stemmen';
-								</script>
+								<div>Reageer nu op dit agendapunt.</div>
 							{% endif %}
 						</div>
 					</div>
