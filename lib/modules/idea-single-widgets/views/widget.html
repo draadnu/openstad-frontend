@@ -105,7 +105,7 @@
 			{% if idea.extraData.plans %}
 				<strong style="font-weight: 600;">Dit agendapunt bestaat uit deze ideeën van bewoners:</strong><br/>
 				{% for plan in idea.extraData.plans %}
-					<a hreg="{{ plan.link }}" target="_blank">{{ plan.title }}</a><br />
+					<a href="{{ plan.link }}" target="_blank">{{ plan.title }}</a><br />
 				{% endfor %}
 			{% endif %}
 
