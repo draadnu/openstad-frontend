@@ -176,16 +176,13 @@ ga('send', 'pageview');
           <div class="navbar-menu toggle-menu">
             <nav id="mainMenu" class="navbar navbar-expand-lg navbar-light ">
               <ul class="nav navbar-left">
-                <li class="nav-item">
-                  <a href="{{ data.home._url }}" class="nav-link {% if data.originalUrl === '/' %} active {% endif %}">{{ data.home.title }}</a>
-                </li>
-                {% for tab in data.home._children %}
-                <li class="nav-item">
-                  <a class="nav-link {% if data.currentPath.startsWith(tab._url) %} active {% endif %}" href="{{ tab._url }}">
-                    {{ tab.title }}
-                  </a>
-                </li>
-                {% endfor %}
+                  <li class="nav-item">
+                      <a href="https://wijkagendabomenbloemenbuurt.nl/" class="nav-link ">Uitleg</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="https://wijkagendabomenbloemenbuurt.nl/agendapunten" class="nav-link ">Agendapunten</a>
+                  </li>
+
                 {% if data.global.topLinks %}
                 <li class="li-spacer visible-xs"></li>
                 {% for topLink in data.global.topLinks %}
@@ -206,12 +203,12 @@ ga('send', 'pageview');
         				<div>
                     {% if data.global.displayMyAcount %}
         						{% if data.loggedIn %}
-      							<a href="/oauth/logout" class="account logout-button">
+      							<a href="https://wijkagendabomenbloemenbuurt.nl/oauth/logout" class="account logout-button">
                       <!-- <span class="glyphicon glyphicon-log-out"></span> !-->
                       {{ __('Log out') }}
                     </a>
         						{% else %}
-      						   <a href="/oauth/login" class="account">
+      						   <a href="https://wijkagendabomenbloemenbuurt.nl/oauth/login" class="account">
                        <!-- <span class="glyphicon glyphicon-user"></span>  !-->
                        <img src="/img/avatar.svg" />
                        {{ __('My account') }}
