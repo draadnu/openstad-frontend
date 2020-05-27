@@ -19,8 +19,10 @@
 				{% endif %}
 				{% if idea.status == 'CLOSED' %}
 					<div class="statusbalk {{idea.status}}">De stemperiode is afgelopen</div>
+				{% elif idea.status == 'ACCEPTED' %}
+					<div class="statusbalk {{idea.status}}">Dit idee is haalbaar</div>
 				{% elif idea.status == 'DENIED' %}
-					<div class="statusbalk {{idea.status}}">Dit idee is afgewezen</div>
+					<div class="statusbalk {{idea.status}}">Dit idee is niet haalbaar</div>
 				{% else %}
 					<div class="statusbalk {{idea.status}}">Stem nu op dit idee</div>
 				{% endif %}
