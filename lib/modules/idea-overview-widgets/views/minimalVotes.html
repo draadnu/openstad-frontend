@@ -17,9 +17,11 @@
 
     <div class="duration">
       {% if idea.status == 'DENIED' %}
-        Dit voorstel is afgewezen
+        Dit idee is niet haalbaar
       {% elif idea.status == 'CLOSED' %}
         De stemperiode is afgelopen
+      {% elif idea.status == 'ACCEPTED' %}
+        Dit idee is haalbaar
       {% endif %}
     </div>
 
