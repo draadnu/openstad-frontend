@@ -31,7 +31,7 @@
 
 			<div class="secondary">
 				<div class="controls">
-					<h4>Stemmen</h4>
+					<h4>{{ data.widget.voteTitle if data.widget.voteTitle else 'Stemmen' }}</h4>
 					{% if (idea.status === 'OPEN') %}
 					<div class="vote">
 						<div class="hide-when-loaded" style="padding-top: 30px;text-align: center;">
