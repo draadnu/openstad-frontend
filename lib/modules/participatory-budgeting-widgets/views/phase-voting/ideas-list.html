@@ -89,12 +89,34 @@ data-default-sort="{{data.widget.defaultSorting}}"
 					</div>
 					<div class="visible-xs">
 						<br />
-						<div class="intro">
-							{{idea.summary | sanitize | safe}}
-						</div>
-            {% if idea.description %}
 						<div class="description">
-							{{idea.description | sanitize | safe}}
+							{% if idea.extraData.goal %}
+							<strong style="font-weight: 600;">Wat willen we bereiken?</strong>
+							<p>
+								{{ idea.extraData.goal }}
+							</p>
+						{% endif %}
+
+						{% if idea.extraData.method %}
+							<strong style="font-weight: 600;">Wat gaan we doen?</strong>
+							<p>
+								{{ idea.extraData.method }}
+							</p>
+						{% endif %}
+
+						{% if idea.extraData.who %}
+							<strong style="font-weight: 600;">Wie zijn daarvoor nodig?</strong>
+							<p>
+								{{ idea.extraData.who }}
+							</p>
+						{% endif %}
+
+						{% if idea.extraData.plans %}
+							<strong style="font-weight: 600;">Dit agendapunt bestaat uit deze ideeën van bewoners:</strong><br/>
+							{% for plan in idea.extraData.plans %}
+								<a href="{{ plan.link }}" target="_blank">{{ plan.title }}</a><br />
+							{% endfor %}
+						{% endif %}
 						</div>
             {% endif %}
 					</div>
