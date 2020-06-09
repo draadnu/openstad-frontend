@@ -145,10 +145,9 @@ data-default-sort="{{data.widget.defaultSorting}}"
 					</table>
 					{% endif %}
 					<br />
-					{% if data.widget.originalIdeaUrl and not idea.extraData.hideOriginalLink %}
-					{% set originalId = idea.extraData.originalId if idea.extraData.originalId else idea.id %}
+					{% if idea.extraData.pdf %}
 					<div class="margin-hor-10">
-						<a href="{{data.widget.originalIdeaUrl}}/{{originalId}}" class="link-original link-caret--blue" target="_blank">Bekijk het originele voorstel</a>
+						<a href="{{pdf}}" class="link-original link-caret--blue" target="_blank">Bekijk het ontwerp als PDF</a>
 					</div>
 					{% endif %}
 					<br />
