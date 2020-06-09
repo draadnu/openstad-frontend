@@ -83,7 +83,7 @@ data-default-sort="{{data.widget.defaultSorting}}"
 					<div id="image-location-toggable-{{idea.id}}" class="image-location-toggable">
 						<div class="idea-image-container">
 							<div class="idea-image-mask">
-								<div class="idea-image" style="background-image: url('{{data.widget.formatImageUrl(idea.extraData.images[0], 500, 500, true, idea.location) }}')"></div>
+								<div class="idea-image" style="background-image: url('{{idea.extraData.images[0] }}')"></div>
 							</div>
 							<div class="image-switch" onclick="toggleImageLocation({{idea.id}})"><img class="arrow" src="/img/arrow_right_white.svg"></div>
 						</div>
@@ -147,7 +147,7 @@ data-default-sort="{{data.widget.defaultSorting}}"
 					<br />
 					{% if idea.extraData.pdf %}
 					<div class="margin-hor-10">
-						<a href="{{pdf}}" class="link-original link-caret--blue" target="_blank">Bekijk het ontwerp als PDF</a>
+						<a href="{{idea.extraData.pdf}}" class="link-original link-caret--blue" target="_blank">Bekijk het ontwerp als PDF</a>
 					</div>
 					{% endif %}
 					<br />
