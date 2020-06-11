@@ -94,21 +94,21 @@ data-default-sort="{{data.widget.defaultSorting}}"
 							{% if idea.extraData.goal %}
 							<strong style="font-weight: 600;">Wat willen we bereiken?</strong>
 							<p>
-								{{ idea.extraData.goal }}
+								{{ idea.extraData.goal | sanitize | safe | nlbr }}
 							</p>
 						{% endif %}
 
 						{% if idea.extraData.method %}
 							<strong style="font-weight: 600;">Wat gaan we doen?</strong>
 							<p>
-								{{ idea.extraData.method }}
+								{{ idea.extraData.method | sanitize | safe | nlbr}}
 							</p>
 						{% endif %}
 
 						{% if idea.extraData.who %}
 							<strong style="font-weight: 600;">Wie zijn daarvoor nodig?</strong>
 							<p>
-								{{ idea.extraData.who }}
+								{{ idea.extraData.who | sanitize | safe | nlbr }}
 							</p>
 						{% endif %}
 
@@ -179,21 +179,21 @@ data-default-sort="{{data.widget.defaultSorting}}"
 							{% if idea.extraData.goal %}
 							<strong style="font-weight: 600;">Wat willen we bereiken?</strong>
 							<p>
-								{{ idea.extraData.goal }}
+								{{ idea.extraData.goal | sanitize | safe | nlbr }}
 							</p>
 						{% endif %}
 
 						{% if idea.extraData.method %}
 							<strong style="font-weight: 600;">Wat gaan we doen?</strong>
 							<p>
-								{{ idea.extraData.method }}
+								{{ idea.extraData.method | sanitize | safe | nlbr }}
 							</p>
 						{% endif %}
 
 						{% if idea.extraData.who %}
 							<strong style="font-weight: 600;">Wie zijn daarvoor nodig?</strong>
 							<p>
-								{{ idea.extraData.who }}
+								{{ idea.extraData.who | sanitize | safe | nlbr }}
 							</p>
 						{% endif %}
 
