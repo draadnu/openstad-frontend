@@ -90,8 +90,8 @@ data-default-sort="{{data.widget.defaultSorting}}"
 					<div class="visible-xs">
 						<br />
 						<div class="intro">
-							{% if idea.summary %}
-								{{ idea.summary }}
+							{% if idea.extraData.goal %}
+								{{ idea.extraData.goal | sanitize | safe | nlbr }}
 							{% else %}
 								&nbsp;
 							{% endif %}
@@ -181,8 +181,8 @@ data-default-sort="{{data.widget.defaultSorting}}"
 					<div class="hidden-xs">
 						<h3 class="grider-title">{{idea.title}}</h3>
 						<div class="intro">
-							{% if idea.summary %}
-								{{ idea.summary }}
+							{% if idea.extraData.goal %}
+								{{ idea.extraData.goal | sanitize | safe | nlbr }}
 							{% else %}
 								&nbsp;
 							{% endif %}
