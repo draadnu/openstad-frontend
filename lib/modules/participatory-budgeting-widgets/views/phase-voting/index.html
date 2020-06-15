@@ -67,16 +67,6 @@
   </script>
   {% endif %}
 
-	<div id="begroot-content-area">
-	  {{
-    apos.area(data.widget, 'contentArea', {
-    widgets: apos.settings.getOption('contentWidgets')
-    })
-    }}
-	</div>
-
-	<br />
-
 	<div id="ideasList" class="pageContent {{contentClass}}">
 		{% if data.widget.ideas.length > 0 %}
 		<div class="row">
