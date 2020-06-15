@@ -91,6 +91,7 @@ module.exports = {
         'local-video-widgets': {},
         'one-row-widgets': {},
         'image-widgets': {},
+        'header-widgets': {},
         'apostrophe-palette-widgets': {},
         'apostrophe-palette': {},
         'apostrophe-video-widgets': {},
