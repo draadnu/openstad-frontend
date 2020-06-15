@@ -16,6 +16,7 @@ exports.default = {
       addLabel: 'Counter',
     },
     'date-bar' : {},
+    'header' : {},
     'idea-form' : {},
     'idea-map': {},
     'idea-overview' : {},
