@@ -18,11 +18,11 @@
 					<div class="image"></div>
 				{% endif %}
 				{% if idea.status == 'CLOSED' %}
-					<div class="statusbalk {{idea.status}}">Stem nu op dit agendapunt.</div>
+					<div class="statusbalk {{idea.status}}">Reageren is niet meer mogelijk</div>
 				{% elif idea.status == 'DENIED' %}
 					<div class="statusbalk {{idea.status}}">Dit idee is afgewezen</div>
 				{% else %}
-					<div class="statusbalk {{idea.status}}">Stem nu op dit agendapunt.</div>
+					<div class="statusbalk {{idea.status}}">Reageren is niet meer mogelijk</div>
 				{% endif %}
 				<!--
 						 <div class="ranking {{idea.status}}"><div class="label">{{idea.ranking}}</div></div>
@@ -36,7 +36,7 @@
 						<h4>Status</h4>
 						<div class="duration">
 							{% if idea.status == 'CLOSED' %}
-								<div>Stem nu op dit agendapunt.</div>
+								<div>Reageren is niet meer mogelijk</div>
 							{% elif idea.status == 'DENIED' %}
 								<div>Stemmen op dit voorstel is niet meer mogelijk.</div>
 							{% elif idea.status == 'ACCEPTED' %}
@@ -46,7 +46,7 @@
 							{% elif idea.status == 'DONE' %}
 								<div>Dit voorstel is uitgevoerd. Lees daar meer over op deze pagina.</div>
 							{% else %}
-								<div>Stem nu op dit agendapunt.</div>
+								<div>Reageren is niet meer mogelijk</div>
 							{% endif %}
 						</div>
 					</div>
