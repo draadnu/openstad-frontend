@@ -125,9 +125,9 @@ data-default-sort="{{data.widget.defaultSorting}}"
 							{% endfor %}
 						{% endif %}
 
-						{% if idea.modBreak %}
+						{% if idea.description %}
 							<div class="modbreak">
-								{{ idea.modBreak | sanitize | safe | nlbr }}
+								{{ idea.description | sanitize | safe | nlbr }}
 							</div>
 						{% endif %}
 						</div>
