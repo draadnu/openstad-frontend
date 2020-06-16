@@ -124,6 +124,12 @@ data-default-sort="{{data.widget.defaultSorting}}"
 								<a href="{{ plan.link }}" target="_blank">{{ plan.title }}</a><br />
 							{% endfor %}
 						{% endif %}
+
+						{% if idea.modBreak %}
+							<div class="modbreak">
+								{{ idea.modBreak | sanitize | safe | nlbr }}
+							</div>
+						{% endif %}
 						</div>
 					</div>
 					{% if not (data.widget.votingType == 'budgeting-per-theme') %}
