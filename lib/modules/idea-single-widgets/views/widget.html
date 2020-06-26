@@ -35,7 +35,7 @@
 
 					{% if (idea.status === 'OPEN') %}
 						<div class="vote">
-							<form method="POST" action="/vote" class="idea-vote-form ajax-form {{ 'logged-in' if data.loggedIn else 'not-logged-in' }} ">
+							<form method="POST" action="/vote" class="idea-vote-form ajax-form {{ 'logged-in' if data.loggedIn else 'not-logged-in' }} " style="display: none;">
 								<input type="hidden" name="ideaId" value="{{idea.id}}" />
 								<input type="hidden" name="opinion" value="yes"/>
 
@@ -53,7 +53,7 @@
 							</form>
 
 							<div style="clear: both;"></div>
-							<form method="POST" action="/vote" class="idea-vote-form ajax-form {{ 'logged-in' if data.loggedIn else 'not-logged-in' }} vote">
+							<form method="POST" action="/vote" class="idea-vote-form ajax-form {{ 'logged-in' if data.loggedIn else 'not-logged-in' }} vote" style="display: none;">
 								<input type="hidden" name="ideaId" value="{{idea.id}}" />
 								<input type="hidden" name="opinion" value="no"/>
 
