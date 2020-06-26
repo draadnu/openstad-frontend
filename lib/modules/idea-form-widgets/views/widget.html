@@ -23,10 +23,10 @@
 <div class="pageContent newIdea" id="content">
 	{% if not showForm %}
 	<div class="box-grey">
-		<a href="/oauth/login" class="full-link-btn"></a>
+		<a href="{{data.loginUrl}}" class="full-link-btn"></a>
 
 		<h1>Om een idee in te dienen moet je ingelogd zijn.</h1>
-		<a href="/oauth/login" class="btn btn-primary" style="color:white">Log in</a>
+		<a href="{{data.loginUrl}}" class="btn btn-primary" style="color:white">Log in</a>
 	</div>
 	{% elseif showForm %}
 		<div  id="formulier-block">
