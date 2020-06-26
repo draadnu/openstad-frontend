@@ -45,12 +45,12 @@ var openstadMapPolygon = {% if data.global.mapPolygons %}{{ data.global.mapPolyg
 //	 var openstadMapDefaults = null;
  var openstadPolygons = openstadMapPolygon;//{% if config.openStadMap.polygons and config.siteId and config.openStadMap.polygons[config.siteId] %}{{ config.openStadMap.polygons[config.siteId] | dump | safe }}{% else %}null{% endif %};
 
- var centerLat = data.global.mapCenterLat;
- var centerLng = data.global.mapCenterLng;
+ var centerLat = {{data.global.mapCenterLat}};
+ var centerLng = {{data.global.mapCenterLng}};
 
  {% if (idea.location) and (idea.status !=  'DENIED' or ideas.length == 1)  and (idea.location.coordinates[0]) and (idea.location.coordinates[1])%}
-  var centerLat = idea.location.coordinates[0];
- var centerLng = idea.location.coordinates[1];
+  var centerLat = {{idea.location.coordinates[0]}};
+ var centerLng = {{idea.location.coordinates[1]}};
  {% endif %}
 
  var openstadMapDefaults = {
