@@ -25,8 +25,13 @@
 
         //Load polygon from global settings
         var polygonLngLat = {% if data.global.mapPolygons %}{{ data.global.mapPolygons | dump | safe }}{% else %}null{% endif %};
-        var centerLat = {% if data.global.mapCenterLat %}{{ data.global.mapCenterLat | dump | safe }}{% else %}4.2322689{% endif %};
-        var centerLng = {% if data.global.mapCenterLng %}{{ data.global.mapCenterLng | dump | safe }}{% else %}52.04946{% endif %};
+        {% if (idea.location.coordinates[0]) and (idea.location.coordinates[1]) %}
+          var centerLat = idea.location.coordinates[0];
+          var centerLng = idea.location.coordinates[1];
+        {% else %}
+          var centerLat = {% if data.global.mapCenterLat %}{{ data.global.mapCenterLat | dump | safe }}{% else %}4.2322689{% endif %};
+          var centerLng = {% if data.global.mapCenterLng %}{{ data.global.mapCenterLng | dump | safe }}{% else %}52.04946{% endif %};
+        {% endif %}
         var mapZoomLevel = {% if data.global.mapZoomLevel %}{{ data.global.mapZoomLevel | dump | safe }}{% else %}15{% endif %};
 
         var opts = {
