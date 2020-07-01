@@ -9,10 +9,10 @@
 
 {% if idea and isOwnerOrAdmin %}
 {% set showForm = true %}
-{% elseif (not idea) and data.openstadUser and data.openstadUser.id %}
+{% elseif (not idea) and data.openstadUser and data.openstadUser.id and data.loggedIn %}
 {% set showForm = true %}
 {% else %}
-{% set showForm = true %}
+{% set showForm = false %}
 {% endif %}
 
 {% if data.widget.editorDescription %}
