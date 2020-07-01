@@ -28,7 +28,8 @@
 #title {
 	margin-bottom: 35px;
 	overflow: hidden;
-
+	width: 100%;
+	display: block;
 	// Idea poster image
 	// -----------------
 	.primary {
@@ -38,6 +39,7 @@
 
 		@media @primary100 {
 			height: 200px;
+			margin-bottom: 0;
 		}
 
 		.image {
@@ -193,6 +195,11 @@
 					&[value="no"] {
 						background-image: url('/img/thumbsdown_white.svg');
 					}
+					&:disabled::before {
+						content: none;
+					}
+
+
 					&:disabled {
   					background-color: #bebebe;
 						cursor: default;
@@ -200,9 +207,7 @@
   						background-color: #bebebe;
 						}
 					}
-					&:disabled::before {
-						content: none;
-					}
+
 					&.selected[value="yes"] {
 						background-color: #bdd131;
 						&:disabled {
@@ -215,6 +220,29 @@
   						background-color: #bebebe;
 						}
 					}
+
+					&.idea-status-OPEN {
+						&:disabled {
+							background-color: #004699;
+							opacity: 0.5;
+						}
+
+						&.selected[value="yes"] {
+							&:disabled {
+								opacity: 0.5;
+								background-color: #bdd131;
+							}
+						}
+
+						&.selected[value="no"] {
+							&:disabled {
+								opacity: 0.5;
+								background-color: #ea1d25;
+							}
+						}
+					}
+
+
 				}
 
 			}
@@ -328,6 +356,18 @@
 						width: 30px;
 						margin: 0;
 						padding: 0;
+
+						&.desktop {
+							@media only screen and (max-width: 767px) {
+								display: none;
+							}
+						}
+
+						&.mobile {
+							@media only screen and (min-width: 768px) {
+								display: none;
+							}
+						}
 
 						a {
 							background-position: center;
@@ -498,6 +538,14 @@
 		}
 }
 
+tr.rejected, tr.rejected td {
+	background: red;
+}
+
+
+table.dataTable thead th, table.dataTable thead td {
+ 	padding: 0;
+}
 
 // Action buttons
 // --------------

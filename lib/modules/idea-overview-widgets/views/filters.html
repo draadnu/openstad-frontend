@@ -1,4 +1,10 @@
-<div class="row">
+<div class="row"
+{% if data.widget.displayFilterVoting %}
+style="display: block"
+{% else %}
+style="display: none"
+{% endif %}
+>
   <div class="col-xs-12 col-sm-8">
     {% if (data.global.areas and data.global.areas.length > 0) or (data.global.themes and data.global.themes.length > 0) %}
     <div class="tab-selector">
@@ -23,11 +29,28 @@
     {% endif %}
   </div>
   <div class="col-xs-12 col-sm-4">
+    {% if data.widget.selectedSorting and data.widget.selectedSorting.length > 1 %}
     <div class="sort">
+      {#
       <select class="default-select">
         <option {{'selected' if not sort or data.query.sort == 'createdate_desc'}} value="createdate_desc">Nieuwste eerst</option>
         <option {{'selected' if data.query.sort == 'createdate_asc'}} value="createdate_asc">Oudste eerst</option>
       </select>
+      #}
+      <select class="default-select ideas-sort-select">
+        {% for selectedSorting in data.widget.selectedSorting %}
+        <option value="{{selectedSorting.value}}">{{ __(selectedSorting.label) }}</option>
+        {% endfor %}
+        {#
+        <option value="createdtime,desc">Nieuwste eerst</option>
+        <option value="createdtime,asc">Oudste eerst</option>
+        <option value="random">Willekeurig</option>
+        <option value="likes,desc">Meeste likes</option>
+        <option value="likes,asc">Minste likes</option>
+        <option value="ranking,asc">Ranking</option>
+        #}
+      </select>
     </div>
+    {% endif %}
   </div>
 </div>

@@ -11,7 +11,7 @@
  * @type {[type]}
  */
 require('dotenv').config();
-
+//external libs
 const path                    = require('path');
 const express                 = require('express');
 const apostrophe              = require('apostrophe');
@@ -23,6 +23,11 @@ const fs                      = require('fs');
 const argv                    = require('boring')();
 const quote                   = require('shell-quote').quote;
 const Promise                 = require('bluebird');
+const basicAuth               = require('express-basic-auth');
+const auth                    = require('basic-auth');
+const compare                 = require('tsscmp');
+
+//internal code
 const dbExists                = require('./services/mongo').dbExists;
 const openstadMap             = require('./config/map').default;
 const openstadMapPolygons     = require('./config/map').polygons;
@@ -82,6 +87,33 @@ app.get('/config-reset', (req, res, next) => {
   delete configForHosts[host];
   res.json({ message: 'Ok'});
 });
+
+
+app.get('/login', (req, res, next) => {
+  const unauthorized = (req, res) => {
+      var challengeString = 'Basic realm=Openstad';
+      res.set('WWW-Authenticate', challengeString);
+      return res.status(401).send('Authentication required.');
+  }
+
+  const basicAuthUser = process.env.LOGIN_CSM_BASIC_AUTH_USER;
+  const basicAuthPassword = process.env.LOGIN_CSM_BASIC_AUTH_PASSWORD;
+
+
+
+  if (basicAuthUser && basicAuthPassword) {
+    var user = auth(req);
+
+    if (!user || !compare(user.name, basicAuthUser) || ! compare(user.pass, basicAuthPassword)) {
+      unauthorized(req, res);
+    } else {
+      next();
+    }
+
+  }
+
+});
+
 
 /**
  * Info url for debugging the apostrhopheCMS server
@@ -176,13 +208,9 @@ function serveSites (req, res, next) {
 function serveSite(req, res, siteConfig, forceRestart) {
   const runner = Promise.promisify(run);
   let dbName = siteConfig.config && siteConfig.config.cms && siteConfig.config.cms.dbName ? siteConfig.config.cms.dbName : '';
-  
-  console.log (siteConfig, dbName);
 
   // check if the mongodb database exist. The name for databse
   return dbExists(dbName).then((exists) => {
-      
-      console.log (exists, process.env.DEFAULT_DB);
       // if default DB is set
       if (exists || dbName === process.env.DEFAULT_DB)  {
 
@@ -338,6 +366,10 @@ function run(id, siteData, callback) {
             'idea-map': {},
             'idea-overview' : {},
             'idea-single' : {},
+            'ideas-on-map': {
+              addLabel: 'Ideeen op een kaart',
+            },
+            'iframe' : {},
             'header' : {},
             'image' : {},
             'info-bar' : {},
@@ -425,9 +457,12 @@ function run(id, siteData, callback) {
       'icon-section-widgets': {},
       'idea-single-widgets': {},
       'idea-form-widgets': {},
+      'ideas-on-map-widgets': {},
       'date-bar-widgets': {},
       'openlayer-map-widgets': {},
+      'map-widgets': {},
       'idea-map-widgets': {},
+      'iframe-widgets': {},
       'link-widgets': {},
       'counter-widgets': {},
       'slider-widgets': {},
@@ -453,11 +488,40 @@ function run(id, siteData, callback) {
             property: 'background-color',
           },
           {
+            name: 'textNavColor',
+            label: 'Text color of the items in the navigation bar',
+            type: 'color',
+            selector: '#navbar a',
+            property: 'color',
+          },
+          {
+            name: 'textHoverNavColor',
+            label: 'Text color when hovering over the items in the navigation bar',
+            type: 'color',
+            selector: '#navbar a:hover',
+            property: 'color',
+          },
+          {
+            name: 'textLineNavColor',
+            label: 'Color of the underline of the items in the navigation bar',
+            type: 'color',
+            unit: '!important',
+            selector: '#mainMenu .nav-link',
+            property: 'border-color',
+          },
+          {
             name: 'backgroundFooterColor',
             label: 'Background color of the footer',
             type: 'color',
             selector: 'footer',
             property: 'background-color',
+          },
+          {
+            name: 'textFooterColor',
+            label: 'Color of the text in the footer',
+            type: 'color',
+            selector: ['footer .container h2', 'footer .container p', 'footer .container a'],
+            property: 'color',
           },
           {
             name: 'logoWidth',
@@ -476,7 +540,7 @@ function run(id, siteData, callback) {
           {
             name: 'colorFields',
             label: 'Kleuren',
-            fields: ['backgroundNavColor', 'backgroundFooterColor']
+            fields: ['backgroundNavColor', 'textNavColor', 'textHoverNavColor', 'textLineNavColor', 'backgroundFooterColor', 'textFooterColor']
           },
           {
             name: 'logoFields',
@@ -490,6 +554,10 @@ function run(id, siteData, callback) {
         scripts: [
           { name: 'cookies' },
           { name: 'site' },
+          { name: 'shuffle.min' },
+          { name: 'sort' },
+          { name: 'jquery.validate.min' },
+          { name: 'jquery.dataTables.min' },
           { name: 'jquery.validate.min' },
           { name: 'jquery.validate.nl' },
         ],

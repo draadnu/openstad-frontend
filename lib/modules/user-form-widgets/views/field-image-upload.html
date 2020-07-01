@@ -1,103 +1,14 @@
 <div class="form-group">
-  <h3>Afbeelding </h3>
+  <h3>{{field.title | safe}} </h3>
     <div class="description"><p>{{field.description | safe}}</p></div>
 
 
-    <fieldset class="filepondFieldset">
-    <!-- a list of already uploaded files -->
-    <script>
-        var ideaFiles = [];
-        <!-- a list of already uploaded files -->
-
-    </script>
-    <input type="file" class="imageUploader filepond" / >
+    <fieldset class="filepondUserformFieldset">
+    <input type="file" class="imageUploader filepond" {{ "required" if field.validation.indexOf('required') > -1 }} />
 
 </fieldset>
 <input type="hidden" name="validateImages" multiple />
-<input type="hidden" name="imageInputKey" value="{{ field.inputKey }}" />
-
-  <script>
-
-var fieldsetElement = document.querySelector('.filepondFieldset');
-
-
-if (fieldsetElement) {
-  FilePond.registerPlugin(FilePondPluginImagePreview);
-  FilePond.registerPlugin(FilePondPluginFileValidateSize);
-  FilePond.registerPlugin(FilePondPluginFileValidateType);
-  FilePond.registerPlugin(FilePondPluginFilePoster);
-  FilePond.registerPlugin(FilePondPluginImageExifOrientation);
-
-/*FilePond.setOptions({
-    server: {
-        process: '/image',
-        fetch: null,
-        revert: null
-     }
-  });*/
-
-  var filePondSettings = {
-    // set allowed file types with mime types
-    acceptedFileTypes: ['image/*'],
-    allowFileSizeValidation: true,
-    maxFileSize: '8mb',
-    name: 'image',
-    maxFiles: 5,
-    allowBrowse: true,
-    files: ideaFiles,
-    server: {
-      process: '/image',
-      fetch: '/fetch-image?img=',
-      revert: null
-    },
-    labelIdle: "Sleep afbeelding(en) naar deze plek of <span class='filepond--label-action'>klik hier</span>",
-    labelInvalidField: "Field contains invalid files",
-    labelFileWaitingForSize: "Wachtend op grootte",
-    labelFileSizeNotAvailable: "Grootte niet beschikbaar",
-    labelFileCountSingular: "Bestand in lijst",
-    labelFileCountPlural: "Bestanden in lijst",
-    labelFileLoading: "Laden",
-    labelFileAdded: "Toegevoegd", // assistive only
-    labelFileLoadError: "Fout bij het uploaden",
-    labelFileRemoved: "Verwijderd", // assistive only
-    labelFileRemoveError: "Fout bij het verwijderen",
-    labelFileProcessing: "Laden",
-    labelFileProcessingComplete: "Afbeelding geladen",
-    labelFileProcessingAborted: "Upload cancelled",
-    labelFileProcessingError: "Error during upload",
-    labelFileProcessingRevertError: "Error during revert",
-    labelTapToCancel: "tap to cancel",
-    labelTapToRetry: "tap to retry",
-    labelTapToUndo: "tap to undo",
-    labelButtonRemoveItem: "Verwijderen",
-    labelButtonAbortItemLoad: "Abort",
-    labelButtonRetryItemLoad: "Retry",
-    labelButtonAbortItemProcessing: "Verwijder",
-    labelButtonUndoItemProcessing: "Undo",
-    labelButtonRetryItemProcessing: "Retry",
-    labelButtonProcessItem: "Upload",
-    labelMaxFileSizeExceeded: "Afbeelding is te groot, max grootte is 8MB"
-  }
-
-
-
-  var pond = FilePond.create(fieldsetElement, filePondSettings);
-
-  var sortableInstance;
-
-  var pondEl = document.querySelector('.filepond--root');
-}
-
-  </script>
-<!--
-  <div class="uploader">
-    <label>
-        Sleep de afbeelding(en) naar deze plek
-        <br /> of klik hier om een afbeelding te uploaden
-    </label>
-    <div class="icon"></div>
-    <input type="file" class="preview-file-input" name="data[image]" />
-  </div>-->
+<input type="hidden" name="imageInputKey" value="{{ field.title }}" />
 </div>
 
 <script src="https://unpkg.com/filepond-polyfill/dist/filepond-polyfill.js"></script>

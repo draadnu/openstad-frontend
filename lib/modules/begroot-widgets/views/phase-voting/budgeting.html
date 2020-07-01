@@ -46,10 +46,7 @@
 													</div>
 												</a>
 												<div class="mobile-accordion-body">
-													Kies uit onderstaand overzicht jouw favoriete plannen.
-													Selecteer voor minimaal € 200.000 en maximaal € 300.000 aan plannen.
-													In stap 3 vul je ter controle de stemcode in die je per post hebt ontvangen.
-													Tot slot verstuur je in stap 4 je stem.
+													{{data.widget.step_1_intro}}
 												</div>
 											</div>
 											<br class="visible-xs" />
@@ -109,11 +106,20 @@
 											</div>
 										</div>
 										<div id="vote-button-container">
-											<a href="/oauth/login?returnTo={{data.currentUrl}}" class="button-stemcode vul-je-stemcode-in" onmouseover="removeFromClassName(this, 'do-this-first');">
+											{% set returnUrl = data.currentUrl %}
+
+											{% if data.widget.scrollBackToBudgetBlock %}
+												{% if data.currentUrl.indexOf('?') == -1 %}
+													{% set returnUrl = data.currentUrl + '?stemcode' %}
+												{% else %}
+													{% set returnUrl = data.currentUrl + '&stemcode' %}
+												{% endif %}
+											{% endif %}
+											<a href="/oauth/login?returnTo={{returnUrl}}" class="button-stemcode vul-je-stemcode-in" onmouseover="removeFromClassName(this, 'do-this-first');">
 												Vul je stemcode in
 											</a>
 											<div class="error-block">
-												Met deze stemcode is al gestemd op West Begroot.
+												Met deze stemcode is al gestemd.
 												Een stemcode kan maar één keer gebruikt worden. Je eerst verstuurde stem blijft bewaard.
 											</div>
 											{% if 0 %}
@@ -122,13 +128,11 @@
 										</div>
 										<div id="vote-registered-container">
 											<div class="button-stemcode geldige-code">Geldige stemcode</div>
-											<a href="/oauth/login?returnTo={{data.currentUrl}}" class="underline" style="margin-top:-30px;     margin-top: -15px; display: block;margin-bottom: 20px; ">
+											<a href="/oauth/login?returnTo={{returnUrl}}" class="underline" style="margin-top:-30px;     margin-top: -15px; display: block;margin-bottom: 20px; ">
 												<small>Vul een andere stemcode in</small>
 											</a>
 											<div>
-												Het controleren van je stemcode is gelukt!
-												Je bent bijna klaar.
-												Klik op onderstaande knop om je stem te versturen.
+												{{data.widget.step_3_succesfull_auth}}
 											</div>
 										</div>
 
@@ -164,7 +168,7 @@
 									</div>
 								</a>
 								<div class="mobile-accordion-body">
-									Kies uit onderstaand overzicht jouw favoriete plannen. Selecteer voor minimaal € 200.000 en maximaal € 300.000 aan plannen. In stap 3 vul je ter controle de stemcode in die je per post hebt ontvangen. Tot slot verstuur je in stap 4 je stem.
+									{{data.widget.step_1_intro}}
 								</div>
 							</div>
 							<br class="visible-xs" />
@@ -194,8 +198,8 @@
 									</div>
 								</a>
 								<div class="mobile-accordion-body">
-									Bekijk hieronder je selectie. Ben je tevreden?
-									Klik dan onderaan door naar stap 3 om jouw stemcode in te vullen.
+									{{data.widget.step_2_intro}}
+
 								</div>
 							</div>
 							<br class="visible-xs" />
@@ -220,7 +224,8 @@
 									</div>
 								</a>
 								<div class="mobile-accordion-body">
-									Via onderstaande knop kun je op een aparte pagina je persoonlijke stemcode invullen. Wij controleren de stemcode op geldigheid. Als dat gelukt is kom je terug op deze pagina waarna je kunt stemmen. Alle bewoners van West hebben per post een stemcode ontvangen.
+									{{data.widget.step_3_intro}}
+
 								</div>
 							</div>
 
@@ -246,7 +251,7 @@
 									</div>
 								</a>
 								<div class="mobile-accordion-body">
-									Het controleren van je stemcode is gelukt! Je bent bijna klaar. Klik op onderstaande knop om je stem te versturen.
+									{{data.widget.step_3_succesfull_auth}}
 								</div>
 							</div>
 							<br />
@@ -264,7 +269,12 @@
 							<div class="checkmark-block-green">
 								<h4>Gelukt, je hebt gestemd!</h4>
 								<br/>
-								Bedankt voor het stemmen op West Begroot. De stemperiode loopt van 16 januari t/m 13 februari 2019. Wil je weten welke plannen het vaakst zijn gekozen en uitgevoerd worden? De uitslag wordt op 15 februari 2019 gepubliceerd op <a href="https://westbegroot.amsterdam.nl">westbegroot.amsterdam.nl</a>.
+								{{data.widget.thankyou_message}}
+								{% if data.widget.showNewsletterButton and data.widget.showNewsletterButton == 'yes' %}
+								<br />
+								<br />
+								<a href="#newsletter" class="outlined-button">{{ data.widget.newsletterButtonText or __('Sign up for the newsletter') }}</a>
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -308,7 +318,7 @@
 						{% endif %}
 						<div class="col-xs-12 col-sm-4 expand-bar">
 							<div class="align-right">
-								<a href="#mainMenu" class=" link scroll-link">
+								<a href="#page" class=" link scroll-link">
 									Omhoog
 									<img src="/img/arrow_up_blue.svg" />
 								</a>
@@ -318,7 +328,7 @@
 				</div>
 				<div class="sticky-contract">
 					<div class="align-right">
-						<a href="#budget-block" class="contract link scroll-link">
+						<a href="#page" class="contract link scroll-link">
 							Omhoog
 							<img src="/img/arrow_up_blue.svg" />
 						</a>
@@ -331,4 +341,15 @@
 		</div>
 	</div>
 </div>
+{% if data.widget.scrollBackToBudgetBlock %}
+	<script type="text/javascript">
+		document.addEventListener("DOMContentLoaded", function() {
+			if (window.location.search && window.location.search.indexOf('stemcode') !== -1) {
+				window.setTimeout(function () {
+					$('html, body').animate({scrollTop: $("#budget-block").offset().top}, 1000);
+				}, 250);
+			}
+		});
+	</script>
+{% endif %}
 {% endmacro %}

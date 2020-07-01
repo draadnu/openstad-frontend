@@ -12,7 +12,7 @@
 
     .full-screen-section-inner {
       position: relative;
-      max-width: 1440px;
+      max-width: 1400px;
       margin: 0 auto;
       height: 100%;
 
@@ -44,6 +44,13 @@
     margin-top: -70px;
 }
 
+// give standard margin bottom to columns in row, otherwise they are stacked
+.section > .container > .row > div {
+  @media @phone {
+    margin-bottom: 40px;
+  }
+}
+
 .section {
 
   .howDoesItWorkButton {
@@ -52,6 +59,7 @@
     color: black;
     padding: 15px 20px;
     text-align: center;
+    display: block;
   }
 
   &.mobileonly {

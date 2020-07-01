@@ -5,16 +5,17 @@
 </div>
 <div id="idea-overview-container" class="idea-overview-container opacity-0-for-load">
   {% if data.widget.voting %}
-    {{ voteCreator.showVoteCreator(true, data.ideas, data) }}
+    {{ voteCreator.showVoteCreator(false, data.widget.ideas, data) }}
   {% endif %}
   <div class="ideasList">
     {% include 'filters.html' %}
     <br />
+		<div id="ideas-anchor"></div>
 
     <div id="ideas" class="primary">
 
-      {% if not data.ideas or data.ideas.length === 0 %}
-      <h3 style="text-align: center;"> <em><a href="/plan-indienen"> Dien als eerste je idee in! </a></em> </h3>
+      {% if not data.widget.ideas or data.widget.ideas.length === 0 %}
+      <h3 style="text-align: center;"><a href="/plan-indienen"> Dien als eerste je idee in! </a></h3>
       {% else %}
 
       {% if data.widget.displayType === 'minimalVotes' %}

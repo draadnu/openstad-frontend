@@ -11,7 +11,9 @@
 
 <div id="westbegroot-voting" class="begroot-container opacity-0-for-load">
 
+	{% if data.widget.voting %}
 	{{ budgeting.showBudgetWindow(data) }}
+	{% endif %}
 
 	<script>
 	 var userHasVoted = {{data.widget.userHasVoted}};
@@ -43,27 +45,34 @@
 		{% if data.ideas.length > 0 %}
 		<div class="row">
 			<div class="col-xs-12 col-sm-8">
-				{% if data.global.areas and data.global.areas.length > 0 %}
+				{% if (data.global.areas and data.global.areas.length > 0) or (data.global.themes and data.global.themes.length > 0) %}
 				<div class="tab-selector">
-					<ul>
-						<li><a id="themaSelector0" href="javascript: void deactivateAll()">Alle plannen</a></li>
-					</ul>
+					{% if (data.global.themes and data.global.themes.length > 0) %}
+					<select id="themaSelector" class="default-select" onchange="activateTab(this.selectedIndex)">
+						<option value="0">Alle thema's</option>
+						{% for theme in data.global.themes %}
+						<option value="{{theme.value}}">{{theme.value}}</option>
+						{% endfor %}
+					</select>
+					{% endif %}
+					{% if (data.global.areas and data.global.areas.length) > 0 %}
 					<select id="filterSelector" class="default-select" onchange="activateFilter(this.selectedIndex)">
 						<option value="0">Alle gebieden</option>
 						{% for area in data.global.areas %}
 						<option value="{{area.value}}">{{area.value}}</option>
 						{% endfor %}
 					</select>
+					{% endif %}
 					<a class="no-button inactive" href="javascript: void deactivateAll()">Wissen</a>
 				</div>
 				{% endif %}
 			</div>
 			<div class="col-xs-12 col-sm-4">
 				<div class="sort">
-					<select id="selectSort" class="default-select">
-						<option default {{'selected' if data.query.sort == 'createdate_desc'}} value="createdate_desc">Nieuwste eerst</option>
-						<option {{'selected' if data.query.sort == 'createdate_asc'}} value="createdate_asc">Oudste eerst</option>
-						<option {{'selected' if data.query.sort == 'random'}} value="random">Willekeurig</option>
+					<select class="default-select ideas-sort-select">
+						{% for selectedSorting in data.widget.selectedSorting %}
+						<option value="{{selectedSorting.value}}">{{ __(selectedSorting.label) }}</option>
+						{% endfor %}
 					</select>
 				</div>
 			</div>
