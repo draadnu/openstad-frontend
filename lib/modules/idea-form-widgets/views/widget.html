@@ -40,25 +40,22 @@
 							</p>
 						</div>
 						{% if data.widget.displayLocation %}
-						<div class="form-group">
-							<div id="location">
+							<div class="form-group">
+							 <div id="location">
 								<h2>
-									{{ data.widget.labelLocation if data.widget.labelLocation else 'Locatie' }}
+								 {{ data.widget.labelLocation if data.widget.labelLocation else 'Locatie' }}
 								</h2>
 								<div class="form-info" style="height: auto;">
-									{{ data.widget.infoLocation | safe if data.widget.infoLocation else 'Heeft jouw plan betrekking op een specifieke plek? Klik dan op de juiste locatie in de kaart om een vlaggetje te plaatsen. Verwijder het vlaggetje door hem nogmaals aan te klikken.' }}
+								 {{ data.widget.infoLocation | nlbr | safe if data.widget.infoLocation else 'Heeft jouw plan betrekking op een specifieke plek? Klik dan op de juiste locatie in de kaart om een vlaggetje te plaatsen. Verwijder het vlaggetje door hem nogmaals aan te klikken.' }}
 								</div>
 								<div id="mapcontainer">
-									{% set editorInputElementId = 'locationField' %}
-									{% if data.widget.map === 'openlayers' %}
-										{% include 'includes/openstad-openlayers-map.html'  %}
-									{% else %}
-										{% include 'includes/openstad-map.html'  %}
-									{% endif %}
+								 {% set editorInputElementId = 'locationField' %}
+								 {% set mapType = data.widget.mapType %}
+								 {% include 'includes/openstad-map.html'  %}
 								</div>
+							 </div>
 							</div>
-						</div>
-						{% endif %}
+							{% endif %}
 						<div class="form-group">
 							<h2>
 								{{ data.widget.labelTitle if data.widget.labelTitle else 'Titel plan' }}
@@ -207,7 +204,6 @@
 						<input type="hidden" name="_method" value="PUT" />
 						{% endif %}
 						</div>
-					{% if data.widget.displayLocation %}
 					{% if idea.id %}
 					<input type="hidden" name="id" value="{{idea.id}}" />
 					<input type="hidden" name="_method" value="PUT" />
@@ -429,9 +425,6 @@
 		</div>
 		{% endif %}
 
-
-
-	  {% endif %}
 	{% endif %}
 </div>
 <script>
@@ -441,6 +434,15 @@
   var summaryMaxLength = parseInt('{{data.widget.siteConfig.ideas.summaryMaxLength}}') || 140;
   var descriptionMinLength = parseInt('{{data.widget.siteConfig.ideas.descriptionMinLength}}') || 140;
   var descriptionMaxLength = parseInt('{{data.widget.siteConfig.ideas.descriptionMaxLength}}') || 5000;
+</script>
+<script>
+
+    //Load polygon from global settings
+    var polygonLngLat = {% if data.global.mapPolygons %}{{ data.global.mapPolygons | dump | safe }}{% else %}null{% endif %};
+
+    var centerLat = {% if data.global.mapCenterLat %}{{ data.global.mapCenterLat | dump | safe }}{% else %}4.2322689{% endif %};
+    var centerLng = {% if data.global.mapCenterLng %}{{ data.global.mapCenterLng | dump | safe }}{% else %}52.04946{% endif %};
+    var mapZoomLevel = {% if data.global.mapZoomLevel %}{{ data.global.mapZoomLevel | dump | safe }}{% else %}15{% endif %};
 </script>
 <script src="https://unpkg.com/filepond-polyfill/dist/filepond-polyfill.js"></script>
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
