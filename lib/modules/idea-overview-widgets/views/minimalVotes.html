@@ -20,6 +20,10 @@
         Dit voorstel is afgewezen
       {% elif idea.status == 'CLOSED' %}
         Reageren is niet meer mogelijk
+      {% elif idea.status == 'ACCEPTED' %}
+        Dit plan wordt uitgevoerd
+      {% elif idea.status == 'DENIED' %}
+        Dit plan wordt niet uitgevoerd
       {% endif %}
     </div>
 

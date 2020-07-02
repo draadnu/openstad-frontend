@@ -19,8 +19,10 @@
 				{% endif %}
 				{% if idea.status == 'CLOSED' %}
 					<div class="statusbalk {{idea.status}}">Reageren is niet meer mogelijk</div>
+				{% elif idea.status == 'ACCEPTED' %}
+					<div class="statusbalk {{idea.status}}">Dit plan wordt uitgevoerd</div>
 				{% elif idea.status == 'DENIED' %}
-					<div class="statusbalk {{idea.status}}">Dit idee is afgewezen</div>
+					<div class="statusbalk {{idea.status}}">Dit plan wordt niet uitgevoerd</div>
 				{% else %}
 					<div class="statusbalk {{idea.status}}">Reageren is niet meer mogelijk</div>
 				{% endif %}
@@ -38,9 +40,9 @@
 							{% if idea.status == 'CLOSED' %}
 								<div>Reageren is niet meer mogelijk</div>
 							{% elif idea.status == 'DENIED' %}
-								<div>Stemmen op dit voorstel is niet meer mogelijk.</div>
+								<div>Dit plan wordt niet uitgevoerd</div>
 							{% elif idea.status == 'ACCEPTED' %}
-								<div>Dit voorstel wordt besproken in de volgende vergadering!</div>
+								<div>Dit plan wordt uitgevoerd</div>
 							{% elif idea.status == 'BUSY' %}
 								<div>Dit voorstel wordt uitgevoerd. Lees op deze pagina over de voortgang.</div>
 							{% elif idea.status == 'DONE' %}
