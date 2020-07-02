@@ -459,7 +459,6 @@ function run(id, siteData, callback) {
       'idea-form-widgets': {},
       'ideas-on-map-widgets': {},
       'date-bar-widgets': {},
-      'openlayer-map-widgets': {},
       'map-widgets': {},
       'idea-map-widgets': {},
       'iframe-widgets': {},
