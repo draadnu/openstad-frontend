@@ -460,6 +460,7 @@ function run(id, siteData, callback) {
       'ideas-on-map-widgets': {},
       'date-bar-widgets': {},
       'map-widgets': {},
+      'openlayer-map-widgets': {},
       'idea-map-widgets': {},
       'iframe-widgets': {},
       'link-widgets': {},
