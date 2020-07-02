@@ -116,24 +116,7 @@
 						<br />
 						{% endif %}
 					</div>
-					<div class="form-group">
-						{% if data.global.themes and data.global.themes.length > 0 %}
-						<h2>
-							{{ data.widget.labelThemes if data.widget.labelThemes else 'Thema' }}
-						</h2>
-						<div class="form-info">
-							{{ data.widget.infoThemes  | nlbr | safe  if data.widget.infoThemes else 'Selecteer het thema waarop jouw plan betrekking heeft.' }}
-						</div>
 
-						<select id="thema" name="theme" class="default-select" value="{% if idea.extraData %}{{idea.extraData.theme}}{% endif %}" {% if data.widget.requiredThemes %}required{% endif %}>
-							<option value="">Kies thema</option>
-							{% for theme in data.global.themes %}
-							<option value="{{theme.value}}" {% if (idea.extraData) and (idea.extraData.theme === theme.value) %}selected{% endif %}>{{theme.value}}</option>
-							{% endfor %}
-						</select>
-						<br />
-						{% endif %}
-					</div>
 
 				<div class="form-group">
 					<div id="description">
@@ -230,35 +213,7 @@
 					<input type="hidden" name="_method" value="PUT" />
 					{% endif %}
 				</div>
-					<div class="form-group">
-						<div id="location">
-							<h2>
-								{{ data.widget.labelLocation if data.widget.labelLocation else 'Locatie' }}
-							</h2>
-							<div class="form-info" style="height: auto;">
-								{{ data.widget.infoLocation | nlbr | safe if data.widget.infoLocation else 'Heeft jouw plan betrekking op een specifieke plek? Klik dan op de juiste locatie in de kaart om een vlaggetje te plaatsen. Verwijder het vlaggetje door hem nogmaals aan te klikken.' }}
-							</div>
-							<div id="mapcontainer">
-								{% set editorInputElementId = 'locationField' %}
-								{% set mapType = data.widget.mapType %}
-								{% include 'includes/openstad-map.html'  %}
-							</div>
-						{% if data.global.areas and data.global.areas.length > 0 %}
-						<h2>
-							{{ data.widget.labelAreas if data.widget.labelAreas else 'Gebied' }}
-						</h2>
-						<div class="form-info">
-							{{ data.widget.infoAreas | safe if data.widget.infoAreas else 'Selecteer het gebied waarop jouw plan betrekking heeft. Gaat het niet over een specifiek gebied? Kies dan voor algemeen.' }}
-						</div>
-						<select id="gebied" class="default-select" name="area" value="{% if idea.extraData %}{{idea.extraData.area}}{% endif %}">
-							<option value="">Kies gebied</option>
-							{% for area in data.global.areas %}
-								<option value="{{area.value}}" {% if (idea.extraData) and (idea.extraData.area === area.value) %}selected{% endif %}>{{area.value}}</option>
-							{% endfor %}
-						</select>
-						<br />
-						{% endif %}
-					</div>
+
 					<div class="form-group">
 						{% if data.global.themes and data.global.themes.length > 0 %}
 						<h2>
@@ -477,6 +432,7 @@
 
 
 	  {% endif %}
+	{% endif %}
 </div>
 <script>
 	var titleMinLength = parseInt('{{data.widget.siteConfig.ideas.titleMinLength}}') || 10;
