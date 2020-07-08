@@ -33,16 +33,20 @@
                 </div>
                 {% if not data.widget.hideRightSideColumn %}
                         <div class="col-sm-3 col-xs-12 header-buttons">
-                            <a href="{{ data.widget._ideaOverviewPage._url if (data.widget._ideaOverviewPage and data.widget._ideaOverviewPage._url) else '/plannen' }}" class="margin-bottom-xs scroll-link block no-decoration">
-                        <span class="box-blue block">
-                            <span class="margin-right-s">
-                                {% for num in data.widget.ideaCountParts %}
-                                    <span class="number-plate"> {{num}} </span>
-                                {% endfor %}
-                            </span>
-                            {{ data.widget.ideaOverviewButtonText if data.widget.ideaOverviewButtonText else 'plannen' }}
-                        </span>
+                            {% if not data.widget.disableRightSideLink %}
+                                <a href="{{ data.widget._ideaOverviewPage._url if (data.widget._ideaOverviewPage and data.widget._ideaOverviewPage._url) else '/plannen' }}" class="margin-bottom-xs scroll-link block no-decoration">
+                            {% endif %}
+                                <span class="box-blue block">
+                                    <span class="margin-right-s">
+                                        {% for num in data.widget.ideaCountParts %}
+                                            <span class="number-plate"> {{num}} </span>
+                                        {% endfor %}
+                                    </span>
+                                    {{ data.widget.ideaOverviewButtonText if data.widget.ideaOverviewButtonText else 'plannen' }}
+                                </span>
+                            {% if not data.widget.disableRightSideLink %}
                             </a>
+                            {% endif %}
                             {% if data.widget.showBtn %}
                             <a href="{{data.widget.btnUrl}}" class="link-box scroll-link margin-bottom-sm button-with-icon" style=""   {% if data.widget.targetBlank %} target="_blank" {% endif %}>
 
