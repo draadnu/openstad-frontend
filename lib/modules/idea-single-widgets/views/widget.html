@@ -20,7 +20,7 @@
 				{% if idea.status == 'CLOSED' %}
 					<div class="statusbalk {{idea.status}}">Reageren is niet meer mogelijk</div>
 				{% elif idea.status == 'ACCEPTED' %}
-					<div class="statusbalk {{idea.status}}">Dit plan wordt uitgevoerd</div>
+					<div class="statusbalk {{idea.status}}">Dit agendapunt krijgt prioriteit</div>
 				{% elif idea.status == 'DENIED' %}
 					<div class="statusbalk {{idea.status}}">Dit plan wordt niet uitgevoerd</div>
 				{% else %}
@@ -42,7 +42,7 @@
 							{% elif idea.status == 'DENIED' %}
 								<div>Dit plan wordt niet uitgevoerd</div>
 							{% elif idea.status == 'ACCEPTED' %}
-								<div>Dit plan wordt uitgevoerd</div>
+								<div>Dit agendapunt krijgt prioriteit</div>
 							{% elif idea.status == 'BUSY' %}
 								<div>Dit voorstel wordt uitgevoerd. Lees op deze pagina over de voortgang.</div>
 							{% elif idea.status == 'DONE' %}
