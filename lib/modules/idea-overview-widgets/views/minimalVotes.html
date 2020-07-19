@@ -26,7 +26,11 @@
     <div class="image"   style="background-image: url('{{data.widget.formatImageUrl(idea.extraData.images[0], idea.location, data.widget, 500, 500, true, data.cookieConsent) }}')"></div>
 
     <div class="duration">
-      {{ data.widget['label' + idea.status] }}
+      {% if data.widget.siteConfig.minimumYesVotes and idea.yes and idea.yes >= data.widget.siteConfig.minimumYesVotes and (idea.status == 'OPEN' or idea.status == 'CLOSED') and data.widget['labelMinimumVotesReached'] %}
+        {{ data.widget['labelMinimumVotesReached'] }}
+      {% else %}
+        {{ data.widget['label' + idea.status] }}
+      {% endif %}
     </div>
 
     <div class="info">

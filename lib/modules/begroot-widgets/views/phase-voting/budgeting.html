@@ -134,9 +134,11 @@
 										</div>
 										<div id="vote-registered-container">
 											<div class="button-stemcode geldige-code">Geldige stemcode</div>
+											{% if not data.widget.hideCodeChanging %}
 											<a href="/oauth/login?returnTo={{returnUrl}}" class="underline" style="margin-top:-30px;     margin-top: -15px; display: block;margin-bottom: 20px; ">
 												<small>Vul een andere stemcode in</small>
 											</a>
+											{% endif %}
 											<div>
 												{{data.widget.step_3_succesfull_auth}}
 											</div>
@@ -362,7 +364,7 @@
 								{% if data.widget.showNewsletterButton and data.widget.showNewsletterButton == 'yes' %}
 								<br />
 								<br />
-								<a href="#newsletter" class="outlined-button">{{ data.widget.newsletterButtonText or __('Sign up for the newsletter') }}</a>
+								<a href="{{ data.widget.newsletterButtonUrl or '#newsletter' }}" class="outlined-button">{{ data.widget.newsletterButtonText or __('Sign up for the newsletter') }}</a>
 								{% endif %}
 							</div>
 						</div>
