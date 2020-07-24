@@ -35,6 +35,7 @@ module.exports = {
         'apostrophe-multisite-patch-assets': {},
         'openstad-nunjucks-filters': {},
         'resource-pages': {},
+        'resource-user-overview-widgets': {},
         'settings': {
           // So we can write `apos.settings` in a template
           alias: 'settings',
@@ -72,6 +73,7 @@ module.exports = {
             'ideas-on-map': {
               addLabel: 'Ideeen op een kaart',
             },
+            'resource-user-overview': {},
             'iframe': {},
             'header': {},
             'image': {},
