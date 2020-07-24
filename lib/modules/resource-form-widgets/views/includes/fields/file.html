@@ -1,0 +1,31 @@
+
+<!-- a list of already uploaded files -->
+<script>
+  uploadedDropFiles['{{field.fieldKey}}'] = [];
+  <!-- a list of already uploaded files -->
+  {% if activeResource.extraData[field.fieldKey] %}
+  {% for file in activeResource.extraData[field.fieldKey] %}
+  uploadedDropFiles['{{field.fieldKey}}'].push({
+    source: '{"url":"{{file}}"}',
+    options : {
+      type: 'local',
+      // mock file information
+      file: {
+        name: '{{file}}',
+        //		 size: 3001025,
+        //	 type: 'image/png'
+      },
+      metadata: {
+        poster: '{{file}}',
+      }
+    }
+
+  });
+  {% endfor %}
+  {% endif %}
+</script>
+
+<fieldset class="file filepondFieldsetFile">
+    <input type="file" class="file-filepond"  value="{{activeResource.extraData[field.fieldKey]}}" data-key="{{field.fieldKey}}" class="fileInput" />
+    <label class="fileLabel">Upload hier je file</label>
+</fieldset>

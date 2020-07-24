@@ -1,0 +1,18 @@
+<div class="checkbox-container">
+  {% for option in field.fieldOptions %}
+  <div class="radio">
+    <input
+      type="checkbox"
+      name="extraData[{{field.fieldKey}}][{{option.value}}]"
+      value="true"
+      id="checkbox-{{loop.index}}-{{option.value}}"
+      {% if field.fieldRequired %}required{% endif %}
+      {% if activeResource.extraData[field.fieldKey][option.value] == 'true' %}checked{% endif %}
+    />
+
+    <label for="checkbox-{{loop.index}}-{{option.value}}" class="checkbox-label">
+       {{option.label}}
+    </label>
+  </div>
+  {% endfor %}
+</div>

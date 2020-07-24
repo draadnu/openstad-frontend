@@ -17,6 +17,7 @@ exports.default = {
     },
     'date-bar' : {},
     'idea-form' : {},
+    'resource-form': {},
     'idea-map': {},
     'idea-overview' : {},
     'idea-single' : {},

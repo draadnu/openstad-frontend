@@ -1,8 +1,12 @@
 const path = require('path');
 
+const resourcesSchema = require('./config/resources.js').schemaFormat;
+
 module.exports = {
   get: (site, siteData, openstadMap, openstadMapPolygons) => {
 
+    const resources = siteData && siteData.resources ? siteData.resources : resourcesSchema;
+    
     const siteConfig = {
       shortName: site._id,
       modules: {
@@ -30,6 +34,7 @@ module.exports = {
         'apostrophe-attachments': {},
         'apostrophe-multisite-patch-assets': {},
         'openstad-nunjucks-filters': {},
+        'resource-pages': {},
         'settings': {
           // So we can write `apos.settings` in a template
           alias: 'settings',
@@ -59,7 +64,8 @@ module.exports = {
               addLabel: 'Counter',
             },
             'date-bar': {},
-            'idea-form': {},
+
+            'resource-form': {},
             'idea-map': {},
             'idea-overview': {},
             'idea-single': {},
@@ -152,7 +158,9 @@ module.exports = {
         'idea-overview-widgets': {},
         'icon-section-widgets': {},
         'idea-single-widgets': {},
-        'idea-form-widgets': {},
+        'resource-form-widgets': {
+          resources: resources
+        },
         'ideas-on-map-widgets': {},
         'date-bar-widgets': {},
         'map-widgets': {},
@@ -281,15 +289,15 @@ module.exports = {
       siteConfig.modules['apostrophe-workflow-modified-documents'] = {};
 
     } else {
-      
+
       let locales = ['nl', 'en'];
       let defaultLocale = 'nl';
-      
+
       if (process.env.FORCE_LANGUAGE) {
         locales = [process.env.FORCE_LANGUAGE];
         defaultLocale = process.env.FORCE_LANGUAGE;
       }
-      
+
       siteConfig.modules['apostrophe-i18n'] = {
         locales,
         directory: __dirname + '/locales',
