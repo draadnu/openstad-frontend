@@ -323,6 +323,11 @@ textarea:disabled {
 	display: block;
 }
 
+.field-tooltip {
+	font-size:12px;
+	font-style: italic;
+}
+
 .loader-spinner{
 	-webkit-animation:spin 2s linear infinite;
 	-moz-animation:spin 2s linear infinite;
@@ -336,4 +341,42 @@ textarea:disabled {
 	border: 0;
   width: 320px;
   height: 180px;
+}
+
+.field-tooltip-container {
+	margin-bottom:5px;
+}
+.field-tooltip {
+	font-style: italic;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 18px;
+}
+
+.info-icon {
+	font-style: normal;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 18px;
+	text-align: center;
+	color: #FFFFFF;
+	border-radius: 50%;
+	background: #133785;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 7px;
+	padding-top:2px;
+}
+
+.info-icon::after {
+	content: " ";
+	width: 6px;
+	height: 6px;
+	display: block;
+	background: #133785;
+	transform: rotate(45deg);
+	left: 7px;
+	position: relative;
+	top: -4px;
 }
