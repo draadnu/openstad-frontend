@@ -7,6 +7,7 @@
 {% import 'includes/numberplatebutton.html' as numberPlateButton %}
 
 <div class="pageContent idea">
+	<h1>{{idea.title}}</h1>
 	<div id="title">
 		<div>
 			<div class="primary">
@@ -129,6 +130,15 @@
 							{% endif %}
 						</div>
 					</div>
+					<div id="author">
+						<strong>Ingediend door:</strong><br>
+						{{idea.user.firstName}} {{idea.user.lastName}}
+					</div>
+					<div id="date">
+						<strong>Ingediend op:</strong><br>
+						{{idea.startDate | date('LL')}}
+					</div>
+
 					{% if data.widget.showShareButtons !== false %}
 					<div class="share">
 						<h4>Deel dit plan</h4>
@@ -150,19 +160,39 @@
 </div>
 <div class="pageContent idea clearfix">
 	<div class="primary">
-		<h1>{{idea.title}}</h1>
 
-		<div id="author">
-			<strong>Door: {{idea.user.firstName}} {{idea.user.lastName}}</strong><br>
-			{{idea.startDate | date('LL')}}
-		</div>
 		{% include 'includes/modbreak.html' %}
 		<div class="userContent">
+			<h2>Korte samenvatting van het initiatief</h2>
+			{% if idea.summary %}
 			<p class="summary">
 				<strong>{{idea.summary | stripSafe | safe | nlbr}}</strong>
 			</p>
+			{% endif %}
 			{{idea.description | stripSafe | safe}}
 		</div>
+
+		{% if idea.extraData.hulp %}
+		<div class="userContent">
+			<h2>Waar kunnen wij hulp uit de wijk bij gebruiken?</h2>
+			<ul>
+			{% for name, item in idea.extraData.hulp %}
+				<li>{{ name }}</li>
+			{% endfor %}
+			</ul>
+		</div>
+		{% endif %}
+
+		{% if idea.extraData.toelichting_hulpvraag %}
+			<h2>Toelichting op hulpvraag aan wijkgenoten</h2>
+			<p>{{ idea.extraData.toelichting_hulpvraag | stripSafe | safe | nlbr}}</p>
+		{% endif %}
+
+		{% if idea.extraData.video %}
+		<h2>Link naar video</h2>
+		<a href="{{idea.extraData.video}}" target="_blank">Klik hier om de video te bekijken van dit project</a>
+		{% endif %}
+
 		{% if idea.location %}
 		<br/><br/>
 		<div id="mapcontainer">
