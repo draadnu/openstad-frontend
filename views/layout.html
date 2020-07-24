@@ -143,9 +143,10 @@ ga('send', 'pageview');
                         </h2>
                       </div>
                       <div class="col-sm-5 col-md-6 hidden-xs">
-                        {% if data.global.topLinks %}
+
                         <ul class="top-links">
-                        {% for topLink in data.global.topLinks.reverse() %}
+                            {% if data.global.topLinks %}
+                            {% for topLink in data.global.topLinks.reverse() %}
                           <li>
                             <a
                               href="{{topLink.url}}"
@@ -156,8 +157,21 @@ ga('send', 'pageview');
                             </a>
                           </li>
                         {% endfor %}
+                            {% endif %}
+                            {% if data.loggedIn %}
+                            <li >
+                                <a href="/mijn-initiatieven" class="link-caret--black" >
+                                    {{ __('Mijn initiatieven') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/oauth/logout" class="link-caret--black" >
+                                    {{ __('Uitloggen') }}
+                                </a>
+                            </li>
+                            {% endif %}
                         </ul>
-                        {% endif %}
+
                       </div>
                     </div>
                   </div>
@@ -259,6 +273,19 @@ ga('send', 'pageview');
                   </li>
                 {% endfor %}
                 {% endif %}
+
+                  {% if data.loggedIn %}
+                  <li class="visible-xs">
+                      <a href="/mijn-initiatieven" class="nav-link" >
+                          {{ __('Mijn initiatieven') }}
+                      </a>
+                  </li>
+                  <li class="visible-xs">
+                      <a href="/oauth/logout" class="nav-link" >
+                          {{ __('Uitloggen') }}
+                      </a>
+                  </li>
+                  {% endif %}
               </ul>
 
         			<nav id="subMenu" class="" role="navigation">
