@@ -11,13 +11,13 @@
 
 
 {% if activeResource %}
-<input type="submit" class="btn btn-primary" name="status"  value="{{ data.widget.buttonTextSave if data.widget.buttonTextSave else 'Opslaan' }}">
+<button type="submit" class="btn btn-primary" name="status" data-submit-type="draft" value="{{ data.widget.buttonTextSave if data.widget.buttonTextSave else 'Opslaan' }}">{{ data.widget.buttonTextSave if data.widget.buttonTextSave else 'Opslaan' }}</button>
 {% if activeResource.status == 'DRAFT' %}
-<input type="submit" class="btn btn-primary" name="status"  data-submit-type="publish" value="{{ data.widget.buttonTextSubmit if data.widget.buttonTextSubmit else 'Versturen' }}">
+    <button type="submit" class="btn btn-primary" name="status"  data-submit-type="publish" value="{{ data.widget.buttonTextSubmit if data.widget.buttonTextSubmit else 'Versturen' }}">{{ data.widget.buttonTextSubmit if data.widget.buttonTextSubmit else 'Versturen' }}</button>
 {% endif %}
 
 {% else %}
-<input type="submit" class="btn btn-primary" name="status" data-submit-type="draft" value="{{ data.widget.buttonTextSave if data.widget.buttonTextSave else 'Opslaan' }}">
-<input type="submit" class="btn btn-primary" name="status" data-submit-type="publish" value="{{ data.widget.buttonTextSubmit if data.widget.buttonTextSubmit else 'Versturen' }}">
+    <button type="submit" class="btn btn-primary" name="status" data-submit-type="draft" value="{{ data.widget.buttonTextSave if data.widget.buttonTextSave else 'Opslaan' }}">{{ data.widget.buttonTextSave if data.widget.buttonTextSave else 'Opslaan' }}</button>
+    <button type="submit" class="btn btn-primary" name="status" data-submit-type="publish" value="{{ data.widget.buttonTextSubmit if data.widget.buttonTextSubmit else 'Versturen' }}">{{ data.widget.buttonTextSubmit if data.widget.buttonTextSubmit else 'Versturen' }}</button>
 {% endif %}
 </form>
