@@ -131,17 +131,24 @@
 						</div>
 					</div>
 					<div id="author">
-						<strong>Ingediend door:</strong><br>
-						{{idea.user.firstName}} {{idea.user.lastName}}
+						<h4>Ingediend door:</h4>
+						<span>{{idea.user.firstName}} {{idea.user.lastName}}</span>
 					</div>
 					<div id="date">
-						<strong>Ingediend op:</strong><br>
-						{{idea.startDate | date('LL')}}
+						<h4>Ingediend op:</h4>
+						<span>{{idea.startDate | date('LL')}}</span>
 					</div>
+
+					{% if idea.location %}
+					<h4>Locatie van het initiatief:</h4>
+					<div id="mapcontainer">
+						{% include 'includes/openstad-map.html' %}
+					</div>
+					{% endif %}
 
 					{% if data.widget.showShareButtons !== false %}
 					<div class="share">
-						<h4>Deel dit plan</h4>
+						<h4>Deel dit initiatief</h4>
 						<ul>
 							{% if not data.widget.shareChannelsSelection or data.widget.shareChannelsSelection.indexOf('facebook') > -1 or data.widget.shareChannelsSelection.length === 0 %}<li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{data.currentUrl}}">Facebook</a></li>{% endif %}
 							{% if not data.widget.shareChannelsSelection or data.widget.shareChannelsSelection.indexOf('twitter') > -1 or data.widget.shareChannelsSelection.length === 0 %}<li><a class="twitter"  target="_blank" href="https://twitter.com/intent/tweet?text={{data.currentUrl}}">Twitter</a></li>{% endif %}
@@ -175,9 +182,9 @@
 		{% if idea.extraData.hulp %}
 		<div class="userContent">
 			<h2>Waar kunnen wij hulp uit de wijk bij gebruiken?</h2>
-			<ul>
+			<ul class="parent-list checkmark-list">
 			{% for name, item in idea.extraData.hulp %}
-				<li>{{ name }}</li>
+				<li class="parent-item">{{ name }}</li>
 			{% endfor %}
 			</ul>
 		</div>
@@ -191,13 +198,6 @@
 		{% if idea.extraData.video %}
 		<h2>Link naar video</h2>
 		<a href="{{idea.extraData.video}}" target="_blank">Klik hier om de video te bekijken van dit project</a>
-		{% endif %}
-
-		{% if idea.location %}
-		<br/><br/>
-		<div id="mapcontainer">
-			{% include 'includes/openstad-map.html' %}
-		</div>
 		{% endif %}
 	</div> <!-- #primary -->
 
