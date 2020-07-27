@@ -27,6 +27,6 @@
 
 <fieldset class="file filepondFieldsetFile">
     <input type="file" class="file-filepond"  value="{{activeResource.extraData[field.fieldKey]}}" data-key="{{field.fieldKey}}" class="fileInput" {% if field.fieldRequired %}required{% endif %} />
-    <label class="fileLabel">Upload hier je file</label>
+    <label class="fileLabel">{{field.fieldButtonLabel or 'Upload hier je file'}}</label>
 </fieldset>
 <input type="hidden" name="validateFiles[{{field.fieldKey}}]" multiple />
