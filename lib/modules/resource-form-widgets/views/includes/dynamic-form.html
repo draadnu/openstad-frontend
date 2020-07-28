@@ -24,7 +24,7 @@
 
         {% for field in formSection.fields %}
         <div class="form-field-container">
-            <p> {{field.fieldInfo}} </p>
+            <h4> {{field.fieldInfo}} </h4>
             {% if field.fieldTooltip %}
             <div class="field-tooltip-container"><span class="info-icon">i</span><span class="field-tooltip">{{ field.fieldTooltip  | nlbr | sanitize | safe }}</span>
             </div>
