@@ -28,6 +28,16 @@
 	<input type="hidden" name="redirectUrl" value="{{data.widget.redirectUrl}}" />
 	<input type="hidden" name="formId" value="{{data.widget.formId}}" />
 	<input type="hidden" name="emailField" value="{{data.widget.email}}" />
+
+	{% if data.widget.linkedToIdea %}
+		<input type="hidden" name="linkedToIdea" value="{{data.widget.ideaId}}" />
+		{% if data.widget.shouldSendEmailToIdeaUser %}
+			<input type="hidden" name="shouldSendEmailToIdeaUser" value="true" />
+			<input type="hidden" name="userEmailTemplate" value="{{data.widget.userEmailTemplate}}" />
+		{% endif %}
+
+	{% endif %}
+
 	<button type="submit" class="default btn btn-primary">
 		Verstuur
 	</button>
