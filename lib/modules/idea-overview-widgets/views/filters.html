@@ -8,25 +8,37 @@ style="display: none"
   <div class="col-xs-12 col-sm-8">
     {% if (data.global.areas and data.global.areas.length > 0) or (data.global.themes and data.global.themes.length > 0) %}
     <div class="tab-selector">
-      {% if (data.global.themes and data.global.themes.length > 0) %}
+      {% if (data.widget.filterableAreas) %}
+      <select id="filterSelector" class="default-select" onchange="activateIdeaOverviewFilter(this.selectedIndex)">
+        <option value="0">Alle wijken</option>
+        {% for area in data.widget.filterableAreas %}
+        <option value="{{area}}">{{area}}</option>
+        {% endfor %}
+      </select>
+      {% endif %}
+
+      {% if (data.widget.filterableThemes) %}
       <select id="themaSelector" class="default-select" onchange="activateIdeaOverviewTab(this.selectedIndex)">
         <option value="0">Alle thema's</option>
-        {% for theme in data.global.themes %}
-        <option value="{{theme.value}}">{{theme.value}}</option>
+        {% for theme in data.widget.filterableThemes %}
+        <option value="{{theme}}">{{theme}}</option>
         {% endfor %}
       </select>
       {% endif %}
-      {% if (data.global.areas and data.global.areas.length > 0) %}
-      <select id="filterSelector" class="default-select" onchange="activateIdeaOverviewFilter(this.selectedIndex)">
-        <option value="0">Alle gebieden</option>
-        {% for area in data.global.areas %}
-        <option value="{{area.value}}">{{area.value}}</option>
+
+       {% if (data.widget.filterableHelp) %}
+      <select id="helpSelector" class="default-select" onchange="activateIdeaOverviewHelp(this.selectedIndex)">
+        <option value="0">Alle hulpvragen</option>
+        {% for help in data.widget.filterableHelp %}
+        <option value="{{help}}">{{help}}</option>
         {% endfor %}
       </select>
       {% endif %}
+
       <a class="no-button inactive" href="javascript: void deactivateIdeaOverviewAll()">Wissen</a>
     </div>
     {% endif %}
+
   </div>
   <div class="col-xs-12 col-sm-4">
     {% if data.widget.selectedSorting and data.widget.selectedSorting.length > 1 %}
