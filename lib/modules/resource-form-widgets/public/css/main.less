@@ -223,3 +223,44 @@ trix-editor:focus {
 trix-toolbar .button_row button.icon:focus {
   outline: 3px solid #154995;
 }
+
+.pre-form-text {
+  strong.asterisk {
+    color: red;
+    font-weight: 600;
+  }
+}
+
+.form-field-container.required {
+  h4 {
+    display: inline-block;
+
+    &:after {
+      content: '*';
+      display: inline-block;
+      position: relative;
+      left: 0px;
+      color: red;
+      font-weight: 600;
+    }
+  }
+}
+
+.budget-form-input {
+  span {
+    float: left;
+    width: 25px;
+    line-height: 40px;
+  }
+
+  input {
+    @media only screen and (min-width: 768px) {
+      width: 105px !important;
+      float: left;
+    }
+
+    width: calc(100% - 25px) !important;
+    display: inline;
+    float: right;
+  }
+}

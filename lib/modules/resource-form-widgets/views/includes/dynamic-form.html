@@ -23,8 +23,10 @@
         {% endif %}
 
         {% for field in formSection.fields %}
-        <div class="form-field-container">
-            <h4> {{field.fieldInfo}} </h4>
+        <div class="form-field-container {{ 'required' if field.fieldRequired }} {{ 'clearfix' if field.type == 'budget' }}">
+            {% if field.fieldInfo %}
+                <h4> {{field.fieldInfo}} </h4>
+            {% endif %}
             {% if field.fieldTooltip %}
             <div class="field-tooltip-container"><span class="info-icon">i</span><span class="field-tooltip">{{ field.fieldTooltip  | nlbr | sanitize | safe }}</span>
             </div>

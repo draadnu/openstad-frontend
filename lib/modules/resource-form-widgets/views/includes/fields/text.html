@@ -2,13 +2,22 @@
   type="text"
   id="{{field.fieldKey}}_input"
   class="chars-counter"
-  minlength="{{field.fieldMin if field.fieldMin else 2}}"
-  maxlength="{{field.fieldMax if field.fieldMax else 140}}"
+
+  {% if field.fieldMin %}
+  minlength="{{field.fieldMin}}"
+  {% endif %}
+
+  {% if field.fieldMax %}
+  maxlength="{{field.fieldMax}}"
+  {% endif %}
+
   name="{{field.fieldKey}}"
   value="{{activeResource.extraData[field.fieldKey]}}"
   {% if field.fieldRequired %}required{% endif %}
 />
+{% if field.fieldMin and field.fieldMax %}
 <div id="charsLeft{{field.fieldKey}}" class="charsLeft">
   <div class="min">Nog minimaal <span>0</span> tekens</div>
   <div class="max">Je hebt nog <span>0</span> tekens over.</div>
 </div>
+{% endif %}

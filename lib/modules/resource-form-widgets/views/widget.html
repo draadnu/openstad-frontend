@@ -33,6 +33,11 @@
 	</div>
 	{% elseif showForm %}
 		<div  id="formulier-block">
+			{% if data.widget.preFormText %}
+				<div class="pre-form-text">
+					<p>{{ data.widget.preFormText | stripSafe | safe }}</p>
+				</div>
+			{% endif %}
 			{% if data.widget.formType === 'dynamic' %}
 			{% include 'includes/dynamic-form.html' %}
 			{% else %}
