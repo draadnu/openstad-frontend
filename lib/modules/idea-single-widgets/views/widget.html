@@ -8,6 +8,13 @@
 
 <div class="pageContent idea">
 	<h1>{{idea.title}}</h1>
+
+	{% if isOwnerOrAdmin %}
+		<div class="secondary initiative">
+			{% include 'includes/crud/edit-delete.html' %}
+		</div>
+	{% endif %}
+
 	<div id="title">
 		<div>
 			<div class="primary">
@@ -207,10 +214,6 @@
 		<form action="/plan/{{idea.id}}/notify">
 		  <input type="submit" value="Mail updates">
 		</form> #}
-
-		{% if isOwnerOrAdmin %}
-		{% include 'includes/crud/edit-delete.html' %}
-		{% endif %}
 
 		{% if data.isAdmin %}
 		{% include 'includes/crud/admin.html' %}
