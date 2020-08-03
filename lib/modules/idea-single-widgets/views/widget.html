@@ -115,12 +115,6 @@
 					</div>
   			  {% endif %}
 
-          {% if data.widget.siteConfig.minimumYesVotes %}
-					<div class="ideaProgress">
-						<div class="progress"><div class="bar {{idea.status}}" style="width: {{idea.progress}}%;"></div></div>
-					</div>
-          {% endif %}
-
 					<div class="ideaDuration {{idea.status}}">
 						<h4>Status</h4>
 						<div class="duration">
@@ -141,10 +135,18 @@
 						<h4>Ingediend door:</h4>
 						<span>{{idea.user.firstName}} {{idea.user.lastName}}</span>
 					</div>
+
 					<div id="date">
 						<h4>Ingediend op:</h4>
 						<span>{{idea.startDate | date('LL')}}</span>
 					</div>
+
+					{% if idea.extraData and idea.extraData.website %}
+					<div id="website">
+						<h4>Meer informatie:</h4>
+						<span><a href="{{idea.extraData.website | stripSafe }}" target="_blank">{{idea.extraData.website | stripSafe}}</a></span>
+					</div>
+					{% endif %}
 
 					{% if idea.location %}
 					<h4>Locatie van het initiatief:</h4>
@@ -159,6 +161,7 @@
 						<ul>
 							{% if not data.widget.shareChannelsSelection or data.widget.shareChannelsSelection.indexOf('facebook') > -1 or data.widget.shareChannelsSelection.length === 0 %}<li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{data.currentUrl}}">Facebook</a></li>{% endif %}
 							{% if not data.widget.shareChannelsSelection or data.widget.shareChannelsSelection.indexOf('twitter') > -1 or data.widget.shareChannelsSelection.length === 0 %}<li><a class="twitter"  target="_blank" href="https://twitter.com/intent/tweet?text={{data.currentUrl}}">Twitter</a></li>{% endif %}
+							{% if not data.widget.shareChannelsSelection or data.widget.shareChannelsSelection.indexOf('linkedin') > -1 or data.widget.shareChannelsSelection.length === 0 %}<li><a class="linkedin"  target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url={{data.currentUrl}}">LinkedIn</a></li>{% endif %}
 							{% if not data.widget.shareChannelsSelection or data.widget.shareChannelsSelection.indexOf('mail') > -1 or data.widget.shareChannelsSelection.length === 0 %}<li><a class="email"    target="_blank" href="mailto:?subject={{'Plan voor ' + data.global.siteTitle + ': ' + idea.title | urlencode}}&body={{data.currentUrl | urlencode}}">Email</a></li>{% endif %}
 							{% if not data.widget.shareChannelsSelection or data.widget.shareChannelsSelection.indexOf('whatsapp') > -1 or data.widget.shareChannelsSelection.length === 0 %}
 							<li class="desktop"><a class="whatsapp" target="_blank" href="https://api.whatsapp.com/send?phone=&text={{data.currentUrl | urlencode}}&source=&data=">WhatsApp</a></li>
