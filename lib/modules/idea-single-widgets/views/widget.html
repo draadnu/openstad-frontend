@@ -201,8 +201,10 @@
 		{% endif %}
 
 		{% if idea.extraData.toelichting_hulpvraag %}
-			<h2>Toelichting op hulpvraag aan wijkgenoten</h2>
-			<p>{{ idea.extraData.toelichting_hulpvraag | stripSafe | safe | nlbr}}</p>
+			<div class="userContent">
+				<h2>Toelichting op hulpvraag aan wijkgenoten</h2>
+				<p>{{ idea.extraData.toelichting_hulpvraag | stripSafe | safe | nlbr}}</p>
+			</div>
 		{% endif %}
 
 		{% if idea.extraData.video %}
