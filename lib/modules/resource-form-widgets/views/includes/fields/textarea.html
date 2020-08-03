@@ -1,8 +1,10 @@
 <textarea
   id="{{field.fieldKey}}_input"
   class="chars-counter"
-  minlength="{{field.fieldMin if field.fieldMin else 2}}"
-  maxlength="{{field.fieldMax if field.fieldMax else 140}}"
+  minlength="{{field.fieldMin if field.fieldMin else 0}}"
+  {% if field.fieldMax %}
+  maxlength="{{field.fieldMax}}"
+  {% endif %}
   name="extraData[{{field.fieldKey}}]"
   {% if field.fieldRequired %}required{% endif %}
 >{{activeResource.extraData[field.fieldKey]}}</textarea>
