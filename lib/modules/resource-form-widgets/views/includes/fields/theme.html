@@ -1,5 +1,5 @@
 <div class="checkbox-container">
-  <input type="hidden" name="themevalidation" id="themevalidation"/>
+
   {% for option in data.global.themes %}
   <div class="radio">
     <input
@@ -16,6 +16,8 @@
     </label>
   </div>
   {% endfor %}
+
+  <input type="hidden" name="themevalidation" id="themevalidation"/>
 </div>
 
 {{ apos.log (activeResource.extraData) }}
