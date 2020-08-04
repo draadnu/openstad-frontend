@@ -4,7 +4,7 @@
 {% set isOwner = data.openstadUser.id === activeResource.userId %}
 {% set isReactedTo = (activeResource.yes > 0 or activeResource.no > 0 or activeResource.argumentCount > 0) %}
 {% set notReactedTo =  not isReactedTo %}
-{% set isOwnerOrAdmin = (notReactedTo or not data.widget.hactiveResourcedminAfterPublicAction and isOwner) or data.isAdmin %}
+{% set isOwnerOrAdmin = ((notReactedTo or not data.widget.hideAdminAfterPublicAction) and isOwner) or data.isAdmin %}
 
 
 {% if activeResource and isOwnerOrAdmin %}
@@ -14,6 +14,7 @@
 {% else %}
 {% set showForm = false %}
 {% endif %}
+
 
 {% if data.widget.editorDescription %}
 {% set useModernEditor = true %}
@@ -28,7 +29,7 @@
 <div class="pageContent newactiveResource" id="content">
 	{% if not showForm %}
 	<div class="box-grey">
-		<h1>Om een plan in te dienen moet je ingelogd zijn.</h1>
+		<h1>Om een initiatief in te dienen moet je ingelogd zijn.</h1>
 		<p>Klik <a href="{{ data.widget.loginUrl }}">hier</a> om in te loggen.</p>
 	</div>
 	{% elseif showForm %}
