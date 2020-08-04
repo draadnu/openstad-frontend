@@ -1,12 +1,13 @@
 <div class="checkbox-container">
+  <input type="hidden" name="themevalidation" id="themevalidation"/>
   {% for option in data.global.themes %}
   <div class="radio">
     <input
       type="checkbox"
       name="extraData[theme][{{option.value}}]"
       value="true"
+      class="checkbox-theme"
       id="checkbox-{{loop.index}}-{{option.value}}"
-      {% if field.fieldRequired %}required{% endif %}
       {% if activeResource.extraData['theme'][option.value] == 'true' %}checked{% endif %}
     />
 
