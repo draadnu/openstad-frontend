@@ -15,10 +15,10 @@
             </div>
 
 {% if activeResource %}
-<button type="submit" class="btn btn-primary" name="status" data-submit-type="draft" value="Opslaan">{{ data.widget.buttonTextSave if data.widget.buttonTextSave else 'Opslaan' }}</button>
 {% if activeResource.status == 'DRAFT' %}
-    <button type="submit" class="btn btn-primary" name="status"  data-submit-type="publish" value="Versturen">{{ data.widget.buttonTextSubmit if data.widget.buttonTextSubmit else 'Versturen' }}</button>
+<button type="submit" class="btn btn-primary" name="status" data-submit-type="draft" value="Opslaan">{{ data.widget.buttonTextSave if data.widget.buttonTextSave else 'Opslaan' }}</button>
 {% endif %}
+<button type="submit" class="btn btn-primary" name="status"  data-submit-type="publish" value="Versturen">{{ data.widget.buttonTextSubmit if data.widget.buttonTextSubmit else 'Versturen' }}</button>
 
 {% else %}
     <button type="submit" class="btn btn-primary" name="status" data-submit-type="draft" value="Opslaan">{{ data.widget.buttonTextSave if data.widget.buttonTextSave else 'Opslaan' }}</button>
