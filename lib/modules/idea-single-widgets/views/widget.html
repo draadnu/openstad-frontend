@@ -172,10 +172,10 @@
 			</div>
 		{% endif %}
 
-		{% if idea.extraData.budget %}
+		{% if idea.budget %}
 		<div class="userContent">
 			<h2>Gevraagd budget</h2>
-			&euro; {{ idea.extraData.budget }}
+			&euro; {{ idea.budget }}
 		</div>
 		{% endif %}
 
@@ -223,7 +223,7 @@
 
 		{% if idea.location %}
 		<div class="map_sidebar">
-			<h4>Locatie van het initiatief:</h4>
+			<h4>Locatie van het initiatief</h4>
 			<div id="mapcontainer">
 				{% include 'includes/openstad-map.html' %}
 			</div>
