@@ -131,29 +131,6 @@
 							{% endif %}
 						</div>
 					</div>
-					<div id="author">
-						<h4>Ingediend door:</h4>
-						<span>{{idea.user.firstName}} {{idea.user.lastName}}</span>
-					</div>
-
-					<div id="date">
-						<h4>Ingediend op:</h4>
-						<span>{{idea.startDate | date('LL')}}</span>
-					</div>
-
-					{% if idea.extraData and idea.extraData.website %}
-					<div id="website">
-						<h4>Meer informatie:</h4>
-						<span><a href="{{idea.extraData.website | stripSafe }}" target="_blank">{{idea.extraData.website | stripSafe}}</a></span>
-					</div>
-					{% endif %}
-
-					{% if idea.location %}
-					<h4>Locatie van het initiatief:</h4>
-					<div id="mapcontainer">
-						{% include 'includes/openstad-map.html' %}
-					</div>
-					{% endif %}
 
 					{% if data.widget.showShareButtons !== false %}
 					<div class="share">
@@ -176,11 +153,11 @@
 	</div>
 </div>
 <div class="pageContent idea clearfix">
-	<div class="primary">
+	<div class="primary maincontent">
 
 		{% include 'includes/modbreak.html' %}
 		<div class="userContent">
-			<h2>Korte samenvatting van het initiatief</h2>
+			<h2>Korte samenvatting</h2>
 			{% if idea.summary %}
 			<p class="summary">
 				<strong>{{idea.summary | stripSafe | safe | nlbr}}</strong>
@@ -189,31 +166,70 @@
 			{{idea.description | stripSafe | safe}}
 		</div>
 
+		{% if idea.extraData.video and data.widget.embeddedVideo %}
+			<div class="video">
+				{{ data.widget.embeddedVideo | safe }}
+			</div>
+		{% endif %}
+
+		{% if idea.extraData.budget %}
+		<div class="userContent">
+			<h2>Gevraagd budget</h2>
+			&euro; {{ idea.extraData.budget }}
+		</div>
+		{% endif %}
+
 		{% if idea.extraData.hulp %}
 		<div class="userContent">
-			<h2>Waar kunnen wij hulp uit de wijk bij gebruiken?</h2>
+			<h2>Wij zoeken hulp uit de wijk voor...</h2>
 			<ul class="parent-list checkmark-list">
 			{% for name, item in idea.extraData.hulp %}
 				<li class="parent-item">{{ name }}</li>
 			{% endfor %}
 			</ul>
+
+			{% if idea.extraData.toelichting_hulpvraag %}
+					<p>{{ idea.extraData.toelichting_hulpvraag | stripSafe | safe | nlbr}}</p>
+			{% endif %}
 		</div>
 		{% endif %}
 
-		{% if idea.extraData.toelichting_hulpvraag %}
-			<div class="userContent">
-				<h2>Toelichting op hulpvraag aan wijkgenoten</h2>
-				<p>{{ idea.extraData.toelichting_hulpvraag | stripSafe | safe | nlbr}}</p>
-			</div>
-		{% endif %}
-
-		{% if idea.extraData.video %}
-		<h2>Link naar video</h2>
-		<a href="{{idea.extraData.video}}" target="_blank">Klik hier om de video te bekijken van dit project</a>
-		{% endif %}
 	</div> <!-- #primary -->
 
-	<div class="secondary">
+	<div class="secondary sidebar">
+		<div id="author">
+			<h4>Ingediend door</h4>
+			<span>{{idea.user.firstName}} {{idea.user.lastName}}</span>
+		</div>
+
+		<div id="date">
+			<h4>Ingediend op</h4>
+			<span>{{idea.startDate | date('LL')}}</span>
+		</div>
+
+		{% if idea.extraData and idea.extraData.role %}
+		<div id="initiatiefvan">
+			<h4>Een initiatief van</h4>
+			<span>{{idea.extraData.role | stripSafe}}</span>
+		</div>
+		{% endif %}
+
+		{% if idea.extraData and idea.extraData.website %}
+		<div id="website">
+			<h4>Website</h4>
+			<span><a href="{{idea.extraData.website | stripSafe }}" target="_blank">{{idea.extraData.website | stripSafe}}</a></span>
+		</div>
+		{% endif %}
+
+		{% if idea.location %}
+		<div class="map_sidebar">
+			<h4>Locatie van het initiatief:</h4>
+			<div id="mapcontainer">
+				{% include 'includes/openstad-map.html' %}
+			</div>
+		</div>
+		{% endif %}
+
 		{# <h2>Volgen</h2>
 
 		<form action="/plan/{{idea.id}}/notify">
