@@ -11,7 +11,7 @@
   maxlength="{{field.fieldMax}}"
   {% endif %}
 
-  name="{{field.fieldKey}}"
+  name="extraData[{{field.fieldKey}}]"
   value="{{activeResource.extraData[field.fieldKey]}}"
   {% if field.fieldRequired %}required{% endif %}
 />
