@@ -4,7 +4,7 @@
 {% set isOwner = data.openstadUser.id === activeResource.userId %}
 {% set isReactedTo = (activeResource.yes > 0 or activeResource.no > 0 or activeResource.argumentCount > 0) %}
 {% set notReactedTo =  not isReactedTo %}
-{% set isOwnerOrAdmin = (isOwner or data.isAdmin %}
+{% set isOwnerOrAdmin = (isOwner or data.isAdmin) %}
 
 
 {% if activeResource and isOwnerOrAdmin %}
