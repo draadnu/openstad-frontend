@@ -8,8 +8,8 @@
   {% if data.widget.maxPhone %}
   maxlength="{{data.widget.maxPhone if data.widget.maxPhone else 20}}"
   {% endif %}
-  name="extraData[phone]"
-  value="{{activeResource.extraData.phone}}"
+  name="extraData[telephone]"
+  value="{{activeResource.extraData.telephone}}"
   {% if data.widget.requiredPhone %}required{% endif %}
 />
 {% if data.widget.minPhone or data.widget.maxPhone %}
