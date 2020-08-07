@@ -6,7 +6,7 @@
 <h1
   id="{{data.widget.containerId}}"
 >
-  {{data.widget.title}}
+  {{data.widget.title | stripSafe | safe}}
 </h1>
 {% endif %}
 
@@ -14,7 +14,7 @@
 <h2
   id="{{data.widget.containerId}}"
 >
-  {{data.widget.title}}
+  {{data.widget.title | stripSafe | safe}}
 </h2>
 {% endif %}
 
@@ -22,7 +22,7 @@
 <h3
   id="{{data.widget.containerId}}"
 >
-  {{data.widget.title}}
+  {{data.widget.title | stripSafe | safe}}
 </h3>
 {% endif %}
 
@@ -30,6 +30,6 @@
 <h4
   id="{{data.widget.containerId}}"
 >
-  {{data.widget.title}}
+  {{data.widget.title | stripSafe | safe}}
 </h4>
 {% endif %}
