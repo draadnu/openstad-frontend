@@ -32,7 +32,7 @@
     {% if mayVote %}
       <form class="action vote argument-action-form ajax-form" method="POST" action="{{apiArgumentUrl}}/{{arg.id}}/vote">
         <button
-          data-modal-text="Log in om een argument te plaatsen, te reageren, of een argument te liken."
+          data-modal-text="Log in om een suggestie of tip te geven."
           type="submit"
           name="opinion"
           value="yes"
@@ -42,7 +42,7 @@
       </form>
     {% else %}
       <form class="action vote argument-action-form ajax-form">
-        <button disabled name="opinion" value="yes" class="{{'voted' if arg.hasUserVoted}} role-required-{{data.global.roleToLike}}" data-modal-text="Log in om een argument te plaatsen, te reageren, of een argument te liken.">
+        <button disabled name="opinion" value="yes" class="{{'voted' if arg.hasUserVoted}} role-required-{{data.global.roleToLike}}" data-modal-text="Log in om een suggestie of tip te geven.">
           Mee eens (<span>{{arg.yes}}</span>)
         </button>
       </form>
@@ -51,7 +51,7 @@
     {% if maySeeReplyForm %}
       <a
         href="#"
-        data-modal-text="Log in om een argument te plaatsen, te reageren, of een argument te liken."
+        data-modal-text="Log in om een suggestie of tip te geven."
         class="reply reply-click argument-action-form role-required-member {{ 'logged-in' if data.loggedIn else 'not-logged-in' }}" {{'data-disabled' if not mayReply}}
       >Reageren</a>
     {% endif %}
