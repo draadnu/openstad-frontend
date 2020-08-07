@@ -28,15 +28,19 @@
 
 <div class="pageContent newactiveResource" id="content">
 	{% if not showForm %}
-	<div class="box-grey">
-		<h1>Om een initiatief in te dienen moet je ingelogd zijn.</h1>
-		<p>Klik <a href="{{ data.widget.loginUrl }}">hier</a> om in te loggen.</p>
+	<div class="container">
+		<div class="box-grey">
+			<h1>Om een initiatief in te dienen moet je ingelogd zijn.</h1>
+			<p>Klik <a href="{{ data.widget.loginUrl }}">hier</a> om in te loggen.</p>
+		</div>
 	</div>
 	{% elseif showForm %}
 		<div  id="formulier-block">
 			{% if data.widget.preFormText %}
-				<div class="pre-form-text">
-					<p>{{ data.widget.preFormText | stripSafe | safe }}</p>
+				<div class="container">
+					<div class="pre-form-text">
+						<p>{{ data.widget.preFormText | stripSafe | safe }}</p>
+					</div>
 				</div>
 			{% endif %}
 			{% if data.widget.formType === 'dynamic' %}

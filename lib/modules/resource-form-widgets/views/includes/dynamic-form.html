@@ -10,33 +10,35 @@
 
     {% for formSection in data.widget.dynamicFormSections %}
     <div class="form-group">
-        {% if formSection.title %}
-        <h2>
-            {{ formSection.title }}
-        </h2>
-        {% endif %}
-
-        {% if formSection.info %}
-        <div class="form-info">
-            {{ formSection.info | nlbr | sanitize | safe }}
-        </div>
-        {% endif %}
-
-        {% for field in formSection.fields %}
-        <div class="form-field-container {{ 'required' if field.fieldRequired }} {{ 'clearfix' if field.type == 'budget' }}">
-            {% if field.fieldInfo %}
-                <h4> {{field.fieldInfo}} </h4>
+        <div class="container">
+            {% if formSection.title %}
+            <h2>
+                {{ formSection.title }}
+            </h2>
             {% endif %}
-            {% if field.fieldTooltip %}
-            <div class="field-tooltip-container"><span class="info-icon">i</span><span class="field-tooltip">{{ field.fieldTooltip  | nlbr | sanitize | safe }}</span>
+
+            {% if formSection.info %}
+            <div class="form-info">
+                {{ formSection.info | nlbr | sanitize | safe }}
             </div>
             {% endif %}
-            {% include 'includes/fields/' + field.type + '.html' ignore missing %}
-        </div>
-        <br/>
 
-        {% endfor %}
-        <br/>
+            {% for field in formSection.fields %}
+            <div class="form-field-container {{ 'required' if field.fieldRequired }} {{ 'clearfix' if field.type == 'budget' }}">
+                {% if field.fieldInfo %}
+                    <h4> {{field.fieldInfo}} </h4>
+                {% endif %}
+                {% if field.fieldTooltip %}
+                <div class="field-tooltip-container"><span class="info-icon">i</span><span class="field-tooltip">{{ field.fieldTooltip  | nlbr | sanitize | safe }}</span>
+                </div>
+                {% endif %}
+                {% include 'includes/fields/' + field.type + '.html' ignore missing %}
+            </div>
+            <br/>
+
+            {% endfor %}
+            <br/>
+        </div>
     </div>
     {% endfor %}
 </div>

@@ -10,18 +10,19 @@
 <input type="hidden" name="resourceEndPoint" value="{{data.widget.resourceEndPoint}}" />
 
 
+<div class="container">
+    <div class="field-tooltip-container" id="opslaan"><span class="info-icon">i</span><span class="field-tooltip">Alles naar jullie zin ingevuld? Klik dan hieronder om je initiatief in te dienen. Ben je nog niet klaar? Je kunt je formulier ook tijdelijk opslaan.</span>
+                </div>
 
-<div class="field-tooltip-container" id="opslaan"><span class="info-icon">i</span><span class="field-tooltip">Alles naar jullie zin ingevuld? Klik dan hieronder om je initiatief in te dienen. Ben je nog niet klaar? Je kunt je formulier ook tijdelijk opslaan.</span>
-            </div>
-
-{% if activeResource %}
-{% if activeResource.status == 'DRAFT' %}
-<button type="submit" class="btn btn-primary" name="status" data-submit-type="draft" value="Opslaan">{{ data.widget.buttonTextSave if data.widget.buttonTextSave else 'Opslaan' }}</button>
-{% endif %}
-<button type="submit" class="btn btn-primary" name="status"  data-submit-type="publish" value="Versturen">{{ data.widget.buttonTextSubmit if data.widget.buttonTextSubmit else 'Versturen' }}</button>
-
-{% else %}
+    {% if activeResource %}
+    {% if activeResource.status == 'DRAFT' %}
     <button type="submit" class="btn btn-primary" name="status" data-submit-type="draft" value="Opslaan">{{ data.widget.buttonTextSave if data.widget.buttonTextSave else 'Opslaan' }}</button>
-    <button type="submit" class="btn btn-primary" name="status" data-submit-type="publish" value="Versturen">{{ data.widget.buttonTextSubmit if data.widget.buttonTextSubmit else 'Versturen' }}</button>
-{% endif %}
+    {% endif %}
+    <button type="submit" class="btn btn-primary" name="status"  data-submit-type="publish" value="Versturen">{{ data.widget.buttonTextSubmit if data.widget.buttonTextSubmit else 'Versturen' }}</button>
+
+    {% else %}
+        <button type="submit" class="btn btn-primary" name="status" data-submit-type="draft" value="Opslaan">{{ data.widget.buttonTextSave if data.widget.buttonTextSave else 'Opslaan' }}</button>
+        <button type="submit" class="btn btn-primary" name="status" data-submit-type="publish" value="Versturen">{{ data.widget.buttonTextSubmit if data.widget.buttonTextSubmit else 'Versturen' }}</button>
+    {% endif %}
+</div>
 </form>
