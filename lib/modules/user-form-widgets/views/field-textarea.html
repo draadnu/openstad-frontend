@@ -1,13 +1,16 @@
-<div class="form-group">
-  <h3>{{field.title}}</h3>
+<div class="form-group {% if (data.widget.isFieldRequired(field.title)) %}
+    required
+    {% endif %}">
+  <h3>{{data.widget.getDisplayTitle(field.title)}}</h3>
   <div class="description"><p>{{field.description | stripSafe | safe}}</p></div>
   <textarea
     rows="8"
     name="data[{{field.title}}]"
     class="input-field stretch"
-{#		{{field.inputAttributes.split(' ')}}
-    class="{{field.inputClasses.split(' ')}}"
-  #}
-  >
-  </textarea>
+    {% if (data.widget.isFieldRequired(field.title)) %}
+    required
+    {% endif %}
+    style="height: 135px; line-height: 24px; padding-top: 10px;"
+    placeholder="{{data.widget.replacePlaceholderVariables(field.placeholder)}}"
+  ></textarea>
 </div>
