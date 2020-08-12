@@ -630,5 +630,14 @@
 	"Text to display when the user has submitted this idea": "Text to display when the user has submitted this idea",
 	"Background position": "Background position",
 	"Border color": "Border color",
-	"You are now editing this document in another tab or window.": "You are now editing this document in another tab or window."
+	"You are now editing this document in another tab or window.": "You are now editing this document in another tab or window.",
+	"Beschrijving": "Beschrijving",
+	"Type veld": "Type veld",
+	"Multiple choice": "Multiple choice",
+	"Image upload": "Image upload",
+	"Locatie picker": "Locatie picker",
+	"Keuzes (enkel voor multiple choice)": "Keuzes (enkel voor multiple choice)",
+	"database name": "database name",
+	"Validatie (Komma gescheiden, bv: required, minlength:20, maxlength:500)": "Validatie (Komma gescheiden, bv: required, minlength:20, maxlength:500)",
+	"Configuratie": "Configuratie"
 }
