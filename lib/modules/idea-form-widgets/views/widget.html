@@ -1,4 +1,4 @@
-{% set pageTitle = 'Jouw plan insturen' %}
+{% set pageTitle = 'Jouw idee insturen' %}
 {% set showForm = true %}
 {% set idea = data.idea %}
 {% set isOwner = data.openstadUser.id === idea.userId %}
@@ -24,7 +24,7 @@
 <div class="pageContent newIdea" id="content">
 	{% if not showForm %}
 	<div class="box-grey">
-		<h1>{{ data.widget.notLoggedInTitle if data.widget.notLoggedInTitle else 'Om een plan in te dienen moet je ingelogd zijn.' }}</h1>
+		<h1>{{ data.widget.notLoggedInTitle if data.widget.notLoggedInTitle else 'Om een idee in te dienen moet je ingelogd zijn.' }}</h1>
 		<p>{{ data.widget.notLoggedInContent | safe if data.widget.notLoggedInContent else 'Klik <a href="/oauth/login">hier</a> om in te loggen.' | safe }}</p>
 	</div>
 	{% elseif showForm %}
@@ -39,7 +39,7 @@
 						</div>
 						<div class="form-group">
 							<h2>
-								{{ data.widget.labelTitle if data.widget.labelTitle else 'Titel plan' }}
+								{{ data.widget.labelTitle if data.widget.labelTitle else 'Titel idee' }}
 							</h2>
 							<div class="form-info">
 								{{ data.widget.infoTitle | nlbr | stripSafe | safe if data.widget.infoTitle else 'Geef je voorstel een duidelijke titel, zodat anderen jouw inzending makkelijk kunnen vinden en direct snappen waar het over gaat.' }}
@@ -56,7 +56,7 @@
 								{{ data.widget.labelSummary if data.widget.labelSummary else 'Samenvatting' }}
 							</h2>
 							<div class="form-info">
-								{{ data.widget.infoSummary  | nlbr | stripSafe | safe  if data.widget.infoSummary else 'Vertel in maximaal '+data.widget.maxSummary+' tekens iets meer over je plan.' }}
+								{{ data.widget.infoSummary  | nlbr | stripSafe | safe  if data.widget.infoSummary else 'Vertel in maximaal '+data.widget.maxSummary+' tekens iets meer over je idee.' }}
 							</div>
 
 							{% if data.widget.typeSummary === 'text'  %}
@@ -156,7 +156,7 @@
 							{{ data.widget.labelAreas if data.widget.labelAreas else 'Gebied' }}
 						</h2>
 						<div class="form-info">
-							{{ data.widget.infoAreas  | nlbr | stripSafe | safe  if data.widget.infoAreas else 'Selecteer het gebied waarop jouw plan betrekking heeft. Gaat het niet over een specifiek gebied? Kies dan voor algemeen.' }}
+							{{ data.widget.infoAreas  | nlbr | stripSafe | safe  if data.widget.infoAreas else 'Selecteer het gebied waarop jouw idee betrekking heeft. Gaat het niet over een specifiek gebied? Kies dan voor algemeen.' }}
 						</div>
 						<select id="gebied" class="default-select" name="area" value="{% if idea.extraData %}{{idea.extraData.area}}{% endif %}"  {% if data.widget.requiredAreas %}required{% endif %}>
 							<option value="">Kies gebied</option>
@@ -173,7 +173,7 @@
 							{{ data.widget.labelThemes if data.widget.labelThemes else 'Thema' }}
 						</h2>
 						<div class="form-info">
-							{{ data.widget.infoThemes  | nlbr | stripSafe | safe  if data.widget.infoThemes else 'Selecteer het thema waarop jouw plan betrekking heeft.' }}
+							{{ data.widget.infoThemes  | nlbr | stripSafe | safe  if data.widget.infoThemes else 'Selecteer het thema waarop jouw idee betrekking heeft.' }}
 						</div>
 
 						<select id="thema" name="theme" class="default-select" value="{% if idea.extraData %}{{idea.extraData.theme}}{% endif %}" {% if data.widget.requiredThemes %}required{% endif %}>
@@ -234,7 +234,7 @@
 								{{ data.widget.labelLocation if data.widget.labelLocation else 'Locatie' }}
 							</h2>
 							<div class="form-info" style="height: auto;">
-								{{ data.widget.infoLocation | nlbr | stripSafe | safe if data.widget.infoLocation else 'Heeft jouw plan betrekking op een specifieke plek? Klik dan op de juiste locatie in de kaart om een vlaggetje te plaatsen. Verwijder het vlaggetje door hem nogmaals aan te klikken.' }}
+								{{ data.widget.infoLocation | nlbr | stripSafe | safe if data.widget.infoLocation else 'Heeft jouw idee betrekking op een specifieke plek? Klik dan op de juiste locatie in de kaart om een vlaggetje te plaatsen. Verwijder het vlaggetje door hem nogmaals aan te klikken.' }}
 							</div>
 							<div id="mapcontainer">
 								{% set editorInputElementId = 'locationField' %}
@@ -252,10 +252,10 @@
 						{% if data.widget.infoEstimate %}
 						{{ data.widget.infoEstimate | nlbr | stripSafe | safe }}
 						{% else %}
-							Geef een inschatting van wat jouw plan kost. Vind je dit moeilijk,
+							Geef een inschatting van wat jouw idee kost. Vind je dit moeilijk,
 							dan kun je ook het <a href="mailto:statenkwartierbegroot@denhaag.nl">stadsdeel</a>
 							vragen om je daarbij te helpen.
-							Als andere organisaties willen meebetalen aan het plan,
+							Als andere organisaties willen meebetalen aan het idee,
 							kun je dat ook hier aangeven.
 						{% endif %}
 					</div>
@@ -285,7 +285,7 @@
 						{% if data.widget.infoRole %}
 						{{ data.widget.infoRole | nlbr | stripSafe | safe}}
 						{% else %}
-						Bewoners kunnen zelf of samen met de gemeente of een andere organisatie een plan uitvoeren.
+						Bewoners kunnen zelf of samen met de gemeente of een andere organisatie een idee uitvoeren.
 						Geef aan welke rol je hierin wilt en kunt vervullen.
 						{% endif %}
 					</div>
@@ -326,7 +326,7 @@
 						{% if data.widget.infoPhone %}
 						{{ data.widget.infoPhone | nlbr | stripSafe | safe}}
 						{% else %}
-						Vul hier (optioneel) je telefoonnummer in, zodat we snel contact met je kunnen opnemen over je plan.
+						Vul hier (optioneel) je telefoonnummer in, zodat we snel contact met je kunnen opnemen over je idee.
 						{% endif %}
 					</div>
 					<input type="text" id="phone_input" class="chars-counter" minlength="{{data.widget.minPhone if data.widget.minPhone else 3}}" maxlength="{{data.widget.maxPhone if data.widget.maxPhone else 20}}" name="phone" value="{{idea.extraData.phone}}" {% if data.widget.requiredPhone %}required{% endif %}>
@@ -417,7 +417,7 @@
 				</div>
 
 
-		    <!--		<form method="GET" action="/plan/{{idea.id}}/mod_break">
+		    <!--		<form method="GET" action="/idee/{{idea.id}}/mod_break">
 					   <button type="submit" class="modBreak">Moderator reactie</button>
 				     </form>
 	           !-->
