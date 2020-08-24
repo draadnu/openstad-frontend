@@ -26,6 +26,8 @@ module.exports = {
         'openstad-users': {},
         'openstad-auth': {},
         'openstad-login': {},
+        'header-widgets': {},
+        'cta-under-map-widgets': {},
         'apostrophe-login': {
           localLogin: false
         },
