@@ -13,6 +13,7 @@
 require('dotenv').config();
 //external libs
 const express                 = require('express');
+const http2                   = require('http2');
 const apostrophe              = require('apostrophe');
 const app                     = express();
 const _                       = require('lodash');
@@ -25,20 +26,14 @@ const compare                 = require('tsscmp');
 const dbExists                = require('./services/mongo').dbExists;
 const openstadMap             = require('./config/map').default;
 const openstadMapPolygons     = require('./config/map').polygons;
-const defaultSiteConfig       = require('./siteConfig');
+const defaultSiteConfig       = require('./config/siteConfig');
+
 const configForHosts          = {};
 const aposStartingUp          = {};
 
 var aposServer = {};
-var sampleSite;
-var runningSampleSite = false;
-var startingUpSampleSite = false;
 
 app.use(express.static('public'));
-
-function getSampleSite() {
-  return sampleSite ? sampleSite : null;
-}
 
 /**
  * Route for resetting the config of the server so the server will refetch
@@ -51,85 +46,12 @@ app.get('/config-reset', (req, res, next) => {
   res.json({ message: 'Ok'});
 });
 
-
-app.get('/login', (req, res, next) => {
-  const unauthorized = (req, res) => {
-      var challengeString = 'Basic realm=Openstad';
-      res.set('WWW-Authenticate', challengeString);
-      return res.status(401).send('Authentication required.');
-  }
-
-  const basicAuthUser = process.env.LOGIN_CSM_BASIC_AUTH_USER;
-  const basicAuthPassword = process.env.LOGIN_CSM_BASIC_AUTH_PASSWORD;
-
-
-
-  if (basicAuthUser && basicAuthPassword) {
-    var user = auth(req);
-
-    if (!user || !compare(user.name, basicAuthUser) || ! compare(user.pass, basicAuthPassword)) {
-      unauthorized(req, res);
-    } else {
-      next();
-    }
-
-  }
-
-});
-
-
-/**
- * Info url for debugging the apostrhopheCMS server
-
-app.get('/info', (req, res, next) => {
-  let host = req.headers['x-forwarded-host'] || req.get('host');
-  host = host.replace(['http://', 'https://'], ['']);
-
-  let sample = getSampleSite();
-  res.json({
-  //  running: _.keys(aposServer),
-    host: host,
-    generation: sample.assets.generation,
-  //  configForHosts: configForHosts
-  });
-});
- */
-
 app.use(function(req, res, next) {
   /**
-   * Run a sample site that create the assets
+   * Start the servers
    */
-  if (!runningSampleSite) {
-    runningSampleSite  = true;
-    startingUpSampleSite = true;
-    const defaultRunner = Promise.promisify(run);
-    const dbName = process.env.SAMPLE_DB;
-
-    run(dbName, {}, function(silly, apos) {
-        sampleSite = apos;
-        aposServer[dbName] = apos;
-        startingUpSampleSite = false;
-      });
-  }
-
-  /**
-   * Start the servers only when the sample site has finished running
-   */
-  const safeStartServers = (req, res, next) => {
-    if (startingUpSampleSite) {
-      // timeout loop //
-      setTimeout(() => {
-        safeStartServers(req, res, next);
-      }, 100);
-    } else {
-      serveSites(req, res, next);
-    }
-  }
-
-  safeStartServers(req, res, next);
-
+   serveSites(req, res, next);
 });
-
 
 function serveSites (req, res, next) {
   let thisHost = req.headers['x-forwarded-host'] || req.get('host');
@@ -176,8 +98,8 @@ function serveSite(req, res, siteConfig, forceRestart) {
       // if default DB is set
       if (exists || dbName === process.env.DEFAULT_DB)  {
 
-        if ( (!aposServer[dbName] || forceRestart) && !aposStartingUp[dbName]) {
-            //format sitedatat so it makes more sense
+        if ((!aposServer[dbName] || forceRestart) && !aposStartingUp[dbName]) {
+            //format sitedata so  config values are in the root of the object
             var config = siteConfig.config;
             config.id = siteConfig.id;
             config.title = siteConfig.title;
@@ -196,7 +118,7 @@ function serveSite(req, res, siteConfig, forceRestart) {
 
           const safeStartServer = () => {
             if (aposStartingUp[dbName]) {
-              // timeout loop //
+              // old schotimeout loop to make sure we dont start multiple servers of the same site
               setTimeout(() => {
                 safeStartServer();
               }, 100);
@@ -213,7 +135,6 @@ function serveSite(req, res, siteConfig, forceRestart) {
       }
     })
   .catch((e) => {
-    console.log('err: ', e);
     res.status(500).json({ error: 'An error occured checking if the DB exists: ' + e });
   });
 }
@@ -221,7 +142,7 @@ function serveSite(req, res, siteConfig, forceRestart) {
 function run(id, siteData, callback) {
   const site = { _id: id}
 
-  const siteConfig = defaultSiteConfig.get(site, getSampleSite(), siteData, openstadMap, openstadMapPolygons);
+  const siteConfig = defaultSiteConfig.get(site, siteData, openstadMap, openstadMapPolygons);
 
   siteConfig.afterListen = function () {
     apos._id = site._id;

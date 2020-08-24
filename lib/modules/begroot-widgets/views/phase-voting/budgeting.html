@@ -5,7 +5,7 @@
 			<div id="budget-block" >
 				<div id="budget-block">
 
-					<div id="steps-bar">
+					<div id="steps-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">
 						<div id="steps-bar-1" class="step active">
 							<div class="content">1. Kies</div>
 						</div>
@@ -24,9 +24,11 @@
 						<div class="current-budget-images clearfix"></div>
 					</div>
 					<div id="steps-content">
+					  {% if (data.widget.votingType == 'budgeting-per-theme' and data.global.themes and data.global.themes.length > 0) %}
+            <div id="themes-bar"></div>
+            {% endif %}
 						<div id="current-step">
 							<div class="row">
-
 								<div class="col-sm-8 col-xs-12 ">
 									<div id="content">
 										<div id="text">
@@ -54,7 +56,7 @@
 									</div>
 								</div>
 								<div class="col-sm-4  col-xs-12 ">
-									<div id="budget-text" class="stretch">
+									<div id="budget-text" class="stretch" tabindex="0">
 										<div>
 											{% if data.widget.votingType === 'count' %}
 											<table class="primary-color stretch table-reset">
@@ -89,10 +91,14 @@
 										<div id="current-budget-preview">
 											<div class="current-budget-images clearfix"></div>
 											<div class="current-budget-table">
-												<h5 class="overview-title">Overzicht van mijn selectie</h5>
-												<div class="overview"></div>
+												<div class="overview-container"></div>
 											</div>
 										</div>
+                    <div id="overview-themes-warning" class="hidden">
+                      <strong>Let op, je hebt (nog) geen plannen geselecteerd binnen de volgende thema’s:</strong>
+                      <ul class="themes"></ul>
+                      Je kunt doorgaan, of teruggaan naar de vorige stap om alsnog plannen te kiezen voor deze thema’s.
+                    </div>
 										<div id="budgeting-edit-mode-container" class="hidden align-left">
 											<div class="onoffswitch">
 												<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox budgeting-edit-mode"  onchange="setBudgetingEditMode();" id="budgeting-edit-mode">
@@ -109,11 +115,11 @@
 											{% set returnUrl = data.currentUrl %}
 
 											{% if data.widget.scrollBackToBudgetBlock %}
-												{% if data.currentUrl.indexOf('?') == -1 %}
-													{% set returnUrl = data.currentUrl + '?stemcode' %}
-												{% else %}
-													{% set returnUrl = data.currentUrl + '&stemcode' %}
-												{% endif %}
+											{% if data.currentUrl.indexOf('?') == -1 %}
+											{% set returnUrl = data.currentUrl + '?stemcode' %}
+											{% else %}
+											{% set returnUrl = data.currentUrl + '&stemcode' %}
+											{% endif %}
 											{% endif %}
 											<a href="/oauth/login?returnTo={{returnUrl}}" class="button-stemcode vul-je-stemcode-in" onmouseover="removeFromClassName(this, 'do-this-first');">
 												Vul je stemcode in
@@ -141,16 +147,83 @@
 								</div>
 							</div>
 						</div>
+					  {% if (data.widget.votingType == 'budgeting-per-theme' and data.global.themes and data.global.themes.length > 0) %}
+            <div id="themes-buttons"></div>
+            {% endif %}
 					</div>
 					<div id="button-bar">
-						<div id="previous-button" onclick="previousStep(); calculateContainerHeight();">
+						<button id="previous-button" onclick="previousStep(); // calculateContainerHeight();" tabindex="0" title="Vorige">
 							Vorige
-						</div>
-						<div id="next-button" onclick="nextStep(); ">
+						</button>
+						<button id="next-button" onclick="nextStep();" tabindex="0" title="Volgende">
 							Volgende
-						</div>
+						</button>
+					</div>
+					<div id="steps-content-0" class="step">
+					  {% if (data.widget.votingType == 'budgeting-per-theme' and data.global.themes and data.global.themes.length > 0) %}
+            <div class="themes-bar">
+              <div class="theme-bars">
+						    {% for theme in data.global.themes %}
+                <div class="theme-bar theme-{{theme.color | replace("#", "")}}"><div class="theme-bar-amount-spent theme-{{theme.color | replace("#", "")}}""></div></div>
+						    {% endfor %}
+              </div>
+              <div class="theme-labels">
+						    {% for theme in data.global.themes %}
+                <div class="theme-label">
+                  <div class="theme-label-color theme-{{theme.color | replace("#", "")}}"></div>
+                  <div class="theme-label-text">{{theme.value | sanitize | safe}}</div>
+                </div>
+						    {% endfor %}
+              </div>
+            </div>
+						<div class="text">
+							<div class="mobile-accordion overstretch--xs">
+								<a href="#" class="mobile-accordion-header">
+									<div class="mobile-accordion-header-open">
+										<h3 class="icon-header icon-header--blue">
+											<img src="/img/info.png" width="24" />
+											Lees uitleg
+										</h3>
+									</div>
+									<div class="mobile-accordion-header-closed">
+										<h3 class="icon-header icon-header--blue">
+											<img src="/img/info.png" width="24" />
+											Uitleg inklappen
+										</h3>
+									</div>
+								</a>
+								<div class="mobile-accordion-body" tabindex="0">
+                  <h4 style="padding-top: 10px;">Kies jouw favoriete plannen per thema!</h4>
+                  <ol type="1">
+                    <li>Selecteer hieronder een thema om de plannen voor dat thema te bekijken</li>
+                    <li>Kies jouw favoriete plannen voor dat thema binnen het beschikbare budget</li>
+                    <li>Ga naar het volgende thema om hetzelfde te doen</li>
+                    <li>Klaar en tevreden? In stap 3 vul je ter controle de stemcode in die je per post hebt ontvangen. Tot slot verstuur je in stap 4 je stem</li>
+                  </ol>
+								</div>
+							</div>
+							<br class="visible-xs" />
+					  </div>
+            <div class="themes-buttons">
+						  {% for theme in data.global.themes %}
+              <div class="theme-button theme-{{theme.color | replace("#", "")}}" onclick="setTheme('{{loop.index}}')">
+                <div class="theme-button-color theme-{{theme.color | replace("#", "")}}"></div>
+                <div class="theme-button-text">{{theme.value | sanitize | safe}}</div>
+              </div>
+						  {% endfor %}
+						  <div style="clear: both;"></div>
+            </div>
+					  {% endif %}
 					</div>
 					<div id="steps-content-1" class="step">
+					  {% if (data.widget.votingType == 'budgeting-per-theme' and data.global.themes and data.global.themes.length > 0) %}
+            <div class="themes-bar">
+              <div class="theme-current"></div>
+						  {% for theme in data.global.themes %}
+              <div class="theme-tab theme-{{theme.color | replace("#", "")}} theme-tab-default" onclick="setTheme('{{loop.index}}')">{{theme.value | sanitize | safe}}</div>
+						  {% endfor %}
+            </div>
+					  {% endif %}
 						<div class="text">
 							<div class="mobile-accordion overstretch--xs">
 								<a href="#" class="mobile-accordion-header">
@@ -181,6 +254,23 @@
 					</div>
 
 					<div id="steps-content-2" class="step">
+					  {% if (data.widget.votingType == 'budgeting-per-theme' and data.global.themes and data.global.themes.length > 0) %}
+            <div class="themes-bar">
+              <div class="theme-bars">
+						    {% for theme in data.global.themes %}
+                <div class="theme-bar theme-{{theme.color | replace("#", "")}}"><div class="theme-bar-amount-spent theme-{{theme.color | replace("#", "")}}""></div></div>
+						    {% endfor %}
+              </div>
+              <div class="theme-labels">
+						    {% for theme in data.global.themes %}
+                <div class="theme-label">
+                  <div class="theme-label-color theme-{{theme.color | replace("#", "")}}"></div>
+                  <div class="theme-label-text">{{theme.value | sanitize | safe}}</div>
+                </div>
+						    {% endfor %}
+              </div>
+            </div>
+					  {% endif %}
 						<div class="text">
 							<div class="mobile-accordion overstretch--xs">
 								<a href="#" class="mobile-accordion-header">
@@ -199,7 +289,6 @@
 								</a>
 								<div class="mobile-accordion-body">
 									{{data.widget.step_2_intro}}
-
 								</div>
 							</div>
 							<br class="visible-xs" />
@@ -269,7 +358,7 @@
 							<div class="checkmark-block-green">
 								<h4>Gelukt, je hebt gestemd!</h4>
 								<br/>
-								{{data.widget.thankyou_message}}
+								{{data.widget.thankyou_message | nlbr | sanitize | safe}}
 								{% if data.widget.showNewsletterButton and data.widget.showNewsletterButton == 'yes' %}
 								<br />
 								<br />
@@ -289,17 +378,17 @@
 					<div class="row">
 						{% if data.widget.votingType === 'count' %}
 						<div class="col-sm-4 col-xs-6 budget-col">
-								<label>
-									<span> Ideeën gekozen: </span>
-								</label>
-								<span class="current-ideas-count bold">0</span>
-							</div>
-							<div class="col-sm-4 col-xs-6 budget-col">
-								<label>
-									<span> Nog kiezen: </span>
-								</label>
-								<span class="available-ideas-count bold">0</span>
-							</div>
+							<label>
+								<span> Ideeën gekozen: </span>
+							</label>
+							<span class="current-ideas-count bold">0</span>
+						</div>
+						<div class="col-sm-4 col-xs-6 budget-col">
+							<label>
+								<span> Nog kiezen: </span>
+							</label>
+							<span class="available-ideas-count bold">0</span>
+						</div>
 						{% else %}
 						<div class="col-sm-4 col-xs-6 budget-col">
 							<label>
