@@ -131,7 +131,7 @@
 					</div>
 					{% if data.widget.showShareButtons !== false %}
 					<div class="share">
-						<h4>Deel dit plan</h4>
+						<h4>Deel dit idee</h4>
 						<ul>
 							{% if not data.widget.shareChannelsSelection or data.widget.shareChannelsSelection.indexOf('facebook') > -1 or data.widget.shareChannelsSelection.length === 0 %}<li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{data.currentUrl}}">Facebook</a></li>{% endif %}
 							{% if not data.widget.shareChannelsSelection or data.widget.shareChannelsSelection.indexOf('twitter') > -1 or data.widget.shareChannelsSelection.length === 0 %}<li><a class="twitter"  target="_blank" href="https://twitter.com/intent/tweet?text={{data.currentUrl}}">Twitter</a></li>{% endif %}
