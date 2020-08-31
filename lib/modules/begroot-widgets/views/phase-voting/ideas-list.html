@@ -145,10 +145,20 @@ data-default-sort="{{data.widget.defaultSorting}}"
 					{% endif %}
 					<br />
 					{% if data.widget.originalIdeaUrl and not idea.extraData.hideOriginalLink %}
-					{% set originalId = idea.extraData.originalId if idea.extraData.originalId else idea.id %}
-					<div class="margin-hor-10">
-						<a href="{{data.widget.originalIdeaUrl}}/{{originalId}}" class="link-original link-caret--blue" target="_blank">Bekijk het originele voorstel</a>
-					</div>
+
+						{% if idea.extraData and idea.extraData.orginalIds %}
+							<div class="margin-hor-10">
+								{% for originalId in idea.extraData.originalIds %}
+									<a href="{{data.widget.originalIdeaUrl}}/{{originalId}}" class="link-original link-caret--blue" target="_blank">Bekijk het originele voorstel</a><br />
+								{% endfor %}
+							</div>
+						{% else %}
+							{% set originalId = idea.extraData.originalId if idea.extraData.originalId else idea.id %}
+							<div class="margin-hor-10">
+								<a href="{{data.widget.originalIdeaUrl}}/{{originalId}}" class="link-original link-caret--blue" target="_blank">Bekijk het originele voorstel</a>
+							</div>
+						{% endif %}
+
 					{% endif %}
 					<br />
 					<div class="align-left">
