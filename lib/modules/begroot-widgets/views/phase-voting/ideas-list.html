@@ -146,6 +146,8 @@ data-default-sort="{{data.widget.defaultSorting}}"
 					<br />
 					{% if data.widget.originalIdeaUrl and not idea.extraData.hideOriginalLink %}
 
+					{{ apos.log ('<== originalIds', idea.id, idea.extraData.originalIds) }}
+
 						{% if idea.extraData and idea.extraData.orginalIds %}
 							<div class="margin-hor-10">
 								{% for originalId in idea.extraData.originalIds %}
