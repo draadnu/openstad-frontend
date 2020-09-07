@@ -16,10 +16,12 @@
     <div class="image" style="background-image: url({{data.widget.formatImageUrl(idea.extraData.images[0], 600, 360, true)}})"></div>
 
     <div class="duration">
-      {% if idea.status == 'DENIED' %}
-        Dit voorstel is afgewezen
-      {% elif idea.status == 'CLOSED' %}
-        De stemperiode is afgelopen
+      {% if idea.status == 'OPEN' %}
+        Dit idee is deels opgenomen
+      {% elif idea.status == 'ACCEPTED' %}
+        Dit idee is opgenomen
+      {% elif idea.status == 'DENIED' %}
+        Dit idee is niet opgenomen
       {% endif %}
     </div>
 

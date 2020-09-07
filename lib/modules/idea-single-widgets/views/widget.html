@@ -17,12 +17,12 @@
 				{% else %}
 					<div class="image"></div>
 				{% endif %}
-				{% if idea.status == 'CLOSED' %}
-					<div class="statusbalk {{idea.status}}">De stemperiode is afgelopen</div>
-				{% elif idea.status == 'DENIED' %}
-					<div class="statusbalk {{idea.status}}">Dit idee is afgewezen</div>
+				{% if idea.status == 'OPEN' %}
+					<div class="statusbalk {{idea.status}}">Dit idee is deels opgenomen</div>
+				{% elif idea.status == 'ACCEPTED' %}
+					<div class="statusbalk {{idea.status}}">Dit idee is opgenomen</div>
 				{% else %}
-					<div class="statusbalk {{idea.status}}">Like dit idee nu</div>
+					<div class="statusbalk {{idea.status}}">Dit idee is niet opgenomen</div>
 				{% endif %}
 				<!--
 						 <div class="ranking {{idea.status}}"><div class="label">{{idea.ranking}}</div></div>
@@ -33,7 +33,7 @@
 				<div class="controls">
 					<h4>Likes</h4>
 
-					{% if (idea.status === 'OPEN') %}
+					{% if (idea.status === 'BUSY') %}
 						<div class="vote">
 							<form method="POST" action="/vote" class="idea-vote-form ajax-form {{ 'logged-in' if data.loggedIn else 'not-logged-in' }} ">
 								<input type="hidden" name="ideaId" value="{{idea.id}}" />
@@ -97,12 +97,12 @@
 					<div class="ideaDuration {{idea.status}}">
 						<h4>Status</h4>
 						<div class="duration">
-							{% if idea.status == 'CLOSED' %}
-								<div>De stemperiode is afgelopen</div>
+							{% if idea.status == 'OPEN' %}
+								<div>Dit idee is deels opgenomen</div>
 							{% elif idea.status == 'DENIED' %}
-								<div>Stemmen op dit voorstel is niet meer mogelijk.</div>
+								<div>Dit idee is niet opgenomen</div>
 							{% elif idea.status == 'ACCEPTED' %}
-								<div>Dit voorstel wordt besproken in de volgende vergadering!</div>
+								<div>Dit idee is opgenomen</div>
 							{% elif idea.status == 'BUSY' %}
 								<div>Dit voorstel wordt uitgevoerd. Lees op deze pagina over de voortgang.</div>
 							{% elif idea.status == 'DONE' %}
