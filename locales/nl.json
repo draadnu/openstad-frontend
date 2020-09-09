@@ -541,5 +541,18 @@
 	"Openlayers": "Openlayers",
 	"Open link in new tab?": "Open link in new tab?",
 	"Type of Map": "Type of Map",
-	"houtwijk": "houtwijk"
+	"houtwijk": "houtwijk",
+	"Inloggen": "Inloggen",
+	"Where do we redirect the user after a successful submission?": "Where do we redirect the user after a successful submission?",
+	"Send confirmation mail": "Send confirmation mail",
+	"Email template": "Email template",
+	"De Brinken Knapt Op submission confimation template": "De Brinken Knapt Op submission confimation template",
+	"Houtwijk Knapt Op submission confimation template": "Houtwijk Knapt Op submission confimation template",
+	"Mariahoeve Knapt Op submission confimation template": "Mariahoeve Knapt Op submission confimation template",
+	"Nieuw Waldeck Knapt Op submission confimation template": "Nieuw Waldeck Knapt Op submission confimation template",
+	"Email subject user": "Email subject user",
+	"Email subject admin": "Email subject admin",
+	"Zwammerdam submission confimation template": "Zwammerdam submission confimation template",
+	"Veld standaard verborgen?": "Veld standaard verborgen?",
+	"Verplicht veld?": "Verplicht veld?"
 }

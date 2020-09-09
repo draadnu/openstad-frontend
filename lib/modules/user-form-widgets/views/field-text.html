@@ -1,10 +1,13 @@
-<div class="form-group">
+<div class="form-group {% if field.hidden %} hidden {% endif %}">
   <h3>{{field.title}}</h3>
   <div class="description"><p>{{field.description | safe}}</p></div>
   <input
     type="{{field.inputType}}"
     name="data[{{field.inputKey}}]"
     class="input-field stretch"
+    {% if field.required %}
+    required="required"
+    {% endif %}
 {#		{{field.inputAttributes.split(' ')}}
     class="{{field.inputClasses.split(' ')}}"
   #}
