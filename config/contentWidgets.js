@@ -46,8 +46,6 @@ const contentWidgets = {
   },
   'date-bar': {},
   'idea-form': {
-    adminOnly: true,
-    hideByDefault: true
   },
   'idea-map': {
     adminOnly: true
