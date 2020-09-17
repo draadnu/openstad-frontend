@@ -153,7 +153,8 @@ const contentWidgets = {
   },
   'share': {
     adminOnly: true
-  }
+  },
+  'header': {}
 };
 
 exports.getAdminWidgets = (displaySettings) => {
