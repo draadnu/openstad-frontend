@@ -22,10 +22,10 @@
                         {% if data.widget.showBtnIntro %}
                         <div class="button-row">
                             {% if data.widget.btn1Url %}
-                            <a href="{{data.widget.btn1Url}}" class="button-without-icon margin-top-sm filled-button">{{data.widget.btn1Label}}</a>
+                            <a href="{{data.widget.btn1Url}}" class="button-without-icon margin-top-sm filled-button" title="{{data.widget.btn1Label}}">{{data.widget.btn1Label}}</a>
                             {% endif %}
                             {% if data.widget.btn2Url %}
-                            <a href="{{data.widget.btn2Url}}" class="button-without-icon margin-top-sm outlined-button">{{data.widget.btn2Label}}</a>
+                            <a href="{{data.widget.btn2Url}}" class="button-without-icon margin-top-sm outlined-button" title="{{data.widget.btn2Label}}">{{data.widget.btn2Label}}</a>
                             {% endif %}
                         </div>
                         {% endif %}
