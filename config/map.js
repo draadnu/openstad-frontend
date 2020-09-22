@@ -1,3 +1,13 @@
+const formattedPolygons = (polygonsArray) => {
+
+  return polygonsArray.map((coords) => {
+    return {
+      "lng": coords[0],
+      "lat": coords[1]
+    }
+  })
+}
+
 exports.default = {
   "polygons": {
     "schipperskwartier":
