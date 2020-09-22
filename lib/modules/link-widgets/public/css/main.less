@@ -18,7 +18,7 @@
     }
 }
 
-.filled-button, .outlined-button {
+.filled-button, .outlined-button, .next-button {
   background-color: #164995;
   color: white;
   display: inline-block;
@@ -36,7 +36,7 @@
   border: 2px solid #164995;
   text-shadow: none;
 
-  &:hover, &:visited, &:focus, &:active {
+  &:hover {
     color: white;
     text-decoration: none;
   }
@@ -47,6 +47,24 @@
   }
 }
 
+.next-button {
+  position: relative;
+
+    &:before {
+      position: absolute;
+      border-left: 15px solid #164995;
+      border-top: 22px solid transparent;
+      border-bottom: 23px solid transparent;
+      border-right: 0;
+      top: -2px;
+      right: -17px;
+      width: 0px;
+      height: 0px;
+      content: '';
+    }
+}
+
+
 .outlined-button {
   background: white;
   border: 2px solid #164995;
@@ -55,7 +73,6 @@
   display: inline-block;
 
   &:hover, &:visited, &:focus, &:active {
-    color: #164995;
     text-decoration: none;
   }
 }

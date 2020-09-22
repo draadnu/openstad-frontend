@@ -1,4 +1,4 @@
-<div class="row"
+<div class="row {{data.widget.filterClassName}} {{data.widget.classNameCustom}}"
 {% if data.widget.displayFilterVoting %}
 style="display: block"
 {% else %}
@@ -10,7 +10,7 @@ style="display: none"
     <div class="tab-selector">
       {% if (data.widget.filterableAreas) %}
       <select id="filterSelector" class="default-select" onchange="activateIdeaOverviewFilter(this.selectedIndex)">
-        <option value="0">Alle wijken</option>
+        <option value="0" selected disabled>Alle wijken</option>
         {% for area in data.widget.filterableAreas %}
         <option value="{{area}}">{{area}}</option>
         {% endfor %}
@@ -19,7 +19,7 @@ style="display: none"
 
       {% if (data.widget.filterableThemes) %}
       <select id="themaSelector" class="default-select" onchange="activateIdeaOverviewTab(this.selectedIndex)">
-        <option value="0">Alle thema's</option>
+        <option value="0" selected disabled>Alle thema's</option>
         {% for theme in data.widget.filterableThemes %}
         <option value="{{theme}}">{{theme}}</option>
         {% endfor %}
@@ -28,7 +28,7 @@ style="display: none"
 
        {% if (data.widget.filterableHelp) %}
       <select id="helpSelector" class="default-select" onchange="activateIdeaOverviewHelp(this.selectedIndex)">
-        <option value="0">Alle hulpvragen</option>
+        <option value="0" selected disabled>Alle hulpvragen</option>
         {% for help in data.widget.filterableHelp %}
         <option value="{{help}}">{{help}}</option>
         {% endfor %}
