@@ -1,13 +1,10 @@
 <style>
   {{data.widget.formattedImageStyles}}
 </style>
-{% if data.widget.link %}
-    <a href="{{data.widget.imageLink}}" target="{{data.widget.imageTarget}}">
-{% endif %}
-    <img
-      id="{{data.widget.imageId}}"
-      src="{{apos.attachments.url(data.widget.uploadedImage)}}"
-    />
-{% if data.widget.link %}
-</a>
-{% endif %}
+
+<img
+  id="{{data.widget.imageId}}"
+  src="{{apos.attachments.url(data.widget.uploadedImage)}}"
+  title="{{data.widget.uploadedImageTitle}}"
+  alt="{{data.widget.uploadedImageAlt}}"
+/>
