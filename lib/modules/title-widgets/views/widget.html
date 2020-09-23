@@ -11,7 +11,7 @@
   id="{{data.widget.containerId}}"
   class="{{data.widget.className}} {{data.widget.classNameCustom}}"
 >
-  {{data.widget.title | stripSafe | safe}}
+  {{data.widget.title | sanitize | safe}}
 </h1>
 {% endif %}
 
@@ -20,7 +20,7 @@
   id="{{data.widget.containerId}}"
   class="{{data.widget.className}} {{data.widget.classNameCustom}}"
 >
-  {{data.widget.title | stripSafe | safe}}
+  {{data.widget.title | sanitize | safe}}
 </h2>
 {% endif %}
 
@@ -29,7 +29,7 @@
   id="{{data.widget.containerId}}"
   class="{{data.widget.className}} {{data.widget.classNameCustom}}"
 >
-  {{data.widget.title | stripSafe | safe}}
+  {{data.widget.title | sanitize | safe}}
 </h3>
 {% endif %}
 
@@ -38,6 +38,6 @@
   id="{{data.widget.containerId}}"
   class="{{data.widget.className}} {{data.widget.classNameCustom}}"
 >
-  {{data.widget.title | stripSafe | safe}}
+  {{data.widget.title | sanitize | safe}}
 </h4>
 {% endif %}

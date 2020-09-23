@@ -157,10 +157,10 @@
 			<h2>Korte samenvatting</h2>
 			{% if idea.summary %}
 			<p class="summary">
-				<strong>{{idea.summary | stripSafe | safe | nlbr}}</strong>
+				<strong>{{idea.summary | sanitize | safe | nlbr}}</strong>
 			</p>
 			{% endif %}
-			{{idea.description | stripSafe | safe}}
+			{{idea.description | sanitize | safe}}
 		</div>
 
 		{% if idea.extraData.video and data.widget.embeddedVideo %}
@@ -186,7 +186,7 @@
 			</ul>
 
 			{% if idea.extraData.toelichting_hulpvraag %}
-					<p>{{ idea.extraData.toelichting_hulpvraag | stripSafe | safe | nlbr}}</p>
+					<p>{{ idea.extraData.toelichting_hulpvraag | sanitize | safe | nlbr}}</p>
 			{% endif %}
 		</div>
 		{% endif %}
@@ -207,14 +207,14 @@
 		{% if idea.extraData and idea.extraData.role %}
 		<div id="initiatiefvan">
 			<h4>Een initiatief van</h4>
-			<span>{{idea.extraData.role | stripSafe}}</span>
+			<span>{{idea.extraData.role | sanitize}}</span>
 		</div>
 		{% endif %}
 
 		{% if idea.extraData and idea.extraData.website %}
 		<div id="website">
 			<h4>Website</h4>
-			<span><a href="{{idea.extraData.website | stripSafe }}" target="_blank">{{idea.extraData.website | stripSafe}}</a></span>
+			<span><a href="{{idea.extraData.website | sanitize }}" target="_blank">{{idea.extraData.website | sanitize}}</a></span>
 		</div>
 		{% endif %}
 

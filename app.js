@@ -143,7 +143,7 @@ function run(id, siteData, callback) {
   const site = { _id: id}
 
   const siteConfig = defaultSiteConfig.get(site, siteData, openstadMap, openstadMapPolygons);
-
+  
   siteConfig.afterListen = function () {
     apos._id = site._id;
     if (callback) {
