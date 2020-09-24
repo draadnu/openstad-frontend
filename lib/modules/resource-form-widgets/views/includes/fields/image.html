@@ -1,4 +1,3 @@
-<fieldset class="filepondFieldset">
   <!-- a list of already uploaded files -->
   <script>
     var uploadedFiles = [];
@@ -24,6 +23,7 @@
     {% endfor %}
     {% endif %}
   </script>
+<fieldset class="filepondFieldset">
   <input type="file" class="imageUploader filepondImage" {% if data.widget.uploadMultiple %} multiple {% endif %} {% if data.widget.requiredImages %}required{% endif %} />
 
 </fieldset>
