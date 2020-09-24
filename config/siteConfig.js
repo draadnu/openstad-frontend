@@ -124,6 +124,9 @@ module.exports = {
         'resource-representation-widgets' : {
           resources: resources
         },
+        'resource-user-overview-widgets' : {
+          resources: resources
+        },
         'resource-overview-widgets' : {
           resources: resources
         },

@@ -123,6 +123,9 @@ const contentWidgets = {
   'resource-overview': {
     adminOnly: true,
   },
+  'resource-user-overview': {
+    adminOnly: true,
+  },
   'resource-form': {
     adminOnly: true,
   },
