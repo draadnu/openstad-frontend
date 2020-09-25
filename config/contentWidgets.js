@@ -46,10 +46,7 @@ const contentWidgets = {
     hideByDefault: true
   },
   'date-bar': {},
-  'idea-form': {
-    adminOnly: true,
-    hideByDefault: true
-  },
+  'idea-form': {},
   'idea-map': {
     adminOnly: true
   },
