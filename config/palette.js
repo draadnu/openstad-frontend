@@ -161,6 +161,7 @@ exports.fields = [
     min: 0,
     max: 50,
     step: 1,
+    default: 0,
     unit: 'px',
   },
   {
@@ -180,7 +181,7 @@ exports.fields = [
     max: 60,
     step: 1,
     unit: 'px',
-    default: 26
+    default: 36
   },
   {
     name: 'h1MarginTop',
@@ -192,7 +193,7 @@ exports.fields = [
     max: 200,
     step: 1,
     unit: 'px',
-    default: 42
+    default: 10
   },
   {
     name: 'h1MarginBottom',
@@ -204,7 +205,7 @@ exports.fields = [
     max: 200,
     step: 1,
     unit: 'px',
-    default: 26
+    default: 10
   },
   {
     name: 'h2FontSize',
@@ -216,7 +217,7 @@ exports.fields = [
     max: 60,
     step: 1,
     unit: 'px',
-    default: 24
+    default: 25
   },
   {
     name: 'h2MarginTop',
@@ -228,7 +229,7 @@ exports.fields = [
     max: 200,
     step: 1,
     unit: 'px',
-    default: 36
+    default: 10
   },
   {
     name: 'h2MarginBottom',
@@ -240,7 +241,7 @@ exports.fields = [
     max: 200,
     step: 1,
     unit: 'px',
-    default: 24
+    default: 10
   },
   {
     name: 'h3FontSize',
@@ -264,7 +265,7 @@ exports.fields = [
     max: 200,
     step: 1,
     unit: 'px',
-    default: 27
+    default: 10
   },
   {
     name: 'h3MarginBottom',
@@ -276,7 +277,7 @@ exports.fields = [
     max: 200,
     step: 1,
     unit: 'px',
-    default: 18
+    default: 10
   },
   {
     name: 'h4FontSize',
@@ -300,7 +301,7 @@ exports.fields = [
     max: 200,
     step: 1,
     unit: 'px',
-    default: 24
+    default: 10
   },
   {
     name: 'h4MarginBottom',
@@ -312,7 +313,7 @@ exports.fields = [
     max: 200,
     step: 1,
     unit: 'px',
-    default: 16
+    default: 10
   },
   {
     name: 'pFontSize',

@@ -340,5 +340,8 @@
 	"Plan is toegevoegd, druk op enter om dit plan te verwijderen.": "Plan is toegevoegd, druk op enter om dit plan te verwijderen.",
 	"Kosten:": "Kosten:",
 	"An error has occurred": "An error has occurred",
-	"An error has occurred. We're working on it. We apologize for the inconvenience.": "An error has occurred. We're working on it. We apologize for the inconvenience."
+	"An error has occurred. We're working on it. We apologize for the inconvenience.": "An error has occurred. We're working on it. We apologize for the inconvenience.",
+	"Page header": "Page header",
+	"Edit Page header": "Edit Page header",
+	"Edit Local Video": "Edit Local Video"
 }
