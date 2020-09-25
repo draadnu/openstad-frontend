@@ -27,6 +27,7 @@ const contentWidgets = {
   'arguments-form': {
     adminOnly: true
   },
+  'header': {},
   'section': {
     addLabel: 'Columns',
     controls: {
