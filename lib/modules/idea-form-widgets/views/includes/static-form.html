@@ -12,7 +12,6 @@
         </div>
 
         {% include 'includes/fields/title.html' %}
-        <br />
       </div>
 
 
@@ -28,6 +27,33 @@
         <br />
       </div>
 
+
+
+    </div>
+
+  <div class="form-group">
+      <div id="description">
+        {% if useModernEditor %}
+          <h2 class="form-label">
+            {{ data.widget.labelDescription if data.widget.labelDescription else 'Beschrijving' }}
+          </h2>
+        {% else %}
+          <label class="form-label" for="description-textarea">
+            {{ data.widget.labelDescription if data.widget.labelDescription else 'Beschrijving' }}
+          </label>
+        {% endif %}
+
+        <div class="form-info">
+          {{ data.widget.infoDescription | nlbr | sanitize | safe if data.widget.infoDescription else 'Gebruik de ruimte hieronder om je voorstel verder uit te leggen.' }}
+        </div>
+
+        {% include 'includes/fields/description.html' %}
+      </div>
+
+      <div id="charsLeftDescription" class="charsLeft">
+        <div class="min">Nog minimaal <span>0</span> tekens</div>
+        <div class="max">Je hebt nog <span>0</span> tekens over.</div>
+      </div>
 
 
     </div>
@@ -71,32 +97,7 @@
         {% include 'includes/fields/image.html' %}
       </div>
     </div>
-    <div class="form-group">
-      <div id="description">
-        {% if useModernEditor %}
-          <h2 class="form-label">
-            {{ data.widget.labelDescription if data.widget.labelDescription else 'Beschrijving' }}
-          </h2>
-        {% else %}
-          <label class="form-label" for="description-textarea">
-            {{ data.widget.labelDescription if data.widget.labelDescription else 'Beschrijving' }}
-          </label>
-        {% endif %}
 
-        <div class="form-info">
-          {{ data.widget.infoDescription | nlbr | sanitize | safe if data.widget.infoDescription else 'Gebruik de ruimte hieronder om je voorstel verder uit te leggen.' }}
-        </div>
-
-        {% include 'includes/fields/description.html' %}
-      </div>
-
-      <div id="charsLeftDescription" class="charsLeft">
-        <div class="min">Nog minimaal <span>0</span> tekens</div>
-        <div class="max">Je hebt nog <span>0</span> tekens over.</div>
-      </div>
-
-
-    </div>
     {% if data.widget.displayLocation %}
     <div class="form-group">
       <div id="location-container">
