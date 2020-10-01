@@ -49,9 +49,7 @@ const contentWidgets = {
     adminOnly: true,
     hideByDefault: true
   },
-  'idea-map': {
-    adminOnly: true
-  },
+  'idea-map': {},
   'idea-overview': {
   },
   'idea-single': {
