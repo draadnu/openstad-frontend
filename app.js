@@ -35,6 +35,8 @@ var aposServer = {};
 
 app.use(express.static('public'));
 
+app.set('trust proxy', true);
+
 /**
  * Route for resetting the config of the server so the server will refetch
  * Necessary when making changes in the site config.
