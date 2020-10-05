@@ -116,14 +116,7 @@
 						<h4>Status</h4>
 						<div class="duration">
 
-							{% if idea.status === 'OPEN' %}
-							<div id="nog-xxx-om-te-stemmen"></div>
-							<script>
-							 var endDate2 = new Date('{{idea.endDate}}');
-							 var daysLeft2 = parseInt( ( endDate2.getTime() - Date.now() ) / ( 24 * 60 * 60 * 1000) ) + 1;
-							 document.getElementById('nog-xxx-om-te-stemmen').innerHTML = 'Nog ' + daysLeft2 + ' dagen om te liken';
-							</script>
-							{% elseif data.widget['labelTime' + idea.status] %}
+							{% if data.widget['labelTime' + idea.status] %}
 							{{data.widget['labelTime' + idea.status]}}
 							{% endif %}
 						</div>
