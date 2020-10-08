@@ -147,11 +147,7 @@ const contentWidgets = {
     },
   },
   'title': {},
-  'user-form': {
-    adminOnly: true,
-    hideByDefault: true,
-    beta: true
-  },
+  'user-form': {},
   'local-video': {
     addLabel: 'Video (upload)',
   },
