@@ -71,9 +71,6 @@ const contentWidgets = {
   'list': {},
   'begroot': {
     addLabel: 'Begroot (deprecated, please use Participatory budgetting)',
-    adminOnly: true,
-    readOnly: true,
-    hideByDefault: true,
     deprecated: true
   },
   'gebiedsontwikkeling-tool': {
