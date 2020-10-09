@@ -17,7 +17,6 @@ data-default-sort="{{data.widget.defaultSorting}}"
 	data-budget="{{idea.budget}}"
   data-ideaid="{{idea.id}}"
 	data-ranking="{{idea.extraData.ranking if (idea.extraData.ranking and data.widget.showRanking) else 10000}}"
-	data-extraranking="{{idea.extraData.ranking}}"
 	role="article"
 	tabindex="0"
 	title="{{idea.title}}"
@@ -92,16 +91,6 @@ data-default-sort="{{data.widget.defaultSorting}}"
 							</div>
 							<div class="image-switch" onclick="toggleImageLocation({{idea.id}})"><img class="arrow" src="/img/arrow_right_white.svg"></div>
 						</div>
-						{% if idea.location %}
-						<div class="location-image-container">
-							<div class="location-image-mask">
-								<a href="{{idea.locationUrl}}" target="_blank" class="location-image" >
-									<img src="{{idea.locationMapImage}}" />
-								</a>
-							</div>
-							<div class="location-switch" onclick="toggleImageLocation({{idea.id}})"><img class="arrow" src="/img/arrow_right_white.svg"></div>
-						</div>
-						{% endif %}
 					</div>
 					<div class="visible-xs">
 						<br />
@@ -176,9 +165,6 @@ data-default-sort="{{data.widget.defaultSorting}}"
 						<div class="description">
 							{{idea.description | sanitize | safe}}
 						</div>
-						{% endif %}
-						{% if data.hasModeratorRights %}
-						<div class="description"><a href="{{data.global.editIdeaUrl}}?ideaId={{idea.id}}" target="_blank">Bewerk dit plan</a></div>
 						{% endif %}
 					</div>
 				</div>
