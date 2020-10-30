@@ -16,12 +16,6 @@
     <div class="ranking"><div class="label">{{idea.ranking}}</div></div>
     {% endif %}
 
-    {% if idea.extraData.showBudget %}
-    <div class="showBudget"><div class="label">{{idea.extraData.showBudget | safe}}</div></div>
-    {% endif %}
-
-    <span class="testdiv">test</span>
-
     <div class="image" style="background-image: url('{{data.widget.formatImageUrl(idea.extraData.images[0], idea.location, data.widget, 500, 500, true, data.cookieConsent) }}')"></div>
 
     <div class="duration">
