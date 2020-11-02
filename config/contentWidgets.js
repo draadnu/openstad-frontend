@@ -47,9 +47,7 @@ const contentWidgets = {
   },
   'date-bar': {},
   'idea-form': {},
-  'idea-map': {
-    adminOnly: true
-  },
+  'idea-map': {},
   'idea-overview': {
   },
   'idea-single': {
