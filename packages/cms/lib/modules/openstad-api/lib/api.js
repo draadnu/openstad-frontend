@@ -41,9 +41,6 @@ module.exports = (self, options) => {
     config.id = siteData.id;
     config.title = siteData.title;
     config.area = siteData.area;
-
-
-
     self.apos.settings.options.siteConfig = config;
   };
 
@@ -73,7 +70,7 @@ module.exports = (self, options) => {
     const options = self.getOptions({
       uri: `${self.apiUrl}/api/site/${self.siteId}`,
       headers: {
-        "X-Authorization": process.env.SITE_API_KEY
+        "X-Authorization": `Bearer ${self.sessionJwt}`
       }
     });
 
@@ -99,7 +96,7 @@ module.exports = (self, options) => {
   };
 
   self.getAllPolygons = async () => {
-    const options = self.getOptionsWithAuth({
+    const options = self.getOptions({
       method: 'GET',
       uri: `${self.apiUrl}/api/area`,
     });
