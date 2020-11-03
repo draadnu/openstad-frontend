@@ -70,7 +70,7 @@ module.exports = (self, options) => {
     const options = self.getOptions({
       uri: `${self.apiUrl}/api/site/${self.siteId}`,
       headers: {
-        "X-Authorization": `Bearer ${self.sessionJwt}`
+        "X-Authorization": process.env.SITE_API_KEY
       }
     });
 
