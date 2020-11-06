@@ -64,7 +64,9 @@ module.exports = {
 
 			widgets.forEach((widget) => {
 
-			  widget.config = JSON.stringify(createConfig(widget, req.data, req.session.jwt, self.apos.settings.getOption(req, 'apiUrl')));
+			  const url = (req.data.global && req.data.global.siteConfig && req.data.global.siteConfig.cms && req.data.global.siteConfig.cms.url || self.apos.settings.getOption(req, 'apiUrl'))
+			  
+			  widget.config = JSON.stringify(createConfig(widget, req.data, req.session.jwt, url));
         widget.openstadComponentsUrl = openstadComponentsUrl;
 
         const containerId = widget._id;
