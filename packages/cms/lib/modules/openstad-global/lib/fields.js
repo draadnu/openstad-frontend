@@ -1,5 +1,5 @@
 var _ = require('lodash');
-const polygons          = require('./map').default.polygons;
+const polygons          = require('../../../../../../config/map').default.polygons;
 const polygonsFormatted = [{label: 'Geen', value: ''}];
 
 Object.keys(polygons).forEach(function(key) {
