@@ -1,4 +1,4 @@
-const polygons          = require('../../../../config/map').default.polygons;
+const polygons          = require('../../../../../../config/map').default.polygons;
 var _ = require('lodash');
 
 module.exports = (self, options) => {
