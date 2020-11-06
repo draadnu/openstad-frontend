@@ -1,4 +1,13 @@
 var _ = require('lodash');
+const polygons          = require('./map').default.polygons;
+const polygonsFormatted = [{label: 'Geen', value: ''}];
+
+Object.keys(polygons).forEach(function(key) {
+  polygonsFormatted.push({
+    label: key,
+    value: key //polygons[key]
+  });
+});
 
 const rightsChoices =  [
   {
@@ -260,7 +269,7 @@ module.exports = [
     type: 'select',
     label: 'Selecteer een polygon',
     apiSyncField: 'area.id',
-    choices: 'loadPolygonsFromApi',
+    choices: polygonsFormatted,
   },
   {
     name: 'displayLoginTopLink',
