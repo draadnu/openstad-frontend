@@ -90,6 +90,9 @@ module.exports = (self, options) => {
       if (req.data.global.mapPolygons === '' && req.data.global.mapPolygonsKey) {
         req.data.global.mapPolygons = polygons[req.data.global.mapPolygonsKey];
       }
+      
+      console.log ('set mapPolygons', req.data.global.mapPolygonsKey, polygons.length);
+      req.data.global.mapPolygons = polygons[req.data.global.mapPolygonsKey];
 
       next();
     };
