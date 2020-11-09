@@ -48,7 +48,6 @@ const contentWidgets = {
   'idea-form': {
   },
   'idea-map': {
-    adminOnly: true
   },
   'idea-overview': {
   },
