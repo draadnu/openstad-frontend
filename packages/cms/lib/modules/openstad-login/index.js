@@ -88,14 +88,18 @@ module.exports = {
                  // one downside, if the user's admin or editor rights are revoked,
                  // this will only go into effect after logging out
                  insertOrUpdate(taskReq, userData, {}, (err, userObject) => {
+                   
+                   console.log ('user inserted / updated', err, userObject);
 
                    // after update or insert refetch the user to ensure we have a valid user
                    self.apos.users.find(req, { username: email }).permission(false).toObject(function(err, aposUser) {
 
+                     console.log ('find user after insertion', err, aposUser, email);
+                     
                      req.login(aposUser, function(err) {
 
                        if (err) {
-                         //console.log('err', err);
+                         console.log('login err', err);
                          //return next(err)
                          return callback();
                        } else {
