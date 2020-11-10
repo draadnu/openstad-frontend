@@ -40,6 +40,7 @@ module.exports = {
 
 
       self.apos.users.find(req, { username: email }).permission(false).toObject(function(err, aposUser) {
+        console.log ('APOS USERS ERR', err);
           if (err) {
             return callback();
           }
@@ -49,6 +50,7 @@ module.exports = {
           var taskReq = self.apos.tasks.getReq();
 
           self.apos.groups.find(taskReq, { title: groupName }).toObject().then(function(group) {
+            console.log ('APOS GROUPS', err, group);
               if (err) {
                 return callback(err);
               }
@@ -77,6 +79,8 @@ module.exports = {
                  if (aposUser) {
                    userData._id = aposUser._id;
                  }
+                 
+                 console.log ('apos user', aposUser, userData);
 
                  const insertOrUpdate = aposUser ? self.apos.users.update : self.apos.users.insert;
 
