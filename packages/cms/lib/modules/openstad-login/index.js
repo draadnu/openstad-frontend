@@ -40,7 +40,6 @@ module.exports = {
 
 
       self.apos.users.find(req, { username: email }).permission(false).toObject(function(err, aposUser) {
-        console.log ('APOS USERS ERR', err);
           if (err) {
             return callback();
           }
@@ -50,7 +49,6 @@ module.exports = {
           var taskReq = self.apos.tasks.getReq();
 
           self.apos.groups.find(taskReq, { title: groupName }).toObject().then(function(group) {
-            console.log ('APOS GROUPS', err, group);
               if (err) {
                 return callback(err);
               }
@@ -79,8 +77,6 @@ module.exports = {
                  if (aposUser) {
                    userData._id = aposUser._id;
                  }
-                 
-                 console.log ('apos user', aposUser, userData);
 
                  const insertOrUpdate = aposUser ? self.apos.users.update : self.apos.users.insert;
 
@@ -88,18 +84,14 @@ module.exports = {
                  // one downside, if the user's admin or editor rights are revoked,
                  // this will only go into effect after logging out
                  insertOrUpdate(taskReq, userData, {}, (err, userObject) => {
-                   
-                   console.log ('user inserted / updated', err, userObject);
 
                    // after update or insert refetch the user to ensure we have a valid user
                    self.apos.users.find(req, { username: email }).permission(false).toObject(function(err, aposUser) {
 
-                     console.log ('find user after insertion', err, aposUser, email);
-                     
                      req.login(aposUser, function(err) {
 
                        if (err) {
-                         console.log('login err', err);
+                         //console.log('err', err);
                          //return next(err)
                          return callback();
                        } else {
