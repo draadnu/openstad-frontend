@@ -66,7 +66,7 @@ module.exports = {
 
 			  const siteConfig = self.apos.settings.getOption(req, 'siteConfig');
 			  
-			  const url = self.apos.settings.getOption(req, 'apiUrl');
+			  const url = (siteConfig && siteConfig.cms && siteConfig.cms.url || self.apos.settings.getOption(req, 'apiUrl'));
 			  
 			  widget.config = JSON.stringify(createConfig(widget, req.data, req.session.jwt, url));
         widget.openstadComponentsUrl = openstadComponentsUrl;
