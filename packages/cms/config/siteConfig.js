@@ -48,7 +48,7 @@ module.exports = {
         'apostrophe-db': {
           host: process.env.DB_HOST || 'localhost',
           port: process.env.DB_PORT || 27017,
-        }, 
+        },
         'apostrophe-express': {
           port: process.env.PORT,
           session: {
@@ -74,6 +74,7 @@ module.exports = {
               '/fetch-image',
               '/api/site/167/newslettersignup',
               '/api/site/*/newslettersignup',
+              '/api/site/*/idea',
               //     '/api/site/*/vote/*/toggle',
 
               //     '/vote',
