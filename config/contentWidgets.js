@@ -134,8 +134,6 @@ const contentWidgets = {
   'title': {},
   'user-form': {
     adminOnly: true,
-    hideByDefault: true,
-    beta: true
   },
   'local-video': {
     addLabel: 'Video (upload)',
