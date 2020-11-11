@@ -32,6 +32,7 @@ const contentWidgets = {
   'counter': {
     addLabel: 'Counter',
   },
+  'header': {},
   'cookie-warning': {
     adminOnly: true
   },

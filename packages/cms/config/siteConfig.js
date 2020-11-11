@@ -118,6 +118,7 @@ module.exports = {
         'openstad-nunjucks-filters': {},
         'openstad-custom-pages': {},
         'openstad-oembed': {},
+        'header-widgets': {},
 
 
         // Apostrophe module configuration
