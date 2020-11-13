@@ -122,11 +122,6 @@
 
 {% block beforeMain %}
 
-{% if data.cookieConsent and data.global.tagmanager %}
-<!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id={{data.global.tagmanager}}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager -->
-{% endif %}
 {% if data.user %} <!-- be sure to somehow safeguard against non-editor situations, as performance could unnecessarily suffer -->
 {{ palette.palette(data.global, 'palette') }}
 {% endif %}
