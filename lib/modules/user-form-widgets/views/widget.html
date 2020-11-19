@@ -38,6 +38,7 @@
 	<input type="hidden" name="redirectUrl" value="{{data.widget.redirectUrl}}" />
 	<input type="hidden" name="formId" value="{{data.widget.formId}}" />
 	<input type="hidden" name="emailField" value="{{data.widget.email}}" />
+		<div id="recaptcha"></div>
 	<button type="submit" class="default btn btn-primary">
 		Verstuur
 	</button>
@@ -50,3 +51,21 @@
 </a>
 {% include 'includes/modal-submission-overview.html' %}
 {% endif %}
+
+<script type="text/javascript">
+	var onloadCallback = function() {
+		grecaptcha.render('recaptcha', {
+			'sitekey' : '6Lf3zuQZAAAAAHW7ERcCgyvocQolcEWvSwVQcQFk',
+			'callback' : 'verifyCallback'
+		});
+	};
+
+	var verifyCallback = function () {
+		$('#recaptcha-error').remove();
+	}
+</script>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+    async defer>
+</script>
+
