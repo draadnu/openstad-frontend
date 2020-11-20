@@ -186,6 +186,33 @@ module.exports = [
     textarea: true,
     required: false,
   },
+  {
+    name: 'enableAddressSearchClickEvent',
+    type: 'boolean',
+    label: 'Enable address search click event?',
+    choices: [
+      {
+        value: true,
+        label: "Yes",
+      },
+      {
+        value: false,
+        label: "No"
+      },
+    ],
+    def: true
+  },
+  {
+    name: 'redirectAfterSubmitIdea',
+    type: 'string',
+    label: 'set redirect page'
+  },
+  {
+    name: 'addressSearchCity',
+    type: 'string',
+    label: 'Set address search city',
+
+  },
 	{
 		name: 'mapVariant',
 		type: 'select',
