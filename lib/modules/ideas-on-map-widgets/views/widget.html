@@ -19,8 +19,17 @@
    let element = document.querySelector('.openstad-component-ideas-on-map');
    document.querySelector('body').className += ' ideas-on-map';
    OpenStadComponents.IdeasOnMap.renderElement(element, config);
+
+   {% if data.widget.redirectAfterSubmitIdea %}
+	 window.addEventListener('newIdeaStored', function(event) {
+		 window.location = '{{data.widget.redirectAfterSubmitIdea}}';
+	 });
+   {% endif %}
+
  });
 </script>
+
+
 <div id="{{data.widget.containerId}}" class="osc-component" style="width: 100%; height: 100%;">
 	<div class="openstad-component-ideas-on-map" style="width: 100%; height: 100%;"></div>
 </div>
