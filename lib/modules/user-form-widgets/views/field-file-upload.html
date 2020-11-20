@@ -7,8 +7,7 @@
     <input type="file" class="fileUploader filepond" {{ "required" if (field.validation and field.validation.indexOf('required') > -1) }} />
 
 </fieldset>
-<input type="hidden" name="validateImages" multiple />
-<input type="hidden" name="imageInputKey" value="{{ field.title }}" />
+<input type="hidden" name="fileInputKey" value="{{ field.title }}" />
 </div>
 
 <script src="/js/vendor/browser-polyfill.min.js"></script>
