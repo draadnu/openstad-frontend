@@ -4,7 +4,7 @@
   {% for choice in field.choices %}
   <div>
   <label>
-    {% if field.options.maxChoices > 1 %}
+    {% if field.options == 'checkbox' %}
     <input
       type="checkbox"
       name="data[{{field.title}}][]"
@@ -26,4 +26,24 @@
   </label>
   </div>
   {% endfor %}
+  {% if field.options == 'checkbox' %}
+  <div class="anders_checkbox">
+    <label>
+      <input
+        type="checkbox"
+        name="data[{{field.title}}][]"
+        value="anders"
+        class="anders"
+      />
+      Anders, namelijk:
+    </label>
+  </div>
+  <div class="anders_input hidden">
+    <input type="text"
+           name="data[{{field.title}}][Anders, namelijk]"
+           class="input-field"
+           value=""
+           />
+  </div>
+  {% endif %}
 </div>
