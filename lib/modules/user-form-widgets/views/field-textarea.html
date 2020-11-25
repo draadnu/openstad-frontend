@@ -1,6 +1,8 @@
 <div class="form-group">
   <h3>{{field.title}}</h3>
+  {% if field.description %}
   <div class="description"><p>{{field.description | sanitize | safe}}</p></div>
+  {% endif %}
   <textarea
     rows="8"
     name="data[{{field.title}}]"

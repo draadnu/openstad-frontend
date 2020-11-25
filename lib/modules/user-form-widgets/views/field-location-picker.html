@@ -1,6 +1,8 @@
 <div id="location">
   <h3>{{field.title}}</h3>
+  {% if field.description %}
   <div class="description"><p>{{field.description | sanitize | safe}}</p></div>
+  {% endif %}
   <input
     id="locationField"
     type="hidden"
