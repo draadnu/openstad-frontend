@@ -8,8 +8,15 @@
 {#		{{field.inputAttributes.split(' ')}}
     class="{{field.inputClasses.split(' ')}}"
   #}
-  {% if field.width %}
-    style="width: {{ field.width }}px;"
+  {% if field.width or field.height %}
+    style="
+    {% if field.width %}
+      width: {{ field.width }}px;
+    {% endif %}
+    {% if field.height %}
+      width: {{ field.height }}px;
+    {% endif %}
+  "
   {% endif %}
   >
   </textarea>
