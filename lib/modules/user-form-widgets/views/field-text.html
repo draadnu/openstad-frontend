@@ -8,5 +8,8 @@
 {#		{{field.inputAttributes.split(' ')}}
     class="{{field.inputClasses.split(' ')}}"
   #}
+  {% if field.width %}
+    style="width: {{ field.width }}px;"
+  {% endif %}
   />
 </div>
