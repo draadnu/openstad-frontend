@@ -13,5 +13,8 @@
   {% if field.width %}
     style="width: {{ field.width }}px;"
   {% endif %}
+  {% if field.validation and field.validation.indexOf('required') > -1 %}
+    required="required"
+  {% endif %}
   />
 </div>
