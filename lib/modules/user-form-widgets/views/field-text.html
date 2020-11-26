@@ -1,4 +1,8 @@
-<div class="form-group">
+<div class="form-group
+  {% if field.validation and field.validation.indexOf('required') > -1 %}
+    field-required
+  {% endif %}
+">
   <h3>{{field.title}}</h3>
   {% if field.description %}
   <div class="description"><p>{{field.description | sanitize | safe}}</p></div>
