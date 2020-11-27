@@ -66,6 +66,7 @@ const contentWidgets = {
   'image': {},
   'info-bar': {},
   'link': {},
+  'text-counter': {},
   'list': {},
   'begroot': {
     addLabel: 'Begroot (deprecated, please use Participatory budgetting)',
