@@ -17,7 +17,7 @@
   {% if field.width or field.height %}
     style="
     {% if field.width %}
-      width: {{ field.width }}px;
+      max-width: {{ field.width }}px;
     {% endif %}
     {% if field.height %}
       height: {{ field.height }}px;

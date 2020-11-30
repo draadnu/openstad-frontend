@@ -15,7 +15,7 @@
     class="{{field.inputClasses.split(' ')}}"
   #}
   {% if field.width %}
-    style="width: {{ field.width }}px;"
+    style="max-width: {{ field.width }}px;"
   {% endif %}
   {% if field.validation and field.validation.indexOf('required') > -1 %}
     required="required"
