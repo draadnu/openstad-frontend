@@ -1,6 +1,10 @@
 {% macro numberPlateButton(name, caption, value, href, color="#004699") %}
 	{% if href %}
-		<a href="/plannen" class="{{name}}">
+		{% if data.global.siteTitle == 'Schipperskwartier Bepaalt' %}
+			<a href="/" class="{{name}}">
+		{% else %}
+			<a href="/plannen" class="{{name}}">
+		{% endif %}
 	{% else %}
 			<div class="{{name}}">
 	{% endif %}
