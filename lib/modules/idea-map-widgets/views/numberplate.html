@@ -1,5 +1,6 @@
 {% macro numberPlateButton(name, caption, value, href, color="#004699", data) %}
 	{% if href %}
+{{ apos.log (data.global) }}
 		{% if data and data.global and (data.global.siteId == 51 or data.global.siteId == 52) %}
 			<a href="{{data.global.ctaButtonUrl}}" class="{{name}}">
 		{% else %}
