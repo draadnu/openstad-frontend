@@ -1,6 +1,10 @@
 {% macro numberPlateButton(name, caption, value, href, color="#004699") %}
 	{% if href %}
-		<a href="/plannen" class="{{name}}">
+		{% if href == '#' %}
+			<a href="/plannen" class="{{name}}">
+		{% else %}
+			<a href="{{ href }}" class="{{name}}">
+		{% endif %}
 	{% else %}
 			<div class="{{name}}">
 	{% endif %}
