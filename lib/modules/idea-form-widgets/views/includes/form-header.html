@@ -2,6 +2,10 @@
   <div class="form-group">
     <h2>Naam</h2>
     <p>
-      {{data.openstadUser.firstName}} {{data.openstadUser.lastName}} <em>(je emailadres wordt nooit gepubliceerd)</em>
+      {% if data.global.showLastName %}
+        {{data.openstadUser.firstName}} {{data.openstadUser.lastName}} <em>(je emailadres wordt nooit gepubliceerd)</em>
+      {% else %}
+        {{data.openstadUser.firstName}} <em>(je emailadres wordt nooit gepubliceerd)</em>
+      {% endif %}
     </p>
   </div>
