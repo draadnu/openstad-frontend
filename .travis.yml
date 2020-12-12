@@ -26,7 +26,6 @@ env:
     - HELM_REPO_NAME=openstad-kubernetes
     - HELM_CHART_FOLDER=k8s/openstad
     - GITOPS_VALUES_FILE=k8s/openstad/environments/dev.values.yaml
-    - IMAGE_TAG=${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
 
 services:
   - docker
@@ -42,7 +41,6 @@ script:
   - docker run -e CI=true ${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}  npm run test -- --coverage
   - docker-compose -f docker-compose.travis.yml run frontend node apostrophe.js apostrophe:generation
 
-
 stages:
   - name: docker_push
     if: branch = master
@@ -57,9 +55,18 @@ jobs:
   include:
     - stage: docker_push_tag
       name: 'Push new image with tag to docker'
+      env:
+        - IMAGE_TAG=${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
       script: bash docker_publish_tag
+    - stage: docker_push
+      name: 'Publish new docker image'
+      env:
+        - IMAGE_TAG=${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
+      script: bash docker_publish
     - stage: gitops
       name: "Release and commit new image tag"
+      env:
+        - IMAGE_TAG=${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
       script: bash gitops_push
     - stage: kubectl_deploy
       name: "Deploy: Kubectl set image"
