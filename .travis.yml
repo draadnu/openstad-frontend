@@ -33,8 +33,7 @@ services:
 
 addons:
   snaps:
-    – name: yq
-      confinement: classic # or devmode
+    – yq
 
 stages:
   - name: docker_push
