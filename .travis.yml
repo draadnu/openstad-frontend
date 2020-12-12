@@ -36,11 +36,12 @@ addons:
     – yq
 
 before_install:
-  - docker build -t $IMAGE_TAG} .
+  - docker build -t ${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} .
 
 script:
-  - docker run -e CI=true ${IMAGE_TAG}  npm run test -- --coverage
+  - docker run -e CI=true ${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}  npm run test -- --coverage
   - docker-compose -f docker-compose.travis.yml run frontend node apostrophe.js apostrophe:generation
+
 
 stages:
   - name: docker_push
@@ -48,9 +49,9 @@ stages:
   - name: docker_push_tag
     if: tag IS present
   - name: kubectl_deploy
-    if: env(KUBE_DEPLOY) = true AND branch IN (env(RELEASE_BRANCHES))
+    if: env(KUBE_DEPLOY) IS present AND branch IN (env(RELEASE_BRANCHES))
   - name: gitops
-    if: env(GITOPS) = true AND branch IN (env(RELEASE_BRANCHES))
+    if: env(GITOPS) IS present AND branch IN (env(RELEASE_BRANCHES))
 
 jobs:
   include:
