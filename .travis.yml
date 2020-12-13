@@ -1,12 +1,15 @@
-sudo: required
 dist: xenial
-language: minimal
+language: shell
+os: linux
 
 # easy way to get your local config: cat ${HOME}/.kube/config | base64 | pbcopy
 env:
   global:
-    - DOCKER_PUBLIC_USERNAME=openstad
-    - DOCKER_IMAGE_NAME=frontend
+    - DOCKER_PUBLIC_USERNAME=${DOCKER_PUBLIC_USERNAME:-openstad}
+    - DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME:-frontend}
+    - DEV_RELEASE_BRANCHES=${DEV_RELEASE_BRANCHES:-^development}
+    - ACC_RELEASE_BRANCHES=${ACC_RELEASE_BRANCHES:-^staging}
+    - PROD_RELEASE_BRANCHES=${PROD_RELEASE_BRANCHES:-^master$}
     - K8S_DEPLOYMENT_NAME=openstad-frontend
     - K8S_NAMESPACE=openstad
     - FRONTED_PORT=4444
@@ -25,7 +28,6 @@ env:
     - APP_URL=http://localhost:4444
     - HELM_REPO_NAME=openstad-kubernetes
     - HELM_CHART_FOLDER=k8s/openstad
-    - GITOPS_VALUES_FILE=k8s/openstad/environments/dev.values.yaml
 
 services:
   - docker
@@ -35,6 +37,8 @@ addons:
     – yq
 
 before_install:
+  - echo ${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
+  - echo ${DEV_RELEASE_BRANCHES}
   - docker build -t ${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} .
 
 script:
@@ -47,9 +51,11 @@ stages:
   - name: docker_push_tag
     if: tag IS present
   - name: kubectl_deploy
-    if: env(KUBE_DEPLOY) IS present AND branch IN (env(RELEASE_BRANCHES))
-  - name: gitops
-    if: env(GITOPS) IS present AND branch IN (env(RELEASE_BRANCHES))
+    if: env(KUBE_DEPLOY) IS present AND branch =~ env(PROD_RELEASE_BRANCHES)
+  - name: gitops_dev
+    if: env(GITOPS) IS present AND branch =~ env(DEV_RELEASE_BRANCHES)
+  - name: gitops_dev
+    if: env(GITOPS) IS present AND tag IS present
 
 jobs:
   include:
@@ -61,11 +67,21 @@ jobs:
     - stage: docker_push
       name: 'Publish new docker image'
       script: bash docker_publish
-    - stage: gitops
-      name: "Release and commit new image tag"
-      env:
-        - IMAGE_TAG=${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
-      script: bash gitops_push
     - stage: kubectl_deploy
       name: "Deploy: Kubectl set image"
       script: bash docker_deploy
+    - stage: gitops_dev
+      name: "Release and commit new image tag"
+      env:
+        - IMAGE_TAG=${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
+        - GITOPS_VALUES_FILE=k8s/openstad/environments/dev.values.yaml
+        - GITOPS_RELEASE_BRANCH=develop
+      script: bash gitops_push
+    - stage: gitops_tag
+      name: "Release and commit new image tag"
+      env:
+        - IMAGE_TAG=${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_TAG}
+        - GITOPS_VALUES_FILE=k8s/openstad/environments/prod.values.yaml
+        - GITOPS_RELEASE_BRANCH=master
+      script: bash gitops_push
+
