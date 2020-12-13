@@ -60,8 +60,6 @@ jobs:
       script: bash docker_publish_tag
     - stage: docker_push
       name: 'Publish new docker image'
-      env:
-        - IMAGE_TAG=${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
       script: bash docker_publish
     - stage: gitops
       name: "Release and commit new image tag"
