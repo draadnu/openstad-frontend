@@ -73,7 +73,7 @@ stages:
   - name: kubectl_deploy_prod
     if: env(KUBE_DEPLOY) IS present AND branch =~ env(PROD_RELEASE_BRANCHES)
   - name: gitops_dev
-    if: env(GITOPS) IS present AND branch =~ env(DEV_RELEASE_BRANCHES)
+    if: env(GITOPS) IS present AND branch =~ /development|feature\/.*/
   - name: gitops_acc
     if: env(GITOPS) IS present AND branch =~ env(ACC_RELEASE_BRANCHES)
   - name: gitops_prod
