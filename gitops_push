@@ -3,21 +3,22 @@
 echo "DOCKER LOGIN"
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin;
 echo "DOCKER PUSH TAG"
-docker push ${IMAGE_TAG}
+echo ${IMAGE_TAG}
+docker push ${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
 
 git config --global user.email "travis@travis-ci.org"
 git config --global user.name "Travis CI"
 
-git clone ${HELM_REPO_WITH_TOKEN} && cd ${HELM_REPO_NAME} && \
+git clone ${HELM_REPO} && cd ${HELM_REPO_NAME} && \
 
 git remote add origin-ci ${HELM_REPO_WITH_TOKEN} > /dev/null 2>&1
 
 git checkout ${GITOPS_RELEASE_BRANCH}
 
-/snap/bin/yq write -i ${GITOPS_VALUES_FILE} frontend.deploymentContainer.image ${IMAGE_TAG}  && \
+/snap/bin/yq write -i ${GITOPS_VALUES_FILE} frontend.deploymentContainer.image ${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}  && \
 
 git add ${GITOPS_VALUES_FILE} && \
 
-git commit -am "Release ${IMAGE_TAG}" && \
+git commit -am "Release ${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}" && \
 
 git push --quiet --set-upstream origin-ci ${GITOPS_RELEASE_BRANCH}

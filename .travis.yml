@@ -54,6 +54,7 @@ addons:
     – yq
 
 before_install:
+  - echo ${DEV_RELEASE_BRANCHES}
   - docker build -t ${DOCKER_PUBLIC_USERNAME}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} .
 
 script:
