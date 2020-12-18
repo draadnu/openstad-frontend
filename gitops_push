@@ -1,12 +1,14 @@
 #!/bin/bash
 
+echo "DOCKER LOGIN"
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin;
+echo "DOCKER PUSH TAG"
 docker push ${IMAGE_TAG}
 
 git config --global user.email "travis@travis-ci.org"
 git config --global user.name "Travis CI"
 
-git clone ${HELM_REPO} && cd ${HELM_REPO_NAME} && \
+git clone ${HELM_REPO_WITH_TOKEN} && cd ${HELM_REPO_NAME} && \
 
 git remote add origin-ci ${HELM_REPO_WITH_TOKEN} > /dev/null 2>&1
 
