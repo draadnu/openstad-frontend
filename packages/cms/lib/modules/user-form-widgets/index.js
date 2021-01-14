@@ -213,7 +213,7 @@ module.exports = {
         self.route('post', 'submit', (req, res) => {
             const apiUrl      = self.apos.settings.getOption(req, 'apiUrl');
             const appUrl      = self.apos.settings.getOption(req, 'appUrl');
-            const redirectUrl = (req.body.redirectUrl ? appUrl + req.body.redirectUrl : req.header('Referer') || appUrl);
+            const redirectUrl = (req.body.redirectUrl ? req.body.redirectUrl : req.header('Referer') || appUrl);
             const siteId      = req.data.global.siteId;
             const body        = {
                 submittedData: {},
