@@ -188,12 +188,15 @@ module.exports = {
             const form        = req.query.form;
             const apiUrl      = self.apos.settings.getOption(req, 'apiUrl');
             const siteId      = req.data.global.siteId;
+            
+            const auth        = `Bearer ${req.session.jwt}`;
 
             const options = {
                 method:  'GET',
                 uri:     apiUrl + `/api/site/${siteId}/submission/${form}`,
                 headers: {
                     'Accept': 'application/json',
+                    'X-Authorization': auth
                 },
                 json:    true // Automatically parses the JSON string in the response
             };
@@ -210,7 +213,7 @@ module.exports = {
         self.route('post', 'submit', (req, res) => {
             const apiUrl      = self.apos.settings.getOption(req, 'apiUrl');
             const appUrl      = self.apos.settings.getOption(req, 'appUrl');
-            const redirectUrl = (req.body.redirectUrl ? appUrl + req.body.redirectUrl : req.header('Referer') || appUrl);
+            const redirectUrl = (req.body.redirectUrl ? req.body.redirectUrl : req.header('Referer') || appUrl);
             const siteId      = req.data.global.siteId;
             const body        = {
                 submittedData: {},
