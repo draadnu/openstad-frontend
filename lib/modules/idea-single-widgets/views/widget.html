@@ -161,7 +161,11 @@
 
 			<div id="author">
 				{% if data.global.showLastName %}
+					{% if not idea.user.lastName or idea.user.lastName == 'null' %}
+					<strong>Door: {{idea.user.firstName}}</strong><br>
+					{% else %}
 					<strong>Door: {{idea.user.firstName}} {{idea.user.lastName}}</strong><br>
+					{% endif %}
 				{% else %}
 					<strong>Door: {{idea.user.firstName}}</strong><br>
 				{% endif %}
