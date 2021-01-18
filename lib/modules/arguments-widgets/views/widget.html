@@ -41,7 +41,6 @@
 {% endfor %}
 {% else %}
 <div class="noArguments">
-  {{ apos.log (data.widget.ajaxError, data.hasModeratorRights) }}
     {% if data.widget.ajaxError and data.hasModeratorRights %}
       <strong style="color: red; font-size: 28px">Fout opgetreden: {{ data.widget.ajaxError }}</strong><br />
     {% endif %}
