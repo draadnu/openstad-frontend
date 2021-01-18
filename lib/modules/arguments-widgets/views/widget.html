@@ -1,6 +1,8 @@
 {% set mayVote = data.widget.votingEnabled %}
 {% set maySeeReplyForm = data.widget.replyingEnabled %}
 
+{{ apos.log ('from view', data.widget.ideaId, data.widget.arguments) }}
+
 {% if not data.widget.ideaId  %}
   {% set ideaId = data.idea.id %}
 
