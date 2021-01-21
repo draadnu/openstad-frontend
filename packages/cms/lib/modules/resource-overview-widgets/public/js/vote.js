@@ -210,7 +210,7 @@ function selectIdea(newIdeaId, doNotOpen) {
   setNextButton();
   setLoginUrlWithIdeaId(ideaId);
 
-  location.href = "#vote-creator-anchor";
+  location.hash = "#vote-creator-anchor";
 
   return false;
 }

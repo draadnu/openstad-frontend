@@ -15,7 +15,7 @@
   "author": "Team Openstad: Niels Denes & Tosh Koevoets",
   "license": "MIT",
   "dependencies": {
-    "apostrophe": "2.107.2",
+    "apostrophe": "2.113.0",
     "apostrophe-area-structure": "^1.0.3",
     "apostrophe-blog": "^2.1.2",
     "apostrophe-palette": "^2.0.23",
@@ -33,7 +33,7 @@
     "http-proxy-middleware": "^0.19.1",
     "install": "^0.13.0",
     "json2csv": "^4.5.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "mocha": "^7.2.0",
     "mongodb": "^2.2.33",
     "multer": "^1.4.2",
