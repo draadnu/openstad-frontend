@@ -6,6 +6,8 @@
 * Clear cached session openstad user when making api call or logging out
 * Add an extra choices type to the choices guide
 * Accessibility improvements
+* Update apostrophe to 2.113.0 for @openstad/cms & run `npm update` in root to fix a YouTube oembed bug
+* Add an oembed API endpoint to siteConfig for vimeo.com videos to prevent Vimeo blocking scrapes from oembetter
 
 ## v0.10.1 (2020-12-09)
 * Cache openstad user longer when logged in to cms
