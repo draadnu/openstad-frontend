@@ -212,3 +212,7 @@
 {% include 'includes/modal-vote-overview.html' %}
 {% include 'includes/modal-extra-info.html' %}
 {% endif %}
+
+{% if data.widget.showLikeError %}
+<script>window.alert('Je hebt al gestemd op dit plan.')</script>
+{% endif %}
