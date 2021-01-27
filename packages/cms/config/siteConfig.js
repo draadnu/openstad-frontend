@@ -64,7 +64,7 @@ module.exports = {
               httpOnly: true,
               secure: process.env.COOKIE_SECURE_OFF === 'yes' ? false : true,
               // Default login lifetime between requests is one day
-              maxAge: process.env.COOKIE_MAX_AGE || 86400000
+              maxAge: parseInt(process.env.COOKIE_MAX_AGE) && ! isNaN(parseInt(process.env.COOKIE_MAX_AGE)) ? parseInt(process.env.COOKIE_MAX_AGE) : 86400000
             }
           },
           csrf: {
@@ -138,7 +138,11 @@ module.exports = {
           siteUrl: siteUrl,
         },
         'openstad-custom-pages': {},
-        'openstad-oembed': {},
+        'openstad-oembed': {
+          endpoints: [
+            { domain: 'vimeo.com', endpoint: 'https://vimeo.com/api/oembed.json' }
+          ]
+        },
 
 
         // Apostrophe module configuration
