@@ -2,6 +2,8 @@
 
 ## v0.13.0
 * Make from paths abslute using siteUrl
+* Update apostrophe to 2.113.0 for @openstad/cms & run `npm update` in root to fix a YouTube oembed bug
+* Add an oembed API endpoint to siteConfig for vimeo.com videos to prevent Vimeo blocking scrapes from oembetter
 
 ## v0.12.1
 * Fix logo syncing with absolute url so in auth server correct logo is visible
