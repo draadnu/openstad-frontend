@@ -1813,9 +1813,10 @@ if (votingContainer !== null) {
 
 		var div = document.createElement('div');
 		div.setAttribute('role', 'alert');
+		div.setAttribute('aria-live', 'polite');
 		div.className = 'sr-only';
 
-		div.innerHTML = planMessage +' Uw gekozen budget bedraagt: ' + formatEuros(initialAvailableBudget - availableBudgetAmount) + ' U heeft nog over: ' + formatEuros(availableBudgetAmount);
+		div.innerHTML = planMessage +' Uw gekozen budget bedraagt: ' + formatEuros(initialAvailableBudget - availableBudgetAmount) + '. U heeft nog  ' + formatEuros(availableBudgetAmount) + ' budget over.';
 		document.body.appendChild(div);
 
 	}
