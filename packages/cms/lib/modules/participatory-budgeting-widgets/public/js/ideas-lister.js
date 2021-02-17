@@ -8,9 +8,9 @@
     animationSpeed: 300,
     animationEasing: "easeInOutExpo",
     showNav: true,                      // Show Navigation
-    nextText: "<span></span>", // Next button text
-    prevText: "<span></span>", // Previous button text
-    closeText: "", // Close button text                // Close button text
+    nextText: "<span class='sr-only'>" + (window.gridderTranslations && window.gridderTranslations.next ? window.gridderTranslations.next : '') + "</span>", // Next button text
+    prevText: "<span class='sr-only'>" + (window.gridderTranslations && window.gridderTranslations.previous ? window.gridderTranslations.previous : '') + "</span>", // Previous button text
+    closeText: "<span class='sr-only'>" + (window.gridderTranslations && window.gridderTranslations.close ? window.gridderTranslations.close : '') + "</span>", // Close button text
     onStart: function(target) {
 			var isPhone = document.querySelector('body').offsetWidth < 700; // isPhone - todo: betere afvanging
 			this.scrollOffset = isPhone ? -40: 100;
