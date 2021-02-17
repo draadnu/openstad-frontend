@@ -49,7 +49,10 @@
 
       {% if data.widget.siteConfig.minimumYesVotes %}
       <div class="ideaProgress">
-        <div class="progress"><div class="bar {{idea.status}}" style="width: {{idea.progress}}%;"></div></div>
+        <div class="progress">
+          <div class="bar {{idea.status}}" style="width: {{idea.progress}}%;"></div>
+          <span class="sr-only">{{ __('Dit plan heeft %s van de %s benodigde stemmen behaald.', idea.yes, data.widget.siteConfig.minimumYesVotes) }}</span>
+        </div>
       </div>
       {% endif %}
       <div class="ideaStats">
