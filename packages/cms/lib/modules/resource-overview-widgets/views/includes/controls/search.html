@@ -2,10 +2,10 @@
 <div class="search-wrapper">
   <input type="text" placeholder="Zoeken" name="search" value="{{data.query.search}}" class="search openstad-ajax-refresh-input" onkeyup="console.log(this); $(this).siblings('button').addClass('active'); $(this).siblings('.search-reset').removeClass('active');">
 
-  <a type="submit" class="search-reset openstad-ajax-refresh-click {{'active' if data.query.search}}" data-reset-search="1">
+  <a type="submit" class="search-reset openstad-ajax-refresh-click {{'active' if data.query.search}}" data-reset-search="1" aria-label="Annuleer zoekopdracht">
     <img src="{{appUrl}}/modules/openstad-assets/img/close.svg" width="16" height="16" />
   </a>
-  <button type="submit"  class="{{'active' if not data.query.search}}" >
+  <button type="submit"  class="{{'active' if not data.query.search}}" aria-label="Zoeken">
     <img src="{{appUrl}}/modules/openstad-assets/img/search.svg" width="16" height="16" />
   </button>
 </div>
