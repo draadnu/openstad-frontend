@@ -64,6 +64,13 @@ module.exports = {
         const sheets = process.env.STYLESHEETS.split(',');
         req.data.envStyleSheets = sheets;
       }
+      
+      // Add current language to the global data
+      if (self.apos.i18n) {
+        req.data.global.locale = self.apos.i18n.getLocale();
+      } else if (self.apos.workflow) {
+        req.data.global.locale = self.apos.workflow.lang();
+      }
 
       //for legacy purposes, remove to better solutions at some point
       //Amsterdam
