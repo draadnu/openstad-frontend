@@ -1507,6 +1507,10 @@ if (votingContainer !== null) {
   $(window).on('hashchange', function() {
     //	displayIdeaOnHash();
   });
+  
+  $(window).on('resize', function () {
+  	updateBudgetDisplay();
+	})
 
   $(document).on('click', '.current-budget-images a', function (ev) {
 	  setTimeout(function() {
