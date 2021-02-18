@@ -207,10 +207,10 @@
 					  </div>
             <div class="themes-buttons">
 						  {% for theme in data.global.themes %}
-              <div class="theme-button theme-{{theme.color | replace("#", "")}}" onclick="setTheme('{{loop.index}}')">
-                <div class="theme-button-color theme-{{theme.color | replace("#", "")}}"></div>
-                <div class="theme-button-text">{{theme.value | sanitize | safe}}</div>
-              </div>
+              <button class="theme-button theme-{{theme.color | replace('#', '')}}" onclick="setTheme('{{loop.index}}')">
+                <span class="theme-button-color theme-{{theme.color | replace('#', '')}}"></span>
+                <span class="theme-button-text">{{theme.value | sanitize | safe}}</span>
+              </button>
 						  {% endfor %}
 						  <div style="clear: both;"></div>
             </div>
@@ -221,7 +221,7 @@
             <div class="themes-bar">
               <div class="theme-current"></div>
 						  {% for theme in data.global.themes %}
-              <div class="theme-tab theme-{{theme.color | replace("#", "")}} theme-tab-default" onclick="setTheme('{{loop.index}}')">{{theme.value | sanitize | safe}}</div>
+              <button class="theme-tab theme-{{theme.color | replace('#', '')}} theme-tab-default" onclick="setTheme('{{loop.index}}')">{{theme.value | sanitize | safe}}</button>
 						  {% endfor %}
             </div>
 					  {% endif %}
