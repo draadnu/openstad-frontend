@@ -344,10 +344,24 @@ function initRoleRequired() {
             //show login popup.
             var modalText = $(this).attr('data-modal-text');
             $('#login-required').find('.modal-login-text').text(modalText);
+            window.$previousFocusElement = $(this);
             location.hash = 'login-required';
+            
+            // Focus the modal text so screenreaders start reading immediately
+            $('#login-required').find('.modal-login-text').focus()
             return false;
         }
     });
+  
+    // Return focus to the previous focused element upon closing the modal
+    window.onhashchange = function () {
+        if (location.hash === '#closed' && window.$previousFocusElement) {
+            window.$previousFocusElement.focus();
+            window.$previousFocusElement = null;
+        }
+    }
+    
+    trapFocus(document.querySelector('#login-required'));
 
 }
 
@@ -621,4 +635,38 @@ function initImagesGallery() {
         }
 
     }
+}
+
+/**
+ * Function to trap focus inside an element
+ *
+ * Source: https://hiddedevries.nl/en/blog/2017-01-29-using-javascript-to-trap-focus-in-an-element
+ * Slighty changed to also take p tags with a tabindex attribute into consideration.
+ * @param element
+ */
+function trapFocus(element) {
+  var focusableEls     = element.querySelectorAll('p[tabindex], a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'),
+      firstFocusableEl = focusableEls[0],
+      lastFocusableEl  = focusableEls[focusableEls.length - 1],
+      KEYCODE_TAB      = 9;
+  
+  element.addEventListener('keydown', function (e) {
+    var isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
+    
+    if (!isTabPressed) {
+      return;
+    }
+    
+    if (e.shiftKey) /* shift + tab */ {
+      if (document.activeElement === firstFocusableEl) {
+        lastFocusableEl.focus();
+        e.preventDefault();
+      }
+    } else /* tab */ {
+      if (document.activeElement === lastFocusableEl) {
+        firstFocusableEl.focus();
+        e.preventDefault();
+      }
+    }
+  });
 }
