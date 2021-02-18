@@ -393,3 +393,41 @@ FilePond.parse(document.body, {
   name: 'files',
 });
 */
+
+/**
+ * The trix toolbar is not accessible through a keyboard, see https://github.com/basecamp/trix/issues/186
+ * All solutions provided in that issue do not solve the issue.
+ *
+ * The following code ensure that when pressing Enter (keyCode 13) or Space (keyCode 32)
+ * that the selected button activates and puts focus on the trix editor.
+ * Ideally this should be fixed in the trix editor.
+ */
+$(document).ready(function () {
+  $('trix-toolbar button').on('keypress', function (e) {
+    if (e.keyCode === 32 || e.keyCode === 13) {
+      // We get the next editor, so this works correctly even if we decide to add multiple trix editors.
+      var $editor   = $(this).closest('trix-toolbar').next('trix-editor'),
+          attribute = $(this).data('trix-attribute');
+      
+      if ($editor.length) {
+        var editor           = $editor[0].editor,
+            currentSelection = editor.getSelectedRange();
+        
+        // There is this weird functionality where clicking on the button will put the focus on the editor
+        // but when (de)activating the attribute will only focus the editor when there is a selection with a length
+        // greater than 0. This check makes sure that we always add focus to the editor after using a button through
+        // the keyboard.
+        if (currentSelection[1] - currentSelection[0] === 0) {
+          editor.setSelectedRange([0, 0]);
+        }
+        
+        // There is no toggleAttribute function, so we have to check this manually.
+        if (editor.attributeIsActive(attribute)) {
+          editor.deactivateAttribute(attribute);
+        } else {
+          editor.activateAttribute(attribute);
+        }
+      }
+    }
+  })
+});
