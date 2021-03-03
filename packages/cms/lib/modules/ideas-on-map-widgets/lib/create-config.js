@@ -39,12 +39,12 @@ module.exports = function createConfig(widget, data, jwt, apiUrl) {
 
   let ideaTypes = data.global.siteConfig && data.global.siteConfig.ideas && typeof data.global.siteConfig.ideas.types != 'undefined' ? data.global.siteConfig.ideas.types : undefined;
 
+  let search = {
+    searchIn: { 'ideas and addresses': ['ideas', 'addresses'], 'ideas': ['ideas'], 'addresses': ['addresses'], 'none': [] }[ widget.searchIn ] || [],
+    placeholder: widget.searchPlaceHolder,
+  };
   if(widget.addressSearchCity) {
-    const search = {
-      search: {
-        city: widget.addressSearchCity
-      }
-    };
+    search.city = widget.addressSearchCity;
   }
   let config = {
     // data.isAdmin
@@ -60,7 +60,7 @@ module.exports = function createConfig(widget, data, jwt, apiUrl) {
       role:  data.openstadUser && data.openstadUser.role,
       fullName:  data.openstadUser && (data.openstadUser.fullName || data.openstadUser.firstName + ' ' + data.openstadUser.lastName)
     },
-    search,
+    search: search,
 		displayType: widget.displayType,
 		displayWidth: widget.displayWidth,
 		displayHeight: widget.displayHeight,
@@ -70,11 +70,6 @@ module.exports = function createConfig(widget, data, jwt, apiUrl) {
     startWithListOpenOnMobile: widget.startWithListOpenOnMobile,
 
     linkToUserPageUrl: widget.linkToUserPageUrl,
-
-    search: {
-      searchIn: { 'ideas and addresses': ['ideas', 'addresses'], 'ideas': ['ideas'], 'addresses': ['addresses'], 'none': [] }[ widget.searchIn ] || [],
-      placeholder: widget.searchPlaceHolder,
-    },
 
     content: contentConfig,
     ideaName: widget.ideaName,
