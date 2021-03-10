@@ -122,7 +122,7 @@ module.exports = function createConfig(widget, data, jwt, apiUrl) {
         maxClusterRadius: widget.mapMaxClusterRadius,
       },
       autoZoomAndCenter: widget.mapAutoZoomAndCenter,
-      polygon: ( data.global.siteConfig && data.global.siteConfig.openstadMap && data.global.siteConfig.openstadMap.polygon ) || undefined,
+      polygon: ( data.global.mapPolygons ) || undefined,
       showCoverageOnHover: false,
 		}
   }
