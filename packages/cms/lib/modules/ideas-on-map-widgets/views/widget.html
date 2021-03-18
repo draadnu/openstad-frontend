@@ -21,7 +21,7 @@
    OpenStadComponents.IdeasOnMap.renderElement(element, config);
 
    {% if data.widget.redirectAfterSubmitIdea %}
-	 window.addEventListener('newIdeaStored', function(event) {
+	 document.addEventListener('newIdeaStored', function(event) {
 		 window.location = '{{data.widget.redirectAfterSubmitIdea}}';
 	 });
    {% endif %}
