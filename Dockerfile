@@ -35,6 +35,8 @@ RUN apk add --no-cache --update openssl g++ make python musl-dev git bash
 # Set the working directory to the root of the container
 WORKDIR /home/app
 
+RUN npm install -g nodemon
+
 # Set node ownership to/home/app
 RUN chown node:node /home/app
 
@@ -44,8 +46,6 @@ USER node
 
 # Install node modules
 RUN npm install --loglevel warn --production
-
-#RUN npm install -g nodemon
 
 # Bundle app source
 COPY --chown=node:node . /home/app
