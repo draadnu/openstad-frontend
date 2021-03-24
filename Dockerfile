@@ -35,20 +35,30 @@ RUN apk add --no-cache --update openssl g++ make python musl-dev git bash
 # Set the working directory to the root of the container
 WORKDIR /home/app
 
-# Bundle app source
-COPY . /home/app
+# Set node ownership to/home/app
+RUN chown node:node /home/app
 
-RUN cp -r ./packages/cms/test test
+COPY --chown=node:node package*.json /home/app
 
-RUN mkdir ~/.ssh ; echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+USER node
 
 # Install node modules
 RUN npm install --loglevel warn --production
 
-RUN npm install -g nodemon
+#RUN npm install -g nodemon
+
+# Bundle app source
+COPY --chown=node:node . /home/app
+
+COPY --chown=node:node ./packages/cms/test test
+
+RUN mkdir ~/.ssh ; echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
 # Remove unused packages only used for building.
+USER root
 RUN apk del openssl g++ make python && rm -rf /var/cache/apk/*
+
+USER node
 
 RUN mkdir -p /home/app/public
 RUN mkdir -p /home/app/public/modules
@@ -62,10 +72,6 @@ RUN mkdir -p /home/app/data
 #VOLUME /home/app/data
 VOLUME /home/app/public/uploads
 RUN mkdir -p /home/app/public/uploads/assets
-
-# Set node ownership to/home/app
-RUN chown -R node:node /home/app
-USER node
 
 # Exposed ports for application
 EXPOSE 4444/tcp
