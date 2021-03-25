@@ -22,6 +22,10 @@
 	<img src="{{apos.attachments.url(data.widget.icon)}}"
        {% if data.widget.iconAltText %}
         alt="{{data.widget.iconAltText}}"
+       {% else %}
+        aria-hidden="true"
+        focusable="false"
+        tabindex="-1"
        {% endif %}
   />
   {% endif %}
