@@ -97,6 +97,9 @@ module.exports = {
         req.data.global.analyticsType = 'google-analytics-old-style';
         req.data.global.analyticsIdentifier = req.data.global.analytics;
       }
+      
+      // Set the siteTitle as sensible default for the logo alt text
+      req.data.global.siteLogoAltText = req.data.global.siteLogoAltText || req.data.global.siteTitle;
 
       // get the identifier for making sure that the custom js/css files we load in also bust the cache
       req.data.assetsGeneration = fs.existsSync('data/generation') ? fs.readFileSync('data/generation').toString().trim() : Math.random().toString(36).slice(-5);

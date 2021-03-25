@@ -72,6 +72,25 @@ module.exports = {
         if (pageData && pageData.notLoggedInRedirect && !req.data.loggedIn) {
           return req.res.redirect(pageData.notLoggedInRedirect);
         }
+        
+        // Append the title of the current piece/page/resource to the site logo alt text
+        // As per recommendation of the accessibility audit
+        let appendTitle = '';
+        if (req.data.piece) {
+          appendTitle = req.data.piece.title;
+        } else if (req.data.page) {
+          if (req.data.page.metaTitle) {
+            appendTitle = req.data.page.metaTitle;
+          } else if (req.data.activeResource && req.data.activeResource.title) {
+            appendTitle = req.data.activeResource.title;
+          } else if (req.data.page && req.data.page.title) {
+            appendTitle = req.data.page.title;
+          }
+        }
+        
+        if (appendTitle) {
+          req.data.global.siteLogoAltText = req.data.global.siteLogoAltText ? `${req.data.global.siteLogoAltText}, ${appendTitle}` : `${data.global.siteTitle}, ${appendTitle}`;
+        }
 
         self.setActiveIdeaId(req);
         self.addRankingToIdeas(req);

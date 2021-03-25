@@ -28,7 +28,7 @@ module.exports = [
     {
         name: 'design',
         label: 'Vormgeving',
-        fields: ['siteLogo', 'logoLink', 'stylesheets', 'inlineCss', 'applyPaletteStyling']
+        fields: ['siteLogo', 'siteLogoAltText', 'logoLink', 'stylesheets', 'inlineCss', 'applyPaletteStyling']
     },
     {
         name: 'footer',

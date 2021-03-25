@@ -217,6 +217,11 @@ module.exports = [
     apiSyncField: 'styling.logo',
   },
   {
+    name: 'siteLogoAltText',
+    type: 'string',
+    label: 'Alternative text for logo (For accessibility)'
+  },
+  {
     name: 'formattedPaletteCSS',
     type: 'string',
     label: 'Formatted CSS',

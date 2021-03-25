@@ -146,19 +146,19 @@ header-side-container{% if data.idea %}
         {% if data.global.siteLogo %}
         {% if data.global.siteLogo === 'amsterdam' %}
         <a href="{{data.siteUrl}}{{logoLink}}/" class="logo-container">
-          <img src="/modules/openstad-assets/img/andreas.svg" alt="logo">
+          <img src="/modules/openstad-assets/img/andreas.svg" alt="{{data.global.siteLogoAltText}}">
           <div id="amsterdam">
             Gemeente<br>Amsterdam
           </div>
         </a>
         {% else %}
         <a href="{{data.siteUrl}}{{logoLink}}/" class="logo-uploaded logo-main-container">
-          <img src="{{apos.attachments.url(data.global.siteLogo)}}" alt="logo" id="logo-image">
+          <img src="{{apos.attachments.url(data.global.siteLogo)}}" alt="{{data.global.siteLogoAltText}}" id="logo-image">
         </a>
         {% endif %}
         {% else %}
         <a href="{{data.siteUrl}}{{logoLink}}/" class="logo-default logo-main-container">
-          <img class="default"src="/modules/openstad-assets/img/logo-openstad.png" alt="logo">
+          <img class="default"src="/modules/openstad-assets/img/logo-openstad.png" alt="{{data.global.siteLogoAltText}}">
         </a>
         {% endif %}
         <div class="header-side-container {{ 'without-site-title' if data.global.hideSiteTitle}}">
