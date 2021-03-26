@@ -42,7 +42,7 @@ RUN npm install -g nodemon
 # Set node ownership to/home/app
 RUN chown node:node /home/app
 
-COPY --chown=node:node package*.json /home/app
+COPY --chown=node:node package*.json /home/app/
 
 USER node
 
