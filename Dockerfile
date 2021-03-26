@@ -73,7 +73,11 @@ RUN mkdir -p /home/app/data
 # Mount persistent storage
 #VOLUME /home/app/data
 VOLUME /home/app/public/uploads
+
+USER root
 RUN mkdir -p /home/app/public/uploads/assets
+
+USER node
 
 # Exposed ports for application
 EXPOSE 4444/tcp
