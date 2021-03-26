@@ -71,12 +71,12 @@ const fields = [
                   {
                       value: 'radio',
                       label: "Radio",
-                      showFields: ['fieldKey', 'fieldRequired', 'fieldOptions', 'notExtraDataKey']
+                      showFields: ['fieldKey', 'fieldLabel', 'fieldRequired', 'fieldOptions', 'notExtraDataKey']
                   },
                   {
                       value: 'text',
                       label: "Text",
-                      showFields: ['fieldKey', 'fieldRequired', 'fieldMin', 'fieldMax', 'notExtraDataKey']
+                      showFields: ['fieldKey', 'fieldLabel', 'fieldRequired', 'fieldMin', 'fieldMax', 'notExtraDataKey']
                   },
                   {
                       value: 'hidden',
@@ -86,12 +86,12 @@ const fields = [
                   {
                       value: 'textarea',
                       label: "Textarea",
-                      showFields: ['fieldKey', 'fieldRequired', 'fieldMin', 'fieldMax', 'notExtraDataKey']
+                      showFields: ['fieldKey', 'fieldLabel', 'fieldRequired', 'fieldMin', 'fieldMax', 'notExtraDataKey']
                   },
                   {
                       value: 'tags',
                       label: "Tags (currently only works for ideas)",
-                      showFields: ['fieldKey', 'fieldRequired', 'fieldMin', 'fieldMax']
+                      showFields: ['fieldKey', 'fieldLabel', 'fieldRequired', 'fieldMin', 'fieldMax']
                   },
                   {
                       value: 'raw',
@@ -100,106 +100,118 @@ const fields = [
                   },
                   {
                       value: 'advice',
-                      label: "Advice"
+                      label: "Advice",
+                      showFields: ['fieldLabel']
                   },
                   {
                       value: 'neighborhood',
-                      label: "Neighborhood"
+                      label: "Neighborhood",
+                      showFields: ['fieldLabel']
                   },
                   {
                       value: 'budget',
-                      label: "Budget"
+                      label: "Budget",
+                      showFields: ['fieldLabel']
                   },
                   {
                       value: 'description',
-                      label: "Description"
+                      label: "Description",
+                      showFields: ['fieldLabel']
                   },
                   {
                       value: 'estimate',
-                      label: "Estimate"
+                      label: "Estimate",
+                      showFields: ['fieldLabel']
                   },
                   {
                       value: 'image',
-                      label: "Image"
+                      label: "Image",
+                      showFields: ['fieldLabel']
                   },
                   {
                       value: 'map',
-                      label: "Map"
+                      label: "Map",
+                      showFields: ['fieldLabel']
                   },
                   {
                       value: 'phone',
-                      label: "Idea: Phone"
+                      label: "Idea: Phone",
+                      showFields: ['fieldLabel']
                   },
                   {
                       value: 'role',
-                      label: "Role"
+                      label: "Role",
+                      showFields: ['fieldLabel']
                   },
                   {
                       value: 'summary',
-                      label: "Summary"
+                      label: "Summary",
+                      showFields: ['fieldLabel']
                   },
                   {
                       value: 'theme',
-                      label: "Theme"
+                      label: "Theme",
+                      showFields: ['fieldLabel']
                   },
                   {
                       value: 'title',
-                      label: "Title"
+                      label: "Title",
+                      showFields: ['fieldLabel']
                   },
                   {
                       value: 'vimeo',
                       label: "Vimeo",
-                      showFields: ['fieldRequired']
+                      showFields: ['fieldRequired', 'fieldLabel']
                   },
                   {
                       value: 'userFirstName',
                       label: "User: Firstname",
-                      showFields: ['fieldRequired']
+                      showFields: ['fieldRequired', 'fieldLabel']
                   },
                   {
                       value: 'userLastName',
                       label: "User: Lastname",
-                      showFields: ['fieldRequired']
+                      showFields: ['fieldRequired', 'fieldLabel']
                   },
                   {
                       value: 'userPostcode',
                       label: "User: Postcode",
-                      showFields: ['fieldRequired']
+                      showFields: ['fieldRequired', 'fieldLabel']
                   },
                   {
                       value: 'function',
                       label: "User: function",
-                      showFields: ['fieldRequired']
+                      showFields: ['fieldRequired', 'fieldLabel']
                   },
                   {
                       value: 'expertise',
                       label: "User: expertise",
-                      showFields: ['fieldRequired']
+                      showFields: ['fieldRequired', 'fieldLabel']
                   },
                   {
                       value: 'userPhone',
                       label: "User: phone",
-                      showFields: ['fieldRequired']
+                      showFields: ['fieldRequired', 'fieldLabel']
                   },
                   {
                       value: 'bio',
                       label: "User: biography",
-                      showFields: ['fieldRequired']
+                      showFields: ['fieldRequired', 'fieldLabel']
                   },
                   {
                       value: 'image',
                       label: "User: profile image",
-                      showFields: ['fieldRequired']
+                      showFields: ['fieldRequired', 'fieldLabel']
                   },
                   {
                       value: 'neighborhood',
                       label: "User: neighborhood",
-                      showFields: ['fieldRequired']
+                      showFields: ['fieldRequired', 'fieldLabel']
                   },
                   {
                       value: 'userIsPublic',
                       label: "User: public status",
-                      showFields: ['fieldRequired']
+                      showFields: ['fieldRequired', 'fieldLabel']
                   },
                 ]
             },
@@ -207,6 +219,11 @@ const fields = [
               name: 'fieldKey',
               type: 'string',
               label: 'Key (for storing, must be unique, no spaces and special characters)',
+            },
+            {
+              name: 'fieldLabel',
+              type: 'string',
+              label: 'Label'
             },
             {
               name: 'fieldInfo',

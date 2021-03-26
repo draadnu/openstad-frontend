@@ -24,6 +24,13 @@
     {% for field in formSection.fields %}
     {% if not field.onlyForModerator or (field.onlyForModerator and data.hasModeratorRights) %}
     <div class="form-field-container">
+      {% if field.fieldLabel %}
+        {% if data.widget.showLabelForField(field) %}
+          <label for="{{ data.widget.getFieldId(field) }}">{{ field.fieldLabel }}</label>
+        {% else %}
+          <strong class="field_label">{{ field.fieldLabel }}</strong>
+        {% endif %}
+      {% endif %}
       <p> {{field.fieldInfo}} </p>
       {% include 'includes/fields/' + field.type + '.html' ignore missing %}
     </div>

@@ -175,12 +175,55 @@ module.exports = {
                   return 'Error....'
                 }
              }
-
-    				const markerStyle = siteConfig.openStadMap && siteConfig.openStadMap.markerStyle ? siteConfig.openStadMap.markerStyle : null;
+             
+            widget.showLabelForField = (field) => {
+              return !['radio', 'hidden', 'raw'].includes(field.type)
+                && field.fieldKey != 'userIsPublic';
+            }
+      
+            widget.getFieldId = (field) => {
+              if (!field || !field.type || !field.fieldKey) {
+                return null;
+              }
+        
+              const standardFields = ['text', 'hidden', 'textarea'];
+        
+              const staticMapping = {
+                'advice':        'advice_input',
+                'neighborhood':  'gebied',
+                'budget':        'budget_input',
+                'description':   widget.editorDescription ? 'js-editor' : 'description-textarea',
+                'estimate':      'estimate_input',
+                'image':         'image',
+                'map':           'map',
+                'phone':         'phone_input',
+                'role':          'role_input',
+                'summary':       'summary',
+                'theme':         'thema',
+                'title':         'title',
+                'vimeo':         'vimeo-id',
+                'userFirstName': 'firstName_input',
+                'userLastName':  'lastName_input',
+                'userPostcode':  'postcode_input',
+                'userPhone':     'phone_input',
+                'function':      'function_input',
+                'bio':           'bio_input'
+              }
+        
+              if (standardFields.includes(field.type)) {
+                return `${field.fieldKey}_input`;
+              } else if (staticMapping.hasOwnProperty(field.fieldKey)) {
+                return staticMapping[field.fieldKey];
+              }
+        
+              return null;
+            }
+      
+            const markerStyle = siteConfig.openStadMap && siteConfig.openStadMap.markerStyle ? siteConfig.openStadMap.markerStyle : null;
 
             // Todo: refactor this to get resourceId in a different way
-    				const activeResource = req.data.activeResource;
-    				const resources = activeResource ? [activeResource] : [];
+            const activeResource = req.data.activeResource;
+            const resources = activeResource ? [activeResource] : [];
             const googleMapsApiKey = self.apos.settings.getOption(req, 'googleMapsApiKey');
 
 

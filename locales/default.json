@@ -341,6 +341,7 @@
 	"Styles for the container": "Styles for the container",
 	"Edit Resource form": "Edit Resource form",
 	"Warning: no active resource is found for editing.": "Warning: no active resource is found for editing.",
+<<<<<<< HEAD
 	"An error has occurred": "An error has occurred",
 	"An error has occurred. We're working on it. We apologize for the inconvenience.": "An error has occurred. We're working on it. We apologize for the inconvenience.",
 	"Save Resource representation": "Save Resource representation",
@@ -617,5 +618,7 @@
 	"Screen reader info (will be added after the label)": "Screen reader info (will be added after the label)",
 	"Link with back icon": "Link with back icon",
 	"Edit Accordeon": "Edit Accordeon",
-	"Edit Info bar": "Edit Info bar"
+	"Edit Info bar": "Edit Info bar",
+	"Value": "Value",
+	"Label": "Label"
 }
