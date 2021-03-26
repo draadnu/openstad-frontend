@@ -1,5 +1,7 @@
-# Nodejs 8.0.0 alpine 3.6.0
 FROM node:13.14.0-alpine
+
+# Update base image if necessary
+RUN apk -U upgrade
 
 # Label for tracking
 LABEL nl.openstad.container="frontend" nl.openstad.version="0.0.1-beta" nl.openstad.release-date="2020-05-07"
