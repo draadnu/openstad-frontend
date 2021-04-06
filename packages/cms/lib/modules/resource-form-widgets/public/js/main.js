@@ -79,7 +79,6 @@ $(document).ready(function () {
   // Get filepond ID and set it as 'for' attribute for the corresponding label
   var labelEl = $('label#filepond-label');
   
-  console.log (labelEl, pondEl, $(pondEl).find('input[type="file"]'), $(pondEl).find('input[type="file"]').attr('id'))
   if (labelEl && pondEl && $(pondEl).find('input[type="file"]')) {
     var pondId = $(pondEl).find('input[type="file"]').attr('id');
     labelEl.attr('for', pondId);

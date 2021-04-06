@@ -89,7 +89,7 @@
 				{% if (data.global.areas and data.global.areas.length > 0) or (data.global.themes and data.global.themes.length > 0) %}
 				<div class="tab-selector">
 					{% if (data.global.themes and data.global.themes.length > 0) %}
-					<label for="themaSelector" class="hidden">{{ __('Filter op thema') }}</label>
+					<label for="themaSelector" class="visuallyhidden">{{ __('Filter op thema') }}</label>
 					<select id="themaSelector" class="default-select" onchange="{% if data.widget.votingType == 'budgeting-per-theme' or data.widget.votingType == 'count-per-theme' %}setTheme(this.selectedIndex){% else %}activateTab(this.selectedIndex){% endif %}">
 						<option value="0" selected >Alle thema's</option>
 						{% for theme in data.global.themes %}
@@ -98,7 +98,7 @@
 					</select>
 					{% endif %}
 					{% if (data.global.areas and data.global.areas.length) > 0 %}
-					<label for="filterSelector" class="hidden">{{ __('Filter op gebied') }}</label>
+					<label for="filterSelector" class="visuallyhidden">{{ __('Filter op gebied') }}</label>
 					<select id="filterSelector" class="default-select" onchange="activateFilter(this.selectedIndex)">
 						<option value="0" selected >Alle gebieden</option>
 						{% for area in data.global.areas %}
@@ -112,7 +112,7 @@
 			</div>
 			<div class="col-xs-12 col-sm-4">
 				<div class="sort">
-					<label for="sorter" class="hidden">{{ __('Sorteer op') }}</label>
+					<label for="sorter" class="visuallyhidden">{{ __('Sorteer op') }}</label>
 					<select id="sorter" class="default-select ideas-sort-select">
 						{% for selectedSorting in data.widget.selectedSorting %}
 						<option value="{{selectedSorting.value}}">{{ __(selectedSorting.label) }}</option>
