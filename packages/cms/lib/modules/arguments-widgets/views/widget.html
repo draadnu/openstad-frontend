@@ -19,6 +19,8 @@
   {% set mayEdit = (data.hasModeratorRights or isArgumentOwner) %}
   {% set mayDelete =  (data.hasModeratorRights or isArgumentOwner) %}
   <div id="argument-container-{{arg.id}}" class="argument-container openstad-ajax-refresh">
+
+    {% set uniqueId = apos.utils.generateId() %}
     {% include 'argument.html' %}
 
     <div class="reaction-container">
@@ -26,9 +28,11 @@
       {% set isReactionOwner = reaction.userId === data.openstadUser.id %}
       {% set mayEdit   = (data.hasModeratorRights or isReactionOwner) %}
       {% set mayDelete = (data.hasModeratorRights or isReactionOwner) %}
-
+      {% set uniqueId = apos.utils.generateId() %}
       {% include 'reaction.html' %}
     {% endfor %}
+
+    {% set uniqueId = apos.utils.generateId() %}
     {% include 'reaction-form.html' %}
     </div>
   </div>

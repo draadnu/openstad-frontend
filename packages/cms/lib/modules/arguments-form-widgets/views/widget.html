@@ -6,7 +6,9 @@
 			class="argument-form clearfix {{ 'logged-in' if data.loggedIn else 'not-logged-in' }} "
 		>
 			<div class="form-group">
+				<label for="{{ data.widget.uniqueId }}" class="visuallyhidden">{{ data.widget.placeholder }}</label>
 				<textarea
+					id="{{ data.widget.uniqueId }}"
 					class="textarea margin-hor-s block argument-textarea role-required-member"
 					data-modal-text="Log in om een argument te plaatsen, te reageren, of een argument te liken."
 					name="description"

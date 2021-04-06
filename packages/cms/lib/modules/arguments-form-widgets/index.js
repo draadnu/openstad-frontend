@@ -99,6 +99,7 @@ module.exports = {
 
     self.output = function(widget, options) {
       widget.ideaId =  options.activeResource ?  options.activeResource.id : false;
+      widget.uniqueId = self.apos.utils.generateId();
       return superOutput(widget, options);
     };
 
