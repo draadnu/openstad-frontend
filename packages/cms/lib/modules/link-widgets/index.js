@@ -50,6 +50,10 @@ module.exports = {
           'value': 'no-styling'
         },
         {
+          'label': 'Link with back icon',
+          'value': 'link-caret--back-black'
+        },
+        {
           'label': 'List style Link',
           'value': 'link-caret--blue'
         },
@@ -114,10 +118,13 @@ module.exports = {
     self.load = (req, widgets, callback) => {
       widgets.forEach((widget) => {
         if (widget.containerStyles) {
-          const containerId = widget._id;
+          const containerId = self.apos.utils.generateId();
           widget.containerId = containerId;
           widget.formattedContainerStyles = styleSchema.format(containerId, widget.containerStyles);
         }
+
+        widget.cssHelperClassesString = widget.cssHelperClasses ? widget.cssHelperClasses.join(' ') : '';
+
       });
 
       return superLoad(req, widgets, callback);

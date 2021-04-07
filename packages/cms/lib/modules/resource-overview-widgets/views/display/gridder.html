@@ -159,13 +159,14 @@
             data-thumbheight="105"
             data-auto="true"
             >
-              {% if (idea.extraData) and (idea.extraData.images) %}
+              {% if (idea.extraData) and (idea.extraData.images) and (idea.extraData.images.length > 0) %}
               {% for image in idea.extraData.images %}
               <a href="{{data.widget.formatImageUrl(image, idea.location, data.widget, 1200, 1200, false, data.cookieConsent)}}"></a>
               {% endfor %}
               {% else %}
               <a href="{{data.widget.formatImageUrl(idea.extraData.images[0], idea.location, data.widget, 1200, 1200, true, data.cookieConsent)}}"></a>
               {% endif %}
+
             </div>
           </div>
         </div>
@@ -174,7 +175,7 @@
       {% if data.widget.showVoteCounter %}
       <div class="vote-button-container hasVoted{% if userHasVoted %} active{% endif %}{% if idea.yes > 10000 %} gt10000{% elif idea.yes > 1000 %} gt1000{% endif %}">
         {% set id = 'no-of-votes-hasvoted-' + idea.id %}
-        {{numberPlateButton.numberPlateButton(id, 'no-of-votes-hasvoted', '', idea.yes, '', 'transparent')}}
+        {{numberPlateButton.numberPlateButton(id, 'no-of-votes-hasvoted', data.widget.voteCaption, idea.yes, '', 'transparent', data.widget.displayVoteCaption)}}
         {% if data.widget.voting %}
         <div class="vote-button"></div>
         {% endif %}
@@ -185,7 +186,7 @@
       <div class="vote-button-container hasNotVoted{% if not userHasVoted %} active{% endif %}{% if idea.yes > 10000 %} gt10000{% elif idea.yes > 1000 %} gt1000{% endif %}" >
         {% set id = 'no-of-votes-hasnotvoted-' + idea.id %}
         {% if data.widget.showVoteCounter %}
-        {{numberPlateButton.numberPlateButton(id, 'no-of-votes-hasnotvoted', '', idea.yes, '', 'transparent')}}
+        {{numberPlateButton.numberPlateButton(id, 'no-of-votes-hasnotvoted', data.widget.voteCaption, idea.yes, '', 'transparent', data.widget.displayVoteCaption)}}
         {% endif %}
         {% if data.widget.voting %}
         <a href="#vote-creator-anchor" class="vote-button" onclick="selectIdea({{idea.id}})"></a>
@@ -212,7 +213,7 @@
       {% include 'includes/modbreak.html' %}
 
       {% if data.widget.displayEditLinkForModerator and data.hasModeratorRights %}
-      <div class="description"><a href="{{ data.widget.editUrl if data.widget.editUrl else data.global.editIdeaUrl }}?resourceId={{idea.id}}&resourceType={{data.widget.resource}}" target="_blank">Bewerk</a></div>
+      <div class="description"><a href="{{ data.widget.editUrl if data.widget.editUrl else data.global.editIdeaUrl | safeRelativeUrl }}?resourceId={{idea.id}}&resourceType={{data.widget.resource}}" target="_blank">Bewerk</a></div>
       {% endif %}
 
       <div class="share-spacer"></div>

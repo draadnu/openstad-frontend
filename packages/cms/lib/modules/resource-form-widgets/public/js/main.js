@@ -31,8 +31,8 @@ if (fieldsetElement) {
     allowBrowse: true,
     files: uploadedFiles,
     server: {
-      process: '/image',
-      fetch: '/fetch-image?img=',
+      process: window.siteUrl + '/image',
+      fetch: window.siteUrl + '/fetch-image?img=',
       revert: null
     },
     labelIdle: "Sleep afbeelding(en) naar deze plek of <span class='filepond--label-action'>klik hier</span>",
@@ -192,7 +192,7 @@ $(document).ready(function () {
               var redirect = $(form).find('.form-redirect-uri').val();
               redirect = redirect.replace(':id', response.id);
               //use href to simulate a link click! Not replace, that doesn't allow for back button to work
-              window.location.href = redirect;
+              window.location.href = window.siteUrl + redirect;
           },
           error:function(response) {
               // "this" the object you passed
@@ -365,8 +365,6 @@ function initLeavePageWarningForForm () {
     $(document).ready(function () {
 
       $(window).on('beforeunload', function(e){
-        console.log('formHasChanged in here', formHasChanged)
-
         if (formHasChanged) {
           var message = 'Weet u zeker dat u de pagina wilt verlaten? (Het formulier wordt dan geleegd)', e = e || window.event;
           if (e) {  e.returnValue = message; }

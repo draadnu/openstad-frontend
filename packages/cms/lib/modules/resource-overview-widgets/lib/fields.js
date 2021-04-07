@@ -97,31 +97,48 @@ module.exports = [
     ]
   },
   {
-    name: 'fallBackToMapImage',
-    label: 'Fall back to map image if no image available?',
-    type: 'boolean',
-    choices: [
-      {
-        label: 'Yes',
-        value: true,
-        showFields: []
-      },
-      {
-        label: 'No',
-        value: false,
-      }
-    ]
-  },
-  {
     name: 'displayPagination',
     label: 'Display pagination',
     type: 'boolean',
     def: true
   },
   {
+    name: 'displayVoteCaption',
+    label: 'Display caption in vote counter',
+    type: 'boolean',
+    choices: [
+      {
+        value: true,
+        label: "Yes",
+        showFields: ['voteCaption'],
+      },
+      {
+        value: false,
+        label: "No"
+      },
+    ],
+    def: false
+  },
+  {
+    name: 'voteCaption',
+    label: 'Caption for vote counter',
+    type: 'string',
+  },
+  {
     name: 'displayEditLinkForModerator',
     label: 'Display edit link for Moderator?',
     type: 'boolean',
+    choices: [
+      {
+        value: true,
+        label: "Yes",
+        showFields: ['editUrl'],
+      },
+      {
+        value: false,
+        label: "No"
+      },
+    ],
     def: true
   },
   {

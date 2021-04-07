@@ -7,30 +7,29 @@ module.exports = {
   get: (shortName, siteData, assetsIdentifier) => {
     const resources = siteData && siteData.resources ? siteData.resources : resourcesSchema;
     const siteUrl = siteData && siteData.cms && siteData.cms.url ?  siteData.cms.url : false;
-    console.log('site.prefix', siteData.firstPath, siteUrl)
 
     const siteConfig = {
       shortName: shortName,
-      prefix: siteData.firstPath ? '/' + siteData.firstPath : false,
+      prefix: siteData.sitePrefix ? '/' + siteData.sitePrefix : false,
       modules: {
-        'api-proxy': {},
+        'api-proxy': {
+          sitePrefix: siteData.sitePrefix ? '/' + siteData.sitePrefix : false,
+        },
+        'image-proxy': {
+          sitePrefix: siteData.sitePrefix ? '/' + siteData.sitePrefix : false,
+        },
         'openstad-assets': {
           minify: process.env.MINIFY_JS && (process.env.MINIFY_JS == 1 || process.env.MINIFY_JS === 'ON'),
           jQuery: 3,
+          //lean: true,
           scripts: [
-            //  {name: 'jquery'},
-            //    {name: 'react'},
-            //    {name: 'react.dom'},
-            /* Apos script */
-            //        {name: 'apos/jquery.cookie'},
-            //        {name: 'apos/jquery.json-call'},
             {name: 'cookies'},
             {name: 'site'},
             {name: 'shuffle.min'},
             {name: 'sort'},
-            {name: 'jquery.dataTables.min'},
             {name: 'jquery.validate.min'},
             {name: 'jquery.validate.nl'},
+            {name: 'jquery.dataTables.min'}
           ],
           stylesheets: [
             {name: 'main'}
@@ -122,20 +121,27 @@ module.exports = {
         'apostrophe-video-widgets': {},
         'apostrophe-area-structure': {},
         'openstad-areas': {},
-
         'openstad-captcha': {},
         'openstad-widgets': {},
         'openstad-users': {},
         'openstad-auth': {},
+        'openstad-template-cache': {},
         'openstad-login': {},
         'openstad-api': {},
         'openstad-pages': {},
         'openstad-global': {},
         'openstad-attachments': {},
         'attachment-upload': {},
-        'openstad-nunjucks-filters': {},
+
+        'openstad-nunjucks-filters': {
+          siteUrl: siteUrl,
+        },
         'openstad-custom-pages': {},
-        'openstad-oembed': {},
+        'openstad-oembed': {
+          endpoints: [
+            { domain: 'vimeo.com', endpoint: 'https://vimeo.com/api/oembed.json' }
+          ]
+        },
 
 
         // Apostrophe module configuration
@@ -149,6 +155,7 @@ module.exports = {
         // If a template is not found somewhere else, serve it from the top-level
         // `views/` folder of the project
         'openstad-templates': {viewsFolderFallback: path.join(__dirname, '../views')},
+        'openstad-rich-text-widgets' : {},
         'openstad-logger': {},
         'idea-pages': {},
         'section-widgets': {},
@@ -156,7 +163,6 @@ module.exports = {
         'iframe-widgets': {},
         'speech-bubble-widgets': {},
         'title-widgets': {},
-        'main-image-widgets': {},
         'list-widgets': {},
         'agenda-widgets': {},
         'admin-widgets': {},
@@ -164,7 +170,9 @@ module.exports = {
         'idea-overview-widgets': {},
         'icon-section-widgets': {},
         'idea-single-widgets': {},
-        'idea-form-widgets': {},
+        'idea-form-widgets': {
+          sitePrefix: siteData.sitePrefix ? siteData.sitePrefix : false,
+        },
         'ideas-on-map-widgets': {},
         'choices-guide-result-widgets': {},
         'previous-next-button-block-widgets': {},
@@ -256,6 +264,10 @@ module.exports = {
         directory: __dirname + '/locales',
         defaultLocale: 'nl'
       }
+    }
+
+    if (process.env.APOS_PROFILER === 'per-request'){
+      siteConfig.modules['apostrophe-profiler'] = {};
     }
 
     return siteConfig;

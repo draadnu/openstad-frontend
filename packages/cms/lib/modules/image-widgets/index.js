@@ -1,5 +1,5 @@
 /**
- * Add an image
+ * Widget that allows for adding an image
  */
 const styleSchema = require('../../../config/styleSchema.js').default;
 
@@ -49,7 +49,7 @@ module.exports = {
     self.load = function (req, widgets, callback) {
         widgets.forEach((widget) => {
           if (widget.imageStyles) {
-            const imageId = widget._id;
+            const imageId = self.apos.utils.generateId();
             widget.imageId = imageId;
             widget.formattedImageStyles = styleSchema.format(imageId, widget.imageStyles);
           }
