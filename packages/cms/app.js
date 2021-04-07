@@ -54,6 +54,9 @@ app.use(express.static('public'));
 app.set('trust proxy', true);
 
 function fetchAllSites(req, res, startSites) {
+
+    console.log('LOG HEADERS', req.headers);
+
     const apiUrl = process.env.INTERNAL_API_URL ? process.env.INTERNAL_API_URL : process.env.API;
 
     console.log('Fetch all sites')
