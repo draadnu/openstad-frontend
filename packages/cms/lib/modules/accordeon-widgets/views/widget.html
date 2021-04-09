@@ -4,11 +4,12 @@
 
 <div id="{{data.widget.containerId}}" class="accordeon">
 {% for item in data.widget.items %}
+    {% set uniqueId = apos.utils.generateId() %}
     <div class="accordeon-item closed">
-        <a href="#" class="title">
+        <a href="#" class="title" aria-controls="{{ uniqueId }}-container">
             {{item.title | nlbr | sanitize | safe}}
         </a>
-        <div class="description">
+        <div class="description" id="{{ uniqueId }}-container" aria-expanded="false">
             {% if item.actionText %}
                 <p>
                     {{item.actionText | nlbr | sanitize | safe}}

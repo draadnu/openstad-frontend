@@ -2,12 +2,19 @@
  {{data.widget.formattedContainerStyles}}
 </style>
 
+{% set uniqueId = apos.utils.generateId() %}
+
 <div id="{{data.widget.containerId}}" class="howDoesItWork {% if data.widget.sectionOpen %}open{% else %}closed{% endif %}"  >
-	<a class="howDoesItWorkButton" title="{{data.widget.title}}" href="javascript: (function() { if( $('.howDoesItWork').hasClass('open') ){ $('.howDoesItWork').removeClass('open'); $('.howDoesItWork').addClass('closed'); } else { $('.howDoesItWork').removeClass('closed'); $('.howDoesItWork').addClass('open'); }   })()" style="outline: 0;">
+	<a class="howDoesItWorkButton" title="{{data.widget.title}}" href="javascript: (function() { if( $('.howDoesItWork').hasClass('open') ){ $('.howDoesItWork').removeClass('open'); $('.howDoesItWork').addClass('closed'); $('#{{ uniqueId }}-container').attr('aria-expanded', 'false'); } else { $('.howDoesItWork').removeClass('closed'); $('.howDoesItWork').addClass('open'); $('#{{ uniqueId }}-container').attr('aria-expanded', 'true'); }   })()" style="outline: 0;"
+		id="{{ uniqueId }}-toggle" aria-controls="{{ uniqueId }}-container"
+	>
 		{{data.widget.title}}
 		<img class="arrow" src="{{data.siteUrl}}/modules/openstad-assets/img/{% if data.widget.typeArrow %}{{data.widget.typeArrow}}{% else %}{{'arrow_down_black'}}{% endif %}.svg" width="13" heigh="13" style="display: inline-block; margin-left: 12px;" alt="" />
 	</a>
-	<div class="container">
+	<div class="container"
+			 id="{{ uniqueId }}-container"
+       aria-expanded="{% if data.widget.sectionOpen %}true{% else %}false{% endif %}"
+    >
 		<div class="pageContent">
 			<div class="steps">
 				{% for step in data.widget.steps %}

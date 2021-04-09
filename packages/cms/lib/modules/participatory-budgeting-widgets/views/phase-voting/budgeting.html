@@ -34,7 +34,8 @@
 									<div id="content">
 										<div id="text">
 											<div class="mobile-accordion overstretch--xs">
-												<a href="#" class="mobile-accordion-header">
+												{% set uniqueId = apos.utils.generateId() %}
+												<a href="#" class="mobile-accordion-header" aria-controls="{{ uniqueId }}-container">
 													<div class="mobile-accordion-header-open">
 														<h3 class="icon-header icon-header--blue">
 															<img src="{{data.siteUrl}}/modules/openstad-assets/img/info.png" width="24" />
@@ -48,7 +49,7 @@
 														</h3>
 													</div>
 												</a>
-												<div class="mobile-accordion-body">
+												<div class="mobile-accordion-body" id="{{ uniqueId }}-container" aria-expanded="false">
 													{{data.widget.step_1_intro}}
 												</div>
 											</div>
@@ -181,7 +182,8 @@
             </div>
 						<div class="text">
 							<div class="mobile-accordion overstretch--xs">
-								<a href="#" class="mobile-accordion-header">
+								{% set uniqueId = apos.utils.generateId() %}
+								<a href="#" class="mobile-accordion-header" aria-controls="{{ uniqueId }}-container">
 									<div class="mobile-accordion-header-open">
 										<h3 class="icon-header icon-header--blue">
 											<img src="{{data.siteUrl}}/modules/openstad-assets/img/info.png" width="24" />
@@ -195,7 +197,7 @@
 										</h3>
 									</div>
 								</a>
-								<div class="mobile-accordion-body" tabindex="0">
+								<div class="mobile-accordion-body" id="{{ uniqueId }}-container" aria-expanded="false" tabindex="0">
                   <h4 style="padding-top: 10px;">Kies jouw favoriete plannen per thema!</h4>
                   <ol type="1">
                     <li>Selecteer hieronder een thema om de plannen voor dat thema te bekijken</li>
@@ -229,7 +231,8 @@
 					  {% endif %}
 						<div class="text">
 							<div class="mobile-accordion overstretch--xs">
-								<a href="#" class="mobile-accordion-header">
+								{% set uniqueId = apos.utils.generateId() %}
+								<a href="#" class="mobile-accordion-header" aria-controls="{{ uniqueId }}-container">
 									<div class="mobile-accordion-header-open">
 										<h3 class="icon-header icon-header--blue margin-0">
 											<img src="{{data.siteUrl}}/modules/openstad-assets/img/info.png" width="24" />
@@ -243,7 +246,7 @@
 										</h3>
 									</div>
 								</a>
-								<div class="mobile-accordion-body">
+								<div class="mobile-accordion-body" id="{{ uniqueId }}-container" aria-expanded="false">
 									{{data.widget.step_1_intro}}
 								</div>
 							</div>
@@ -276,7 +279,8 @@
 					  {% endif %}
 						<div class="text">
 							<div class="mobile-accordion overstretch--xs">
-								<a href="#" class="mobile-accordion-header">
+								{% set uniqueId = apos.utils.generateId() %}
+								<a href="#" class="mobile-accordion-header" aria-controls="{{ uniqueId }}-container">
 									<div class="mobile-accordion-header-open">
 										<h3 class="icon-header icon-header--blue">
 											<img src="{{data.siteUrl}}/modules/openstad-assets/img/info.png" width="24" />
@@ -290,7 +294,7 @@
 										</h3>
 									</div>
 								</a>
-								<div class="mobile-accordion-body">
+								<div class="mobile-accordion-body" id="{{ uniqueId }}-container" aria-expanded="false">
 									{{data.widget.step_2_intro}}
 								</div>
 							</div>
@@ -301,7 +305,8 @@
 					<div id="steps-content-3" class="step">
 						<div class="text">
 							<div class="mobile-accordion overstretch--xs">
-								<a href="#" class="mobile-accordion-header">
+								{% set uniqueId = apos.utils.generateId() %}
+								<a href="#" class="mobile-accordion-header" aria-controls="{{ uniqueId }}-container">
 									<div class="mobile-accordion-header-open">
 										<h3 class="icon-header icon-header--blue">
 											<img src="{{data.siteUrl}}/modules/openstad-assets/img/info.png" width="24" />
@@ -315,7 +320,7 @@
 										</h3>
 									</div>
 								</a>
-								<div class="mobile-accordion-body">
+								<div class="mobile-accordion-body" id="{{ uniqueId }}-container" aria-expanded="false">
 									{{data.widget.step_3_intro}}
 
 								</div>
@@ -328,7 +333,8 @@
 					<div id="steps-content-4" class="step">
 						<div class="text">
 							<div class="mobile-accordion overstretch--xs" style="display: none;">
-								<a href="#" class="mobile-accordion-header">
+								{% set uniqueId = apos.utils.generateId() %}
+								<a href="#" class="mobile-accordion-header" aria-controls="{{ uniqueId }}-container">
 									<div class="mobile-accordion-header-open">
 										<h3 class="icon-header icon-header--blue">
 											<img src="{{data.siteUrl}}/modules/openstad-assets/img/info.png" width="24" />
@@ -342,7 +348,7 @@
 										</h3>
 									</div>
 								</a>
-								<div class="mobile-accordion-body">
+								<div class="mobile-accordion-body" id="{{ uniqueId }}-container" aria-expanded="false">
 									{{data.widget.step_3_succesfull_auth}}
 								</div>
 							</div>

@@ -23,7 +23,7 @@
     });
     
     function closeItem($el) {
-        $el.addClass('closed').find('.description').css({maxHeight: 0});
+        $el.addClass('closed').find('.description').css({maxHeight: 0}).attr('aria-expanded', 'false');
         
         // Remove focusability of description div and any underlying links and of the description
         $el.find('.description a').each(function () {
@@ -35,7 +35,7 @@
     function openItem($el) {
         // Get height of description and set it as maxheight on the accordeon item
         var height = $el.find('.description p').outerHeight();
-        $el.removeClass('closed').find('.description').css({maxHeight: height});
+        $el.removeClass('closed').find('.description').css({maxHeight: height}).attr('aria-expanded', 'true');
         
         // Allow focusability of description div and any underlying links and of the description
         // Focus on the description div right away, so screen readers can start reading the content

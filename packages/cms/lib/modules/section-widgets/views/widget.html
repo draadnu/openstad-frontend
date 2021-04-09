@@ -2,9 +2,13 @@
 {{data.widget.formattedContainerStyles}}
 </style>
 
+{% set uniqueId = apos.utils.generateId() %}
+
 <div
   {% if data.widget.htmlId %}
   id="{{data.widget.htmlId}}"
+  {% else %}
+  id="{{data.widget.containerId}}"
   {% endif %}
   class="section
   {% if data.widget.sectionToggle %}
@@ -31,8 +35,9 @@
   "
 >
   {% if data.widget.sectionToggle %}
-  <a class="toggle-title" href="javascript: (function() { var id = '#{% if data.widget.htmlId%}{{data.widget.htmlId}}{% else %}{{data.widget.containerId}}{% endif %}'; if( $(id).hasClass('open') ){ $(id).removeClass('open'); $(id).addClass('closed'); } else { $(id).removeClass('closed'); $(id).addClass('open'); }   })()"
-  title={{data.widget.toggleTitle}}"
+  <a class="toggle-title" href="javascript: (function() { var id = '#{% if data.widget.htmlId%}{{data.widget.htmlId}}{% else %}{{data.widget.containerId}}{% endif %}'; if( $(id).hasClass('open') ){ $(id).removeClass('open'); $(id).addClass('closed'); $('#{{ uniqueId }}-container').attr('aria-expanded', 'false'); } else { $(id).removeClass('closed'); $(id).addClass('open'); $('#{{ uniqueId }}-container').attr('aria-expanded', 'true'); }   })()"
+    title={{data.widget.toggleTitle}}"
+    id="{{ uniqueId }}-toggle" aria-controls="{{ uniqueId }}-container"
   >
     {{data.widget.toggleTitle}}
     <img class="arrow" src="{{data.siteUrl}}/modules/openstad-assets/img/{% if data.widget.typeArrow %}{{data.widget.typeArrow}}{% else %}{{'arrow_down_black'}}{% endif %}.svg" width="13" heigh="13" style="display: inline-block; margin-left: 12px;"/>
@@ -45,7 +50,13 @@
   {% include 'types/full-width.html'%}
   {% else %}
 
-  <div class="container u-small-dropdowns">
+  <div class="container u-small-dropdowns"
+
+    {% if data.widget.sectionToggle %}
+       id="{{ uniqueId }}-container"
+       aria-expanded="{% if data.widget.sectionOpen %}true{% else %}false{% endif %}"
+    {% endif %}
+  >
     {% if data.widget.displayType %}
     {% include 'types/' + data.widget.displayType + '.html'%}
     {% endif %}
