@@ -9,6 +9,7 @@ $('.argument-form.not-logged-in textarea').click(function (ev) {
 function bindArgumentValidation ($form){
   $form.validate({
     ignore: '',
+    errorElement: 'span',
     rules: {
       description : {
         required: true,

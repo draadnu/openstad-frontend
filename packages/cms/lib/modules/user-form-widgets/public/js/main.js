@@ -12,6 +12,7 @@ apos.define('user-form-widgets', {
                 
                 $form.validate({
                                    ignore:         '',
+                                   errorElement: 'span',
                                    rules:          rules,
                                    submitHandler:  function (form) {
                                        $(form).find('input[type="submit"]').val('Versturen...');

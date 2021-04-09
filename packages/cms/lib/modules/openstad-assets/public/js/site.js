@@ -234,6 +234,7 @@ function initNewsletterForm() {
     var $form = $('#newsletter-form');
     var $successMessage = $form.find('.newsletter-success-message');
     var validator = $('#newsletter-form').validate({
+        errorElement: 'span',
         submitHandler: function (form) {
             var $submitButton = $(form).find('button[type="submit"]');
             var submitButtonText = $submitButton.text();

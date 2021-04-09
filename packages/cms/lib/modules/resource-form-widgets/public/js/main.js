@@ -155,6 +155,7 @@ $(document).ready(function () {
 
     var validator = $(ideaForm).validate({
       ignore: '',
+      errorElement: 'span',
       rules: {
         ignore: [],
   //      location: {
