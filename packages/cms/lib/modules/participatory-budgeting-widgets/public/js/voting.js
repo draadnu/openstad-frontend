@@ -337,6 +337,7 @@ if (votingContainer !== null) {
 	  if (currentStep == 3) {
 		  // in stap 3 doet de knop niets
 		  addToClassName(document.querySelector('.button-stemcode.vul-je-stemcode-in'), 'do-this-first');
+		  showCodeErrorBlock();
 		  return;
 	  }
 
@@ -1824,6 +1825,22 @@ if (votingContainer !== null) {
 		div.innerHTML = planMessage +' Uw gekozen budget bedraagt: ' + formatEuros(initialAvailableBudget - availableBudgetAmount) + '. U heeft nog  ' + formatEuros(availableBudgetAmount) + ' budget over.';
 		document.body.appendChild(div);
 
+	}
+	
+	function removeCodeErrorBlock () {
+  		var codeErrorBlock = document.querySelector('#error-block-code');
+		addToClassName(codeErrorBlock, 'hidden');
+		codeErrorBlock.innerHTML = "";
+	}
+	
+	function showCodeErrorBlock () {
+  		var codeErrorBlock = document.querySelector('#error-block-code');
+		removeFromClassName(codeErrorBlock, 'hidden');
+		codeErrorBlock.innerHTML = "";
+		
+		var errorText = document.createElement('p');
+		errorText.innerHTML = "Om je stem te versturen dien je eerst een geldige stemcode in te voeren. Klik op de knop hierboven om je stemcode in te vullen.";
+		codeErrorBlock.appendChild(errorText);
 	}
 
   // dev

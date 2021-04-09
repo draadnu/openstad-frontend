@@ -122,12 +122,14 @@
 											{% set returnUrl = data.currentUrl + '&stemcode' %}
 											{% endif %}
 											{% endif %}
-											<a href="{{data.siteUrl}}/oauth/login?returnTo={{returnUrl}}" class="button-stemcode vul-je-stemcode-in" onmouseover="removeFromClassName(this, 'do-this-first');">
+											<a href="{{data.siteUrl}}/oauth/login?returnTo={{returnUrl}}" class="button-stemcode vul-je-stemcode-in" onmouseover="removeFromClassName(this, 'do-this-first'); removeCodeErrorBlock();" aria-labelledby="error-block-code">
 												Vul je stemcode in
 											</a>
 											<div class="error-block">
 												Met deze stemcode is al gestemd.
 												Een stemcode kan maar één keer gebruikt worden. Je eerst verstuurde stem blijft bewaard.
+											</div>
+											<div id="error-block-code" aria-live="polite" class="hidden">
 											</div>
 											{% if 0 %}
 											<br/></br><a href="{{data.siteUrl}}/dev/delete-user-budget-vote">Dev optie: gooi eerst je oude stem weg</a>
