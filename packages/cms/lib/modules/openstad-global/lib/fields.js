@@ -114,6 +114,16 @@ module.exports = [
     required: false
   },
   {
+    name: 'pageTitlePrefixIdea',
+    type: 'string',
+    label: 'Page title prefix for Idea resource'
+  },
+  {
+    name: 'pageTitlePrefixArticle',
+    type: 'string',
+    label: 'Page title prefix for Article resource'
+  },
+  {
     type: 'boolean',
     name: 'useCookieWarning',
     label: 'Use a cookie warning',

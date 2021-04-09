@@ -16,6 +16,11 @@ header-side-container{% if data.idea %}
 {% if data.page.metaTitle %}
 {{data.page.metaTitle}}
 {% elif activeResource and activeResource.title %}
+{% if data.activeResourceType == 'idea' and data.global and data.global.pageTitlePrefixIdea %}
+{{ data.global.pageTitlePrefixIdea }}
+{% elif data.activeResourceType == 'article' and data.global and data.global.pageTitlePrefixArticle %}
+{{ data.global.pageTitlePrefixArticle }}
+{% endif %}
 {{ activeResource.title }} | {{data.global.siteTitle}}
 {% else %}
 {{ data.page.title }} | {{data.global.siteTitle}}
