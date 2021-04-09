@@ -589,14 +589,14 @@ if (votingContainer !== null) {
           }
 
           function createOverview(selection, initialAvailableBudget, availableBudgetAmount, title) {
-			      var overviewHtml = ''
+			  
+			      // Add a table head for accessibility.
+				  var overviewHtml = '<thead><tr><th colspan="2">Titel</th><th class="text-align-right">Budget</th></tr></thead><tbody>'
+			  
 			      selection.forEach(function(id) {
 				      var element = sortedElements.find( function(el) { return el.ideaId == id } );
 				      var imageEl = element.querySelector('.idea-image-mask').cloneNode(true);//.innerHTML;
 				      var titleEl = element.querySelector('.title').cloneNode(true).innerHTML;
-				      
-				      // Add a table head for accessibility.
-				      overviewHtml = overviewHtml + '<thead><tr><th colspan="2">Titel</th><th class="text-align-right">Budget</th></tr></thead><tbody>'
 
 				      imageEl.setAttribute('data-idea-id', id);
 				      imageEl.className += ' idea-' + id;
