@@ -594,6 +594,9 @@ if (votingContainer !== null) {
 				      var element = sortedElements.find( function(el) { return el.ideaId == id } );
 				      var imageEl = element.querySelector('.idea-image-mask').cloneNode(true);//.innerHTML;
 				      var titleEl = element.querySelector('.title').cloneNode(true).innerHTML;
+				      
+				      // Add a table head for accessibility.
+				      overviewHtml = overviewHtml + '<thead><tr><th colspan="2">Titel</th><th class="text-align-right">Budget</th></tr></thead><tbody>'
 
 				      imageEl.setAttribute('data-idea-id', id);
 				      imageEl.className += ' idea-' + id;
@@ -612,8 +615,10 @@ if (votingContainer !== null) {
 				      overviewHtml = overviewHtml + '<tr class="stretch"><td  colspan="3" ><hr /></td></tr>';
 				      overviewHtml = overviewHtml + '<tr class="total-row primary-color"><td colspan="3"><div style="float:left;">Totaal gebruikt budget</div> <div style="float:right;">'+formatEuros(initialAvailableBudget - availableBudgetAmount, true)+'</div></td></tr>';
 			      }
+			      
+			      overviewHtml = overviewHtml + '</tbody>';
 
-            overviewHtml = '<h5 class="overview-title">' + title + '</h5><div class="overview"><table cellpadding="0" class="table-center stretch">' + overviewHtml + '';
+            overviewHtml = '<div class="overview"><table cellpadding="0" class="table-center stretch"><caption class="overview-title">' + title + '</caption>' + overviewHtml + '';
 
 			      if ( votingType === 'count' ) {
 				      overviewHtml = overviewHtml + '</table></div>';

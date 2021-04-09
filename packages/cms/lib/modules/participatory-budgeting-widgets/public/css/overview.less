@@ -4,7 +4,22 @@
 	margin: 10px 0 5px;
 }
 
+caption.overview-title {
+	position: absolute;
+	text-align: left;
+	top: -40px;
+	left: 0px;
+	height: 28px;
+
+	@media @phone {
+		left: 15px;
+	}
+}
+
 .overview {
+	margin-top: 35px;
+	position: relative;
+
 	.idea-image {
 		width: 44px;
 		height: 44px;
@@ -30,7 +45,16 @@
 		width: auto;
 	}
 
-	tr td {
+	thead tr th {
+		text-align: left;
+
+		&:last-child {
+			text-align: right;
+		}
+	}
+
+
+	tr td, thead tr th {
 		padding-bottom: 8px;
 		font-size: 16px;
 
@@ -40,14 +64,14 @@
 		}
 	}
 
-	tr td:first-child{
+	tr td:first-child, thead tr th:first-child{
 		width: 54px;
 
 		@media @phone {
 		}
 	}
 
-	tr td:last-child {
+	tr td:last-child, thead tr th:last-child {
 		min-width: 154px;
 		white-space: nowrap;
 
