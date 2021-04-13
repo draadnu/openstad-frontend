@@ -382,6 +382,7 @@ module.exports = {
                 //  delete record.description;
                 return record;
             }) : [];
+            widget.noResultsScreenReaderAlertText = queryParams.search ? `Geen zoekresultaten gevonden voor '${queryParams.search}'` : 'Nog geen resultaten';
 
             return widget;
         }
