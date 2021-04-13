@@ -42,6 +42,7 @@ module.exports = {
       self.pushAssets = () => {
         superPushAssets();
         self.pushAsset('script', 'clear-cache', { when: 'always' });
+        self.pushAsset('script', 'accessible-text-counter', { when: 'always' });
       };
 
       // set return options to the data object, it's a bit shorter then these long getOption function calls
