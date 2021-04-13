@@ -1166,6 +1166,10 @@ if (votingContainer !== null) {
 	  element.setAttribute('data-error-content', text);
 	  element.setAttribute('title', text);
 	  element.setAttribute('tabindex', 0);
+	  
+	  // Make sure this error is read-out by screen-reader assistance
+	  addScreenReaderAlert(text);
+	  
 	  setTimeout(function () {
 			$(element).focus();
 		}, 100);
@@ -1240,6 +1244,26 @@ if (votingContainer !== null) {
 
 	  updateList();
 
+  }
+  
+  function addScreenReaderAlert (message) {
+  	
+  	var currentAlerts = document.querySelectorAll('.sr-alert');
+  	
+  	if (currentAlerts) {
+  		for (var i = 0; i < currentAlerts.length; i++) {
+  			currentAlerts[i].parentNode.removeChild(currentAlerts[i]);
+		}
+	}
+  	
+  	var div = document.createElement('div');
+	div.setAttribute('role', 'alert');
+	div.setAttribute('aria-live', 'polite');
+	
+	div.className = 'sr-only sr-alert';
+	div.innerHTML = message;
+	
+	document.body.appendChild(div);
   }
 
 
@@ -1817,13 +1841,7 @@ if (votingContainer !== null) {
 			planMessage = 'Plan verwijderd uit winkelmand.';
 		}
 
-		var div = document.createElement('div');
-		div.setAttribute('role', 'alert');
-		div.setAttribute('aria-live', 'polite');
-		div.className = 'sr-only';
-
-		div.innerHTML = planMessage +' Uw gekozen budget bedraagt: ' + formatEuros(initialAvailableBudget - availableBudgetAmount) + '. U heeft nog  ' + formatEuros(availableBudgetAmount) + ' budget over.';
-		document.body.appendChild(div);
+		addScreenReaderAlert(planMessage +' Uw gekozen budget bedraagt: ' + formatEuros(initialAvailableBudget - availableBudgetAmount) + '. U heeft nog  ' + formatEuros(availableBudgetAmount) + ' budget over.');
 
 	}
 	
