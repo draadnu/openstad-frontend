@@ -43,9 +43,9 @@
     name="description"
     value="{{activeResource.description}}"
     required
-    minlength="{{data.widget.minDescription}}"
-    maxlength="{{data.widget.maxDescription}}"
+    minlength="{{data.widget.resourceConfig.descriptionMinLength}}"
+    maxlength="{{data.widget.resourceConfig.descriptionMaxLength}}"
   />
 {% else %}
-  <textarea name="description" id="description-textarea" {% if data.widget.requiredDescription %}required{% endif %}>{{activeResource.description}}</textarea>
+  <textarea name="description" id="description-textarea" {% if data.widget.requiredDescription %}required{% endif %} minlength="{{data.widget.resourceConfig.descriptionMinLength}}" maxlength="{{data.widget.resourceConfig.descriptionMaxLength}}">{{activeResource.description}}</textarea>
 {% endif %}

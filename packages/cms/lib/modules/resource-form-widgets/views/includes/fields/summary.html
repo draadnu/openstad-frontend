@@ -1,5 +1,5 @@
 {% if data.widget.typeSummary === 'text'  %}
-<input id="summary" type="text" name="summary" minlength="{{data.widget.resourceConfig.summaryMinLength}}" maxlength="{{data.widget.siteConfig.activeResources.summaryMaxLength}}"  {% if data.widget.requiredSummary %}required{% endif %} value="{{activeResource.summary}}">
+<input id="summary" type="text" name="summary" minlength="{{data.widget.resourceConfig.summaryMinLength}}" maxlength="{{data.widget.resourceConfig.summaryMaxLength}}"  {% if data.widget.requiredSummary %}required{% endif %} value="{{activeResource.summary}}">
 <div id="charsLeftSummary" class="charsLeft">
   <div class="min">Nog minimaal <span>0</span> tekens</div>
   <div class="max">Je hebt nog <span>0</span> tekens over.</div>
