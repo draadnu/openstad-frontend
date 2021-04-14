@@ -90,7 +90,7 @@ module.exports = {
         }
         
         if (appendTitle) {
-          req.data.global.siteLogoAltText = req.data.global.siteLogoAltText ? `${req.data.global.siteLogoAltText}, ${appendTitle}` : `${data.global.siteTitle}, ${appendTitle}`;
+          req.data.global.siteLogoAltText = req.data.global.siteLogoAltText ? `${req.data.global.siteLogoAltText}, ${appendTitle}` : `${req.data.global.siteTitle}, ${appendTitle}`;
         }
 
         self.setActiveIdeaId(req);
