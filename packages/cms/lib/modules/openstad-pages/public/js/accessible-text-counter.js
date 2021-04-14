@@ -1,6 +1,5 @@
 $(document).ready(function () {
-  $('input[minlength], input[maxlength], textarea[minlength], textarea[maxlength]').on('input', 'handleChangesForInputsWithLength');
-  $('trix-editor#js-editor').on('keydown', 'handleChangesForTrixEditor');
+  $('input[minlength], input[maxlength], textarea[minlength], textarea[maxlength]').on('input', handleChangesForInputsWithLength);
 });
 
 function handleChangesForInputsWithLength () {
