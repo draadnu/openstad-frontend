@@ -93,7 +93,30 @@ $(document).ready(function () {
 
 
   if (ideaForm && pondEl) {
-
+  
+    /**
+     * The location field can be required, but the user might fill in the 'accessible_location' field instead. Which
+     * is only reachable through tabbing through the form on a keyboard. We have to make sure that when this accessible
+     * location field is filled in, we also fill in the location field.
+     *
+     * The API filters out any empty objects from the location field, so we insert an empty object, which makes the
+     * validator happy, but does not make it into the database.
+     */
+    if ($('#accessible_location').on('change', function () {
+      var $locationField = $('#locationField'),
+          emptyValue = '{}';
+      
+      if ($(this).val().length) {
+        if ($locationField.val().length == 0) {
+          $locationField.val('{}').trigger('change');
+        }
+      } else {
+        if ($locationField.val() === emptyValue) {
+          $locationField.val('').trigger('change');
+        }
+      }
+    }));
+    
     // check if files are being uploaded
     $.validator.addMethod("validateFilePondProcessing", function() {
         var files = pond ? pond.getFiles() : [];
