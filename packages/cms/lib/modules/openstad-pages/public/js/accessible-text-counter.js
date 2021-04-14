@@ -3,8 +3,6 @@ $(document).ready(function () {
   $('trix-editor#js-editor').on('keydown', 'handleChangesForTrixEditor');
 });
 
-function handleChangesForTrixEditor
-
 function handleChangesForInputsWithLength () {
     var min     = parseInt($(this).attr('minlength'));
     var max     = parseInt($(this).attr('maxlength'));
