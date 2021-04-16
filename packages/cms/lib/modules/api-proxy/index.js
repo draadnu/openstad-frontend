@@ -21,6 +21,9 @@ module.exports = {
      pathRewrite: {['^'+apiPath] : '/api'},
      onProxyReq : (proxyReq, req, res) => {
 
+       
+       console.log ('====> api proxy', req.headers, req.connection.remoteAddress, apiUrl);
+       
        /**
         * Validate the request with captcha if send by a form
         */
