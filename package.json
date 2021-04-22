@@ -38,6 +38,7 @@
     "openstad-component-ideas-on-map": "git+ssh://git@github.com/Amsterdam/openstad-component-ideas-on-map.git#v0.0.16",
     "openstad-component-nlmap": "git+ssh://git@github.com/Amsterdam/openstad-component-nlmap.git#v0.0.9",
     "request-promise": "^4.2.6",
+    "sanitize-html": "^2.3.3",
     "shell-quote": "^1.7.2",
     "tsscmp": "^1.0.6"
   }
