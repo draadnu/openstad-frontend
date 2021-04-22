@@ -81,7 +81,7 @@ module.exports = (self, options) => {
       //add query tot data object, so it can be used
       req.data.query = req.query;
       
-      console.log ('overrideGlobalDataWithSiteConfig - area.polygon check', {siteConfig}, 'polygonsKey', req.data.global.mapPolygonsKey);
+      //console.log ('overrideGlobalDataWithSiteConfig - area.polygon check', {siteConfig}, 'polygonsKey', req.data.global.mapPolygonsKey);
 
       //
       if (siteConfig && siteConfig.area && siteConfig.area.polygon) {
