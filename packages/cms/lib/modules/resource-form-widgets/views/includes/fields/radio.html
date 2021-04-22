@@ -26,13 +26,13 @@
       name="extraData[{{field.fieldKey}}]"
       {% endif %}
       value="{{option.value}}"
-      id="radio-{{loop.index}}-{{option.value}}"
+      id="radio-{{field.fieldKey}}-{{loop.index}}-{{option.value}}"
 
       {% if field.fieldRequired %}required{% endif %}
       {% if fieldValue === option.value %}checked{% endif %}
     />
 
-    <label for="radio-{{loop.index}}-{{option.value}}" class="radio-label">
+    <label for="radio-{{field.fieldKey}}-{{loop.index}}-{{option.value}}" class="radio-label">
        {{option.label}}
     </label>
   </div>
