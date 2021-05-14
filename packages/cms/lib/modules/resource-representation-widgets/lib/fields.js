@@ -121,6 +121,43 @@ const fields = [
       ],
       def: false
   },
+  {
+      name: 'hideVotes',
+      type: 'boolean',
+      label: 'Hide votes in controls?',
+      choices: [
+          {
+              value: true,
+              label: "Yes",
+          },
+          {
+              value: false,
+              label: "No"
+          },
+      ],
+      def: false
+  },
+  {
+      name: 'hideStatus',
+      type: 'boolean',
+      label: 'Hide status in controls?',
+      choices: [
+          {
+              value: true,
+              label: "Yes",
+          },
+          {
+              value: false,
+              label: "No"
+          },
+      ],
+      def: false
+  },
+  {
+    name: 'shareTitle',
+    type: 'string',
+    label: 'Title above share buttons (default: Deel dit voorstel)'
+  }
 ].concat(
     ideaStates.map((state) => {
       return {
