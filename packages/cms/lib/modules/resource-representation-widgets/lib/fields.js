@@ -9,7 +9,7 @@ const fields = [
     name: 'displayType',
     label: 'Representation',
     type: 'select',
-    choices: [             
+    choices: [
 
       {
         'label': 'Idea Page (only for idea resource)',
@@ -104,7 +104,23 @@ const fields = [
             label: "Whatsapp"
         },
     ]
-  }
+  },
+  {
+      name: 'hideUserLastName',
+      type: 'boolean',
+      label: 'Hide user last name?',
+      choices: [
+          {
+              value: true,
+              label: "Yes",
+          },
+          {
+              value: false,
+              label: "No"
+          },
+      ],
+      def: false
+  },
 ].concat(
     ideaStates.map((state) => {
       return {
