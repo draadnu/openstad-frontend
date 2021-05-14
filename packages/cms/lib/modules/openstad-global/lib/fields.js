@@ -516,6 +516,11 @@ module.exports = [
     label: 'Display my account in main menu?'
   },
   {
+    name: 'myAccountText',
+    type: 'string',
+    label: 'Which text to use for "my account" in the menu? (Default: Mijn account)'
+  },
+  {
     name: 'cacheIdeas',
     type: 'boolean',
     label: 'Cache ideas? This optimises performance for sites, only works for sites where ideas are static, most voting sits'

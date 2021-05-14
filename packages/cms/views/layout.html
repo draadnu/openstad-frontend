@@ -257,7 +257,7 @@
             {% else %}
             <a href="{{data.siteUrl}}/oauth/login"  role="button">
               <!-- <span class="glyphicon glyphicon-user"></span>  !-->
-              {{ __('Mijn account') }}
+              {{ __('Mijn account') if not data.global.myAccountText else data.global.myAccountText }}
             </a>
             {% endif %}
           </div>
@@ -352,7 +352,7 @@
       				<a href="{{data.siteUrl}}/oauth/login" class="account" role="button">
                 <!-- <span class="glyphicon glyphicon-user"></span>  !-->
                 <img src="/modules/openstad-assets/img/avatar.svg" />
-                {{ __('Mijn account') }}
+                {{ __('Mijn account') if not data.global.myAccountText else data.global.myAccountText }}
               </a>
         			{% endif %}
               {% endif %}
