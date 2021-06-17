@@ -33,6 +33,17 @@ module.exports = {
        self.pushAsset('script', 'westbegroot-enhancements', { when: 'always' });
      };
 
+     const superLoad = self.load;
+
+     self.load = function (req, widgets, callback) {
+    /*    const acceptedIdeas = req.data.ideas ? req.data.ideas.filter(idea => idea.status === 'ACCEPTED') : []; */
+        widgets.forEach((widget) => {
+          widget.acceptedIdeas = req.data.ideas;
+        });
+
+        return superLoad(req, widgets, callback);
+     };
+     
     const superOutput = self.output;
 
      self.output = function(widget, options) {
@@ -64,6 +75,11 @@ module.exports = {
          return url;
        }
 
+       const ideaIds = [28, 29, 33, 37, 39, 41, 45, 48, 52, 54, 55, 56, 57, 59, 60, 66, 68, 71, 74, 77];
+       
+       widget.showIdeas = widget.acceptedIdeas.filter((idea) => {
+         return ideaIds.indexOf(idea.id) > -1;
+       })
 
        widget.userHasVoted = false;
        widget.userIsLoggedIn = false;

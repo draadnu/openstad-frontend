@@ -62,7 +62,7 @@
 											{% if data.widget.votingType === 'count' or data.widget.votingType === 'count-per-theme'  %}
 											<table class="primary-color stretch table-reset">
 												<tr >
-													<td><label>Ideeën gekozen:</label> </td>
+													<td><label>Kandidaten gekozen:</label> </td>
 													<td><span class="current-ideas-count text-align-right block bold">0</span></td>
 												</tr>
 												<tr>
@@ -102,14 +102,14 @@
                     </div>
 										<div id="budgeting-edit-mode-container" class="hidden align-left">
 											<div class="onoffswitch">
-												<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox budgeting-edit-mode"  onchange="setBudgetingEditMode();" id="budgeting-edit-mode" title="Verwijder een plan">
+												<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox budgeting-edit-mode"  onchange="setBudgetingEditMode();" id="budgeting-edit-mode" title="Verwijder een kandidaat">
 												<label class="onoffswitch-label" for="budgeting-edit-mode" tabindex="-1">
 													<span class="onoffswitch-inner"></span>
 													<span class="onoffswitch-switch"></span>
 												</label>
 											</div>
 											<div>
-												Verwijder een plan
+												Verwijder een kandidaat
 											</div>
 										</div>
 										<div id="vote-button-container">
@@ -380,7 +380,7 @@
 						{% if data.widget.votingType === 'count' or data.widget.votingType === 'count-per-theme' %}
 						<div class="col-sm-4 col-xs-6 budget-col">
 							<label>
-								<span> Ideeën gekozen: </span>
+								<span> Kandidaten gekozen: </span>
 							</label>
 							<span class="current-ideas-count bold">0</span>
 						</div>
