@@ -135,6 +135,7 @@ module.exports = {
      const apiUrl = self.apos.settings.getOption(req, 'apiUrl');
      const siteId = req.data.global.siteId;
      const postUrl = `${apiUrl}/api/site/${siteId}/vote`;
+     
      const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
      let votes = req.body.votes ? req.body.votes : [{

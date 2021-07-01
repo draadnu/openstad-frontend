@@ -1,3 +1,3 @@
 module.exports = {
-    getMapType: () => process.env.MAP_TYPE,
+    getMapType: () => 'nlmaps-openlayers',
 };
